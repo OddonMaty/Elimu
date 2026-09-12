@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Elimu - Comparateur d'Écoles</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary": "#ffffff",
+                      "surface-variant": "#e0e3e6",
+                      "on-surface-variant": "#43474e",
+                      "surface-container": "#ebeef1",
+                      "primary-container": "#1b3b5f",
+                      "on-tertiary-fixed-variant": "#2c4965",
+                      "inverse-surface": "#2d3133",
+                      "surface-dim": "#d7dadd",
+                      "on-primary": "#ffffff",
+                      "outline-variant": "#c3c6cf",
+                      "secondary": "#8b5000",
+                      "on-primary-container": "#88a6cf",
+                      "secondary-fixed-dim": "#ffb871",
+                      "on-background": "#181c1e",
+                      "on-tertiary-fixed": "#001d34",
+                      "on-secondary-fixed": "#2d1600",
+                      "on-error-container": "#93000a",
+                      "inverse-primary": "#abc8f4",
+                      "on-tertiary": "#ffffff",
+                      "outline": "#73777f",
+                      "on-secondary-container": "#6a3c00",
+                      "surface-container-high": "#e5e8eb",
+                      "tertiary-fixed-dim": "#acc9eb",
+                      "primary-fixed": "#d3e4ff",
+                      "secondary-fixed": "#ffdcbe",
+                      "on-error": "#ffffff",
+                      "tertiary-fixed": "#d0e4ff",
+                      "secondary-container": "#fda13a",
+                      "on-primary-fixed": "#001c38",
+                      "surface-tint": "#426086",
+                      "primary-fixed-dim": "#abc8f4",
+                      "on-secondary-fixed-variant": "#693c00",
+                      "background": "#f7fafd",
+                      "surface-bright": "#f7fafd",
+                      "inverse-on-surface": "#eef1f4",
+                      "surface-container-low": "#f1f4f7",
+                      "on-surface": "#181c1e",
+                      "primary": "#002547",
+                      "tertiary": "#032641",
+                      "error": "#ba1a1a",
+                      "tertiary-container": "#1e3c58",
+                      "on-tertiary-container": "#8aa6c7",
+                      "surface-container-highest": "#e0e3e6",
+                      "on-primary-fixed-variant": "#2a486d",
+                      "surface": "#f7fafd",
+                      "error-container": "#ffdad6",
+                      "surface-container-lowest": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "gutter": "20px",
+                      "unit": "4px",
+                      "sm": "8px",
+                      "xl": "32px",
+                      "md": "16px",
+                      "margin-mobile": "16px",
+                      "xs": "4px",
+                      "margin-desktop": "40px",
+                      "lg": "24px"
+              },
+              "fontFamily": {
+                      "headline-lg": ["Inter"],
+                      "display-lg": ["Inter"],
+                      "body-md": ["Inter"],
+                      "headline-lg-mobile": ["Inter"],
+                      "label-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-md": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                      "display-lg": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-lg min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="bg-surface dark:bg-inverse-surface text-primary dark:text-primary-fixed font-body-lg text-body-lg docked full-width top-0 border-b border-outline-variant dark:border-outline flat no shadows flex justify-between items-center w-full px-margin-desktop max-w-full mx-auto h-16 sticky z-50">
+<div class="text-headline-md font-headline-md text-primary dark:text-primary-fixed tracking-tight">
+            Elimu
+        </div>
+<div class="hidden md:flex space-x-lg items-center h-full">
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors flex items-center h-full px-2" href="#">Écoles</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors flex items-center h-full px-2" href="#">Inscriptions</a>
+<a class="text-primary dark:text-primary-fixed font-bold border-b-2 border-primary dark:border-primary-fixed pb-1 flex items-center h-full px-2 Active: opacity-80 transition-opacity" href="#">Comparateur</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors flex items-center h-full px-2" href="#">Aide</a>
+</div>
+<div class="flex items-center space-x-md">
+<button class="bg-primary text-on-primary hover:bg-primary/90 px-md py-sm rounded-lg font-label-md text-label-md transition-colors">
+                Se connecter
+            </button>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-xl">
+<!-- Header Section -->
+<div class="mb-xl text-center">
+<h1 class="font-display-lg text-display-lg text-on-surface mb-sm">Comparaison d'Écoles</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">Analysez les critères pour faire le meilleur choix pour l'avenir de votre enfant.</p>
+</div>
+<!-- Comparison Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md md:gap-lg">
+<!-- School 1: Complexe Scolaire Les Élites -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden flex flex-col hover:shadow-lg transition-shadow duration-300">
+<!-- Header Card -->
+<div class="p-lg border-b border-outline-variant bg-surface-container-low flex flex-col items-center text-center">
+<div class="w-24 h-24 rounded-full border border-outline-variant bg-white mb-md overflow-hidden flex items-center justify-center p-2 shadow-sm">
+<img class="w-full h-full object-contain" data-alt="A clean, modern logo for a prestigious school named 'Les Élites' featuring an open book and a graduation cap in gold and navy blue colors, isolated on a white background, corporate SaaS style, minimalist." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiwZ46dxLNJXy0IFl4VbBeiORKX-Cd3dF-HV5j_cQ7SJEd8iFJEETjqF9SVY8HG5OOA6joTg0YTEyKkm_uH_s8dNXRQy1WTslAzHc3hJsZT6zhw4rDwEQ4W6PorWJyiohMycKn4azzcY29UD9c3ALqhzvGGecoTJVtqkyMBhYVhxiutrzw3Iln2Q1iluEPgLDEugWAsoU0iMIgW-i-NGx3v0v7_mPwoeI0CeDBHTcTy3K71QAXth7smw"/>
+</div>
+<h2 class="font-headline-md text-headline-md text-primary mb-xs">Complexe Scolaire Les Élites</h2>
+<span class="inline-flex items-center px-2 py-1 rounded bg-secondary-fixed text-on-secondary-fixed font-label-md text-label-md">Privé</span>
+</div>
+<!-- Comparison Data -->
+<div class="p-lg flex-grow flex flex-col space-y-md">
+<!-- Minerval -->
+<div class="flex justify-between items-center py-sm border-b border-surface-variant">
+<div class="flex items-center text-on-surface-variant">
+<span class="material-symbols-outlined mr-sm text-outline" data-weight="fill">payments</span>
+<span class="font-body-md text-body-md">Minerval Annuel</span>
+</div>
+<div class="font-headline-md text-headline-md text-on-surface">450$</div>
+</div>
+<!-- Sections -->
+<div class="py-sm border-b border-surface-variant">
+<div class="flex items-center text-on-surface-variant mb-xs">
+<span class="material-symbols-outlined mr-sm text-outline">category</span>
+<span class="font-body-md text-body-md">Sections Organisées</span>
+</div>
+<div class="flex flex-wrap gap-sm">
+<span class="px-sm py-xs bg-surface-container text-on-surface rounded font-label-md text-label-md border border-outline-variant">Scientifique</span>
+<span class="px-sm py-xs bg-surface-container text-on-surface rounded font-label-md text-label-md border border-outline-variant">Pédagogie</span>
+</div>
+</div>
+<!-- EXATAT -->
+<div class="flex justify-between items-center py-sm border-b border-surface-variant">
+<div class="flex items-center text-on-surface-variant">
+<span class="material-symbols-outlined mr-sm text-outline">school</span>
+<span class="font-body-md text-body-md">Taux Réussite EXATAT</span>
+</div>
+<div class="font-headline-md text-headline-md text-primary">98%</div>
+</div>
+<!-- Langues -->
+<div class="flex justify-between items-center py-sm border-b border-surface-variant">
+<div class="flex items-center text-on-surface-variant">
+<span class="material-symbols-outlined mr-sm text-outline">language</span>
+<span class="font-body-md text-body-md">Langues</span>
+</div>
+<div class="font-body-md text-body-md text-on-surface font-semibold">Français, Anglais</div>
+</div>
+<!-- Infrastructures -->
+<div class="py-sm">
+<div class="flex items-center text-on-surface-variant mb-xs">
+<span class="material-symbols-outlined mr-sm text-outline">business</span>
+<span class="font-body-md text-body-md">Infrastructures</span>
+</div>
+<ul class="space-y-xs font-body-md text-body-md text-on-surface">
+<li class="flex items-center"><span class="material-symbols-outlined text-primary mr-xs text-[18px]">check_circle</span> Laboratoires Modernes</li>
+<li class="flex items-center"><span class="material-symbols-outlined text-primary mr-xs text-[18px]">check_circle</span> Terrain de Basket</li>
+<li class="flex items-center"><span class="material-symbols-outlined text-primary mr-xs text-[18px]">check_circle</span> Bibliothèque Numérique</li>
+</ul>
+</div>
+</div>
+<!-- Footer Action -->
+<div class="p-lg bg-surface-container-lowest mt-auto pt-0">
+<button class="w-full bg-primary text-on-primary hover:bg-primary/90 py-md rounded-lg font-label-md text-label-md transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined mr-sm">person_add</span>
+                        S'inscrire
+                    </button>
+</div>
+</div>
+<!-- School 2: Institut Boboto -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden flex flex-col hover:shadow-lg transition-shadow duration-300">
+<!-- Header Card -->
+<div class="p-lg border-b border-outline-variant bg-surface-container-low flex flex-col items-center text-center">
+<div class="w-24 h-24 rounded-full border border-outline-variant bg-white mb-md overflow-hidden flex items-center justify-center p-2 shadow-sm">
+<img class="w-full h-full object-contain" data-alt="A classic, authoritative crest logo for 'Institut Boboto', featuring a shield with a rising sun and a pen in dark blue and gold. Minimalist, professional SaaS UI style, isolated on white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEfe_JPdBVTgFvtRgF1fOuVAfE3419_W52bcfkRBiBVa1jNuETtvUMFHdagwaeB6ZhP7pi80cC3L8q_AT7kPu_eClTlffk-k2A4PEG5MHam9P1IWhys9oJjhhVh0J_Se2pnbActrEfyulrrXvCw0yRhen4AJXFR3e5zoKPEo_SCd-Z89mj0BLHn-oTjy38dw9IfVpeHuOUl3ASHMtLo2EPx7hbYkw0xzA4DrWvlZfeVCQheVToTtwdzg"/>
+</div>
+<h2 class="font-headline-md text-headline-md text-primary mb-xs">Institut Boboto</h2>
+<span class="inline-flex items-center px-2 py-1 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-md text-label-md">Conventionné Catholique</span>
+</div>
+<!-- Comparison Data -->
+<div class="p-lg flex-grow flex flex-col space-y-md">
+<!-- Minerval -->
+<div class="flex justify-between items-center py-sm border-b border-surface-variant">
+<div class="flex items-center text-on-surface-variant">
+<span class="material-symbols-outlined mr-sm text-outline" data-weight="fill">payments</span>
+<span class="font-body-md text-body-md">Minerval Annuel</span>
+</div>
+<div class="font-headline-md text-headline-md text-on-surface">150$</div>
+</div>
+<!-- Sections -->
+<div class="py-sm border-b border-surface-variant">
+<div class="flex items-center text-on-surface-variant mb-xs">
+<span class="material-symbols-outlined mr-sm text-outline">category</span>
+<span class="font-body-md text-body-md">Sections Organisées</span>
+</div>
+<div class="flex flex-wrap gap-sm">
+<span class="px-sm py-xs bg-surface-container text-on-surface rounded font-label-md text-label-md border border-outline-variant">Scientifique</span>
+<span class="px-sm py-xs bg-surface-container text-on-surface rounded font-label-md text-label-md border border-outline-variant">Littéraire</span>
+</div>
+</div>
+<!-- EXATAT -->
+<div class="flex justify-between items-center py-sm border-b border-surface-variant">
+<div class="flex items-center text-on-surface-variant">
+<span class="material-symbols-outlined mr-sm text-outline">school</span>
+<span class="font-body-md text-body-md">Taux Réussite EXATAT</span>
+</div>
+<div class="font-headline-md text-headline-md text-primary">95%</div>
+</div>
+<!-- Langues -->
+<div class="flex justify-between items-center py-sm border-b border-surface-variant">
+<div class="flex items-center text-on-surface-variant">
+<span class="material-symbols-outlined mr-sm text-outline">language</span>
+<span class="font-body-md text-body-md">Langues</span>
+</div>
+<div class="font-body-md text-body-md text-on-surface font-semibold">Français</div>
+</div>
+<!-- Infrastructures -->
+<div class="py-sm">
+<div class="flex items-center text-on-surface-variant mb-xs">
+<span class="material-symbols-outlined mr-sm text-outline">business</span>
+<span class="font-body-md text-body-md">Infrastructures</span>
+</div>
+<ul class="space-y-xs font-body-md text-body-md text-on-surface">
+<li class="flex items-center"><span class="material-symbols-outlined text-outline mr-xs text-[18px]">check_circle</span> Laboratoires Standards</li>
+<li class="flex items-center"><span class="material-symbols-outlined text-primary mr-xs text-[18px]">check_circle</span> Complexe Sportif (Foot)</li>
+<li class="flex items-center"><span class="material-symbols-outlined text-primary mr-xs text-[18px]">check_circle</span> Grande Bibliothèque</li>
+</ul>
+</div>
+</div>
+<!-- Footer Action -->
+<div class="p-lg bg-surface-container-lowest mt-auto pt-0">
+<button class="w-full bg-primary text-on-primary hover:bg-primary/90 py-md rounded-lg font-label-md text-label-md transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined mr-sm">person_add</span>
+                        S'inscrire
+                    </button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

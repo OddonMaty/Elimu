@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Elimu - Messagerie</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-container": "#6a3c00",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#abc8f4",
+                        "inverse-surface": "#2d3133",
+                        "inverse-on-surface": "#eef1f4",
+                        "surface-variant": "#e0e3e6",
+                        "on-secondary-fixed": "#2d1600",
+                        "secondary-fixed": "#ffdcbe",
+                        "on-surface-variant": "#43474e",
+                        "surface": "#f7fafd",
+                        "secondary-fixed-dim": "#ffb871",
+                        "surface-dim": "#d7dadd",
+                        "error": "#ba1a1a",
+                        "on-surface": "#181c1e",
+                        "on-background": "#181c1e",
+                        "surface-container": "#ebeef1",
+                        "on-primary-container": "#88a6cf",
+                        "on-tertiary-fixed-variant": "#2c4965",
+                        "on-tertiary-container": "#8aa6c7",
+                        "on-primary": "#ffffff",
+                        "primary": "#002547",
+                        "primary-fixed": "#d3e4ff",
+                        "surface-container-highest": "#e0e3e6",
+                        "primary-container": "#1b3b5f",
+                        "on-primary-fixed-variant": "#2a486d",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#8b5000",
+                        "surface-tint": "#426086",
+                        "background": "#f7fafd",
+                        "on-secondary": "#ffffff",
+                        "surface-bright": "#f7fafd",
+                        "tertiary": "#032641",
+                        "outline": "#73777f",
+                        "tertiary-container": "#1e3c58",
+                        "on-secondary-fixed-variant": "#693c00",
+                        "on-primary-fixed": "#001c38",
+                        "on-tertiary-fixed": "#001d34",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#fda13a",
+                        "primary-fixed-dim": "#abc8f4",
+                        "surface-container-high": "#e5e8eb",
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#acc9eb",
+                        "surface-container-low": "#f1f4f7",
+                        "outline-variant": "#c3c6cf",
+                        "tertiary-fixed": "#d0e4ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "20px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "unit": "4px",
+                        "margin-desktop": "40px",
+                        "xs": "4px",
+                        "md": "16px",
+                        "margin-mobile": "16px",
+                        "xl": "32px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg": ["28px", { "lineHeight": "36px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Custom scrollbar for message area */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #c3c6cf;
+            border-radius: 20px;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-hidden">
+<!-- TopAppBar Component -->
+<header class="bg-surface dark:bg-surface-dim fixed top-0 right-0 w-[calc(100%-280px)] h-16 border-b border-outline-variant dark:border-outline flat no shadows flex justify-between items-center px-margin-desktop z-40">
+<div class="flex items-center">
+<span class="font-headline-lg text-headline-lg text-primary dark:text-inverse-primary mr-lg hidden">Elimu</span>
+<h1 class="font-headline-md text-headline-md text-primary">Messagerie Directe</h1>
+</div>
+<div class="flex items-center gap-md">
+<!-- Search on_left ignored in this layout per typical direct messaging interface, focusing on actions -->
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant ml-sm">
+<img alt="Photo de profil utilisateur" class="w-full h-full object-cover" data-alt="Professional portrait of a confident woman wearing glasses and business casual attire, bright corporate modern lighting, solid light grey background, high resolution, soft shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpYCJPQXqqnKyLEohBiYYwhOSBtGOAEQXbFSY-FEb3qfO-E3--Qbcf2ipyCiS95a_h1Da0Q5E8657FqQB6yL3I8SEFMdDSeiOV4Yk8U1RGp-NKSsoYNZP7bDJQ-iAX-pOEPBPCpO-damn2Mg-oZLXlNfVbxTg-VMUD0RI6w5Oj0t7c7Z7ki4JUZcih63J4-u9kZpRcoGwvF20bhpupjer_Th9JDnWhoeGDEOFFPptc2swuPITkr50ENQ"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar Component -->
+<nav class="bg-primary dark:bg-primary-container fixed h-screen w-[280px] left-0 top-0 bg-primary dark:bg-primary-container shadow-sm flex flex-col h-full py-xl z-50">
+<!-- Header -->
+<div class="px-lg mb-xl">
+<div class="flex items-center gap-sm mb-lg">
+<div class="w-10 h-10 rounded bg-white flex items-center justify-center overflow-hidden flex-shrink-0">
+<img alt="Logo Elimu" class="w-full h-full object-contain p-1" data-alt="A clean, modern logo featuring an abstract geometric book and leaf design in deep navy blue and vibrant orange, set against a pure white background, professional vector art style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFs15oXoFBpZf-YcHqdz-yoTDke65r36fHHK6oFkW8ytQN7tB3uBtHvKJGcHBj6gzZO_2ZPM9FSTa0s76dxve4cHyPpo_hvJeAFb4WDwbG75xqWs2isZvzcqQGIXd0jPs2idO5o61fnlo2sQ-lhb-fHCkGxuGZEoojMxFCMBiUaCEGxR_gZc-mPkhu6eSVwOMqNBv0hf2fUk4sjdKtBYfHmOdt23qx3NbgfTxYlLzKXdXNc9JPf6eJWg"/>
+</div>
+<div>
+<h2 class="font-display-lg text-[24px] leading-tight text-on-primary dark:text-on-primary-container tracking-tight">Elimu</h2>
+<p class="font-label-md text-label-md text-on-primary/70">Gestion Scolaire</p>
+</div>
+</div>
+<button class="w-full py-sm px-md bg-secondary-container text-on-secondary-container rounded-lg flex items-center justify-center gap-sm font-label-md text-label-md hover:bg-secondary-fixed transition-colors">
+<span class="material-symbols-outlined" style="font-size: 18px;">add</span>
+                Nouvelle Discussion
+            </button>
+</div>
+<!-- Main Nav Tabs -->
+<div class="flex-1 overflow-y-auto">
+<ul class="space-y-sm flex flex-col">
+<li class="cursor-pointer transition-all duration-200">
+<a class="flex items-center gap-md py-sm text-on-primary/70 dark:text-on-primary-container/70 hover:text-on-primary pl-4 hover:bg-primary-container/50 dark:hover:bg-primary/20 transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                        Tableau de bord
+                    </a>
+</li>
+<li class="cursor-pointer transition-all duration-200">
+<a class="flex items-center gap-md py-sm text-secondary-container dark:text-secondary-fixed font-bold border-l-4 border-secondary-container pl-4 hover:bg-primary-container/50 dark:hover:bg-primary/20 transition-colors font-body-md text-body-md bg-primary-container/30" href="#">
+<span class="material-symbols-outlined">forum</span>
+                        Messagerie
+                    </a>
+</li>
+<li class="cursor-pointer transition-all duration-200">
+<a class="flex items-center gap-md py-sm text-on-primary/70 dark:text-on-primary-container/70 hover:text-on-primary pl-4 hover:bg-primary-container/50 dark:hover:bg-primary/20 transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">assignment</span>
+                        Devoirs
+                    </a>
+</li>
+<li class="cursor-pointer transition-all duration-200">
+<a class="flex items-center gap-md py-sm text-on-primary/70 dark:text-on-primary-container/70 hover:text-on-primary pl-4 hover:bg-primary-container/50 dark:hover:bg-primary/20 transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">calendar_month</span>
+                        Calendrier
+                    </a>
+</li>
+<li class="cursor-pointer transition-all duration-200">
+<a class="flex items-center gap-md py-sm text-on-primary/70 dark:text-on-primary-container/70 hover:text-on-primary pl-4 hover:bg-primary-container/50 dark:hover:bg-primary/20 transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">folder_open</span>
+                        Ressources
+                    </a>
+</li>
+</ul>
+</div>
+<!-- Footer Nav Tabs -->
+<div class="mt-auto pt-lg border-t border-on-primary/10">
+<ul class="space-y-sm flex flex-col">
+<li class="cursor-pointer transition-all duration-200">
+<a class="flex items-center gap-md py-sm text-on-primary/70 dark:text-on-primary-container/70 hover:text-on-primary pl-4 hover:bg-primary-container/50 dark:hover:bg-primary/20 transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">settings</span>
+                        Paramètres
+                    </a>
+</li>
+<li class="cursor-pointer transition-all duration-200">
+<a class="flex items-center gap-md py-sm text-on-primary/70 dark:text-on-primary-container/70 hover:text-on-primary pl-4 hover:bg-primary-container/50 dark:hover:bg-primary/20 transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">logout</span>
+                        Déconnexion
+                    </a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Canvas (Split view for Messaging) -->
+<main class="ml-[280px] mt-16 h-[calc(100vh-64px)] flex bg-surface">
+<!-- Conversations List Sidebar -->
+<aside class="w-80 border-r border-outline-variant bg-surface-container-lowest flex flex-col flex-shrink-0">
+<div class="p-md border-b border-outline-variant">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" style="font-size: 20px;">search</span>
+<input class="w-full pl-10 pr-4 py-2 rounded-lg border border-outline-variant bg-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-md text-body-md" placeholder="Rechercher une conversation..." type="text"/>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar">
+<!-- Conversation Item (Active) -->
+<div class="flex items-start gap-sm p-md border-b border-outline-variant bg-surface-container-low cursor-pointer hover:bg-surface-container transition-colors relative">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-secondary-container"></div>
+<div class="relative">
+<div class="w-12 h-12 rounded-full overflow-hidden border border-outline-variant">
+<img alt="M. Dubois" class="w-full h-full object-cover" data-alt="A portrait of a male teacher in a classroom setting, wearing a light blue button-down shirt, warm inviting smile, soft natural lighting, modern professional photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBslfOl6bai9eMjy3RnIObYtK4SdrfwECZVOzofc8QmAJAVihFmkh83Dv2pblocOu35kMSqPpFXOi-kSiQwFkaMghCKg7atZ4qgaY_kxJ_MKCN-x8L0wJbg3zmTYScUWUfnG3rZgGOJqUeFlYmgnglKB-lnTkSufgQmyWCSRwX0WxSucEcyylT-7e42ygt59yJwT1po4hFxUGJZ_Th8Uh3omQ6_S7JUI2u8iBA-SBkGryaFkRKEvXphtg"/>
+</div>
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-secondary-container rounded-full border-2 border-surface-container-low"></div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-1">
+<h3 class="font-label-md text-label-md text-on-surface truncate">M. Dubois (Mathématiques)</h3>
+<span class="font-label-md text-[10px] text-on-surface-variant flex-shrink-0">10:42</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant truncate text-sm">Le devoir de Sarah est excellent, elle a très bien compris le chapitre.</p>
+</div>
+</div>
+<!-- Conversation Item (Unread) -->
+<div class="flex items-start gap-sm p-md border-b border-outline-variant bg-surface-container-lowest cursor-pointer hover:bg-surface-container transition-colors">
+<div class="relative">
+<div class="w-12 h-12 rounded-full overflow-hidden border border-outline-variant">
+<img alt="Direction" class="w-full h-full object-cover" data-alt="A portrait of a female school administrator in an office, wearing a professional navy blazer, focused expression, bright modern office lighting, corporate style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAv19EnIvucc6h4OmvSurVV9iK8H1j2zwVCCJPaRIxR3LN9v3O9Z2xQ4EScw8I6sNViZdYqPxmplXe4FIcw3GZGBtiCjCqJB_V2_4PIN4Cm0L2SOHBGfkb1RiMB-Xka3lhSOBS_2feRrsJTBRDOsne4bfqMN9xyfT9TJx2qvd615vR-BpGCFDScRQu8CYBKX_eNIoOG3RlqKSXNKWj5_tnLvoTBFL_JkjsWzFXNfrAHsWqyK-bLzdZOw"/>
+</div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-1">
+<h3 class="font-label-md text-label-md font-bold text-on-surface truncate">Direction - Mme. Martin</h3>
+<span class="font-label-md text-[10px] text-primary flex-shrink-0">Hier</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface font-semibold truncate text-sm">Rappel concernant la réunion parents-professeurs...</p>
+</div>
+<div class="w-2 h-2 rounded-full bg-primary mt-2"></div>
+</div>
+<!-- Conversation Item -->
+<div class="flex items-start gap-sm p-md border-b border-outline-variant bg-surface-container-lowest cursor-pointer hover:bg-surface-container transition-colors">
+<div class="relative flex items-center justify-center w-12 h-12 rounded-full border border-outline-variant bg-tertiary-container text-on-tertiary-container font-headline-md text-headline-md">
+                        AL
+                    </div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-1">
+<h3 class="font-label-md text-label-md text-on-surface truncate">Mme. Leroy (Histoire)</h3>
+<span class="font-label-md text-[10px] text-on-surface-variant flex-shrink-0">Mar.</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant truncate text-sm">Merci, j'ai bien noté l'absence pour demain matin.</p>
+</div>
+</div>
+<!-- Conversation Item -->
+<div class="flex items-start gap-sm p-md border-b border-outline-variant bg-surface-container-lowest cursor-pointer hover:bg-surface-container transition-colors">
+<div class="relative">
+<div class="w-12 h-12 rounded-full overflow-hidden border border-outline-variant">
+<img alt="Prof. de Sport" class="w-full h-full object-cover" data-alt="A portrait of a young male sports coach on a field, wearing a grey athletic jacket, energetic expression, sunny daylight, modern sports photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNCD8WaFWxbpHTZnZyLaGZkrFsGr0_hSaa6-fbiM1KdiT4QtoxkZLD8DoHfjxFeVM0GZhNWQsRp6QeCkRlBRhS-yZ3_yYNxZOMeaX0VOhzx8mb_Lk3icA5kX-PagBPc1LtIhCJ_g1hEUyWP-YoQviww1WhAO70YGdQ1Mjo-m_yzCT84b5B4dnDqhOijbDKh4FUTMVAy0d6aQXFGwYg4vDWe1JRIBjZ4XzZkBsbnfAzKN70oNveKwiUkw"/>
+</div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-1">
+<h3 class="font-label-md text-label-md text-on-surface truncate">Coach Diarra (EPS)</h3>
+<span class="font-label-md text-[10px] text-on-surface-variant flex-shrink-0">Lun.</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant truncate text-sm">N'oubliez pas la tenue de sport vendredi.</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Active Discussion Area -->
+<section class="flex-1 flex flex-col bg-surface-bright relative">
+<!-- Chat Header -->
+<div class="h-16 px-lg border-b border-outline-variant flex items-center justify-between bg-surface-container-lowest shrink-0">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant">
+<img alt="M. Dubois" class="w-full h-full object-cover" data-alt="A portrait of a male teacher in a classroom setting, wearing a light blue button-down shirt, warm inviting smile, soft natural lighting, modern professional photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYu2TngEVndAVIbrEAi3E15PK4QHt_u_-o0pwOc3mvFtTocnaoXJYm2In22agdq6YvH-_074AkKq5wJpgObfkCMgAGNays1yjC8I7GovB15aRajx1jdl7x5UNer33StmF-i03aA3sJ0v2tBex8e9lz1-yT6ZIt8UNBSVDQmgfodre26dOwkfN9rAAmYldTMNfVTUrQRZ_33YN21M-hr6xm1MjDwxQweXWs6m0HJUh1_agYMASC9RRxVQ"/>
+</div>
+<div>
+<h2 class="font-headline-md text-[16px] text-on-surface leading-tight">M. Dubois</h2>
+<p class="font-label-md text-[11px] text-secondary-container">Professeur de Mathématiques • En ligne</p>
+</div>
+</div>
+<div class="flex gap-sm">
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container transition-colors" title="Infos">
+<span class="material-symbols-outlined" style="font-size: 20px;">info</span>
+</button>
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container transition-colors" title="Plus d'options">
+<span class="material-symbols-outlined" style="font-size: 20px;">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Messages Area -->
+<div class="flex-1 overflow-y-auto p-lg custom-scrollbar flex flex-col gap-md">
+<!-- Date Divider -->
+<div class="flex items-center justify-center my-2">
+<span class="px-3 py-1 bg-surface-container rounded-full font-label-md text-[11px] text-on-surface-variant">Aujourd'hui</span>
+</div>
+<!-- Message Received -->
+<div class="flex gap-md max-w-[80%]">
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant flex-shrink-0 mt-auto">
+<img alt="M. Dubois" class="w-full h-full object-cover" data-alt="A portrait of a male teacher in a classroom setting, wearing a light blue button-down shirt, warm inviting smile, soft natural lighting, modern professional photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQ3fYUEenI2s66Kp1BVu3phovWQ7NOcwquuYNoSm5YUqg1Ni4JKEwXFdeoNr9vJuv9nUk73KgPYk-_v5_xRxarhkDb4yCLremZJzCo_kNrnnUAsDibVTDyIi4PRnovNVk2Rc329AO-Z5jpigNIvIFz-U4pB16uG30jhDXWFryhbDwC-KsBixYBI6sypgJBZC5IsVKlNRRfDgNp1nTJ9RTwsWmnT6ArIvgU-Magpn5YNzUU0Jtxkox23A"/>
+</div>
+<div class="flex flex-col gap-1">
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-2xl rounded-bl-sm shadow-sm">
+<p class="font-body-md text-body-md text-on-surface">Bonjour. Je voulais vous faire un retour sur le dernier contrôle de mathématiques de Sarah.</p>
+</div>
+<span class="font-label-md text-[10px] text-on-surface-variant ml-1">10:35</span>
+</div>
+</div>
+<!-- Message Received -->
+<div class="flex gap-md max-w-[80%]">
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant flex-shrink-0 mt-auto opacity-0">
+<!-- Spacer to align consecutive messages -->
+</div>
+<div class="flex flex-col gap-1">
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-2xl rounded-tl-sm shadow-sm">
+<p class="font-body-md text-body-md text-on-surface">Elle a obtenu la note de 18/20. C'est une excellente progression par rapport au mois dernier.</p>
+</div>
+<span class="font-label-md text-[10px] text-on-surface-variant ml-1">10:36</span>
+</div>
+</div>
+<!-- Message Sent -->
+<div class="flex gap-md max-w-[80%] self-end">
+<div class="flex flex-col gap-1 items-end">
+<div class="bg-primary text-on-primary p-md rounded-2xl rounded-br-sm shadow-sm">
+<p class="font-body-md text-body-md">Merci beaucoup M. Dubois pour ce retour encourageant. Nous avons revu les exercices ensemble ce week-end.</p>
+</div>
+<div class="flex items-center gap-1 mr-1">
+<span class="font-label-md text-[10px] text-on-surface-variant">10:40</span>
+<span class="material-symbols-outlined text-primary text-[14px]">done_all</span>
+</div>
+</div>
+</div>
+<!-- Message Received -->
+<div class="flex gap-md max-w-[80%]">
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant flex-shrink-0 mt-auto">
+<img alt="M. Dubois" class="w-full h-full object-cover" data-alt="A portrait of a male teacher in a classroom setting, wearing a light blue button-down shirt, warm inviting smile, soft natural lighting, modern professional photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9QOJofbxyFMvVCRHAqtF4Rqe4y9MXcSA8AfFOXDlkhwYWEeH9ajeRPv0keA8gdSnXLd6Mb1x5McfU1LfwrDRpIRRgmLNyXViZvSROmBOpvMvuaqGFlHL1oQOStWJWsZx4V5EmRuKVRZXNqiymTcB1Y4-1C1Nv2UciqUlnFkQqCrScXtD58g8TCFxE9e67mt9m2nMbmOLVh2hU_VWSBn8ovle5ikb7gmWqxrUlQxHRzP6GNxKno5I_Jw"/>
+</div>
+<div class="flex flex-col gap-1">
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-2xl rounded-bl-sm shadow-sm">
+<p class="font-body-md text-body-md text-on-surface">Le devoir de Sarah est excellent, elle a très bien compris le chapitre. Je vous joins le corrigé type pour qu'elle puisse voir la méthode attendue sur l'exercice 3.</p>
+<!-- Attachment preview -->
+<div class="mt-3 flex items-center gap-3 p-2 rounded border border-outline-variant bg-surface hover:bg-surface-container transition-colors cursor-pointer w-fit">
+<div class="w-8 h-8 rounded bg-error/10 flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-[20px]">picture_as_pdf</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-[12px] text-on-surface">corrige_chapitre_4.pdf</span>
+<span class="font-label-md text-[10px] text-on-surface-variant">245 KB</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px] ml-2">download</span>
+</div>
+</div>
+<span class="font-label-md text-[10px] text-on-surface-variant ml-1">10:42</span>
+</div>
+</div>
+</div>
+<!-- Input Area -->
+<div class="p-md bg-surface-container-lowest border-t border-outline-variant">
+<div class="flex items-end gap-sm">
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-primary hover:bg-primary/10 transition-colors flex-shrink-0 mb-1" title="Joindre un fichier">
+<span class="material-symbols-outlined">attach_file</span>
+</button>
+<div class="flex-1 bg-surface border border-outline-variant rounded-xl focus-within:border-primary focus-within:ring-1 focus-within:ring-primary transition-all flex items-end min-h-[44px]">
+<textarea class="w-full bg-transparent border-none focus:ring-0 resize-none py-3 px-4 font-body-md text-body-md text-on-surface max-h-32 overflow-y-auto custom-scrollbar" placeholder="Écrivez votre message..." rows="1" style="min-height: 44px;"></textarea>
+<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors flex-shrink-0 mb-1 mr-1" title="Insérer un emoji">
+<span class="material-symbols-outlined">mood</span>
+</button>
+</div>
+<button class="w-12 h-12 rounded-full bg-secondary-container text-on-secondary-container hover:bg-secondary-fixed transition-colors flex items-center justify-center flex-shrink-0 shadow-sm mb-0.5" title="Envoyer">
+<span class="material-symbols-outlined" style="font-size: 20px;">send</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<script>
+        // Simple script to auto-resize textarea
+        const tx = document.getElementsByTagName("textarea");
+        for (let i = 0; i < tx.length; i++) {
+            tx[i].setAttribute("style", "height:" + (tx[i].scrollHeight) + "px;overflow-y:hidden;");
+            tx[i].addEventListener("input", OnInput, false);
+        }
+
+        function OnInput() {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+            if(this.scrollHeight > 120) {
+                this.style.overflowY = 'auto';
+                this.style.height = '120px';
+            } else {
+                this.style.overflowY = 'hidden';
+            }
+        }
+    </script>
+</body></html>

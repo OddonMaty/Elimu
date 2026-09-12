@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Suivi des Devoirs - Elimu Parent</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#d0e4ff",
+                        "on-tertiary-fixed-variant": "#2c4965",
+                        "tertiary": "#032641",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#1e3c58",
+                        "on-error": "#ffffff",
+                        "surface": "#f7fafd",
+                        "on-primary-fixed": "#001c38",
+                        "primary-fixed": "#d3e4ff",
+                        "inverse-primary": "#abc8f4",
+                        "inverse-surface": "#2d3133",
+                        "secondary-fixed": "#ffdcbe",
+                        "error": "#ba1a1a",
+                        "on-surface-variant": "#43474e",
+                        "surface-dim": "#d7dadd",
+                        "on-secondary-fixed": "#2d1600",
+                        "surface-container-highest": "#e0e3e6",
+                        "primary-container": "#1b3b5f",
+                        "on-secondary-container": "#6a3c00",
+                        "on-primary-fixed-variant": "#2a486d",
+                        "on-background": "#181c1e",
+                        "outline": "#73777f",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#fda13a",
+                        "surface-container-low": "#f1f4f7",
+                        "secondary-fixed-dim": "#ffb871",
+                        "on-surface": "#181c1e",
+                        "on-secondary-fixed-variant": "#693c00",
+                        "tertiary-fixed-dim": "#acc9eb",
+                        "surface-bright": "#f7fafd",
+                        "on-primary-container": "#88a6cf",
+                        "primary": "#002547",
+                        "secondary": "#8b5000",
+                        "primary-fixed-dim": "#abc8f4",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-container": "#8aa6c7",
+                        "surface-tint": "#426086",
+                        "outline-variant": "#c3c6cf",
+                        "on-tertiary-fixed": "#001d34",
+                        "inverse-on-surface": "#eef1f4",
+                        "surface-variant": "#e0e3e6",
+                        "background": "#f7fafd",
+                        "surface-container": "#ebeef1",
+                        "surface-container-high": "#e5e8eb",
+                        "surface-container-lowest": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "margin-desktop": "40px",
+                        "sm": "8px",
+                        "xl": "32px",
+                        "md": "16px",
+                        "unit": "4px",
+                        "lg": "24px",
+                        "gutter": "20px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg": ["28px", { "lineHeight": "36px", "fontWeight": "600" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .glass-card {
+                @apply bg-surface-container-lowest border border-outline-variant;
+            }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col pb-24 md:hidden">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center w-full px-margin-mobile h-16 bg-surface border-b border-outline-variant docked full-width top-0 sticky z-40">
+<div class="flex items-center gap-3">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="A small, professional headshot portrait of a parent, smiling warmly in a bright, modern corporate environment. Corporate SaaS style photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPsn7-3q9xukQwCscg7yUqTW5y6kgSIuO_PTGtVCf83Zjgs8DUuBYXpmTHt9O3Irpchz-NV5RGJtFrqZmR5O_tllV9yT8zjg4OsX85v7F6YypvPdF7rrpuvHuZwBYnK-duyQ5en4P_XoKpF54oUJcpQ4ePzt2UG8m91V1vx3_Y2GXRHT7AyQo6nMf7FmVW0HCxzgmPnyq27zD6nNTtw_znjNNBaM_9cg879zrJnfuxV77Zw9t-CLHthw"/>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Elimu Parent</h1>
+</div>
+<button class="text-primary hover:bg-surface-container-low transition-colors duration-200 ease-in-out p-2 rounded-full">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</header>
+<!-- Main Content -->
+<main class="flex-1 px-margin-mobile py-lg flex flex-col gap-lg">
+<!-- Header & Filters -->
+<div class="flex flex-col gap-md">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Devoirs à faire</h2>
+<!-- Child Filter -->
+<div class="flex gap-sm overflow-x-auto pb-2 -mx-margin-mobile px-margin-mobile scrollbar-hide">
+<button class="whitespace-nowrap px-4 py-2 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md border border-primary-container">Tous les enfants</button>
+<button class="whitespace-nowrap px-4 py-2 rounded-full bg-surface-container-lowest text-on-surface-variant font-label-md text-label-md border border-outline-variant hover:bg-surface-container-low">Marc Dubois</button>
+<button class="whitespace-nowrap px-4 py-2 rounded-full bg-surface-container-lowest text-on-surface-variant font-label-md text-label-md border border-outline-variant hover:bg-surface-container-low">Sophie Dubois</button>
+</div>
+<!-- Status Filter -->
+<div class="flex gap-sm">
+<button class="flex-1 py-1.5 rounded-DEFAULT bg-surface-container-low text-on-surface-variant font-label-md text-label-md text-center border border-outline-variant">À faire</button>
+<button class="flex-1 py-1.5 rounded-DEFAULT bg-surface-container-lowest text-outline font-label-md text-label-md text-center border border-outline-variant">Terminé</button>
+<button class="flex-1 py-1.5 rounded-DEFAULT bg-surface-container-lowest text-outline font-label-md text-label-md text-center border border-outline-variant">En retard</button>
+</div>
+</div>
+<!-- Homework List -->
+<div class="flex flex-col gap-md">
+<!-- Date Group -->
+<div class="flex flex-col gap-sm">
+<h3 class="font-label-md text-label-md text-outline">POUR DEMAIN</h3>
+<!-- Card 1 -->
+<div class="glass-card rounded-lg p-md flex flex-col gap-sm relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-secondary-container"></div>
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-DEFAULT bg-surface-container text-on-surface-variant font-label-md text-label-md">Mathématiques</span>
+<span class="text-outline text-[10px] uppercase font-bold tracking-wider">Marc</span>
+</div>
+<span class="px-2 py-0.5 rounded-DEFAULT bg-secondary-container text-on-secondary-container font-label-md text-label-md">À faire</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface">Exercices 14 à 18 page 42. Algèbre linéaire.</p>
+<div class="flex items-center gap-1 text-on-surface-variant mt-1">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+<span class="font-label-md text-label-md">Jeu. 24 Oct</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="glass-card rounded-lg p-md flex flex-col gap-sm relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-secondary-container"></div>
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-DEFAULT bg-surface-container text-on-surface-variant font-label-md text-label-md">Histoire</span>
+<span class="text-outline text-[10px] uppercase font-bold tracking-wider">Sophie</span>
+</div>
+<span class="px-2 py-0.5 rounded-DEFAULT bg-secondary-container text-on-secondary-container font-label-md text-label-md">À faire</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface">Lire le chapitre 3 : La révolution industrielle et préparer un court résumé.</p>
+<div class="flex items-center gap-1 text-on-surface-variant mt-1">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+<span class="font-label-md text-label-md">Jeu. 24 Oct</span>
+</div>
+</div>
+</div>
+<!-- Date Group -->
+<div class="flex flex-col gap-sm mt-4">
+<h3 class="font-label-md text-label-md text-outline">CETTE SEMAINE</h3>
+<!-- Card 3 -->
+<div class="glass-card rounded-lg p-md flex flex-col gap-sm relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-error"></div>
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-DEFAULT bg-surface-container text-on-surface-variant font-label-md text-label-md">Physique</span>
+<span class="text-outline text-[10px] uppercase font-bold tracking-wider">Marc</span>
+</div>
+<span class="px-2 py-0.5 rounded-DEFAULT bg-error-container text-on-error-container font-label-md text-label-md">En retard</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface">Rapport de laboratoire sur l'optique.</p>
+<div class="flex items-center gap-1 text-error mt-1">
+<span class="material-symbols-outlined text-[16px]">warning</span>
+<span class="font-label-md text-label-md">Était pour Lun. 21 Oct</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full flex justify-around items-center h-20 px-2 bg-surface border-t border-outline-variant shadow-sm z-50">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-md text-label-md mt-1">Accueil</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="description" style="font-variation-settings: 'FILL' 1;">description</span>
+<span class="font-label-md text-label-md mt-1">Bulletins</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="event_busy">event_busy</span>
+<span class="font-label-md text-label-md mt-1">Absences</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-label-md text-label-md mt-1">Paiements</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="chat">chat</span>
+<span class="font-label-md text-label-md mt-1">Messages</span>
+</a>
+</nav>
+</body></html>

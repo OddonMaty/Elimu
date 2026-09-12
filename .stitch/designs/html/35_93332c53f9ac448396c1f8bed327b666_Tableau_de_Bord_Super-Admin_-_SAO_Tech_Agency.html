@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SAO Tech Agency - Super-Admin Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#1b3b5f",
+                        "outline-variant": "#c3c6cf",
+                        "surface-variant": "#e0e3e6",
+                        "on-primary-container": "#88a6cf",
+                        "primary": "#002547",
+                        "inverse-on-surface": "#eef1f4",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#ffdcbe",
+                        "on-secondary-container": "#6a3c00",
+                        "on-secondary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#fda13a",
+                        "surface-container": "#ebeef1",
+                        "on-surface": "#181c1e",
+                        "on-tertiary-container": "#8aa6c7",
+                        "on-secondary-fixed": "#2d1600",
+                        "primary-fixed-dim": "#abc8f4",
+                        "tertiary-fixed": "#d0e4ff",
+                        "tertiary-fixed-dim": "#acc9eb",
+                        "inverse-primary": "#abc8f4",
+                        "secondary-fixed-dim": "#ffb871",
+                        "secondary": "#8b5000",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#1e3c58",
+                        "error": "#ba1a1a",
+                        "surface-container-highest": "#e0e3e6",
+                        "tertiary": "#032641",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f1f4f7",
+                        "background": "#f7fafd",
+                        "outline": "#73777f",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#2c4965",
+                        "on-primary-fixed": "#001c38",
+                        "surface-dim": "#d7dadd",
+                        "on-primary-fixed-variant": "#2a486d",
+                        "surface-container-high": "#e5e8eb",
+                        "inverse-surface": "#2d3133",
+                        "primary-fixed": "#d3e4ff",
+                        "surface": "#f7fafd",
+                        "on-secondary-fixed-variant": "#693c00",
+                        "surface-tint": "#426086",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#181c1e",
+                        "on-surface-variant": "#43474e",
+                        "surface-bright": "#f7fafd",
+                        "on-tertiary-fixed": "#001d34"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "20px",
+                        "margin-desktop": "40px",
+                        "margin-mobile": "16px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "xs": "4px",
+                        "unit": "4px",
+                        "xl": "32px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["28px", { "lineHeight": "36px", "fontWeight": "600" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "display-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md antialiased">
+<!-- Super Admin TopNavBar -->
+<header class="bg-primary text-on-primary h-16 flex justify-between items-center px-margin-desktop sticky top-0 z-50 shadow-sm border-b border-outline-variant/20">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-[32px]">admin_panel_settings</span>
+<span class="font-headline-md text-headline-md text-on-primary tracking-tight">SAO Tech Agency</span>
+<span class="bg-secondary-container text-on-secondary-container px-2 py-1 rounded-full font-label-md text-label-md ml-2 uppercase">Super-Admin</span>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-2 rounded-full hover:bg-primary-container/20 transition-colors text-on-primary">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-px h-8 bg-on-primary/20 mx-2"></div>
+<div class="flex items-center gap-sm cursor-pointer hover:bg-primary-container/20 p-2 rounded-lg transition-colors">
+<div class="w-8 h-8 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-bold">SA</div>
+<span class="font-label-md text-label-md text-on-primary hidden md:block">System Admin</span>
+<span class="material-symbols-outlined text-on-primary/70">expand_more</span>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 p-margin-mobile md:p-margin-desktop flex flex-col gap-xl">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-md">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-primary md:font-display-lg md:text-display-lg">Tableau de bord Global</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-sm">Vue d'ensemble du réseau EduGestion RDC.</p>
+</div>
+<button class="bg-primary text-on-primary px-lg py-md rounded-lg font-label-md text-label-md hover:bg-primary/90 transition-colors flex items-center gap-sm self-start md:self-auto shadow-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add_business</span>
+                Ajouter une École
+            </button>
+</div>
+<!-- KPI Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<!-- KPI 1 -->
+<div class="bg-surface-container-lowest p-lg rounded-xl border border-outline-variant shadow-sm flex flex-col gap-sm relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-110"></div>
+<div class="flex items-center gap-sm text-on-surface-variant mb-sm">
+<span class="material-symbols-outlined">school</span>
+<h3 class="font-label-md text-label-md uppercase tracking-wider">Nombre d'écoles actives</h3>
+</div>
+<div class="flex items-baseline gap-sm z-10">
+<span class="font-display-lg text-display-lg text-primary">42</span>
+<span class="font-body-md text-body-md text-secondary-container font-medium">+3 ce mois</span>
+</div>
+</div>
+<!-- KPI 2 -->
+<div class="bg-surface-container-lowest p-lg rounded-xl border border-outline-variant shadow-sm flex flex-col gap-sm relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-secondary/5 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-110"></div>
+<div class="flex items-center gap-sm text-on-surface-variant mb-sm">
+<span class="material-symbols-outlined">payments</span>
+<h3 class="font-label-md text-label-md uppercase tracking-wider">Revenu Mensuel Récurrent (MRR)</h3>
+</div>
+<div class="flex items-baseline gap-sm z-10">
+<span class="font-display-lg text-display-lg text-primary">4,158$</span>
+<span class="font-body-md text-body-md text-secondary-container font-medium">+12% vs mois dernier</span>
+</div>
+</div>
+<!-- KPI 3 -->
+<div class="bg-surface-container-lowest p-lg rounded-xl border border-outline-variant shadow-sm flex flex-col gap-sm relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-error/5 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-110"></div>
+<div class="flex items-center gap-sm text-on-surface-variant mb-sm">
+<span class="material-symbols-outlined">warning</span>
+<h3 class="font-label-md text-label-md uppercase tracking-wider">Alertes Facturation</h3>
+</div>
+<div class="flex items-baseline gap-sm z-10">
+<span class="font-display-lg text-display-lg text-error">5</span>
+<span class="font-body-md text-body-md text-on-surface-variant">écoles en retard de paiement</span>
+</div>
+</div>
+</div>
+<!-- Main Data Table Container -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm flex flex-col flex-1 overflow-hidden">
+<!-- Table Header / Actions -->
+<div class="p-md md:p-lg border-b border-outline-variant flex flex-col md:flex-row justify-between items-center gap-md bg-surface-bright">
+<h2 class="font-headline-md text-headline-md text-primary">Liste des Écoles Clientes</h2>
+<div class="flex items-center gap-sm w-full md:w-auto">
+<div class="relative w-full md:w-64">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-xl pr-md py-sm bg-surface-container-lowest border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-shadow" placeholder="Rechercher une école..." type="text"/>
+</div>
+<button class="p-sm border border-outline-variant rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+</div>
+<!-- Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low border-b border-outline-variant">
+<tr>
+<th class="py-sm px-md font-label-md text-label-md text-on-surface-variant uppercase tracking-wider w-[250px]">Nom de l'école</th>
+<th class="py-sm px-md font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Forfait</th>
+<th class="py-sm px-md font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Nombre d'élèves</th>
+<th class="py-sm px-md font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Statut</th>
+<th class="py-sm px-md font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Dernière facturation</th>
+<th class="py-sm px-md font-label-md text-label-md text-on-surface-variant uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/50">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-lowest/50 transition-colors group">
+<td class="py-md px-md">
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-semibold text-primary">Complexe Scolaire Les Élites</span>
+<span class="font-label-md text-label-md text-on-surface-variant">ID: SCH-001</span>
+</div>
+</td>
+<td class="py-md px-md font-body-md text-body-md text-on-surface">Premium</td>
+<td class="py-md px-md font-body-md text-body-md text-on-surface">1,245</td>
+<td class="py-md px-md">
+<span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold bg-tertiary-fixed text-on-tertiary-fixed">
+                                    Active
+                                </span>
+</td>
+<td class="py-md px-md font-body-md text-body-md text-on-surface-variant">01 Oct 2023</td>
+<td class="py-md px-md text-right">
+<button class="text-error hover:text-on-error-container font-label-md text-label-md border border-error/30 hover:bg-error-container px-3 py-1 rounded transition-colors opacity-0 group-hover:opacity-100 focus:opacity-100">
+                                    Suspendre
+                                </button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-lowest/50 transition-colors group bg-error-container/10">
+<td class="py-md px-md">
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-semibold text-primary">Institut Technique de Kinshasa</span>
+<span class="font-label-md text-label-md text-on-surface-variant">ID: SCH-014</span>
+</div>
+</td>
+<td class="py-md px-md font-body-md text-body-md text-on-surface">Standard</td>
+<td class="py-md px-md font-body-md text-body-md text-on-surface">850</td>
+<td class="py-md px-md">
+<span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold bg-secondary-container text-on-secondary-container">
+                                    Late Payment
+                                </span>
+</td>
+<td class="py-md px-md font-body-md text-body-md text-error font-medium">15 Sep 2023</td>
+<td class="py-md px-md text-right">
+<button class="text-error hover:text-on-error-container font-label-md text-label-md border border-error/30 hover:bg-error-container px-3 py-1 rounded transition-colors opacity-0 group-hover:opacity-100 focus:opacity-100">
+                                    Suspendre
+                                </button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-lowest/50 transition-colors group opacity-70">
+<td class="py-md px-md">
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-semibold text-primary">École Primaire Avenir</span>
+<span class="font-label-md text-label-md text-on-surface-variant">ID: SCH-022</span>
+</div>
+</td>
+<td class="py-md px-md font-body-md text-body-md text-on-surface">Basic</td>
+<td class="py-md px-md font-body-md text-body-md text-on-surface">320</td>
+<td class="py-md px-md">
+<span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold bg-error-container text-on-error-container">
+                                    Suspended
+                                </span>
+</td>
+<td class="py-md px-md font-body-md text-body-md text-on-surface-variant">01 Aou 2023</td>
+<td class="py-md px-md text-right">
+<button class="text-primary hover:text-on-primary-container font-label-md text-label-md border border-primary/30 hover:bg-primary-container/20 px-3 py-1 rounded transition-colors opacity-0 group-hover:opacity-100 focus:opacity-100">
+                                    Réactiver
+                                </button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-lowest/50 transition-colors group">
+<td class="py-md px-md">
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-semibold text-primary">Lycée Notre Dame</span>
+<span class="font-label-md text-label-md text-on-surface-variant">ID: SCH-041</span>
+</div>
+</td>
+<td class="py-md px-md font-body-md text-body-md text-on-surface">Premium</td>
+<td class="py-md px-md font-body-md text-body-md text-on-surface">2,100</td>
+<td class="py-md px-md">
+<span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold bg-tertiary-fixed text-on-tertiary-fixed">
+                                    Active
+                                </span>
+</td>
+<td class="py-md px-md font-body-md text-body-md text-on-surface-variant">05 Oct 2023</td>
+<td class="py-md px-md text-right">
+<button class="text-error hover:text-on-error-container font-label-md text-label-md border border-error/30 hover:bg-error-container px-3 py-1 rounded transition-colors opacity-0 group-hover:opacity-100 focus:opacity-100">
+                                    Suspendre
+                                </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer / Pagination -->
+<div class="p-md border-t border-outline-variant bg-surface-container-lowest flex justify-between items-center text-on-surface-variant font-body-md text-body-md">
+<span>Affichage 1 à 4 sur 42 écoles</span>
+<div class="flex gap-xs">
+<button class="p-1 rounded hover:bg-surface-container-low disabled:opacity-50" disabled=""><span class="material-symbols-outlined">chevron_left</span></button>
+<button class="p-1 rounded hover:bg-surface-container-low"><span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

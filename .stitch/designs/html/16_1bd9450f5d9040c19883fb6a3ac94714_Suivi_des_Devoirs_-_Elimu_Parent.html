@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Elimu - Devoirs</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-container": "#6a3c00",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#abc8f4",
+                        "inverse-surface": "#2d3133",
+                        "inverse-on-surface": "#eef1f4",
+                        "surface-variant": "#e0e3e6",
+                        "on-secondary-fixed": "#2d1600",
+                        "secondary-fixed": "#ffdcbe",
+                        "on-surface-variant": "#43474e",
+                        "surface": "#f7fafd",
+                        "secondary-fixed-dim": "#ffb871",
+                        "surface-dim": "#d7dadd",
+                        "error": "#ba1a1a",
+                        "on-surface": "#181c1e",
+                        "on-background": "#181c1e",
+                        "surface-container": "#ebeef1",
+                        "on-primary-container": "#88a6cf",
+                        "on-tertiary-fixed-variant": "#2c4965",
+                        "on-tertiary-container": "#8aa6c7",
+                        "on-primary": "#ffffff",
+                        "primary": "#002547",
+                        "primary-fixed": "#d3e4ff",
+                        "surface-container-highest": "#e0e3e6",
+                        "primary-container": "#1b3b5f",
+                        "on-primary-fixed-variant": "#2a486d",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#8b5000",
+                        "surface-tint": "#426086",
+                        "background": "#f7fafd",
+                        "on-secondary": "#ffffff",
+                        "surface-bright": "#f7fafd",
+                        "tertiary": "#032641",
+                        "outline": "#73777f",
+                        "tertiary-container": "#1e3c58",
+                        "on-secondary-fixed-variant": "#693c00",
+                        "on-primary-fixed": "#001c38",
+                        "on-tertiary-fixed": "#001d34",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#fda13a",
+                        "primary-fixed-dim": "#abc8f4",
+                        "surface-container-high": "#e5e8eb",
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#acc9eb",
+                        "surface-container-low": "#f1f4f7",
+                        "outline-variant": "#c3c6cf",
+                        "tertiary-fixed": "#d0e4ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "20px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "unit": "4px",
+                        "margin-desktop": "40px",
+                        "xs": "4px",
+                        "md": "16px",
+                        "margin-mobile": "16px",
+                        "xl": "32px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg": ["28px", { "lineHeight": "36px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f7fafd; color: #181c1e; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .icon-filled { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-background min-h-screen text-on-background flex">
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden md:flex bg-primary dark:bg-primary-container fixed h-screen w-[280px] left-0 top-0 shadow-sm flex flex-col h-full py-xl z-50">
+<div class="px-margin-desktop mb-12">
+<h1 class="font-display-lg text-display-lg text-on-primary dark:text-on-primary-container tracking-tight">Elimu</h1>
+<p class="font-label-md text-label-md text-on-primary/70 mt-1">Gestion Scolaire</p>
+</div>
+<ul class="flex-1 space-y-4">
+<li>
+<a class="flex items-center text-on-primary/70 dark:text-on-primary-container/70 hover:text-on-primary pl-4 hover:bg-primary-container/50 dark:hover:bg-primary/20 transition-colors cursor-pointer transition-all duration-200 py-2" href="#">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+<span class="font-body-md text-body-md">Tableau de bord</span>
+</a>
+</li>
+<li>
+<a class="flex items-center text-on-primary/70 dark:text-on-primary-container/70 hover:text-on-primary pl-4 hover:bg-primary-container/50 dark:hover:bg-primary/20 transition-colors cursor-pointer transition-all duration-200 py-2" href="#">
+<span class="material-symbols-outlined mr-3">forum</span>
+<span class="font-body-md text-body-md">Messagerie</span>
+</a>
+</li>
+<li>
+<a class="flex items-center text-secondary-container dark:text-secondary-fixed font-bold border-l-4 border-secondary-container pl-4 hover:bg-primary-container/50 dark:hover:bg-primary/20 transition-colors cursor-pointer transition-all duration-200 py-2" href="#">
+<span class="material-symbols-outlined mr-3 icon-filled text-secondary-container">assignment</span>
+<span class="font-body-md text-body-md text-secondary-container">Devoirs</span>
+</a>
+</li>
+<li>
+<a class="flex items-center text-on-primary/70 dark:text-on-primary-container/70 hover:text-on-primary pl-4 hover:bg-primary-container/50 dark:hover:bg-primary/20 transition-colors cursor-pointer transition-all duration-200 py-2" href="#">
+<span class="material-symbols-outlined mr-3">calendar_month</span>
+<span class="font-body-md text-body-md">Calendrier</span>
+</a>
+</li>
+<li>
+<a class="flex items-center text-on-primary/70 dark:text-on-primary-container/70 hover:text-on-primary pl-4 hover:bg-primary-container/50 dark:hover:bg-primary/20 transition-colors cursor-pointer transition-all duration-200 py-2" href="#">
+<span class="material-symbols-outlined mr-3">folder_open</span>
+<span class="font-body-md text-body-md">Ressources</span>
+</a>
+</li>
+</ul>
+<div class="px-margin-desktop mt-auto mb-6">
+<button class="w-full bg-secondary-container text-primary-container font-label-md text-label-md py-3 rounded hover:bg-secondary-fixed transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined mr-2 text-[18px]">add</span> Nouvelle Discussion
+            </button>
+</div>
+<ul class="space-y-2 mt-4 border-t border-primary-container pt-4">
+<li>
+<a class="flex items-center text-on-primary/70 dark:text-on-primary-container/70 hover:text-on-primary pl-4 hover:bg-primary-container/50 dark:hover:bg-primary/20 transition-colors cursor-pointer transition-all duration-200 py-2" href="#">
+<span class="material-symbols-outlined mr-3">settings</span>
+<span class="font-body-md text-body-md">Paramètres</span>
+</a>
+</li>
+<li>
+<a class="flex items-center text-on-primary/70 dark:text-on-primary-container/70 hover:text-on-primary pl-4 hover:bg-primary-container/50 dark:hover:bg-primary/20 transition-colors cursor-pointer transition-all duration-200 py-2" href="#">
+<span class="material-symbols-outlined mr-3">logout</span>
+<span class="font-body-md text-body-md">Déconnexion</span>
+</a>
+</li>
+</ul>
+</nav>
+<!-- Main Content Area -->
+<main class="w-full md:ml-[280px] flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface-dim fixed top-0 right-0 w-[calc(100%-280px)] h-16 border-b border-outline-variant dark:border-outline flat no shadows flex justify-between items-center px-margin-desktop h-full z-40 hidden md:flex">
+<div class="flex items-center">
+<!-- Search -->
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="bg-surface-container-low border border-outline-variant rounded-full py-2 pl-10 pr-4 font-body-md text-body-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary w-64 text-on-surface" placeholder="Rechercher..." type="text"/>
+</div>
+</div>
+<div class="flex items-center space-x-6">
+<button class="text-on-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-high rounded-full p-2 scale-95 transition-transform">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-high rounded-full p-2 scale-95 transition-transform">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant cursor-pointer">
+<img alt="Photo de profil utilisateur" class="w-full h-full object-cover" data-alt="A professional portrait of a school administrator in a bright office. Modern light mode aesthetic. Professional corporate style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3-lxQCloKO3UiIteqzDmpTjBPnHOI609_yuet9z62M89RwNB53JEuNhKBtffnJbhSR0qYpzQN0QRIYHQpwoqR4_OB2ltSDsx5dscoI_N0yJYnUpgGWoPp2UcRnbUjT-z33MkLGPIJIbYpugTemy0RDSBxPI5lVy0KTNY7c8cqzMK94IXwo0iemuF_HdrW9kBU6xB1WzelZ4wpf3cG4p84fAp8nLiKoItWPBE-wKVoNOMp1B0y0oiofQ"/>
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="flex-1 mt-16 p-margin-mobile md:p-margin-desktop bg-surface-container-low overflow-y-auto">
+<!-- Page Header -->
+<div class="mb-8 flex justify-between items-end">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Suivi des Devoirs</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">Vue d'ensemble pour la semaine du 14 au 20 Octobre</p>
+</div>
+<!-- Student Selector -->
+<div class="flex items-center bg-surface border border-outline-variant rounded px-4 py-2 cursor-pointer shadow-sm hover:border-primary transition-colors">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-label-md font-bold mr-3">LM</div>
+<div class="flex flex-col mr-4">
+<span class="font-body-md text-body-md font-bold text-on-surface leading-tight">Léa Martin</span>
+<span class="font-label-md text-label-md text-on-surface-variant leading-tight">3ème B</span>
+</div>
+<span class="material-symbols-outlined text-outline">expand_more</span>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Left Column (Wider) -->
+<div class="lg:col-span-2 space-y-6">
+<!-- Progress Card -->
+<div class="bg-surface border border-outline-variant rounded p-6">
+<div class="flex justify-between items-center mb-4">
+<h3 class="font-headline-md text-headline-md text-on-surface">Progression de la Semaine</h3>
+<span class="font-body-md text-body-md font-bold text-primary">60%</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-3 mb-2 overflow-hidden">
+<div class="bg-primary h-3 rounded-full" style="width: 60%"></div>
+</div>
+<div class="flex justify-between font-label-md text-label-md text-on-surface-variant">
+<span>3 devoirs complétés</span>
+<span>2 devoirs restants</span>
+</div>
+</div>
+<!-- Assignments List -->
+<div class="bg-surface border border-outline-variant rounded overflow-hidden">
+<div class="border-b border-surface-container-highest p-4 bg-surface-container-low flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md text-on-surface">Devoirs à venir</h3>
+<div class="flex space-x-2">
+<button class="p-1 border border-outline-variant rounded text-on-surface hover:bg-surface-container">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+</button>
+</div>
+</div>
+<div class="divide-y divide-surface-container-highest">
+<!-- Assignment Item 1 -->
+<div class="p-4 hover:bg-surface-container-lowest transition-colors flex items-start group cursor-pointer">
+<div class="w-12 h-12 rounded bg-primary-fixed flex items-center justify-center mr-4 flex-shrink-0">
+<span class="material-symbols-outlined text-on-primary-fixed">calculate</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-headline-md text-headline-md text-on-surface text-[16px]">Exercices d'Algèbre p.42</h4>
+<span class="bg-[#ffdad6] text-[#93000a] font-label-md text-label-md px-2 py-1 rounded-sm border border-[#ffb4ab]">À faire aujourd'hui</span>
+</div>
+<p class="font-label-md text-label-md text-on-surface-variant mb-2">Mathématiques • M. Dupont</p>
+<div class="flex items-center space-x-3">
+<a class="flex items-center text-primary font-label-md text-label-md hover:underline" href="#">
+<span class="material-symbols-outlined text-[16px] mr-1">picture_as_pdf</span> Chapitre_3.pdf
+                                        </a>
+</div>
+</div>
+</div>
+<!-- Assignment Item 2 -->
+<div class="p-4 hover:bg-surface-container-lowest transition-colors flex items-start group cursor-pointer">
+<div class="w-12 h-12 rounded bg-tertiary-fixed flex items-center justify-center mr-4 flex-shrink-0">
+<span class="material-symbols-outlined text-on-tertiary-fixed">menu_book</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-headline-md text-headline-md text-on-surface text-[16px]">Lecture de "L'Étranger" ch. 1-2</h4>
+<span class="bg-surface-container-highest text-on-surface-variant font-label-md text-label-md px-2 py-1 rounded-sm border border-outline-variant">Remis</span>
+</div>
+<p class="font-label-md text-label-md text-on-surface-variant mb-2">Français • Mme. Simon</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column (Sidebar) -->
+<div class="space-y-6">
+<!-- Resources Card -->
+<div class="bg-surface border border-outline-variant rounded p-6">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4">Ressources Récentes</h3>
+<div class="space-y-4">
+<a class="flex items-center p-3 border border-outline-variant rounded hover:border-primary transition-colors" href="#">
+<div class="w-10 h-10 rounded bg-[#e8f0fe] flex items-center justify-center mr-3 text-[#1967d2]">
+<span class="material-symbols-outlined">play_circle</span>
+</div>
+<div>
+<h4 class="font-body-md text-body-md font-bold text-on-surface">Tutoriel : Les équations</h4>
+<p class="font-label-md text-label-md text-on-surface-variant">Vidéo • 12 min</p>
+</div>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

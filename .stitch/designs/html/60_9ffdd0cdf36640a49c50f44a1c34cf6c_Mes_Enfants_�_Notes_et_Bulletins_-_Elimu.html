@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Notes &amp; Bulletins - Elimu Parent</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-surface": "#2d3133",
+                    "on-error": "#ffffff",
+                    "secondary": "#8b5000",
+                    "background": "#f7fafd",
+                    "on-tertiary-fixed": "#001d34",
+                    "surface-tint": "#426086",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-container": "#6a3c00",
+                    "inverse-on-surface": "#eef1f4",
+                    "surface": "#f7fafd",
+                    "error": "#ba1a1a",
+                    "tertiary": "#032641",
+                    "outline": "#73777f",
+                    "surface-variant": "#e0e3e6",
+                    "primary-container": "#1b3b5f",
+                    "tertiary-fixed-dim": "#acc9eb",
+                    "on-surface": "#181c1e",
+                    "tertiary-fixed": "#d0e4ff",
+                    "surface-container": "#ebeef1",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#001c38",
+                    "on-tertiary-container": "#8aa6c7",
+                    "surface-container-high": "#e5e8eb",
+                    "inverse-primary": "#abc8f4",
+                    "on-background": "#181c1e",
+                    "secondary-container": "#fda13a",
+                    "on-surface-variant": "#43474e",
+                    "outline-variant": "#c3c6cf",
+                    "surface-container-highest": "#e0e3e6",
+                    "on-secondary-fixed-variant": "#693c00",
+                    "on-primary-container": "#88a6cf",
+                    "on-tertiary-fixed-variant": "#2c4965",
+                    "on-secondary-fixed": "#2d1600",
+                    "secondary-fixed-dim": "#ffb871",
+                    "on-primary-fixed-variant": "#2a486d",
+                    "on-error-container": "#93000a",
+                    "tertiary-container": "#1e3c58",
+                    "primary-fixed-dim": "#abc8f4",
+                    "surface-dim": "#d7dadd",
+                    "primary": "#002547",
+                    "secondary-fixed": "#ffdcbe",
+                    "surface-container-low": "#f1f4f7",
+                    "surface-bright": "#f7fafd",
+                    "error-container": "#ffdad6",
+                    "on-primary": "#ffffff",
+                    "primary-fixed": "#d3e4ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "unit": "4px",
+                    "xl": "32px",
+                    "xs": "4px",
+                    "md": "16px",
+                    "sm": "8px",
+                    "margin-desktop": "40px",
+                    "lg": "24px",
+                    "gutter": "20px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "headline-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #f7fafd; } /* var(--color-background) fallback */
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex font-body-md">
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden md:flex flex-col h-full py-md bg-primary text-on-primary docked fixed left-0 w-[280px] shadow-sm z-40 transition-all duration-200 ease-in-out">
+<div class="px-lg pb-xl border-b border-on-primary/10 flex items-center gap-sm">
+<img alt="Logo Elimu Parent" class="w-10 h-10 rounded-sm" src="https://lh3.googleusercontent.com/aida/AEtjO1X5KuuKD5QrJLG8Cb9nKHFp3coPISp0etjlv921wZ4qJ2wDLAhcyJFnmaeLkHo9Fs3QIoJpqK1mg-yXVI2tLTdgHRCK99-ztErSgi9cSVF1j4RPucb_cx4i-ZaCN0ZznXcMI8ySJ1w91sXg7nYtgEKrAMTiYL5TB1RJRI7JdCTymfazAl6kIVDJ7yXNbsrrBzTvXT8kNvu9VKkdgrA6Gie26DtP64-IQT3RqEFPc8rz8WJG6jQw2ZrqfBzX"/>
+<div>
+<h1 class="font-headline-md text-headline-md text-on-primary">Elimu Parent</h1>
+<p class="font-label-md text-label-md text-on-primary/70">Shule yako kwa urahisi</p>
+</div>
+</div>
+<ul class="flex-1 overflow-y-auto py-md flex flex-col gap-sm">
+<li>
+<a class="flex items-center gap-md px-lg py-sm text-on-primary/70 hover:text-on-primary hover:bg-primary-fixed-variant/20 transition-all duration-200 ease-in-out mx-2 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Tableau de bord</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-lg py-sm text-on-primary/70 hover:text-on-primary hover:bg-primary-fixed-variant/20 transition-all duration-200 ease-in-out mx-2 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="family_restroom">family_restroom</span>
+<span class="font-label-md text-label-md">Profil Enfants</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-lg py-sm bg-secondary-container text-on-secondary-container rounded-lg mx-2 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-label-md text-label-md">Notes &amp; Bulletins</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-lg py-sm text-on-primary/70 hover:text-on-primary hover:bg-primary-fixed-variant/20 transition-all duration-200 ease-in-out mx-2 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="event_busy">event_busy</span>
+<span class="font-label-md text-label-md">Absences &amp; Retards</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-lg py-sm text-on-primary/70 hover:text-on-primary hover:bg-primary-fixed-variant/20 transition-all duration-200 ease-in-out mx-2 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-label-md text-label-md">Suivi Financier</span>
+</a>
+</li>
+</ul>
+<div class="px-lg pt-md border-t border-on-primary/10 flex flex-col gap-sm">
+<a class="flex items-center gap-md px-lg py-sm text-on-primary/70 hover:text-on-primary hover:bg-primary-fixed-variant/20 transition-all duration-200 ease-in-out mx-2 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Paramètres</span>
+</a>
+<a class="flex items-center gap-md px-lg py-sm text-on-primary/70 hover:text-on-primary hover:bg-primary-fixed-variant/20 transition-all duration-200 ease-in-out mx-2 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-label-md text-label-md">Déconnexion</span>
+</a>
+</div>
+</nav>
+<!-- TopNavBar (Mobile) / Top Header (Desktop) -->
+<header class="fixed top-0 left-0 w-full z-30 md:ml-[280px] md:w-[calc(100%-280px)] bg-surface text-primary border-b border-outline-variant px-margin-desktop h-16 flex justify-between items-center flat no shadows">
+<div class="md:hidden flex items-center gap-sm">
+<img alt="Logo Elimu Parent" class="w-8 h-8 rounded-sm" src="https://lh3.googleusercontent.com/aida/AEtjO1X5KuuKD5QrJLG8Cb9nKHFp3coPISp0etjlv921wZ4qJ2wDLAhcyJFnmaeLkHo9Fs3QIoJpqK1mg-yXVI2tLTdgHRCK99-ztErSgi9cSVF1j4RPucb_cx4i-ZaCN0ZznXcMI8ySJ1w91sXg7nYtgEKrAMTiYL5TB1RJRI7JdCTymfazAl6kIVDJ7yXNbsrrBzTvXT8kNvu9VKkdgrA6Gie26DtP64-IQT3RqEFPc8rz8WJG6jQw2ZrqfBzX"/>
+<span class="font-headline-md text-headline-md font-bold">Elimu Parent</span>
+</div>
+<div class="hidden md:flex gap-lg h-full items-end">
+<a class="pb-sm text-on-surface-variant font-label-md text-label-md hover:text-primary transition-colors h-full flex items-center scale-95 active:scale-90 transition-transform" href="#">Enfants</a>
+<a class="pb-sm text-primary font-bold border-b-2 border-primary font-label-md text-label-md hover:text-primary transition-colors h-full flex items-center scale-95 active:scale-90 transition-transform" href="#">Bulletins</a>
+<a class="pb-sm text-on-surface-variant font-label-md text-label-md hover:text-primary transition-colors h-full flex items-center scale-95 active:scale-90 transition-transform" href="#">Finances</a>
+</div>
+<div class="flex items-center gap-sm">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors scale-95 active:scale-90 transition-transform rounded-full hover:bg-surface-variant/50">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors scale-95 active:scale-90 transition-transform rounded-full hover:bg-surface-variant/50">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 pt-20 md:ml-[280px] p-margin-mobile md:p-margin-desktop pb-24 md:pb-margin-desktop min-h-screen flex flex-col gap-lg">
+<!-- Header & Selectors -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-md">
+<div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg font-bold text-on-surface">Notes &amp; Bulletins</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">Consultez les résultats académiques de vos enfants.</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-sm w-full md:w-auto">
+<div class="relative w-full sm:w-48">
+<select class="appearance-none w-full bg-surface-container-lowest border border-outline rounded-DEFAULT px-md py-sm pr-10 font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary shadow-sm cursor-pointer">
+<option>Marie Kalonji (6ème des Humanités)</option>
+<option>Paul Kalonji (3ème Secondaire)</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+<div class="relative w-full sm:w-48">
+<select class="appearance-none w-full bg-surface-container-lowest border border-outline rounded-DEFAULT px-md py-sm pr-10 font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary shadow-sm cursor-pointer">
+<option>Première Période</option>
+<option>Deuxième Période</option>
+<option>Premier Trimestre</option>
+<option>Troisième Période</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Summary Cards (Bento style) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-md">
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-lg flex flex-col gap-sm">
+<div class="flex justify-between items-center text-on-surface-variant">
+<span class="font-label-md text-label-md">Moyenne Générale</span>
+<span class="material-symbols-outlined text-secondary">workspace_premium</span>
+</div>
+<div class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg font-bold text-on-surface">78.5%</div>
+<div class="font-body-md text-body-md text-secondary-container text-sm">+2.1% par rapport à P1</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-lg flex flex-col gap-sm">
+<div class="flex justify-between items-center text-on-surface-variant">
+<span class="font-label-md text-label-md">Place dans la classe</span>
+<span class="material-symbols-outlined text-primary-container">format_list_numbered</span>
+</div>
+<div class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg font-bold text-on-surface">4e / 35</div>
+<div class="font-body-md text-body-md text-on-surface-variant text-sm">Mention: Distinction</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-lg flex flex-col gap-sm">
+<div class="flex justify-between items-center text-on-surface-variant">
+<span class="font-label-md text-label-md">Total des points</span>
+<span class="material-symbols-outlined text-tertiary-container">calculate</span>
+</div>
+<div class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg font-bold text-on-surface">314 / 400</div>
+</div>
+<div class="bg-primary-container text-on-primary-container p-md rounded-lg flex flex-col justify-center items-center gap-sm cursor-pointer hover:bg-primary-container/90 transition-colors shadow-sm">
+<span class="material-symbols-outlined text-3xl">download</span>
+<span class="font-label-md text-label-md font-bold text-center">Télécharger le bulletin (PDF)</span>
+</div>
+</div>
+<!-- Detailed Grades Table -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden flex flex-col">
+<div class="p-md border-b border-outline-variant flex justify-between items-center bg-surface-container-low">
+<h3 class="font-headline-md text-headline-md font-semibold text-on-surface">Détail des notes - Deuxième Période</h3>
+<span class="px-2 py-1 bg-secondary-container/20 text-on-secondary-container rounded font-label-md text-label-md">Période Clôturée</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container font-label-md text-label-md text-on-surface-variant border-b border-outline-variant">
+<tr>
+<th class="px-md py-sm font-semibold">Branche</th>
+<th class="px-md py-sm font-semibold text-right">Max</th>
+<th class="px-md py-sm font-semibold text-right">Points Obtenus</th>
+<th class="px-md py-sm font-semibold text-right">%</th>
+<th class="px-md py-sm font-semibold text-right hidden sm:table-cell">Moyenne Classe</th>
+<th class="px-md py-sm font-semibold text-center hidden md:table-cell">Appréciation</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-on-surface divide-y divide-outline-variant/50">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-md py-sm font-medium">Mathématiques</td>
+<td class="px-md py-sm text-right text-on-surface-variant">50</td>
+<td class="px-md py-sm text-right font-semibold">42</td>
+<td class="px-md py-sm text-right">84%</td>
+<td class="px-md py-sm text-right text-on-surface-variant hidden sm:table-cell">31.5</td>
+<td class="px-md py-sm text-center hidden md:table-cell"><span class="text-secondary font-medium">Très Bien</span></td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors bg-surface-container-lowest/50">
+<td class="px-md py-sm font-medium">Français</td>
+<td class="px-md py-sm text-right text-on-surface-variant">40</td>
+<td class="px-md py-sm text-right font-semibold">28</td>
+<td class="px-md py-sm text-right">70%</td>
+<td class="px-md py-sm text-right text-on-surface-variant hidden sm:table-cell">26.0</td>
+<td class="px-md py-sm text-center hidden md:table-cell"><span class="text-primary font-medium">Bien</span></td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-md py-sm font-medium">Sciences</td>
+<td class="px-md py-sm text-right text-on-surface-variant">30</td>
+<td class="px-md py-sm text-right font-semibold">26</td>
+<td class="px-md py-sm text-right">86%</td>
+<td class="px-md py-sm text-right text-on-surface-variant hidden sm:table-cell">19.2</td>
+<td class="px-md py-sm text-center hidden md:table-cell"><span class="text-secondary font-medium">Très Bien</span></td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors bg-surface-container-lowest/50">
+<td class="px-md py-sm font-medium">Histoire &amp; Géo</td>
+<td class="px-md py-sm text-right text-on-surface-variant">20</td>
+<td class="px-md py-sm text-right font-semibold">13</td>
+<td class="px-md py-sm text-right text-error font-medium">65%</td>
+<td class="px-md py-sm text-right text-on-surface-variant hidden sm:table-cell">14.5</td>
+<td class="px-md py-sm text-center hidden md:table-cell"><span class="text-on-surface-variant font-medium">Satisfaisant</span></td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-md py-sm font-medium">Anglais</td>
+<td class="px-md py-sm text-right text-on-surface-variant">20</td>
+<td class="px-md py-sm text-right font-semibold">18</td>
+<td class="px-md py-sm text-right">90%</td>
+<td class="px-md py-sm text-right text-on-surface-variant hidden sm:table-cell">12.8</td>
+<td class="px-md py-sm text-center hidden md:table-cell"><span class="text-secondary font-medium">Excellent</span></td>
+</tr>
+</tbody>
+<tfoot class="bg-surface-container-low border-t-2 border-outline-variant font-body-md text-body-md font-semibold text-on-surface">
+<tr>
+<td class="px-md py-sm">TOTAL</td>
+<td class="px-md py-sm text-right">160</td>
+<td class="px-md py-sm text-right">127</td>
+<td class="px-md py-sm text-right">79.3%</td>
+<td class="px-md py-sm text-right hidden sm:table-cell">65.2%</td>
+<td class="px-md py-sm hidden md:table-cell"></td>
+</tr>
+</tfoot>
+</table>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-margin-mobile py-sm md:hidden bg-surface text-primary rounded-t-xl border-t border-outline-variant shadow-lg tap-highlight-transparent">
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high transition-colors p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-md text-label-md-mobile mt-1">Accueil</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary font-bold active:bg-surface-container-high transition-colors p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="grade" data-weight="fill" style="font-variation-settings: 'FILL' 1;">grade</span>
+<span class="font-label-md text-label-md-mobile mt-1">Bulletins</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high transition-colors p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span class="font-label-md text-label-md-mobile mt-1">Absences</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high transition-colors p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-label-md text-label-md-mobile mt-1">Paiements</span>
+</a>
+</nav>
+</body></html>

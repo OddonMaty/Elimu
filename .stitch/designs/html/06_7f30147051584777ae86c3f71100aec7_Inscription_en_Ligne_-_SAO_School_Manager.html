@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Inscription à distance - EduRDC</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed-variant": "#2c4965",
+                    "error": "#ba1a1a",
+                    "error-container": "#ffdad6",
+                    "on-surface-variant": "#43474e",
+                    "on-secondary-container": "#6a3c00",
+                    "primary": "#002547",
+                    "tertiary-fixed": "#d0e4ff",
+                    "on-primary-fixed": "#001c38",
+                    "surface-tint": "#426086",
+                    "on-error": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "tertiary-container": "#1e3c58",
+                    "outline": "#73777f",
+                    "tertiary": "#032641",
+                    "inverse-surface": "#2d3133",
+                    "on-primary-fixed-variant": "#2a486d",
+                    "inverse-primary": "#abc8f4",
+                    "on-background": "#181c1e",
+                    "surface-container-low": "#f1f4f7",
+                    "secondary": "#8b5000",
+                    "surface-container": "#ebeef1",
+                    "secondary-fixed-dim": "#ffb871",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed-variant": "#693c00",
+                    "outline-variant": "#c3c6cf",
+                    "primary-fixed": "#d3e4ff",
+                    "on-tertiary-fixed": "#001d34",
+                    "primary-fixed-dim": "#abc8f4",
+                    "surface-dim": "#d7dadd",
+                    "surface": "#f7fafd",
+                    "on-secondary": "#ffffff",
+                    "surface-container-high": "#e5e8eb",
+                    "primary-container": "#1b3b5f",
+                    "secondary-fixed": "#ffdcbe",
+                    "background": "#f7fafd",
+                    "on-tertiary": "#ffffff",
+                    "inverse-on-surface": "#eef1f4",
+                    "on-surface": "#181c1e",
+                    "surface-container-highest": "#e0e3e6",
+                    "surface-bright": "#f7fafd",
+                    "on-secondary-fixed": "#2d1600",
+                    "secondary-container": "#fda13a",
+                    "tertiary-fixed-dim": "#acc9eb",
+                    "surface-variant": "#e0e3e6",
+                    "on-tertiary-container": "#8aa6c7",
+                    "on-primary-container": "#88a6cf"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "unit": "4px",
+                    "margin-desktop": "40px",
+                    "margin-mobile": "16px",
+                    "lg": "24px",
+                    "xl": "32px",
+                    "sm": "8px",
+                    "md": "16px",
+                    "xs": "4px",
+                    "gutter": "20px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "headline-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface flex flex-col min-h-screen">
+<!-- Content - Main Body -->
+<main class="flex-grow flex flex-col items-center justify-center p-margin-mobile md:p-margin-desktop w-full max-w-4xl mx-auto">
+<!-- Registration Container -->
+<div class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm overflow-hidden flex flex-col">
+<!-- Header & Progress -->
+<div class="p-lg md:px-xl border-b border-outline-variant bg-surface-container-low">
+<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-sm">Inscription d'un élève</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mb-lg">Veuillez remplir les informations pour l'inscription à distance.</p>
+<!-- Progress Bar -->
+<div class="relative">
+<div class="overflow-hidden h-2 mb-4 text-xs flex rounded-full bg-surface-variant">
+<div class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-primary transition-all duration-500" style="width: 33%"></div>
+</div>
+<div class="flex justify-between font-label-md text-label-md text-on-surface-variant">
+<span class="text-primary font-bold">Étape 1: Infos Élève</span>
+<span>Étape 2: Section</span>
+<span>Étape 3: Documents</span>
+</div>
+</div>
+</div>
+<!-- Form Content -->
+<div class="p-lg md:p-xl flex-grow">
+<!-- Step 1: Informations de l'élève -->
+<div class="space-y-lg" id="step-1">
+<h2 class="font-headline-md text-headline-md text-primary-container border-b border-surface-variant pb-xs">Informations Personnelles</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- Nom -->
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface" for="nom">Nom</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-DEFAULT p-sm font-body-md text-body-md focus:border-primary focus:ring-2 focus:ring-primary-fixed focus:outline-none transition-shadow" id="nom" name="nom" placeholder="Ex: Lumumba" type="text"/>
+</div>
+<!-- Postnom -->
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface" for="postnom">Postnom</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-DEFAULT p-sm font-body-md text-body-md focus:border-primary focus:ring-2 focus:ring-primary-fixed focus:outline-none transition-shadow" id="postnom" name="postnom" placeholder="Ex: Kasongo" type="text"/>
+</div>
+<!-- Prénom -->
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface" for="prenom">Prénom</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-DEFAULT p-sm font-body-md text-body-md focus:border-primary focus:ring-2 focus:ring-primary-fixed focus:outline-none transition-shadow" id="prenom" name="prenom" placeholder="Ex: Patrice" type="text"/>
+</div>
+<!-- Date de naissance -->
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface" for="dob">Date de naissance</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-DEFAULT p-sm font-body-md text-body-md focus:border-primary focus:ring-2 focus:ring-primary-fixed focus:outline-none transition-shadow" id="dob" name="dob" type="date"/>
+</div>
+<!-- Sexe -->
+<div class="flex flex-col gap-xs md:col-span-2">
+<span class="font-label-md text-label-md text-on-surface">Sexe</span>
+<div class="flex gap-md mt-1">
+<label class="flex items-center gap-2 font-body-md text-body-md cursor-pointer">
+<input class="text-primary focus:ring-primary h-4 w-4 border-outline-variant" name="sexe" type="radio" value="M"/>
+                                    Masculin
+                                </label>
+<label class="flex items-center gap-2 font-body-md text-body-md cursor-pointer">
+<input class="text-primary focus:ring-primary h-4 w-4 border-outline-variant" name="sexe" type="radio" value="F"/>
+                                    Féminin
+                                </label>
+</div>
+</div>
+<!-- École de provenance -->
+<div class="flex flex-col gap-xs md:col-span-2">
+<label class="font-label-md text-label-md text-on-surface" for="ecole_prov">École de provenance</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-DEFAULT p-sm font-body-md text-body-md focus:border-primary focus:ring-2 focus:ring-primary-fixed focus:outline-none transition-shadow" id="ecole_prov" name="ecole_prov" placeholder="Nom de l'établissement précédent" type="text"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="p-lg md:px-xl border-t border-outline-variant bg-surface-container-lowest flex justify-end gap-md">
+<button class="px-md py-sm rounded-DEFAULT border border-primary text-primary font-label-md text-label-md hover:bg-surface-container-low transition-colors" type="button">
+                    Annuler
+                </button>
+<button class="px-md py-sm rounded-DEFAULT bg-primary text-on-primary font-label-md text-label-md hover:bg-tertiary transition-colors shadow-sm flex items-center gap-2" type="button">
+                    Suivant <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Footer Component -->
+<footer class="w-full py-xl px-margin-desktop border-t border-primary-container bg-primary text-on-primary mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto gap-lg">
+<div class="flex flex-col gap-xs items-center md:items-start">
+<span class="font-headline-md text-headline-md font-bold text-on-primary">EduRDC</span>
+<span class="font-body-md text-body-md text-on-primary/80 text-center md:text-left">© 2024 Ministère de l'Enseignement Primaire, Secondaire et Technique (EPST) - République Démocratique du Congo</span>
+</div>
+<nav class="flex flex-wrap justify-center gap-md font-label-md text-label-md text-on-primary/80">
+<a class="hover:text-secondary-container transition-colors" href="#">Mentions Légales</a>
+<a class="hover:text-secondary-container transition-colors" href="#">Confidentialité</a>
+<a class="hover:text-secondary-container transition-colors" href="#">Aide &amp; Support</a>
+<a class="hover:text-secondary-container transition-colors" href="#">Annuaire National</a>
+<a class="hover:text-secondary-container transition-colors" href="#">Contactez-nous</a>
+</nav>
+</div>
+</footer>
+</body></html>

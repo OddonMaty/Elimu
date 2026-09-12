@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bulletin Scolaire - SAO School Manager</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#e5e8eb",
+                        "secondary-fixed-dim": "#ffb871",
+                        "secondary-container": "#fda13a",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed": "#001d34",
+                        "on-background": "#181c1e",
+                        "secondary": "#8b5000",
+                        "on-secondary-fixed": "#2d1600",
+                        "surface-variant": "#e0e3e6",
+                        "tertiary-fixed": "#d0e4ff",
+                        "outline-variant": "#c3c6cf",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "surface": "#f7fafd",
+                        "on-tertiary-fixed-variant": "#2c4965",
+                        "surface-container-low": "#f1f4f7",
+                        "inverse-surface": "#2d3133",
+                        "background": "#f7fafd",
+                        "on-tertiary": "#ffffff",
+                        "tertiary": "#032641",
+                        "error-container": "#ffdad6",
+                        "surface-tint": "#426086",
+                        "tertiary-container": "#1e3c58",
+                        "tertiary-fixed-dim": "#acc9eb",
+                        "inverse-primary": "#abc8f4",
+                        "on-primary": "#ffffff",
+                        "on-primary-container": "#88a6cf",
+                        "outline": "#73777f",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#2a486d",
+                        "on-surface-variant": "#43474e",
+                        "inverse-on-surface": "#eef1f4",
+                        "primary-fixed-dim": "#abc8f4",
+                        "primary-fixed": "#d3e4ff",
+                        "on-secondary-fixed-variant": "#693c00",
+                        "surface-bright": "#f7fafd",
+                        "on-tertiary-container": "#8aa6c7",
+                        "surface-container-highest": "#e0e3e6",
+                        "on-surface": "#181c1e",
+                        "on-secondary-container": "#6a3c00",
+                        "surface-dim": "#d7dadd",
+                        "surface-container": "#ebeef1",
+                        "on-error-container": "#93000a",
+                        "primary-container": "#1b3b5f",
+                        "secondary-fixed": "#ffdcbe",
+                        "primary": "#002547",
+                        "on-primary-fixed": "#001c38"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-desktop": "40px",
+                        "xl": "32px",
+                        "lg": "24px",
+                        "md": "16px",
+                        "gutter": "20px",
+                        "margin-mobile": "16px",
+                        "unit": "4px",
+                        "sm": "8px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "display-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg": ["28px", { "lineHeight": "36px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        @media print {
+            body {
+                background: white;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .a4-container {
+                box-shadow: none !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                width: 100% !important;
+                max-width: none !important;
+            }
+        }
+        .a4-container {
+            width: 210mm;
+            min-height: 297mm;
+            background: white;
+            margin: 40px auto;
+            padding: 20mm;
+            box-shadow: 0 4px 12px rgba(27, 59, 95, 0.08);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #73777f;
+            padding: 4px 8px;
+            font-size: 12px;
+            text-align: center;
+        }
+        th {
+            font-weight: 600;
+        }
+        .text-left-cell {
+            text-align: left;
+        }
+    </style>
+</head>
+<body class="bg-surface-container-low font-body-md text-on-surface antialiased">
+<!-- Top Action Bar (No Print) -->
+<!-- Document A4 Container -->
+<div class="a4-container text-on-surface">
+<!-- Header Section -->
+<div class="flex justify-between items-start mb-md border-b-2 border-on-surface pb-sm">
+<div class="w-1/6">
+<div class="w-16 h-16 border border-on-surface flex items-center justify-center">
+<span class="material-symbols-outlined text-[32px]">flag</span>
+</div>
+</div>
+<div class="w-4/6 text-center">
+<h1 class="font-bold text-[14px] uppercase">République Démocratique du Congo</h1>
+<h2 class="font-bold text-[12px] uppercase">Ministère de l'Éducation Nationale et Nouvelle Citoyenneté</h2>
+</div>
+<div class="w-1/6 flex justify-end">
+<div class="w-16 h-16 border border-on-surface flex items-center justify-center">
+<span class="material-symbols-outlined text-[32px]">account_balance</span>
+</div>
+</div>
+</div>
+<!-- Main Grades Table -->
+<div class="grid grid-cols-2 gap-md mb-md text-[11px]">
+<div class="space-y-1">
+<p><strong>N° ID.</strong> ________________________________________________</p>
+<p>PROVINCE : ___________________________________________</p>
+<p>VILLE : _______________________________________________</p>
+<p>COMMUNE/TERR (1) : __________________________________</p>
+<p>ECOLE : ______________________________________________</p>
+<p>CODE : _______________________________________________</p>
+</div>
+<div class="space-y-1">
+<p>ELEVE : <strong>LUMUMBA KABILA Joseph</strong> Sexe : <strong>M</strong></p>
+<p>NE(E) à : <strong>Kinshasa</strong> Le <strong>15/04/2008</strong></p>
+<p>CLASSE : <strong>4ème Scientifique A</strong></p>
+<p>N° PERM : ___________________________________________</p>
+</div>
+</div>
+<div class="text-center mb-md border-y border-on-surface py-xs">
+<h3 class="font-bold text-[12px] uppercase">BULLETIN DE LA 4ème ANNÉE SCIENTIFIQUE</h3>
+<p class="text-[11px]">ANNÉE SCOLAIRE 2023 - 2024</p>
+</div><div class="mb-lg">
+<table class="w-full border-collapse border border-on-surface text-[10px]">
+<thead>
+<tr class="bg-surface-container-low">
+<th class="border border-on-surface" rowspan="3">BRANCHES</th>
+<th class="border border-on-surface" colspan="5">PREMIER SEMESTRE</th>
+<th class="border border-on-surface" colspan="5">SECOND SEMESTRE</th>
+<th class="border border-on-surface" rowspan="3">T.G.</th>
+</tr>
+<tr class="bg-surface-container-low">
+<th class="border border-on-surface" colspan="2">TRAV. JOURN</th>
+<th class="border border-on-surface" rowspan="2">EXAM.</th>
+<th class="border border-on-surface" rowspan="2">TOT.</th>
+<th class="border border-on-surface" rowspan="2">%</th>
+<th class="border border-on-surface" colspan="2">TRAV. JOURN</th>
+<th class="border border-on-surface" rowspan="2">EXAM.</th>
+<th class="border border-on-surface" rowspan="2">TOT.</th>
+<th class="border border-on-surface" rowspan="2">%</th>
+</tr>
+<tr class="bg-surface-container-low">
+<th class="border border-on-surface">1ère P</th>
+<th class="border border-on-surface">2ème P</th>
+<th class="border border-on-surface">3ème P</th>
+<th class="border border-on-surface">4ème P</th>
+</tr>
+<tr class="font-bold">
+<td class="border border-on-surface text-left">MAXIMA</td>
+<td class="border border-on-surface">10</td>
+<td class="border border-on-surface">10</td>
+<td class="border border-on-surface">20</td>
+<td class="border border-on-surface">40</td>
+<td class="border border-on-surface">-</td>
+<td class="border border-on-surface">10</td>
+<td class="border border-on-surface">10</td>
+<td class="border border-on-surface">20</td>
+<td class="border border-on-surface">40</td>
+<td class="border border-on-surface">-</td>
+<td class="border border-on-surface">80</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="border border-on-surface text-left">Mathématiques</td>
+<td class="border border-on-surface">8</td>
+<td class="border border-on-surface">9</td>
+<td class="border border-on-surface">15</td>
+<td class="border border-on-surface">32</td>
+<td class="border border-on-surface">80%</td>
+<td class="border border-on-surface"></td>
+<td class="border border-on-surface"></td>
+<td class="border border-on-surface"></td>
+<td class="border border-on-surface"></td>
+<td class="border border-on-surface"></td>
+<td class="border border-on-surface"></td>
+</tr>
+<tr>
+<td class="border border-on-surface text-left">Physique</td>
+<td class="border border-on-surface">7</td>
+<td class="border border-on-surface">8</td>
+<td class="border border-on-surface">12</td>
+<td class="border border-on-surface">27</td>
+<td class="border border-on-surface">67%</td>
+<td class="border border-on-surface"></td>
+<td class="border border-on-surface"></td>
+<td class="border border-on-surface"></td>
+<td class="border border-on-surface"></td>
+<td class="border border-on-surface"></td>
+<td class="border border-on-surface"></td>
+</tr>
+</tbody>
+<tfoot class="font-bold">
+<tr>
+<td class="border border-on-surface text-left">TOTAUX</td>
+<td class="border border-on-surface">15</td>
+<td class="border border-on-surface">17</td>
+<td class="border border-on-surface">27</td>
+<td class="border border-on-surface">59</td>
+<td class="border border-on-surface">73%</td>
+<td class="border border-on-surface"></td>
+<td class="border border-on-surface"></td>
+<td class="border border-on-surface"></td>
+<td class="border border-on-surface"></td>
+<td class="border border-on-surface"></td>
+<td class="border border-on-surface"></td>
+</tr>
+</tfoot>
+</table>
+</div>
+<!-- Footer Signatures -->
+<div class="mt-md">
+<div class="grid grid-cols-3 gap-md text-[11px] mb-lg">
+<div class="border border-on-surface p-xs">
+<p class="font-bold mb-xs">APPLICATION</p>
+<div class="h-8 border-b border-dashed border-outline-variant"></div>
+</div>
+<div class="border border-on-surface p-xs">
+<p class="font-bold mb-xs">CONDUITE</p>
+<div class="h-8 border-b border-dashed border-outline-variant"></div>
+</div>
+<div class="border border-on-surface p-xs">
+<p class="font-bold mb-xs">PLACE/RANG</p>
+<div class="h-8 border-b border-dashed border-outline-variant"></div>
+</div>
+</div>
+<div class="flex justify-between items-start text-[11px]">
+<div class="w-1/3 text-center">
+<p class="font-bold uppercase mb-lg">Le Titulaire de Classe</p>
+<p class="italic">Nom et Signature</p>
+</div>
+<div class="w-1/3 text-center">
+<div class="w-20 h-20 border border-on-surface rounded-full mx-auto flex items-center justify-center mb-xs">
+<span class="text-[8px] uppercase">Sceau de<br/>l'école</span>
+</div>
+</div>
+<div class="w-1/3 text-center">
+<p class="mb-xs">Fait à Kinshasa, le 15/02/2024</p>
+<p class="font-bold uppercase mb-lg">Le Chef d'Établissement</p>
+<p class="italic">Sceau et Signature</p>
+</div>
+</div>
+</div>
+</div>
+</body></html>

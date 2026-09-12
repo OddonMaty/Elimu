@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Assiduité - Elimu Parent</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "inverse-surface": "#2d3133",
+                "on-error": "#ffffff",
+                "secondary": "#8b5000",
+                "background": "#f7fafd",
+                "on-tertiary-fixed": "#001d34",
+                "surface-tint": "#426086",
+                "surface-container-lowest": "#ffffff",
+                "on-secondary-container": "#6a3c00",
+                "inverse-on-surface": "#eef1f4",
+                "surface": "#f7fafd",
+                "error": "#ba1a1a",
+                "tertiary": "#032641",
+                "outline": "#73777f",
+                "surface-variant": "#e0e3e6",
+                "primary-container": "#1b3b5f",
+                "tertiary-fixed-dim": "#acc9eb",
+                "on-surface": "#181c1e",
+                "tertiary-fixed": "#d0e4ff",
+                "surface-container": "#ebeef1",
+                "on-tertiary": "#ffffff",
+                "on-secondary": "#ffffff",
+                "on-primary-fixed": "#001c38",
+                "on-tertiary-container": "#8aa6c7",
+                "surface-container-high": "#e5e8eb",
+                "inverse-primary": "#abc8f4",
+                "on-background": "#181c1e",
+                "secondary-container": "#fda13a",
+                "on-surface-variant": "#43474e",
+                "outline-variant": "#c3c6cf",
+                "surface-container-highest": "#e0e3e6",
+                "on-secondary-fixed-variant": "#693c00",
+                "on-primary-container": "#88a6cf",
+                "on-tertiary-fixed-variant": "#2c4965",
+                "on-secondary-fixed": "#2d1600",
+                "secondary-fixed-dim": "#ffb871",
+                "on-primary-fixed-variant": "#2a486d",
+                "on-error-container": "#93000a",
+                "tertiary-container": "#1e3c58",
+                "primary-fixed-dim": "#abc8f4",
+                "surface-dim": "#d7dadd",
+                "primary": "#002547",
+                "secondary-fixed": "#ffdcbe",
+                "surface-container-low": "#f1f4f7",
+                "surface-bright": "#f7fafd",
+                "error-container": "#ffdad6",
+                "on-primary": "#ffffff",
+                "primary-fixed": "#d3e4ff"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+        },
+        "spacing": {
+                "unit": "4px",
+                "xl": "32px",
+                "xs": "4px",
+                "md": "16px",
+                "sm": "8px",
+                "margin-desktop": "40px",
+                "lg": "24px",
+                "gutter": "20px",
+                "margin-mobile": "16px"
+        },
+        "fontFamily": {
+                "body-md": [
+                        "Inter"
+                ],
+                "headline-md": [
+                        "Inter"
+                ],
+                "body-lg": [
+                        "Inter"
+                ],
+                "display-lg": [
+                        "Inter"
+                ],
+                "label-md": [
+                        "Inter"
+                ],
+                "headline-lg-mobile": [
+                        "Inter"
+                ],
+                "headline-lg": [
+                        "Inter"
+                ]
+        },
+        "fontSize": {
+                "body-md": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-md": [
+                        "20px",
+                        {
+                                "lineHeight": "28px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-lg": [
+                        "16px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "display-lg": [
+                        "36px",
+                        {
+                                "lineHeight": "44px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "label-md": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "headline-lg-mobile": [
+                        "24px",
+                        {
+                                "lineHeight": "32px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "headline-lg": [
+                        "28px",
+                        {
+                                "lineHeight": "36px",
+                                "fontWeight": "600"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex">
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden md:flex flex-col h-full py-md bg-primary dark:bg-primary-container docked fixed left-0 w-[280px] shadow-sm z-40 transition-all duration-200 ease-in-out">
+<div class="px-md mb-xl flex items-center gap-sm">
+<img alt="Logo Elimu Parent" class="w-10 h-10 rounded-DEFAULT object-contain bg-surface-container-lowest" src="https://lh3.googleusercontent.com/aida/AEtjO1X5KuuKD5QrJLG8Cb9nKHFp3coPISp0etjlv921wZ4qJ2wDLAhcyJFnmaeLkHo9Fs3QIoJpqK1mg-yXVI2tLTdgHRCK99-ztErSgi9cSVF1j4RPucb_cx4i-ZaCN0ZznXcMI8ySJ1w91sXg7nYtgEKrAMTiYL5TB1RJRI7JdCTymfazAl6kIVDJ7yXNbsrrBzTvXT8kNvu9VKkdgrA6Gie26DtP64-IQT3RqEFPc8rz8WJG6jQw2ZrqfBzX"/>
+<div>
+<h1 class="font-headline-md text-headline-md text-on-primary">Elimu Parent</h1>
+<p class="font-label-md text-label-md text-on-primary/70">Shule yako kwa urahisi</p>
+</div>
+</div>
+<ul class="flex-1 space-y-sm px-sm">
+<li>
+<a class="flex items-center gap-md py-sm px-md text-on-primary/70 hover:text-on-primary hover:bg-primary-fixed-variant/20 rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Tableau de bord</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md py-sm px-md text-on-primary/70 hover:text-on-primary hover:bg-primary-fixed-variant/20 rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="family_restroom">family_restroom</span>
+<span class="font-label-md text-label-md">Profil Enfants</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md py-sm px-md text-on-primary/70 hover:text-on-primary hover:bg-primary-fixed-variant/20 rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-label-md text-label-md">Notes &amp; Bulletins</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md py-sm px-md bg-secondary-container text-on-secondary-container rounded-lg mx-2 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="event_busy">event_busy</span>
+<span class="font-label-md text-label-md">Absences &amp; Retards</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md py-sm px-md text-on-primary/70 hover:text-on-primary hover:bg-primary-fixed-variant/20 rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-label-md text-label-md">Suivi Financier</span>
+</a>
+</li>
+</ul>
+<div class="px-sm mt-auto space-y-sm">
+<a class="flex items-center gap-md py-sm px-md text-on-primary/70 hover:text-on-primary hover:bg-primary-fixed-variant/20 rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Paramètres</span>
+</a>
+<a class="flex items-center gap-md py-sm px-md text-on-primary/70 hover:text-on-primary hover:bg-primary-fixed-variant/20 rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-label-md text-label-md">Déconnexion</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-[280px] pb-24 md:pb-0 min-h-screen">
+<!-- TopAppBar (Mobile Only - Simplified) -->
+<header class="md:hidden flex justify-between items-center px-margin-mobile h-16 bg-surface border-b border-outline-variant sticky top-0 z-30">
+<div class="flex items-center gap-sm">
+<img alt="Logo Elimu Parent" class="w-8 h-8 rounded-DEFAULT object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1X5KuuKD5QrJLG8Cb9nKHFp3coPISp0etjlv921wZ4qJ2wDLAhcyJFnmaeLkHo9Fs3QIoJpqK1mg-yXVI2tLTdgHRCK99-ztErSgi9cSVF1j4RPucb_cx4i-ZaCN0ZznXcMI8ySJ1w91sXg7nYtgEKrAMTiYL5TB1RJRI7JdCTymfazAl6kIVDJ7yXNbsrrBzTvXT8kNvu9VKkdgrA6Gie26DtP64-IQT3RqEFPc8rz8WJG6jQw2ZrqfBzX"/>
+<h1 class="font-headline-md text-headline-md text-primary font-bold">Elimu Parent</h1>
+</div>
+<div class="flex gap-md">
+<button class="text-on-surface-variant hover:text-primary transition-colors scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</header>
+<div class="p-margin-mobile md:p-margin-desktop max-w-7xl mx-auto space-y-lg">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-md">
+<div>
+<h2 class="font-display-lg text-display-lg text-primary">Absences &amp; Retards</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-sm">Suivi de l'assiduité de <span class="font-bold text-primary">Merveille Mukendi</span></p>
+</div>
+<div class="flex items-center gap-sm bg-surface-container-low p-sm rounded-lg border border-outline-variant">
+<button class="px-md py-sm rounded-DEFAULT text-body-md font-body-md bg-surface-container-highest text-on-surface hover:bg-surface-variant transition-colors">Semaine</button>
+<button class="px-md py-sm rounded-DEFAULT text-body-md font-body-md bg-primary-container text-on-primary shadow-sm transition-colors">Mois</button>
+</div>
+</div>
+<!-- Dashboard Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
+<!-- Calendar Section (Takes up 2 columns on large screens) -->
+<div class="lg:col-span-2 bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-sm">
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-headline-md text-headline-md text-primary">Novembre 2023</h3>
+<div class="flex gap-sm">
+<button class="p-xs text-on-surface-variant hover:text-primary hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="p-xs text-on-surface-variant hover:text-primary hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Calendar Grid -->
+<div class="grid grid-cols-7 gap-xs text-center mb-sm">
+<div class="font-label-md text-label-md text-on-surface-variant py-xs">Lun</div>
+<div class="font-label-md text-label-md text-on-surface-variant py-xs">Mar</div>
+<div class="font-label-md text-label-md text-on-surface-variant py-xs">Mer</div>
+<div class="font-label-md text-label-md text-on-surface-variant py-xs">Jeu</div>
+<div class="font-label-md text-label-md text-on-surface-variant py-xs">Ven</div>
+<div class="font-label-md text-label-md text-on-surface-variant py-xs text-error">Sam</div>
+<div class="font-label-md text-label-md text-on-surface-variant py-xs text-error">Dim</div>
+</div>
+<div class="grid grid-cols-7 gap-xs text-center font-body-md text-body-md">
+<!-- Empty slots for previous month -->
+<div class="p-sm text-outline-variant">30</div>
+<div class="p-sm text-outline-variant">31</div>
+<!-- Current month days -->
+<div class="p-sm text-on-surface hover:bg-surface-container rounded-DEFAULT cursor-pointer transition-colors">1</div>
+<div class="p-sm text-on-surface hover:bg-surface-container rounded-DEFAULT cursor-pointer transition-colors">2</div>
+<div class="p-sm text-on-surface hover:bg-surface-container rounded-DEFAULT cursor-pointer transition-colors">3</div>
+<div class="p-sm text-on-surface hover:bg-surface-container rounded-DEFAULT cursor-pointer transition-colors">4</div>
+<div class="p-sm text-on-surface hover:bg-surface-container rounded-DEFAULT cursor-pointer transition-colors">5</div>
+<div class="p-sm text-on-surface hover:bg-surface-container rounded-DEFAULT cursor-pointer transition-colors relative">
+                            6
+                            <span class="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-error"></span>
+</div>
+<div class="p-sm text-on-surface hover:bg-surface-container rounded-DEFAULT cursor-pointer transition-colors">7</div>
+<div class="p-sm text-on-surface hover:bg-surface-container rounded-DEFAULT cursor-pointer transition-colors">8</div>
+<div class="p-sm text-on-surface hover:bg-surface-container rounded-DEFAULT cursor-pointer transition-colors">9</div>
+<div class="p-sm text-on-surface hover:bg-surface-container rounded-DEFAULT cursor-pointer transition-colors">10</div>
+<div class="p-sm text-on-surface hover:bg-surface-container rounded-DEFAULT cursor-pointer transition-colors">11</div>
+<div class="p-sm text-on-surface hover:bg-surface-container rounded-DEFAULT cursor-pointer transition-colors">12</div>
+<div class="p-sm text-on-surface hover:bg-surface-container rounded-DEFAULT cursor-pointer transition-colors">13</div>
+<div class="p-sm text-on-surface bg-secondary-container text-on-secondary-container font-bold rounded-DEFAULT cursor-pointer transition-colors shadow-sm ring-1 ring-secondary">14</div>
+<div class="p-sm text-on-surface hover:bg-surface-container rounded-DEFAULT cursor-pointer transition-colors relative">
+                            15
+                            <span class="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</div>
+<div class="p-sm text-on-surface hover:bg-surface-container rounded-DEFAULT cursor-pointer transition-colors">16</div>
+<div class="p-sm text-on-surface hover:bg-surface-container rounded-DEFAULT cursor-pointer transition-colors">17</div>
+<div class="p-sm text-on-surface hover:bg-surface-container rounded-DEFAULT cursor-pointer transition-colors">18</div>
+<div class="p-sm text-on-surface hover:bg-surface-container rounded-DEFAULT cursor-pointer transition-colors">19</div>
+<!-- Fill rest of the month... -->
+</div>
+<div class="mt-md flex gap-md justify-center border-t border-outline-variant pt-md">
+<div class="flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="font-label-md text-label-md text-on-surface-variant">Absence Non Justifiée</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-md text-label-md text-on-surface-variant">Retard</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-primary-fixed-dim"></span>
+<span class="font-label-md text-label-md text-on-surface-variant">Absence Justifiée</span>
+</div>
+</div>
+</div>
+<!-- Details Panel -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-sm flex flex-col h-full">
+<h3 class="font-headline-md text-headline-md text-primary mb-md border-b border-outline-variant pb-sm">Détails de l'incident</h3>
+<!-- Active Incident View -->
+<div class="flex-1 flex flex-col gap-md">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-body-lg text-body-lg font-bold text-on-surface">14 Novembre 2023</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Mathématiques (08h00 - 10h00)</p>
+</div>
+<span class="bg-error-container text-on-error-container font-label-md text-label-md px-sm py-xs rounded-full">Absence</span>
+</div>
+<div class="bg-surface-container p-sm rounded-lg border border-outline-variant/50">
+<p class="font-label-md text-label-md text-on-surface-variant mb-xs">Motif saisi par l'école :</p>
+<p class="font-body-md text-body-md text-on-surface">L'élève ne s'est pas présenté au cours. Aucun avis préalable reçu.</p>
+</div>
+<div class="mt-auto pt-md border-t border-outline-variant">
+<h4 class="font-label-md text-label-md text-primary mb-sm">Soumettre un justificatif</h4>
+<form class="flex flex-col gap-sm">
+<textarea class="w-full bg-surface border border-outline-variant rounded-lg p-sm font-body-md text-body-md text-on-surface focus:ring-2 focus:ring-primary focus:border-primary placeholder-on-surface-variant/50 resize-none" placeholder="Expliquez brièvement le motif..." rows="3"></textarea>
+<div class="flex items-center gap-sm">
+<button class="flex-1 flex items-center justify-center gap-xs py-sm px-md border border-outline rounded-lg text-on-surface hover:bg-surface-container transition-colors font-body-md text-body-md" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="attach_file">attach_file</span>
+                                        Joindre un fichier
+                                    </button>
+<button class="flex-1 py-sm px-md bg-secondary-container text-on-secondary-container rounded-lg font-bold hover:bg-secondary-fixed-dim transition-colors font-body-md text-body-md" type="button">
+                                        Envoyer
+                                    </button>
+</div>
+<p class="font-label-md text-label-md text-on-surface-variant/70 text-center mt-xs">Formats acceptés : PDF, JPG, PNG (Max 5MB)</p>
+</form>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent History List (Ledger Style) -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm overflow-hidden">
+<div class="px-md py-sm bg-surface-container border-b border-outline-variant flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md text-primary">Historique Récent</h3>
+<button class="font-label-md text-label-md text-secondary hover:underline">Voir tout</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-md text-body-md">
+<thead class="bg-surface-container-low border-b border-outline-variant font-label-md text-label-md text-on-surface-variant">
+<tr>
+<th class="px-md py-sm font-medium">Date</th>
+<th class="px-md py-sm font-medium">Type</th>
+<th class="px-md py-sm font-medium">Cours / Période</th>
+<th class="px-md py-sm font-medium">Statut</th>
+<th class="px-md py-sm font-medium text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/50">
+<tr class="hover:bg-surface-container-lowest/50 transition-colors">
+<td class="px-md py-sm text-on-surface font-medium">06 Nov 2023</td>
+<td class="px-md py-sm text-on-surface">Absence</td>
+<td class="px-md py-sm text-on-surface-variant">Journée Complète</td>
+<td class="px-md py-sm">
+<span class="inline-flex items-center gap-xs bg-primary-fixed-dim text-on-primary-fixed-variant px-sm py-xs rounded-full font-label-md text-label-md">
+<span class="material-symbols-outlined text-[14px]" data-icon="check_circle">check_circle</span>
+                                        Justifiée
+                                    </span>
+</td>
+<td class="px-md py-sm text-right">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="visibility">visibility</span>
+</button>
+</td>
+</tr>
+<tr class="bg-surface-container-low/30 hover:bg-surface-container-lowest/50 transition-colors">
+<td class="px-md py-sm text-on-surface font-medium">25 Oct 2023</td>
+<td class="px-md py-sm text-on-surface">Retard (15min)</td>
+<td class="px-md py-sm text-on-surface-variant">Physique (08h00)</td>
+<td class="px-md py-sm">
+<span class="inline-flex items-center gap-xs bg-secondary-fixed text-on-secondary-fixed px-sm py-xs rounded-full font-label-md text-label-md">
+<span class="material-symbols-outlined text-[14px]" data-icon="pending">pending</span>
+                                        En attente
+                                    </span>
+</td>
+<td class="px-md py-sm text-right">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="visibility">visibility</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-margin-mobile py-sm bg-surface border-t border-outline-variant shadow-lg rounded-t-xl tap-highlight-transparent">
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high rounded-lg p-xs transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-md text-label-md-mobile mt-xs">Accueil</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high rounded-lg p-xs transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="grade">grade</span>
+<span class="font-label-md text-label-md-mobile mt-xs">Bulletins</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary font-bold active:bg-surface-container-high rounded-lg p-xs transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_today" style="font-variation-settings: 'FILL' 1;">calendar_today</span>
+<span class="font-label-md text-label-md-mobile mt-xs">Absences</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high rounded-lg p-xs transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-label-md text-label-md-mobile mt-xs">Paiements</span>
+</a>
+</nav>
+</body></html>

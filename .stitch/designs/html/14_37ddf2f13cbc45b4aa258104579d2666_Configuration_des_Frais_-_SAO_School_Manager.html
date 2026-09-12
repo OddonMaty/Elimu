@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SAO Manager - Frais Scolaires</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-variant": "#e0e3e6",
+                    "tertiary": "#032641",
+                    "on-primary-container": "#88a6cf",
+                    "on-surface-variant": "#43474e",
+                    "on-secondary-container": "#6a3c00",
+                    "surface-container-low": "#f1f4f7",
+                    "outline": "#73777f",
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed-variant": "#693c00",
+                    "primary-fixed": "#d3e4ff",
+                    "secondary-fixed-dim": "#ffb871",
+                    "surface-container-highest": "#e0e3e6",
+                    "primary-container": "#1b3b5f",
+                    "surface-tint": "#426086",
+                    "secondary-fixed": "#ffdcbe",
+                    "tertiary-container": "#1e3c58",
+                    "on-error": "#ffffff",
+                    "on-surface": "#181c1e",
+                    "surface-bright": "#f7fafd",
+                    "background": "#f7fafd",
+                    "primary": "#002547",
+                    "on-primary-fixed": "#001c38",
+                    "primary-fixed-dim": "#abc8f4",
+                    "on-tertiary-fixed": "#001d34",
+                    "error": "#ba1a1a",
+                    "surface-dim": "#d7dadd",
+                    "surface-container": "#ebeef1",
+                    "inverse-primary": "#abc8f4",
+                    "on-tertiary-container": "#8aa6c7",
+                    "on-primary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-fixed": "#d0e4ff",
+                    "outline-variant": "#c3c6cf",
+                    "on-tertiary-fixed-variant": "#2c4965",
+                    "surface-container-high": "#e5e8eb",
+                    "on-primary-fixed-variant": "#2a486d",
+                    "inverse-surface": "#2d3133",
+                    "secondary": "#8b5000",
+                    "on-secondary-fixed": "#2d1600",
+                    "on-tertiary": "#ffffff",
+                    "inverse-on-surface": "#eef1f4",
+                    "on-background": "#181c1e",
+                    "secondary-container": "#fda13a",
+                    "surface": "#f7fafd",
+                    "error-container": "#ffdad6",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#acc9eb"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "xl": "32px",
+                    "sm": "8px",
+                    "md": "16px",
+                    "xs": "4px",
+                    "margin-desktop": "40px",
+                    "gutter": "20px",
+                    "unit": "4px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-md": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "display-lg": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen">
+<!-- TopNavBar (Mobile Only) -->
+<header class="flex justify-between items-center w-full px-margin-mobile h-16 fixed top-0 z-50 bg-surface-container-lowest border-b border-outline-variant md:hidden">
+<div class="flex items-center gap-sm">
+<button class="text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<span class="font-headline-md text-headline-md font-bold text-primary">SAO Manager</span>
+</div>
+<div class="flex items-center gap-sm">
+<button class="text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest overflow-hidden">
+<img alt="Administrator Avatar" class="w-full h-full object-cover" data-alt="A professional headshot of a school administrator in a modern office setting. The lighting is bright and even, highlighting a serious but approachable expression. The background is slightly blurred showing organized bookshelves. 8k resolution, photorealistic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjScJfZNPFXRwFf5liO-UQRJViIkSjjh1v5SfI8bx6owhU8u2JYB7dSd0nQtrm5MepvDePcOgHAuG__lBG_dWND1uEe96gQ_ItNPGrRnnzAfC-G25545Nyy2pcy0IM6u5OeIhMdxwG0sY8TFOe-_mrZz0J_3cy4ojPgNqFZn1z6mL7AhsjPyin2lD_MQb8MOBU40WucP1e-CotaFQYFDWCaq_Cfbnv2T-FL-IKCfK_kznF915cxGVZrA"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar (Desktop) -->
+<aside class="hidden md:flex flex-col h-full py-md fixed left-0 top-0 w-[280px] bg-tertiary shadow-sm z-40">
+<div class="px-lg mb-xl flex flex-col items-start gap-sm">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container fill">school</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-extrabold text-on-tertiary">SAO Manager</h1>
+<p class="font-label-md text-label-md text-on-tertiary/70">Admin Scolaire</p>
+</div>
+</div>
+<button class="mt-md w-full bg-secondary-container text-on-secondary-container font-label-md text-label-md py-2 px-4 rounded-lg flex items-center justify-center gap-2 hover:bg-opacity-90 transition-all shadow-sm">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                Nouvelle Facture
+            </button>
+</div>
+<nav class="flex-1 overflow-y-auto w-full px-2">
+<ul class="flex flex-col gap-1 w-full font-label-md text-label-md">
+<li>
+<a class="flex items-center gap-3 px-4 py-3 text-on-tertiary/70 hover:text-on-tertiary hover:bg-tertiary-container transition-all rounded-lg w-full" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                        Tableau de bord
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 text-on-tertiary/70 hover:text-on-tertiary hover:bg-tertiary-container transition-all rounded-lg w-full" href="#">
+<span class="material-symbols-outlined">group</span>
+                        Élèves
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-3 bg-primary-container text-on-primary-container rounded-lg px-4 py-3 w-full" href="#">
+<span class="material-symbols-outlined fill">payments</span>
+                        Frais Scolaires
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 text-on-tertiary/70 hover:text-on-tertiary hover:bg-tertiary-container transition-all rounded-lg w-full" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+                        Facturation
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 text-on-tertiary/70 hover:text-on-tertiary hover:bg-tertiary-container transition-all rounded-lg w-full" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+                        Comptabilité
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 text-on-tertiary/70 hover:text-on-tertiary hover:bg-tertiary-container transition-all rounded-lg w-full" href="#">
+<span class="material-symbols-outlined">settings</span>
+                        Paramètres
+                    </a>
+</li>
+</ul>
+</nav>
+<div class="mt-auto px-2 pb-md border-t border-white/10 pt-4">
+<ul class="flex flex-col gap-1 w-full font-label-md text-label-md">
+<li>
+<a class="flex items-center gap-3 px-4 py-3 text-on-tertiary/70 hover:text-on-tertiary hover:bg-tertiary-container transition-all rounded-lg w-full" href="#">
+<span class="material-symbols-outlined">support_agent</span>
+                        Support
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 text-on-tertiary/70 hover:text-on-tertiary hover:bg-tertiary-container transition-all rounded-lg w-full" href="#">
+<span class="material-symbols-outlined">logout</span>
+                        Déconnexion
+                    </a>
+</li>
+</ul>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="pt-20 md:pt-lg px-margin-mobile md:px-margin-desktop md:ml-[280px] pb-xl max-w-[1600px]">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-xl gap-4">
+<div>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-xs">Configuration des Frais Scolaires</h2>
+<p class="text-on-surface-variant font-body-md text-body-md max-w-2xl">
+                    Définissez les montants annuels, configurez les échéances trimestrielles et gérez les frais connexes. 
+                    <span class="inline-flex items-center gap-1 bg-primary-fixed/30 text-on-primary-fixed px-2 py-0.5 rounded text-[12px] font-medium mt-1">
+<span class="material-symbols-outlined text-[14px]">info</span>
+                        Les frais sont appliqués automatiquement aux élèves inscrits dans les sections correspondantes.
+                    </span>
+</p>
+</div>
+<div class="flex gap-sm">
+<button class="px-4 py-2 bg-surface-container-lowest border border-outline-variant text-primary font-label-md text-label-md rounded hover:bg-surface-container-low transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">history</span>
+                    Historique
+                </button>
+<button class="px-4 py-2 bg-primary-container text-on-primary-container font-label-md text-label-md rounded hover:bg-opacity-90 transition-colors flex items-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">save</span>
+                    Enregistrer
+                </button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg">
+<!-- Left Column: Sections & Montants -->
+<div class="lg:col-span-8 flex flex-col gap-lg">
+<!-- Frais de Scolarité par Section -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md md:p-lg">
+<div class="flex justify-between items-center mb-md pb-sm border-b border-surface-variant">
+<h3 class="font-headline-md text-headline-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">school</span>
+                            Frais de Scolarité (Minerval)
+                        </h3>
+<button class="text-primary font-label-md text-label-md hover:underline flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">add</span> Ajouter Section
+                        </button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-surface-variant font-label-md text-label-md text-on-surface-variant">
+<th class="py-sm px-md font-semibold">Section / Option</th>
+<th class="py-sm px-md font-semibold">Montant Annuel (USD)</th>
+<th class="py-sm px-md font-semibold">Devise Réf.</th>
+<th class="py-sm px-md font-semibold text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md">
+<tr class="border-b border-surface-container hover:bg-surface-container-low/50 transition-colors">
+<td class="py-md px-md">
+<div class="font-medium text-on-surface">Scientifique</div>
+<div class="text-[12px] text-on-surface-variant">Math-Physique, Bio-Chimie</div>
+</td>
+<td class="py-md px-md">
+<input class="w-24 px-2 py-1 border border-outline-variant rounded bg-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" type="number" value="350"/>
+</td>
+<td class="py-md px-md text-on-surface-variant">USD</td>
+<td class="py-md px-md text-right">
+<button class="p-1 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]">edit</span></button>
+<button class="p-1 text-on-surface-variant hover:text-error transition-colors"><span class="material-symbols-outlined text-[20px]">delete</span></button>
+</td>
+</tr>
+<tr class="border-b border-surface-container hover:bg-surface-container-low/50 transition-colors">
+<td class="py-md px-md">
+<div class="font-medium text-on-surface">Littéraire</div>
+<div class="text-[12px] text-on-surface-variant">Latin-Philo, Lettres</div>
+</td>
+<td class="py-md px-md">
+<input class="w-24 px-2 py-1 border border-outline-variant rounded bg-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" type="number" value="320"/>
+</td>
+<td class="py-md px-md text-on-surface-variant">USD</td>
+<td class="py-md px-md text-right">
+<button class="p-1 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]">edit</span></button>
+<button class="p-1 text-on-surface-variant hover:text-error transition-colors"><span class="material-symbols-outlined text-[20px]">delete</span></button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-md px-md">
+<div class="font-medium text-on-surface">Pédagogique</div>
+<div class="text-[12px] text-on-surface-variant">Générale</div>
+</td>
+<td class="py-md px-md">
+<input class="w-24 px-2 py-1 border border-outline-variant rounded bg-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" type="number" value="300"/>
+</td>
+<td class="py-md px-md text-on-surface-variant">USD</td>
+<td class="py-md px-md text-right">
+<button class="p-1 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]">edit</span></button>
+<button class="p-1 text-on-surface-variant hover:text-error transition-colors"><span class="material-symbols-outlined text-[20px]">delete</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Echéancier -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md md:p-lg">
+<div class="flex justify-between items-center mb-md pb-sm border-b border-surface-variant">
+<h3 class="font-headline-md text-headline-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">calendar_month</span>
+                            Échéances Trimestrielles
+                        </h3>
+<div class="flex items-center gap-2 text-label-md">
+<span class="text-on-surface-variant">Répartition auto:</span>
+<button class="px-2 py-1 bg-surface-container border border-outline-variant rounded text-on-surface hover:bg-surface-variant transition-colors">33/33/34%</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Trimestre 1 -->
+<div class="border border-outline-variant rounded-lg p-md bg-surface">
+<div class="flex justify-between items-start mb-sm">
+<h4 class="font-label-md text-label-md text-on-surface font-bold">1er Trimestre</h4>
+<span class="bg-primary-fixed text-on-primary-fixed px-2 py-0.5 rounded text-[10px] font-bold">30%</span>
+</div>
+<div class="space-y-3 mt-4">
+<div>
+<label class="block text-[12px] text-on-surface-variant mb-1">Date limite</label>
+<input class="w-full px-2 py-1.5 border border-outline-variant rounded bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm" type="date" value="2024-10-15"/>
+</div>
+<div>
+<label class="block text-[12px] text-on-surface-variant mb-1">Pourcentage du total</label>
+<div class="flex items-center gap-2">
+<input class="w-full px-2 py-1.5 border border-outline-variant rounded bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm" type="number" value="30"/>
+<span class="text-on-surface-variant">%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Trimestre 2 -->
+<div class="border border-outline-variant rounded-lg p-md bg-surface">
+<div class="flex justify-between items-start mb-sm">
+<h4 class="font-label-md text-label-md text-on-surface font-bold">2ème Trimestre</h4>
+<span class="bg-primary-fixed text-on-primary-fixed px-2 py-0.5 rounded text-[10px] font-bold">35%</span>
+</div>
+<div class="space-y-3 mt-4">
+<div>
+<label class="block text-[12px] text-on-surface-variant mb-1">Date limite</label>
+<input class="w-full px-2 py-1.5 border border-outline-variant rounded bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm" type="date" value="2025-01-20"/>
+</div>
+<div>
+<label class="block text-[12px] text-on-surface-variant mb-1">Pourcentage du total</label>
+<div class="flex items-center gap-2">
+<input class="w-full px-2 py-1.5 border border-outline-variant rounded bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm" type="number" value="35"/>
+<span class="text-on-surface-variant">%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Trimestre 3 -->
+<div class="border border-outline-variant rounded-lg p-md bg-surface">
+<div class="flex justify-between items-start mb-sm">
+<h4 class="font-label-md text-label-md text-on-surface font-bold">3ème Trimestre</h4>
+<span class="bg-primary-fixed text-on-primary-fixed px-2 py-0.5 rounded text-[10px] font-bold">35%</span>
+</div>
+<div class="space-y-3 mt-4">
+<div>
+<label class="block text-[12px] text-on-surface-variant mb-1">Date limite</label>
+<input class="w-full px-2 py-1.5 border border-outline-variant rounded bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm" type="date" value="2025-04-10"/>
+</div>
+<div>
+<label class="block text-[12px] text-on-surface-variant mb-1">Pourcentage du total</label>
+<div class="flex items-center gap-2">
+<input class="w-full px-2 py-1.5 border border-outline-variant rounded bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm" type="number" value="35"/>
+<span class="text-on-surface-variant">%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Frais Connexes & Settings -->
+<div class="lg:col-span-4 flex flex-col gap-lg">
+<!-- Frais Connexes -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md md:p-lg">
+<div class="flex justify-between items-center mb-md pb-sm border-b border-surface-variant">
+<h3 class="font-headline-md text-headline-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary-container">add_box</span>
+                            Frais Connexes
+                        </h3>
+<button class="p-1 bg-surface-container hover:bg-surface-variant rounded transition-colors text-on-surface">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+</div>
+<div class="space-y-3">
+<!-- Item 1 -->
+<div class="p-3 border border-outline-variant rounded bg-surface flex justify-between items-center">
+<div>
+<div class="font-medium text-sm text-on-surface">Frais Techniques</div>
+<div class="text-[11px] text-on-surface-variant">Appliqué à: Section Scientifique</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-bold text-on-surface">50 USD</span>
+<button class="text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[18px]">more_vert</span></button>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="p-3 border border-outline-variant rounded bg-surface flex justify-between items-center">
+<div>
+<div class="font-medium text-sm text-on-surface">Frais d'Examens (Exetat)</div>
+<div class="text-[11px] text-on-surface-variant">Appliqué à: Terminales (6ème)</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-bold text-on-surface">80 USD</span>
+<button class="text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[18px]">more_vert</span></button>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="p-3 border border-outline-variant rounded bg-surface flex justify-between items-center">
+<div>
+<div class="font-medium text-sm text-on-surface">Frais Informatique</div>
+<div class="text-[11px] text-on-surface-variant">Appliqué à: Toutes sections</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-bold text-on-surface">25 USD</span>
+<button class="text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[18px]">more_vert</span></button>
+</div>
+</div>
+</div>
+</section>
+<!-- Paramètres Généraux -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md md:p-lg">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-md pb-sm border-b border-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant">settings_suggest</span>
+                        Paramètres Avancés
+                    </h3>
+<div class="space-y-4">
+<div class="flex items-start justify-between gap-4">
+<div>
+<div class="font-medium text-sm text-on-surface">Pénalités de retard</div>
+<div class="text-[12px] text-on-surface-variant mt-0.5">Appliquer automatiquement une pénalité après la date limite.</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer mt-1">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-9 h-5 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-start justify-between gap-4">
+<div>
+<div class="font-medium text-sm text-on-surface opacity-50">Taux de change fixe</div>
+<div class="text-[12px] text-on-surface-variant mt-0.5 opacity-50">Fixer un taux USD/CDF pour l'année scolaire.</div>
+</div>
+<label class="relative inline-flex items-center cursor-not-allowed mt-1 opacity-50">
+<input checked="" class="sr-only peer" disabled="" type="checkbox" value=""/>
+<div class="w-9 h-5 bg-primary peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all"></div>
+</label>
+</div>
+</div>
+</section>
+<div class="mt-auto pt-lg">
+<div class="p-4 bg-tertiary text-on-tertiary rounded-xl shadow-sm relative overflow-hidden">
+<div class="relative z-10">
+<h4 class="font-bold text-sm mb-1">Année Scolaire Active</h4>
+<p class="text-2xl font-bold font-display-lg text-primary-fixed mb-2">2024 - 2025</p>
+<p class="text-[12px] text-on-tertiary/80">Toute modification s'appliquera immédiatement aux factures non payées.</p>
+</div>
+<span class="material-symbols-outlined absolute -bottom-4 -right-4 text-[100px] text-white/5 rotate-[-15deg] pointer-events-none">history_edu</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

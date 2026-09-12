@@ -1,0 +1,453 @@
+<!DOCTYPE html><html class="light" lang="fr"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Suivi des frais scolaires - Gestion Scolaire RDC</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary-fixed": "#2d1600",
+                      "on-secondary-container": "#6a3c00",
+                      "secondary-container": "#fda13a",
+                      "secondary-fixed-dim": "#ffb871",
+                      "tertiary-fixed": "#d0e4ff",
+                      "on-secondary": "#ffffff",
+                      "surface-container-low": "#f1f4f7",
+                      "surface-dim": "#d7dadd",
+                      "primary-fixed-dim": "#abc8f4",
+                      "on-primary-fixed": "#001c38",
+                      "on-tertiary-fixed-variant": "#2c4965",
+                      "secondary-fixed": "#ffdcbe",
+                      "background": "#f7fafd",
+                      "primary-fixed": "#d3e4ff",
+                      "error-container": "#ffdad6",
+                      "on-primary-fixed-variant": "#2a486d",
+                      "inverse-primary": "#abc8f4",
+                      "secondary": "#8b5000",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-container": "#ebeef1",
+                      "surface": "#f7fafd",
+                      "primary-container": "#1b3b5f",
+                      "outline-variant": "#c3c6cf",
+                      "on-surface": "#181c1e",
+                      "tertiary": "#032641",
+                      "on-tertiary-container": "#8aa6c7",
+                      "on-surface-variant": "#43474e",
+                      "inverse-on-surface": "#eef1f4",
+                      "on-secondary-fixed-variant": "#693c00",
+                      "surface-bright": "#f7fafd",
+                      "error": "#ba1a1a",
+                      "tertiary-fixed-dim": "#acc9eb",
+                      "inverse-surface": "#2d3133",
+                      "outline": "#73777f",
+                      "surface-container-highest": "#e0e3e6",
+                      "on-tertiary-fixed": "#001d34",
+                      "on-primary-container": "#88a6cf",
+                      "tertiary-container": "#1e3c58",
+                      "on-error": "#ffffff",
+                      "on-background": "#181c1e",
+                      "on-tertiary": "#ffffff",
+                      "surface-tint": "#426086",
+                      "primary": "#002547",
+                      "on-error-container": "#93000a",
+                      "on-primary": "#ffffff",
+                      "surface-variant": "#e0e3e6",
+                      "surface-container-high": "#e5e8eb"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "gutter": "20px",
+                      "margin-desktop": "40px",
+                      "xs": "4px",
+                      "sm": "8px",
+                      "unit": "4px",
+                      "margin-mobile": "16px",
+                      "lg": "24px",
+                      "md": "16px",
+                      "xl": "32px"
+              },
+              "fontFamily": {
+                      "body-md": ["Inter"],
+                      "headline-lg-mobile": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "display-lg": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "label-md": ["Inter"]
+              },
+              "fontSize": {
+                      "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "display-lg": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        body { background-color: theme('colors.background'); }
+        /* Tonal Layers & Shadows */
+        .ambient-shadow { box-shadow: 0 4px 12px rgba(27, 59, 95, 0.08); }
+        .table-row-hover:hover { background-color: theme('colors.surface-container-lowest'); box-shadow: inset 0 0 0 1px theme('colors.outline-variant'); z-index: 10; position: relative;}
+    </style>
+</head>
+<body class="font-body-md text-body-md text-on-background flex min-h-screen antialiased selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- SideNavBar (Shared Component) -->
+<nav class="w-[280px] h-screen fixed left-0 top-0 bg-primary text-on-primary shadow-sm hidden md:flex flex-col p-md gap-sm z-50">
+<div class="mb-xl px-sm flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-lowest overflow-hidden flex items-center justify-center p-1 shrink-0">
+<span class="material-symbols-outlined text-primary text-[28px]" data-icon="school">school</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-on-primary leading-tight">Secrétariat Scolaire</h1>
+<p class="font-label-md text-label-md text-on-primary-container">Rép. Dém. du Congo</p>
+</div>
+</div>
+<button class="bg-secondary-container hover:bg-secondary-fixed-dim text-on-secondary-container font-label-md text-label-md py-sm px-md rounded-lg flex items-center justify-center gap-sm mb-lg transition-colors w-full">
+<span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
+            Nouvelle Inscription
+        </button>
+<div class="flex flex-col gap-xs flex-grow">
+<!-- Nav Item 1: Inactive -->
+<a class="flex items-center gap-md px-md py-sm text-on-primary-container hover:bg-primary-container hover:text-on-primary-container rounded-xl transition-colors duration-200 active:scale-95 group" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="group">group</span>
+                Élèves
+            </a>
+<!-- Nav Item 2: Inactive -->
+<a class="flex items-center gap-md px-md py-sm text-on-primary-container hover:bg-primary-container hover:text-on-primary-container rounded-xl transition-colors duration-200 active:scale-95 group" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="app_registration">app_registration</span>
+                Inscriptions
+            </a>
+<!-- Nav Item 3: Inactive -->
+<a class="flex items-center gap-md px-md py-sm text-on-primary-container hover:bg-primary-container hover:text-on-primary-container rounded-xl transition-colors duration-200 active:scale-95 group" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="door_open">door_open</span>
+                Classes
+            </a>
+<!-- Nav Item 4: ACTIVE (Frais Scolaires) -->
+<a class="flex items-center gap-md px-md py-sm bg-secondary-container text-on-secondary-container rounded-xl transition-all duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="payments">payments</span>
+                Frais Scolaires
+            </a>
+</div>
+<div class="mt-auto flex flex-col gap-xs pt-md border-t border-primary-container">
+<a class="flex items-center gap-md px-md py-sm text-on-primary-container hover:bg-primary-container hover:text-on-primary-container rounded-xl transition-colors duration-200 active:scale-95 group" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
+                Paramètres
+            </a>
+<a class="flex items-center gap-md px-md py-sm text-on-primary-container hover:bg-primary-container hover:text-on-primary-container rounded-xl transition-colors duration-200 active:scale-95 group" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
+                Déconnexion
+            </a>
+</div>
+</nav>
+<!-- TopNavBar (Shared Component) -->
+<header class="h-16 fixed top-0 right-0 left-0 md:left-[280px] bg-surface flex justify-between items-center px-margin-mobile md:px-margin-desktop w-full border-b border-outline-variant z-40">
+<div class="flex items-center gap-md md:hidden">
+<!-- Mobile Menu Trigger -->
+<button class="p-2 -ml-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors active:opacity-80">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h2 class="font-headline-md text-headline-md font-bold text-primary">Gestion Scolaire RDC</h2>
+</div>
+<div class="hidden md:flex items-center">
+<h2 class="font-headline-md text-headline-md font-bold text-primary">Gestion Scolaire RDC</h2>
+</div>
+<div class="flex items-center gap-sm md:gap-md">
+<!-- Search Icon (Mobile) / Search Bar Placeholder (Desktop) -->
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors active:opacity-80 md:hidden">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+<div class="hidden md:flex items-center bg-surface-container-low border border-outline-variant rounded-lg px-3 py-1.5 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary-fixed-dim transition-all">
+<span class="material-symbols-outlined text-on-surface-variant mr-2 text-[20px]" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 p-0 text-body-md font-body-md w-48 text-on-surface placeholder:text-on-surface-variant" placeholder="Rechercher élève..." type="text">
+</div>
+<!-- Actions -->
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors active:opacity-80">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors active:opacity-80 hidden sm:block">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<!-- Avatar -->
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center ml-sm border border-outline-variant overflow-hidden">
+<img alt="Secrétaire" class="w-full h-full object-cover" data-alt="A close-up portrait of a professional African school secretary in a modern office, wearing formal attire. High-key lighting, bright, clear, optimistic corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4CRLget9apC6sr1sGQkkTBh7aedjtT45xfPXD1q6zoSBmQtjl8P8g76fdF2pnpI6MuAFTyW-lzvlaSPccl-I68a2NkFsGznDdmNo-u_WZQQgRBgstFhZfLRG4FWh6x-cy5Bf6_h1cu516w8FNE6NB_x5L-wycBzJiuTRf1HQwJYZevYzAJqUW2LtnC-k-THDzFj_dud6NT48ZuCF02x6iRkMl2wKl5hpy14wfilG5qtYf6sRIOxAu4w">
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="mt-16 md:ml-[280px] w-full p-margin-mobile md:p-margin-desktop flex flex-col gap-lg md:gap-xl max-w-7xl mx-auto">
+<!-- Header Section -->
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-md">
+<div>
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background mb-xs">Suivi des Frais Scolaires</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Année académique 2023-2024 • Trimestre 2</p>
+</div>
+<button class="bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md py-2 px-4 rounded-lg flex items-center justify-center gap-sm transition-colors ambient-shadow whitespace-nowrap" onclick="document.getElementById('payment-modal').classList.remove('hidden')">
+<span class="material-symbols-outlined text-[20px]" data-icon="account_balance_wallet">account_balance_wallet</span>
+                Enregistrer un paiement
+            </button>
+</div>
+<!-- Global Recovery Progress (Bento Grid Style) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<!-- Main Progress Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg flex flex-col justify-between md:col-span-2">
+<div class="flex justify-between items-start mb-lg">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Recouvrement Global</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Objectif T2: 15,000,000 CDF</p>
+</div>
+<div class="bg-tertiary-fixed text-on-tertiary-fixed font-label-md text-label-md px-2 py-1 rounded">72% Atteint</div>
+</div>
+<div>
+<div class="w-full bg-surface-container-high rounded-full h-4 mb-2 overflow-hidden flex">
+<div class="bg-primary h-4 rounded-l-full" style="width: 72%;"></div>
+</div>
+<div class="flex justify-between font-label-md text-label-md text-on-surface-variant">
+<span class="">10,800,000 CDF perçus</span>
+<span class="">Reste: 4,200,000 CDF</span>
+</div>
+</div>
+</div>
+<!-- Stats Mini Cards -->
+<div class="grid grid-rows-2 gap-md">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-primary-fixed text-[24px]" data-icon="check_circle">check_circle</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">Élèves en règle</p>
+<p class="font-headline-md text-headline-md text-on-surface">342</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-error-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-error-container text-[24px]" data-icon="warning">warning</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">En retard de paiement</p>
+<p class="font-headline-md text-headline-md text-error">84</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Student Ledger Table (Data Table) -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden flex flex-col">
+<!-- Table Toolbar -->
+<div class="p-md border-b border-outline-variant flex flex-col sm:flex-row justify-between items-center gap-md bg-surface">
+<div class="flex items-center bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-1.5 focus-within:border-primary w-full sm:w-64 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant mr-2 text-[20px]" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 p-0 text-body-md font-body-md w-full text-on-surface placeholder:text-on-surface-variant outline-none" placeholder="Chercher un élève..." type="text">
+</div>
+<div class="flex gap-2 w-full sm:w-auto">
+<button class="px-3 py-1.5 border border-outline-variant text-on-surface-variant rounded-lg font-label-md text-label-md flex items-center gap-1 hover:bg-surface-container-low w-full sm:w-auto justify-center">
+<span class="material-symbols-outlined text-[18px]" data-icon="filter_list">filter_list</span> Filtrer
+                    </button>
+<button class="px-3 py-1.5 border border-outline-variant text-on-surface-variant rounded-lg font-label-md text-label-md flex items-center gap-1 hover:bg-surface-container-low w-full sm:w-auto justify-center">
+<span class="material-symbols-outlined text-[18px]" data-icon="download">download</span> Exporter
+                    </button>
+</div>
+</div>
+<!-- The Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse min-w-[800px]">
+<thead>
+<tr class="bg-surface-container border-b border-outline-variant text-on-surface-variant font-label-md text-label-md uppercase">
+<th class="py-sm px-md font-semibold">Nom de l'élève</th>
+<th class="py-sm px-md font-semibold">Classe</th>
+<th class="py-sm px-md font-semibold text-right">Montant Dû</th>
+<th class="py-sm px-md font-semibold text-right">Montant Payé</th>
+<th class="py-sm px-md font-semibold text-right">Reste à payer</th>
+<th class="py-sm px-md font-semibold text-center">Statut</th>
+<th class="py-sm px-md font-semibold text-center">Actions</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-on-surface divide-y divide-surface-container-high">
+<!-- Row 1: Soldé -->
+<tr class="table-row-hover transition-colors">
+<td class="py-sm px-md flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-fixed-dim text-primary flex items-center justify-center font-bold text-xs">KM</div>
+<span class="font-semibold text-on-background">Kabuge Mwanza, Elie</span>
+</td>
+<td class="py-sm px-md text-on-surface-variant">3ème Scientifique A</td>
+<td class="py-sm px-md text-right">150,000 CDF</td>
+<td class="py-sm px-md text-right">150,000 CDF</td>
+<td class="py-sm px-md text-right text-outline">0 CDF</td>
+<td class="py-sm px-md text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-[#e6f4ea] text-[#137333] border border-[#ceead6]">
+                                    Soldé
+                                </span>
+</td>
+<td class="py-sm px-md text-center">
+<button class="text-on-surface-variant hover:text-primary p-1 rounded transition-colors"><span class="material-symbols-outlined text-[20px]" data-icon="more_vert">more_vert</span></button>
+</td>
+</tr>
+<!-- Row 2: Partiel -->
+<tr class="table-row-hover transition-colors">
+<td class="py-sm px-md flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed-dim text-secondary flex items-center justify-center font-bold text-xs">NK</div>
+<span class="font-semibold text-on-background">Ndaya Kanku, Sarah</span>
+</td>
+<td class="py-sm px-md text-on-surface-variant">2ème Littéraire</td>
+<td class="py-sm px-md text-right">150,000 CDF</td>
+<td class="py-sm px-md text-right font-medium">80,000 CDF</td>
+<td class="py-sm px-md text-right font-semibold text-secondary-container">70,000 CDF</td>
+<td class="py-sm px-md text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-secondary-fixed text-on-secondary-fixed-variant border border-secondary-fixed-dim">
+                                    Partiel
+                                </span>
+</td>
+<td class="py-sm px-md text-center">
+<button class="text-on-surface-variant hover:text-primary p-1 rounded transition-colors"><span class="material-symbols-outlined text-[20px]" data-icon="more_vert">more_vert</span></button>
+</td>
+</tr>
+<!-- Row 3: Non payé -->
+<tr class="table-row-hover transition-colors">
+<td class="py-sm px-md flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-error-container text-on-error-container flex items-center justify-center font-bold text-xs">IL</div>
+<span class="font-semibold text-on-background">Ilunga Lumumba, Marc</span>
+</td>
+<td class="py-sm px-md text-on-surface-variant">4ème Commerciale</td>
+<td class="py-sm px-md text-right">150,000 CDF</td>
+<td class="py-sm px-md text-right">0 CDF</td>
+<td class="py-sm px-md text-right font-bold text-error">150,000 CDF</td>
+<td class="py-sm px-md text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-error-container text-on-error-container border border-[#f4b6b6]">
+                                    Non payé
+                                </span>
+</td>
+<td class="py-sm px-md text-center">
+<button class="text-on-surface-variant hover:text-primary p-1 rounded transition-colors"><span class="material-symbols-outlined text-[20px]" data-icon="more_vert">more_vert</span></button>
+</td>
+</tr>
+<!-- Row 4: Soldé -->
+<tr class="table-row-hover transition-colors">
+<td class="py-sm px-md flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-fixed-dim text-primary flex items-center justify-center font-bold text-xs">MT</div>
+<span class="font-semibold text-on-background">Mutombo Tshisekedi, Jean</span>
+</td>
+<td class="py-sm px-md text-on-surface-variant">1ère Primaire B</td>
+<td class="py-sm px-md text-right">100,000 CDF</td>
+<td class="py-sm px-md text-right">100,000 CDF</td>
+<td class="py-sm px-md text-right text-outline">0 CDF</td>
+<td class="py-sm px-md text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-[#e6f4ea] text-[#137333] border border-[#ceead6]">
+                                    Soldé
+                                </span>
+</td>
+<td class="py-sm px-md text-center">
+<button class="text-on-surface-variant hover:text-primary p-1 rounded transition-colors"><span class="material-symbols-outlined text-[20px]" data-icon="more_vert">more_vert</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="p-sm px-md border-t border-outline-variant bg-surface flex justify-between items-center text-on-surface-variant font-label-md text-label-md">
+<span class="">Affichage 1-4 sur 426</span>
+<div class="flex gap-1">
+<button class="p-1 rounded hover:bg-surface-container-low transition-colors disabled:opacity-50" disabled=""><span class="material-symbols-outlined text-[20px]" data-icon="chevron_left">chevron_left</span></button>
+<button class="p-1 rounded hover:bg-surface-container-low transition-colors"><span class="material-symbols-outlined text-[20px]" data-icon="chevron_right">chevron_right</span></button>
+</div>
+</div>
+</div>
+</main>
+<!-- Payment Action Modal (Hidden by default) -->
+<div class="hidden fixed inset-0 z-50 flex items-center justify-center p-4" id="payment-modal">
+<!-- Backdrop -->
+<div class="absolute inset-0 bg-on-background/40 backdrop-blur-sm transition-opacity" onclick="document.getElementById('payment-modal').classList.add('hidden')"></div>
+<!-- Modal Content -->
+<div class="relative bg-surface-container-lowest rounded-xl border border-outline-variant shadow-xl w-full max-w-md flex flex-col overflow-hidden ambient-shadow">
+<!-- Modal Header -->
+<div class="p-md border-b border-outline-variant bg-surface flex justify-between items-center">
+<h2 class="font-headline-md text-headline-md text-on-surface">Enregistrer un paiement</h2>
+<button class="text-on-surface-variant hover:text-error transition-colors p-1 rounded" onclick="document.getElementById('payment-modal').classList.add('hidden')">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<!-- Modal Body -->
+<div class="p-md flex flex-col gap-md">
+<!-- Student Search/Select -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-1">Élève</label>
+<div class="flex items-center bg-surface border border-outline-variant rounded-lg px-3 py-2 focus-within:border-primary transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant mr-2 text-[20px]" data-icon="person_search">person_search</span>
+<input class="bg-transparent border-none focus:ring-0 p-0 text-body-md font-body-md w-full outline-none" placeholder="Ex: Ilunga Lumumba..." type="text">
+</div>
+</div>
+<!-- Amount Input -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-1">Montant perçu (CDF)</label>
+<input class="w-full bg-surface border border-outline-variant rounded-lg px-3 py-2 text-body-md font-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="0" type="number">
+</div>
+<!-- Payment Method Toggle -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Mode de paiement</label>
+<div class="grid grid-cols-3 gap-2"><!-- Option 1: Espèces -->
+<label class="cursor-pointer relative">
+    <input checked="" class="peer sr-only" name="payment_method" type="radio" value="cash">
+    <div class="h-full flex flex-col items-center justify-center p-2 border border-outline-variant rounded-lg bg-surface peer-checked:border-primary peer-checked:bg-primary-fixed peer-checked:text-on-primary-fixed transition-all hover:bg-surface-container-low text-on-surface-variant">
+        <span class="material-symbols-outlined mb-1" data-icon="payments">payments</span>
+        <span class="font-label-md text-[10px] text-center">Espèces</span>
+    </div>
+</label>
+<!-- Option 2: M-Pesa -->
+<label class="cursor-pointer relative">
+    <input class="peer sr-only" name="payment_method" type="radio" value="mpesa">
+    <div class="h-full flex flex-col items-center justify-center p-2 border border-outline-variant rounded-lg bg-surface peer-checked:border-secondary-container peer-checked:bg-secondary-fixed peer-checked:text-on-secondary-fixed-variant transition-all hover:bg-surface-container-low text-on-surface-variant">
+        <span class="material-symbols-outlined mb-1" data-icon="smartphone">smartphone</span>
+        <span class="font-label-md text-[10px] text-center">M-Pesa</span>
+    </div>
+</label>
+<!-- Option 3: Airtel Money -->
+<label class="cursor-pointer relative">
+    <input class="peer sr-only" name="payment_method" type="radio" value="airtel">
+    <div class="h-full flex flex-col items-center justify-center p-2 border border-outline-variant rounded-lg bg-surface peer-checked:border-secondary-container peer-checked:bg-secondary-fixed peer-checked:text-on-secondary-fixed-variant transition-all hover:bg-surface-container-low text-on-surface-variant">
+        <span class="material-symbols-outlined mb-1" data-icon="send_to_mobile">send_to_mobile</span>
+        <span class="font-label-md text-[10px] text-center">Airtel Money</span>
+    </div>
+</label>
+<!-- Option 4: Orange Money -->
+<label class="cursor-pointer relative">
+    <input class="peer sr-only" name="payment_method" type="radio" value="orange">
+    <div class="h-full flex flex-col items-center justify-center p-2 border border-outline-variant rounded-lg bg-surface peer-checked:border-secondary-container peer-checked:bg-secondary-fixed peer-checked:text-on-secondary-fixed-variant transition-all hover:bg-surface-container-low text-on-surface-variant">
+        <span class="material-symbols-outlined mb-1" data-icon="account_balance_wallet">account_balance_wallet</span>
+        <span class="font-label-md text-[10px] text-center">Orange Money</span>
+    </div>
+</label>
+<!-- Option 5: Visa -->
+<label class="cursor-pointer relative">
+    <input class="peer sr-only" name="payment_method" type="radio" value="visa">
+    <div class="h-full flex flex-col items-center justify-center p-2 border border-outline-variant rounded-lg bg-surface peer-checked:border-primary peer-checked:bg-primary-fixed peer-checked:text-on-primary-fixed transition-all hover:bg-surface-container-low text-on-surface-variant">
+        <span class="material-symbols-outlined mb-1" data-icon="credit_card">credit_card</span>
+        <span class="font-label-md text-[10px] text-center">Carte Visa</span>
+    </div>
+</label></div>
+</div>
+</div>
+<!-- Modal Footer -->
+<div class="p-md border-t border-outline-variant bg-surface-container flex justify-end gap-3">
+<button class="px-4 py-2 text-on-surface-variant font-label-md text-label-md rounded-lg hover:bg-surface-container-high transition-colors" onclick="document.getElementById('payment-modal').classList.add('hidden')">Annuler</button>
+<button class="px-4 py-2 bg-secondary-container hover:bg-secondary-fixed-dim text-on-secondary-container font-label-md text-label-md rounded-lg transition-colors flex items-center gap-2" onclick="document.getElementById('payment-modal').classList.add('hidden')">
+<span class="material-symbols-outlined text-[18px]" data-icon="save">save</span> Enregistrer
+                </button>
+</div>
+</div>
+</div>
+
+
+</body></html>

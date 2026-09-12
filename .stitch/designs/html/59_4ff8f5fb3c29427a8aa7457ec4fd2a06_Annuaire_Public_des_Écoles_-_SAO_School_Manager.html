@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EduRDC - Annuaire des Écoles</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed-variant": "#2c4965",
+                        "error": "#ba1a1a",
+                        "error-container": "#ffdad6",
+                        "on-surface-variant": "#43474e",
+                        "on-secondary-container": "#6a3c00",
+                        "primary": "#002547",
+                        "tertiary-fixed": "#d0e4ff",
+                        "on-primary-fixed": "#001c38",
+                        "surface-tint": "#426086",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#1e3c58",
+                        "outline": "#73777f",
+                        "tertiary": "#032641",
+                        "inverse-surface": "#2d3133",
+                        "on-primary-fixed-variant": "#2a486d",
+                        "inverse-primary": "#abc8f4",
+                        "on-background": "#181c1e",
+                        "surface-container-low": "#f1f4f7",
+                        "secondary": "#8b5000",
+                        "surface-container": "#ebeef1",
+                        "secondary-fixed-dim": "#ffb871",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#693c00",
+                        "outline-variant": "#c3c6cf",
+                        "primary-fixed": "#d3e4ff",
+                        "on-tertiary-fixed": "#001d34",
+                        "primary-fixed-dim": "#abc8f4",
+                        "surface-dim": "#d7dadd",
+                        "surface": "#f7fafd",
+                        "on-secondary": "#ffffff",
+                        "surface-container-high": "#e5e8eb",
+                        "primary-container": "#1b3b5f",
+                        "secondary-fixed": "#ffdcbe",
+                        "background": "#f7fafd",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#eef1f4",
+                        "on-surface": "#181c1e",
+                        "surface-container-highest": "#e0e3e6",
+                        "surface-bright": "#f7fafd",
+                        "on-secondary-fixed": "#2d1600",
+                        "secondary-container": "#fda13a",
+                        "tertiary-fixed-dim": "#acc9eb",
+                        "surface-variant": "#e0e3e6",
+                        "on-tertiary-container": "#8aa6c7",
+                        "on-primary-container": "#88a6cf"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "margin-desktop": "40px",
+                        "margin-mobile": "16px",
+                        "lg": "24px",
+                        "xl": "32px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "xs": "4px",
+                        "gutter": "20px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["28px", { "lineHeight": "36px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "display-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #F3F6F9; }
+        .ambient-shadow { box-shadow: 0 4px 12px rgba(27, 59, 95, 0.08); }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="bg-surface border-b border-outline-variant w-full top-0 z-50 sticky">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto h-20">
+<div class="font-headline-lg text-headline-lg font-bold text-primary">EduRDC</div>
+<div class="hidden md:flex gap-lg items-center">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-md text-label-md" href="#">Écoles</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">Régions</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">Procédures</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">Support</a>
+</div>
+<div class="hidden md:flex gap-sm items-center">
+<button class="px-md py-sm rounded border border-primary text-primary font-label-md text-label-md hover:bg-surface-container-low transition-colors">Connexion</button>
+<button class="px-md py-sm rounded bg-primary text-on-primary font-label-md text-label-md hover:opacity-90 transition-opacity">Inscription</button>
+</div>
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu</span>
+</button>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow w-full max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-xl">
+<!-- Hero Search Section -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant p-xl mb-xl text-center flex flex-col items-center justify-center min-h-[300px] relative overflow-hidden">
+<div class="absolute inset-0 z-0 opacity-10 pointer-events-none" data-alt="Abstract geometric background featuring subtle interconnected nodes and lines in a light blue and grey palette. The modern, clean, corporate SaaS style represents a network of educational institutions in a structured, sophisticated manner." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDy6KHzMny6Zc67ahdlrSrcP9QfBmLi_z7l3pJnuTS3tw7UOmZDSoGgLvLsBnfKRsDd6IJDsG7EtIvRBFJpLRgJRKOs2EGUjcdww9qr5ay_fUyjtPjllHRFaTWkfeEToLh2FbpQtKMevAseQHnbxKIivKcF-rRA08JQqt2YDlXlIfzKjZrHUThMfXtqHbfZzRO4MzQLIRcIARsNPA4DQZkcZfUEFFpRoHVT9tiW8Slex_z0DVB1FelehQ')"></div>
+<div class="z-10 relative max-w-3xl w-full">
+<h1 class="font-display-lg text-display-lg text-primary mb-md">Trouvez l'école idéale pour votre enfant</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-xl">Accédez à l'annuaire national officiel des établissements scolaires de la République Démocratique du Congo.</p>
+<div class="flex flex-col md:flex-row gap-sm w-full bg-surface p-sm rounded-lg border border-outline-variant ambient-shadow focus-within:border-primary transition-colors">
+<div class="flex-grow flex items-center px-sm bg-surface-container-lowest rounded">
+<span class="material-symbols-outlined text-outline mr-sm" style="font-variation-settings: 'FILL' 0;">search</span>
+<input class="w-full bg-transparent border-none focus:ring-0 font-body-md text-body-md text-on-surface outline-none py-sm" placeholder="Rechercher par nom, ville..." type="text"/>
+</div>
+<button class="bg-primary text-on-primary px-lg py-sm rounded font-label-md text-label-md hover:opacity-90 transition-opacity whitespace-nowrap">Rechercher</button>
+</div>
+</div>
+</section>
+<div class="flex flex-col md:flex-row gap-xl">
+<!-- Sidebar Filters -->
+<aside class="w-full md:w-[280px] shrink-0">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-md sticky top-[100px]">
+<div class="flex items-center justify-between mb-md pb-sm border-b border-surface-container-high">
+<h2 class="font-headline-md text-headline-md text-primary">Filtres</h2>
+<span class="material-symbols-outlined text-outline" style="font-variation-settings: 'FILL' 0;">filter_list</span>
+</div>
+<!-- Province Filter -->
+<div class="mb-lg">
+<h3 class="font-label-md text-label-md text-on-surface-variant mb-sm uppercase">Province</h3>
+<div class="space-y-sm">
+<label class="flex items-center gap-sm cursor-pointer">
+<input class="rounded border-outline text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface">Kinshasa</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer">
+<input class="rounded border-outline text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface">Haut-Katanga</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer">
+<input class="rounded border-outline text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface">Kongo Central</span>
+</label>
+</div>
+</div>
+<!-- Cycle Filter -->
+<div class="mb-lg">
+<h3 class="font-label-md text-label-md text-on-surface-variant mb-sm uppercase">Cycle</h3>
+<div class="space-y-sm">
+<label class="flex items-center gap-sm cursor-pointer">
+<input class="rounded border-outline text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface">Maternel</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer">
+<input checked="" class="rounded border-outline text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface">Primaire</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer">
+<input checked="" class="rounded border-outline text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface">Secondaire</span>
+</label>
+</div>
+</div>
+<!-- Section/Option Filter -->
+<div class="mb-lg">
+<h3 class="font-label-md text-label-md text-on-surface-variant mb-sm uppercase">Section / Option</h3>
+<div class="space-y-sm">
+<label class="flex items-center gap-sm cursor-pointer">
+<input class="rounded border-outline text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface">Scientifique</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer">
+<input class="rounded border-outline text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface">Commerciale</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer">
+<input class="rounded border-outline text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface">Littéraire</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer">
+<input class="rounded border-outline text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface">Technique Industrielle</span>
+</label>
+</div>
+</div>
+</div>
+</aside>
+<!-- Results List -->
+<div class="flex-grow">
+<div class="flex justify-between items-center mb-md">
+<span class="font-body-md text-body-md text-on-surface-variant">Affichage de 1-12 sur 450 établissements</span>
+<div class="flex items-center gap-sm border border-outline-variant rounded px-sm py-xs bg-surface-container-lowest">
+<span class="font-label-md text-label-md text-on-surface-variant">Trier par:</span>
+<select class="bg-transparent border-none focus:ring-0 font-body-md text-body-md text-on-surface p-0">
+<option>Pertinence</option>
+<option>Nom (A-Z)</option>
+<option>Note SAO</option>
+</select>
+</div>
+</div>
+<!-- Bento Grid for Results -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-md">
+<!-- Featured Card -->
+<div class="col-span-1 lg:col-span-2 bg-surface-container-lowest border-2 border-primary-fixed-dim rounded-lg p-md ambient-shadow flex flex-col md:flex-row gap-md relative overflow-hidden">
+<div class="absolute top-0 right-0 bg-secondary text-on-secondary font-label-md text-label-md px-sm py-xs rounded-bl-lg flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+                            Certifié SAO Manager
+                        </div>
+<div class="w-24 h-24 shrink-0 bg-surface-container rounded border border-outline-variant flex items-center justify-center overflow-hidden">
+<img class="object-cover w-full h-full" data-alt="A professional, modern logo for a prestigious school in DR Congo. The logo features a stylized open book and a rising sun in a navy blue and gold color scheme, presented on a clean white background. High contrast, sharp vector style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_xRfnCxbgXbxU4aPmRy9Y_knHEKi4QRlRsvOqjc7pmr1MOMueNOOTlYA6e0ByZVfJSOyk2dcAy9e5lMkk_lWccVbPgKYRai6xT5HwJcpsmbwyg6Yc4n4WJx8LgXE4LPew9tIbmc6aQLtJkQ9KJ75xfVo1BvlP4g62bCStOtwClQ6obxaMEnzIIBirBvVJS3jZu-Lma5NNBTPzru_dpE4dYxul_G_x87INQgqBqTWY8YVXN8IgDp9sGg"/>
+</div>
+<div class="flex-grow flex flex-col justify-between">
+<div>
+<h3 class="font-headline-md text-headline-md text-primary mb-xs">Complexe Scolaire Les Loupiots</h3>
+<div class="flex items-center gap-xs text-on-surface-variant font-body-md text-body-md mb-sm">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 0;">location_on</span>
+                                    Commune de la Gombe, Kinshasa
+                                </div>
+<div class="flex flex-wrap gap-xs mb-md">
+<span class="bg-surface-container-high text-on-surface font-label-md text-label-md px-sm py-xs rounded">Maternel</span>
+<span class="bg-surface-container-high text-on-surface font-label-md text-label-md px-sm py-xs rounded">Primaire</span>
+<span class="bg-surface-container-high text-on-surface font-label-md text-label-md px-sm py-xs rounded">Secondaire</span>
+</div>
+</div>
+<div class="flex items-center justify-between border-t border-surface-container-high pt-sm mt-auto">
+<div class="font-body-md text-body-md text-on-surface-variant">
+<strong>Options:</strong> Scientifique, Littéraire, Commerciale
+                                </div>
+<button class="text-primary font-label-md text-label-md flex items-center gap-xs hover:text-primary-container transition-colors">
+                                    Voir les détails
+                                    <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 0;">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Standard Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-md hover:ambient-shadow transition-shadow flex flex-col gap-md">
+<div class="flex gap-md">
+<div class="w-16 h-16 shrink-0 bg-surface-container rounded border border-outline-variant flex items-center justify-center overflow-hidden">
+<img class="object-cover w-full h-full" data-alt="A clean, minimalist logo for a secondary school in Kinshasa. It depicts an abstract tree of knowledge in a monochrome navy blue palette, isolated on a white background, reflecting a professional institutional identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDW0AbWfc8bkSc5a0DtR0yPtd3-hRPdTyRvcOZ2GVIYKAlYVTWhKnEFOUhYJvgDYaEz8kD6BDk1nFFhhys0KuwavmI46H6VModuBypwbqdkncSFVMBgaWIf5A8nghHYJrGMJihAd5_5InMp-aPLutoq3tyKO3YE6-FJnKB4cnzLdITkF9hk8zBPJvP4MpNbkt3yo2Wx5xIReELRyuiMW7lN2LK5Kz3ftY-mjHNnn7qpflT3F6krlqBoqw"/>
+</div>
+<div>
+<h3 class="font-headline-md text-[18px] text-primary mb-xs">Institut Boboto</h3>
+<div class="flex items-center gap-xs text-on-surface-variant font-body-md text-label-md mb-sm">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 0;">location_on</span>
+                                    Gombe, Kinshasa
+                                </div>
+</div>
+</div>
+<div class="flex flex-wrap gap-xs">
+<span class="bg-surface-container text-on-surface font-label-md text-label-md px-sm py-xs rounded">Primaire</span>
+<span class="bg-surface-container text-on-surface font-label-md text-label-md px-sm py-xs rounded">Secondaire</span>
+</div>
+<div class="font-body-md text-label-md text-on-surface-variant mt-sm">
+                            Scientifique, Littéraire
+                        </div>
+<div class="mt-auto pt-sm border-t border-surface-container-high flex justify-end">
+<button class="text-primary font-label-md text-label-md hover:underline">Voir les détails</button>
+</div>
+</div>
+<!-- Standard Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-md hover:ambient-shadow transition-shadow flex flex-col gap-md">
+<div class="flex gap-md">
+<div class="w-16 h-16 shrink-0 bg-surface-container rounded border border-outline-variant flex items-center justify-center overflow-hidden">
+<span class="material-symbols-outlined text-outline text-[32px]" style="font-variation-settings: 'FILL' 0;">school</span>
+</div>
+<div>
+<h3 class="font-headline-md text-[18px] text-primary mb-xs">Lycée Bosangani</h3>
+<div class="flex items-center gap-xs text-on-surface-variant font-body-md text-label-md mb-sm">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 0;">location_on</span>
+                                    Gombe, Kinshasa
+                                </div>
+</div>
+</div>
+<div class="flex flex-wrap gap-xs">
+<span class="bg-surface-container text-on-surface font-label-md text-label-md px-sm py-xs rounded">Secondaire</span>
+</div>
+<div class="font-body-md text-label-md text-on-surface-variant mt-sm">
+                            Commerciale, Coupe et Couture
+                        </div>
+<div class="mt-auto pt-sm border-t border-surface-container-high flex justify-end">
+<button class="text-primary font-label-md text-label-md hover:underline">Voir les détails</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-primary w-full py-xl px-margin-desktop border-t border-primary-container mt-auto">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-md">
+<div class="font-headline-md text-headline-md font-bold text-on-primary">
+                © 2024 Ministère de l'Enseignement Primaire, Secondaire et Technique (EPST) - République Démocratique du Congo
+            </div>
+<div class="flex gap-md font-body-md text-body-md">
+<a class="text-on-primary/80 hover:text-secondary-container transition-colors font-label-md text-label-md" href="#">Mentions Légales</a>
+<a class="text-on-primary/80 hover:text-secondary-container transition-colors font-label-md text-label-md" href="#">Confidentialité</a>
+<a class="text-on-primary/80 hover:text-secondary-container transition-colors font-label-md text-label-md" href="#">Aide &amp; Support</a>
+<a class="text-on-primary/80 hover:text-secondary-container transition-colors font-label-md text-label-md" href="#">Annuaire National</a>
+<a class="text-on-primary/80 hover:text-secondary-container transition-colors font-label-md text-label-md" href="#">Contactez-nous</a>
+</div>
+</div>
+</footer>
+</body></html>

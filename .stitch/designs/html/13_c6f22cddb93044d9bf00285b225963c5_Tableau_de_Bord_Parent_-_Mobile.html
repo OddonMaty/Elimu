@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tableau de bord - Elimu Parent</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#002547",
+                        "background": "#f7fafd",
+                        "primary-fixed": "#d3e4ff",
+                        "on-secondary-fixed-variant": "#693c00",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-highest": "#e0e3e6",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#d0e4ff",
+                        "tertiary-fixed-dim": "#acc9eb",
+                        "on-secondary-container": "#6a3c00",
+                        "inverse-on-surface": "#eef1f4",
+                        "surface-container-high": "#e5e8eb",
+                        "surface-container": "#ebeef1",
+                        "surface-bright": "#f7fafd",
+                        "on-primary-fixed-variant": "#2a486d",
+                        "surface": "#f7fafd",
+                        "tertiary-container": "#1e3c58",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#f1f4f7",
+                        "surface-tint": "#426086",
+                        "on-primary-container": "#88a6cf",
+                        "inverse-primary": "#abc8f4",
+                        "on-tertiary-fixed": "#001d34",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed": "#001c38",
+                        "on-surface": "#181c1e",
+                        "secondary": "#8b5000",
+                        "secondary-fixed-dim": "#ffb871",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#032641",
+                        "on-background": "#181c1e",
+                        "on-surface-variant": "#43474e",
+                        "on-secondary-fixed": "#2d1600",
+                        "surface-variant": "#e0e3e6",
+                        "primary-container": "#1b3b5f",
+                        "surface-dim": "#d7dadd",
+                        "outline": "#73777f",
+                        "inverse-surface": "#2d3133",
+                        "primary-fixed-dim": "#abc8f4",
+                        "outline-variant": "#c3c6cf",
+                        "on-tertiary-container": "#8aa6c7",
+                        "on-primary": "#ffffff",
+                        "secondary-container": "#fda13a",
+                        "on-tertiary-fixed-variant": "#2c4965",
+                        "secondary-fixed": "#ffdcbe"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "sm": "8px",
+                        "md": "16px",
+                        "gutter": "20px",
+                        "margin-mobile": "16px",
+                        "xl": "32px",
+                        "unit": "4px",
+                        "lg": "24px",
+                        "xs": "4px",
+                        "margin-desktop": "40px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "display-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg": ["28px", { "lineHeight": "36px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface h-screen flex flex-col overflow-hidden">
+<!-- Top App Bar Mobile Equivalent (Informational, not full nav shell per guidelines) -->
+<header class="flex justify-between items-center px-margin-mobile py-sm bg-surface sticky top-0 z-40 border-b border-surface-variant">
+<div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Elimu Parent</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Vue d'ensemble</p>
+</div>
+<div class="flex gap-sm">
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container hover:bg-surface-container-high transition-colors text-primary">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="A close-up portrait of a professional African woman with a warm smile, wearing business casual attire. The background is a brightly lit, modern office environment with soft focus. Lighting is natural and flattering, emphasizing a trustworthy and approachable demeanor suitable for a parent dashboard profile picture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_dTAjvaARZ32b3K3DEuYsn14TVv4-4wd9dClco5e169eNjIcDdLbAIWwDgpE3r_U7qIx4shS_vgnCi3WNNInH-9rcc2SnZVRWNkQiCdNpd_vjansHlFSF8fD4ENPgANKGuuX1DUOhJyKlf5mS5AFMytDlXmnbq80CWz5i6bClEMSnl2ylp3ICKaPY_GMLfe_iXveuFqsztGjDkTvxr3eIEcofGB-n_De26E69QjD06CRP_N5J85hevA"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 overflow-y-auto px-margin-mobile py-md pb-[80px] bg-background">
+<!-- Welcome Section -->
+<section class="mb-lg">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-xs">Bonjour, Madame Nsimba</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Voici le résumé de la situation scolaire de vos enfants.</p>
+</section>
+<!-- Children Overview Cards (Bento-ish layout for mobile) -->
+<section class="mb-lg flex flex-col gap-md">
+<!-- Child 1 Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-sm">
+<div class="flex items-center gap-md mb-md border-b border-surface-variant pb-sm">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container flex-shrink-0">
+<img alt="Child 1" class="w-full h-full object-cover" data-alt="A candid, high-quality portrait of a young African boy in a crisp school uniform, smiling confidently. The lighting is bright and cheerful, suggesting a sunny school day. The background is subtly blurred, focusing entirely on the student's face, evoking a sense of academic potential and youthfulness." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdI0p-pa_tZbVf7OLBIkoOTzQ2j4OLR3t8lfYhJisfc1Olio-xDIcT3AP_GkIfa_GOMM7Ym6f5ca6TZBefQnly8NqgV_q08PETBYY_iDMLH9BWin4qizTMYW7ehHkUtajE_k6qqlbkgkw-hR5lBxEq5Ey0jXRCg_EeGobR-2jcto-mYhzFGadkn-pJdOUFpg5MC_Kx1VRzlBVHEHBZ-TOPGEyjMvgitHyXk1Bo1RjijcLgjx06Dgkt0w"/>
+</div>
+<div class="flex-1">
+<h3 class="font-headline-md text-headline-md text-primary">Daniel Nsimba</h3>
+<p class="font-label-md text-label-md text-on-surface-variant">4e Année Scientifique</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-sm">
+<div class="bg-surface-container-low rounded-lg p-sm flex flex-col justify-center">
+<span class="font-label-md text-label-md text-on-surface-variant mb-xs flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]" data-icon="grade">grade</span> Moyenne</span>
+<span class="font-headline-md text-headline-md text-primary">78%</span>
+</div>
+<div class="bg-error-container rounded-lg p-sm flex flex-col justify-center border border-error/20">
+<span class="font-label-md text-label-md text-on-error-container mb-xs flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]" data-icon="event_busy">event_busy</span> Absences</span>
+<span class="font-headline-md text-headline-md text-error">2 Jours</span>
+</div>
+</div>
+</div>
+<!-- Child 2 Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-sm">
+<div class="flex items-center gap-md mb-md border-b border-surface-variant pb-sm">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container flex-shrink-0">
+<img alt="Child 2" class="w-full h-full object-cover" data-alt="A portrait of a young African teenage girl wearing a neat school uniform, looking attentive and bright. The lighting is soft and natural, highlighting her features. The setting appears to be a well-lit classroom environment with a shallow depth of field, portraying focus and dedication." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDL8YuCGOe58X7a8DmZOp8fkpEq9Fq7C2DYdRdO04gwNiM4-yod_E0hP93_JybzLLn0NbQjxELfR9v_Y-564TIBm2dp6fwfkC1xmThX1tasgGR0l6n3IAd9yZ4EJB3AAmYkaeRM3HPDNMh0Ym_d0GP9a8qhrmEPiNDgX6R61SOGPjiP3n27g8o_0-AOngwZ82Pmkqje_22wM90WfahEJEd9-1IBmXaZIWH3T1L0-Nk_hrq5zu5gcoUzfA"/>
+</div>
+<div class="flex-1">
+<h3 class="font-headline-md text-headline-md text-primary">Chloe Nsimba</h3>
+<p class="font-label-md text-label-md text-on-surface-variant">2e Année Législative</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-sm">
+<div class="bg-surface-container-low rounded-lg p-sm flex flex-col justify-center">
+<span class="font-label-md text-label-md text-on-surface-variant mb-xs flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]" data-icon="grade">grade</span> Moyenne</span>
+<span class="font-headline-md text-headline-md text-primary">85%</span>
+</div>
+<div class="bg-surface-container-low rounded-lg p-sm flex flex-col justify-center">
+<span class="font-label-md text-label-md text-on-surface-variant mb-xs flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]" data-icon="event_busy">event_busy</span> Absences</span>
+<span class="font-headline-md text-headline-md text-primary">0 Jour</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Financial Summary -->
+<section class="mb-lg">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-sm">Situation Financière</h2>
+<div class="bg-primary-container text-on-primary-container rounded-xl p-md shadow-sm flex justify-between items-center">
+<div>
+<p class="font-label-md text-label-md text-on-primary-container/80 mb-xs">Solde restant \u00e0 payer (Trimestre 2)</p>
+<p class="font-headline-lg-mobile text-headline-lg-mobile text-on-primary-container">$150.00</p>
+</div>
+<button class="bg-secondary-container text-on-secondary-container px-md py-sm rounded-lg font-label-md text-label-md flex items-center gap-xs active:bg-secondary-fixed-dim transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="payments">payments</span>
+                    Payer
+                </button>
+</div>
+</section>
+<!-- Announcements / News -->
+<section>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-sm">Annonces de l'école</h2>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-sm flex gap-md items-start">
+<div class="w-10 h-10 rounded-full bg-tertiary-container flex items-center justify-center flex-shrink-0 text-on-tertiary-container">
+<span class="material-symbols-outlined" data-icon="campaign">campaign</span>
+</div>
+<div>
+<h3 class="font-body-md text-body-md font-bold text-primary mb-xs">Réunion des parents</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">La réunion semestrielle se tiendra ce samedi à 10h00 dans le grand hall. Présence souhaitée.</p>
+<span class="font-label-md text-label-md text-outline mt-xs block">Il y a 2 jours</span>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Shared Component JSON injected) -->
+<nav class="bg-surface dark:bg-inverse-surface border-t border-outline-variant dark:border-outline shadow-lg fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-margin-mobile py-sm md:hidden rounded-t-xl tap-highlight-transparent">
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim font-bold active:bg-surface-container-high p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-md text-label-md-mobile">Accueil</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant active:bg-surface-container-high p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="grade">grade</span>
+<span class="font-label-md text-label-md-mobile">Bulletins</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant active:bg-surface-container-high p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="calendar_today">calendar_today</span>
+<span class="font-label-md text-label-md-mobile">Absences</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant active:bg-surface-container-high p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-label-md text-label-md-mobile">Paiements</span>
+</a>
+</nav>
+</body></html>

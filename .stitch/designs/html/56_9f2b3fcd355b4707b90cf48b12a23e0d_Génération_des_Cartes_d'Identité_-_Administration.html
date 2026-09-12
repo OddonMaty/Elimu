@@ -1,0 +1,439 @@
+<!DOCTYPE html><html class="light" lang="fr" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>EduManager RDC - Génération de Cartes</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary": "#002547",
+                      "background": "#f7fafd",
+                      "primary-fixed": "#d3e4ff",
+                      "on-secondary-fixed-variant": "#693c00",
+                      "on-error": "#ffffff",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-container-highest": "#e0e3e6",
+                      "error": "#ba1a1a",
+                      "tertiary-fixed": "#d0e4ff",
+                      "tertiary-fixed-dim": "#acc9eb",
+                      "on-secondary-container": "#6a3c00",
+                      "inverse-on-surface": "#eef1f4",
+                      "surface-container-high": "#e5e8eb",
+                      "surface-container": "#ebeef1",
+                      "surface-bright": "#f7fafd",
+                      "on-primary-fixed-variant": "#2a486d",
+                      "surface": "#f7fafd",
+                      "tertiary-container": "#1e3c58",
+                      "on-tertiary": "#ffffff",
+                      "on-secondary": "#ffffff",
+                      "surface-container-low": "#f1f4f7",
+                      "surface-tint": "#426086",
+                      "on-primary-container": "#88a6cf",
+                      "inverse-primary": "#abc8f4",
+                      "on-tertiary-fixed": "#001d34",
+                      "error-container": "#ffdad6",
+                      "on-primary-fixed": "#001c38",
+                      "on-surface": "#181c1e",
+                      "secondary": "#8b5000",
+                      "secondary-fixed-dim": "#ffb871",
+                      "on-error-container": "#93000a",
+                      "tertiary": "#032641",
+                      "on-background": "#181c1e",
+                      "on-surface-variant": "#43474e",
+                      "on-secondary-fixed": "#2d1600",
+                      "surface-variant": "#e0e3e6",
+                      "primary-container": "#1b3b5f",
+                      "surface-dim": "#d7dadd",
+                      "outline": "#73777f",
+                      "inverse-surface": "#2d3133",
+                      "primary-fixed-dim": "#abc8f4",
+                      "outline-variant": "#c3c6cf",
+                      "on-tertiary-container": "#8aa6c7",
+                      "on-primary": "#ffffff",
+                      "secondary-container": "#fda13a",
+                      "on-tertiary-fixed-variant": "#2c4965",
+                      "secondary-fixed": "#ffdcbe"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "sm": "8px",
+                      "md": "16px",
+                      "gutter": "20px",
+                      "margin-mobile": "16px",
+                      "xl": "32px",
+                      "unit": "4px",
+                      "lg": "24px",
+                      "xs": "4px",
+                      "margin-desktop": "40px"
+              },
+              "fontFamily": {
+                      "headline-md": ["Inter"],
+                      "body-md": ["Inter"],
+                      "headline-lg-mobile": ["Inter"],
+                      "display-lg": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "label-md": ["Inter"],
+                      "headline-lg": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                      "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                      "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                      "display-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                      "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                      "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                      "headline-lg": ["28px", { "lineHeight": "36px", "fontWeight": "600" }]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        /* Custom scrollbar for inner containers */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #c3c6cf; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #73777f; }
+        
+        /* Ambient shadow for floating elements */
+        .shadow-ambient { box-shadow: 0 4px 12px rgba(27, 59, 95, 0.08); }
+        
+        /* Card ID Aspect Ratio */
+        .id-card-ratio { aspect-ratio: 85.6 / 54; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md antialiased overflow-x-hidden">
+<!-- SideNavBar (JSON Component) -->
+<nav class="hidden md:flex bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container fixed left-0 top-0 h-full w-[280px] shadow-sm z-50 flex-col p-md border-r border-outline-variant/20">
+<!-- Header -->
+<div class="flex items-center gap-md mb-xl px-sm pt-sm">
+<div class="w-10 h-10 rounded-lg overflow-hidden bg-surface-container-lowest shrink-0 flex items-center justify-center">
+<img class="w-8 h-8 object-contain" data-alt="A clean, minimalist abstract geometric logo suitable for a modern educational management software, featuring a stylized book or shield in deep navy blue and warm orange accents, set against a pure white background. High contrast, sharp edges, professional corporate identity style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuADzI7hNH-Ma5Bl2E5oj1-9BsUdgbWqdbCy6RXPPOipuyCswY6W23trtBl76HOfy_XwpGev0r6E_ChNflNX8UD5kuSVXXYxa34d1_B1JqYv4Mhe_l2_3oRToJG5OkwDX8SBo6oYgdaiNj--wNcct_j_I_IIr1wHIymqxFHazO1Bq2goma02A6CZ1sBt5xm7rCc8A2Bnj36ge-qAQKiHz_28YFIaOKVTwJQNu5NG_XiTzlsrypbCLN6axw">
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-on-primary truncate">EduManager RDC</h1>
+<p class="font-label-md text-label-md opacity-80 uppercase tracking-wider">Gestion Administrative</p>
+</div>
+</div>
+<!-- CTA -->
+<button class="w-full bg-secondary-container text-on-secondary-container hover:opacity-90 font-label-md text-label-md py-sm px-md rounded-lg mb-xl flex items-center justify-center gap-sm transition-all shadow-ambient">
+<span class="material-symbols-outlined text-[18px]">add</span>
+            Nouvelle Inscription
+        </button>
+<!-- Navigation Links -->
+<div class="flex-1 flex flex-col gap-sm">
+<a class="flex items-center gap-md px-md py-sm text-on-primary opacity-80 hover:bg-primary-fixed-dim hover:text-on-primary-fixed transition-colors rounded-xl" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Tableau de bord</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-primary opacity-80 hover:bg-primary-fixed-dim hover:text-on-primary-fixed transition-colors rounded-xl" href="#">
+<span class="material-symbols-outlined">person_add</span>
+<span class="font-body-md text-body-md">Candidatures</span>
+</a>
+<!-- Active Tab -->
+<a class="flex items-center gap-md px-md py-sm bg-secondary-container text-on-secondary-container rounded-xl transition-all" href="#" style="transform: scale(0.98);">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="font-body-md text-body-md font-semibold">Élèves</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-primary opacity-80 hover:bg-primary-fixed-dim hover:text-on-primary-fixed transition-colors rounded-xl" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Paramètres</span>
+</a>
+</div>
+<!-- Footer Link -->
+<div class="mt-auto border-t border-outline-variant/20 pt-md">
+<a class="flex items-center gap-md px-md py-sm text-on-primary opacity-80 hover:bg-primary-fixed-dim hover:text-on-primary-fixed transition-colors rounded-xl" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-body-md text-body-md">Déconnexion</span>
+</a>
+</div>
+</nav>
+<!-- TopNavBar (JSON Component) -->
+<header class="hidden md:flex bg-surface dark:bg-surface-dim text-primary dark:text-inverse-primary border-b border-outline-variant fixed top-0 h-16 px-margin-desktop ml-[280px] w-[calc(100%-280px)] justify-between items-center z-40 transition-all">
+<div class="flex items-center">
+<h2 class="font-headline-md text-headline-md font-extrabold text-primary tracking-tight">Gestion des Candidatures</h2>
+</div>
+<div class="flex items-center gap-lg">
+<!-- Search on Right -->
+<div class="relative hidden lg:block group focus-within:ring-2 focus-within:ring-primary rounded-lg transition-all">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="bg-surface-container-lowest border border-outline-variant rounded-lg pl-xl pr-sm py-xs font-body-md text-body-md text-on-surface placeholder:text-outline w-64 focus:outline-none focus:border-primary transition-colors" placeholder="Rechercher..." type="text">
+</div>
+<!-- Trailing Icons -->
+<div class="flex items-center gap-sm">
+<button class="p-xs text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-container relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-xs text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-container">
+<span class="material-symbols-outlined">help</span>
+</button>
+</div>
+<!-- Profile Image -->
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant shrink-0 cursor-pointer shadow-sm">
+<img alt="Profil Directeur" class="w-full h-full object-cover" data-alt="A professional headshot of a mature African school director wearing a dark navy suit and white shirt, smiling subtly. The lighting is bright and even, set against a neutral light grey background, conveying authority and approachability in a corporate educational setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFHeGcWu2m6mvZQQ-X4v-4H20RnmtgZm55wHLycYOJMnqw-WV99DAWcD25NYJXbIKIBMpMjZUQPJ-WjduEGysoXL1reb7zuqnEUkpbl3HJlSV6K7wkoeN06aLp0J7ogs1PRb_14vArxoulkaK2_alOBzzVHg9-veDh739ctlv5QwEtEZ8jfnb3IqjMRiFFkOGgaTWVy3MZENNpjhnvIejQsOPcKc72NwT1R-8_p7XrslI5aDkj6XIuIQ">
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="w-full md:ml-[280px] md:w-[calc(100%-280px)] min-h-screen flex flex-col p-margin-mobile md:p-margin-desktop gap-lg pt-24">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-md mb-sm">
+<div>
+<h1 class="font-display-lg text-headline-lg-mobile md:text-display-lg text-primary mb-xs">Génération des Cartes</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Sélectionnez une classe pour visualiser les élèves et générer les aperçus des cartes d'identité scolaires recto/verso avant impression.</p>
+</div>
+<div class="flex gap-md shrink-0">
+<button class="bg-surface-container-lowest border border-primary text-primary hover:bg-primary hover:text-on-primary font-label-md text-label-md py-sm px-md rounded-lg flex items-center gap-sm transition-colors shadow-sm"><span class="material-symbols-outlined text-[18px]">download</span>Exporter la Liste</button>
+<button class="bg-primary-container text-on-primary-container hover:opacity-90 font-label-md text-label-md py-sm px-md rounded-lg flex items-center gap-sm transition-all shadow-ambient"><span class="material-symbols-outlined text-[18px]">print</span>Tout imprimer</button>
+</div>
+</div>
+<!-- Asymmetric Bento Layout -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-gutter items-start">
+<!-- Left Column: Controls & Data Table (Span 8) -->
+<div class="xl:col-span-8 flex flex-col gap-gutter">
+<!-- Filters Card (Glassmorphism inspired, subtle tonal layer) -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-sm flex flex-col md:flex-row gap-md items-end z-10 relative">
+<div class="w-full md:w-1/3 flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Année Scolaire</label>
+<select class="bg-surface border border-outline-variant rounded-lg px-md py-sm font-body-md text-body-md text-on-surface focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none appearance-none">
+<option>2023 - 2024</option>
+<option>2022 - 2023</option>
+</select>
+</div>
+<div class="w-full md:w-1/3 flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Classe</label>
+<select class="bg-surface border border-outline-variant rounded-lg px-md py-sm font-body-md text-body-md text-on-surface focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none appearance-none">
+<option>3ème des Humanités Littéraires</option>
+<option>4ème des Humanités Scientifiques</option>
+<option>1ère Année Secondaire</option>
+</select>
+</div>
+<div class="w-full md:w-1/3 flex justify-end">
+<button class="w-full bg-surface-variant text-on-surface hover:bg-surface-container-highest font-label-md text-label-md py-sm px-md rounded-lg transition-colors border border-outline-variant">
+                            Appliquer Filtres
+                        </button>
+</div>
+</div>
+<!-- Student List Container -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm overflow-hidden flex flex-col bg-clip-border">
+<div class="px-md py-sm border-b border-outline-variant bg-surface-container-low flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md text-primary">Liste des Élèves (32)</h3>
+<div class="flex items-center gap-sm">
+<span class="w-3 h-3 rounded-full bg-error"></span>
+<span class="font-label-md text-label-md text-on-surface-variant">2 Photos manquantes</span>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr>
+<th class="font-label-md text-label-md text-on-surface-variant px-md py-sm border-b border-outline-variant whitespace-nowrap w-12">Photo</th>
+<th class="font-label-md text-label-md text-on-surface-variant px-md py-sm border-b border-outline-variant whitespace-nowrap">Identité Complète</th>
+<th class="font-label-md text-label-md text-on-surface-variant px-md py-sm border-b border-outline-variant whitespace-nowrap">Genre</th>
+<th class="font-label-md text-label-md text-on-surface-variant px-md py-sm border-b border-outline-variant whitespace-nowrap">Date de naissance</th>
+<th class="font-label-md text-label-md text-on-surface-variant px-md py-sm border-b border-outline-variant whitespace-nowrap text-right">Statut Carte</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-on-surface">
+<!-- Row 1 (Active/Selected) -->
+<tr class="border-b border-outline-variant/30 hover:bg-surface-container-low transition-colors cursor-pointer bg-primary-fixed-dim/20">
+<td class="px-md py-sm">
+<div class="w-10 h-10 rounded-md overflow-hidden bg-surface-variant border border-outline-variant/50">
+<img class="w-full h-full object-cover" data-alt="A portrait of a young African male student wearing a crisp white collared shirt and a dark navy blue tie. The background is a flat, neutral light blue. The lighting is studio quality, even and professional, suitable for an official ID card photo." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2k2jw_5h-N_68uRWYS9-lvZps7ic0FQzaU9CxSW2rLgXXiLkCJnLB4fAvNNBteW4v4dYC2EyK6p1zYhz0VeKBI1f9JggOrVmMLfkH9-e2NyXsxgImswL8CdxYPm1iS83jih_KULKcx7igqhZGmGQGYNHeCasNiS3wpbtKNjtwYBAjapvKFRHnT1k3HK_E1hmlGZp7l5G5HlKI-wCSuR7uWt2rQoNwMr1rDeD3ZmwgiIkgQ_ZkUMmhMw">
+</div>
+</td>
+<td class="px-md py-sm">
+<div class="font-semibold text-primary">KABUYA MUKENDI</div>
+<div class="text-on-surface-variant text-[13px]">Daniel</div>
+</td>
+<td class="px-md py-sm text-on-surface-variant">M</td>
+<td class="px-md py-sm text-on-surface-variant">12/05/2008 à Kinshasa</td>
+<td class="px-md py-sm text-right">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-tertiary-fixed-dim text-on-tertiary-fixed text-[11px] font-semibold uppercase tracking-wider">
+                                            Prête
+                                        </span>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="border-b border-outline-variant/30 hover:bg-surface-container-low transition-colors cursor-pointer">
+<td class="px-md py-sm">
+<div class="w-10 h-10 rounded-md overflow-hidden bg-surface-variant border border-outline-variant/50">
+<img class="w-full h-full object-cover" data-alt="A portrait of a young African female student wearing a white blouse and a neat navy blue cardigan. Her hair is braided neatly. The background is a flat, neutral light blue. The lighting is professional and even, designed for an official school identification document." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYMg5aN-Cj0Yd2AWEsn9AeBm-uAGWbJFdm6oYF-dTGchUEt-KAg9MUo80V8OaM81g78Dg5GfcggkxV-K-sM9toFFryGDSrOvqZcx69W4QFfmYs1d1Qsa3ocTV47qtqDqLtWE3dW83d1KVCF6duqYi3rUl1QJGuWVuMZH1gklwwQCvYqucxy9HB0HEdAICCS_NzWccLJrzGYZRkzyfobaXgi31nj-f6UpmXeKefYoFC8Gb2yWtqV-nzwg">
+</div>
+</td>
+<td class="px-md py-sm">
+<div class="font-semibold text-primary">ILUNGA NSIMBA</div>
+<div class="text-on-surface-variant text-[13px]">Sarah</div>
+</td>
+<td class="px-md py-sm text-on-surface-variant">F</td>
+<td class="px-md py-sm text-on-surface-variant">24/11/2009 à Lubumbashi</td>
+<td class="px-md py-sm text-right">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-tertiary-fixed-dim text-on-tertiary-fixed text-[11px] font-semibold uppercase tracking-wider">
+                                            Prête
+                                        </span>
+</td>
+</tr>
+<!-- Row 3 (Missing Photo) -->
+<tr class="border-b border-outline-variant/30 hover:bg-surface-container-low transition-colors cursor-pointer opacity-70">
+<td class="px-md py-sm">
+<div class="w-10 h-10 rounded-md overflow-hidden bg-surface-variant border border-outline-variant/50 flex items-center justify-center text-outline">
+<span class="material-symbols-outlined text-[20px]">person_off</span>
+</div>
+</td>
+<td class="px-md py-sm">
+<div class="font-semibold text-primary">KAZADI MUTOMBO</div>
+<div class="text-on-surface-variant text-[13px]">Jean-Luc</div>
+</td>
+<td class="px-md py-sm text-on-surface-variant">M</td>
+<td class="px-md py-sm text-on-surface-variant">03/02/2007 à Mbuji-Mayi</td>
+<td class="px-md py-sm text-right">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-error-container text-on-error-container text-[11px] font-semibold uppercase tracking-wider">
+                                            Photo Req.
+                                        </span>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer">
+<td class="px-md py-sm">
+<div class="w-10 h-10 rounded-md overflow-hidden bg-surface-variant border border-outline-variant/50">
+<img class="w-full h-full object-cover" data-alt="A portrait of a young African male student wearing a crisp white collared shirt. He has a serious, attentive expression. The background is a flat, neutral light blue. The lighting is studio quality, even and professional, suitable for an official ID card photo." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3OJdxls9topY8ymTzUnWASeBQZcwoO0oR3V_AwB5HzIowCpXDeC9V2TcUsHXPUI66aTdGVnneGEczhagaeMOdKt-RQRPGLVmlzznLBA9ewXXbLQzPBytg17i2NW5IV66g-PAFrPDxgPaHT1ZKL1XehJDzVhn8VKRElCeXo5GfceomN_1JQ9gGlq0G8m3g-tYY8_VO4gmeNW6RqNkDyu2Im5xo-lx_wXrYb7SWNfYkC0Tl53SnxRbOiA">
+</div>
+</td>
+<td class="px-md py-sm">
+<div class="font-semibold text-primary">LUMUMBA OKITO</div>
+<div class="text-on-surface-variant text-[13px]">Patrice</div>
+</td>
+<td class="px-md py-sm text-on-surface-variant">M</td>
+<td class="px-md py-sm text-on-surface-variant">15/08/2008 à Kisangani</td>
+<td class="px-md py-sm text-right">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-tertiary-fixed-dim text-on-tertiary-fixed text-[11px] font-semibold uppercase tracking-wider">
+                                            Prête
+                                        </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="px-md py-sm border-t border-outline-variant bg-surface-container-lowest flex justify-between items-center">
+<span class="font-label-md text-label-md text-on-surface-variant">Affichage 1-4 sur 32</span>
+<div class="flex gap-xs">
+<button class="p-xs border border-outline-variant rounded hover:bg-surface-container text-on-surface-variant disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-[16px]">chevron_left</span>
+</button>
+<button class="p-xs border border-outline-variant rounded hover:bg-surface-container text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: ID Card Preview (Span 4, Sticky) -->
+<div class="xl:col-span-4 flex flex-col gap-md xl:sticky xl:top-24">
+<!-- Preview Canvas Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-ambient flex flex-col relative overflow-hidden">
+<!-- Subtle background pattern for technical feel -->
+<div class="absolute inset-0 opacity-5 pointer-events-none" style="background-image: radial-gradient(#1b3b5f 1px, transparent 1px); background-size: 16px 16px;"></div>
+<div class="flex justify-between items-center mb-md relative z-10">
+<h3 class="font-headline-md text-[18px] font-semibold text-primary">Aperçu de la Carte</h3>
+<!-- Toggle Recto/Verso -->
+<div class="bg-surface-container p-xs rounded-lg flex gap-xs border border-outline-variant">
+<button class="px-sm py-xs bg-surface-container-lowest text-primary font-label-md text-label-md rounded shadow-sm">Recto</button>
+<button class="px-sm py-xs text-on-surface-variant hover:text-primary font-label-md text-label-md rounded transition-colors">Verso</button>
+</div>
+</div>
+<!-- THE ID CARD (Recto) -->
+<div class="w-full id-card-ratio bg-surface-container-lowest border-[1.5px] border-outline-variant rounded-[10px] shadow-sm relative overflow-hidden flex flex-col z-10 group transition-transform duration-300 hover:scale-[1.02]">
+<!-- Top Banner / Header -->
+<div class="h-[25%] bg-primary flex items-center justify-between px-3 border-b-4 border-secondary-container">
+<!-- Logo Elimu Placeholder -->
+<div class="w-10 h-10 bg-surface-container-lowest rounded-full p-1 flex items-center justify-center shrink-0">
+<img class="w-full h-full object-contain" data-alt="A small, crisp logo for an educational institution in DR Congo named 'Elimu'. The design features a stylized rising sun over an open book, rendered in deep navy blue and bright yellow-orange. High contrast, clean vector style, white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3QH9Z27AfAEocI41PBLHrtrO4HeRikByP_93cWOXovpvFNQEplkzpDh0T-fctb7YpAA9cmmWRejej96F_26EpqZkdLvvv3Yot8Il6G3WGaC3Fl0h26dEjzMs899X9T2BdJhvqyiUI3V18Mo-nXaLTl48bbViIizYkhjBo8uwbCWncaAPnrxYpOoS-Y5Hp-Wy5dxoXujp74hhSk7RKWRTLHgGsAxhwimD-dZVR7Sg21uyuxFBjDU7LrQ">
+</div>
+<!-- School Info -->
+<div class="text-center flex-1 px-2">
+<div class="font-label-md text-[8px] text-on-primary opacity-90 uppercase tracking-widest leading-none mb-1">République Démocratique du Congo</div>
+<div class="font-headline-md text-[12px] font-bold text-on-primary leading-tight uppercase">Complexe Scolaire Elimu</div>
+</div>
+<!-- Small Flag or secondary logo -->
+<div class="w-6 h-4 bg-[#007FFF] flex items-center justify-center shrink-0 border border-on-primary/20 relative overflow-hidden">
+<div class="w-1 h-full bg-[#F7D116] absolute left-1/3"></div>
+<div class="w-1 h-full bg-[#CE1126] absolute right-1/3"></div>
+</div>
+</div>
+<!-- Card Body -->
+<div class="flex-1 flex p-3 gap-3 bg-surface-bright relative">
+<!-- Watermark Background -->
+<div class="absolute inset-0 opacity-[0.03] flex items-center justify-center pointer-events-none">
+<span class="material-symbols-outlined text-[120px] text-primary">school</span>
+</div>
+<!-- Photo Section -->
+<div class="w-[30%] flex flex-col gap-1 z-10">
+<div class="aspect-[3/4] w-full border border-outline bg-surface-container-highest rounded overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A portrait of a young African male student wearing a crisp white collared shirt and a dark navy blue tie. The background is a flat, neutral light blue. The lighting is studio quality, even and professional, suitable for an official ID card photo." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKNay8rJPGlgl_ncIMy7IU4JOw2kTIowr0p-HUzFIXF0t_YH89QVSJH1LEvIM8kxZ5gNuMXdNboNQHlCiHMwKUIjJUCFleWuBSfmF6G3ss9YoUjhy3oun5gFgTYXwdbUS1QasojqFiqqPa8DnmMnpIg16J0eaj1Ogpl8cwvdKfwpuHudwf9PbkBXf8a0FSI8AKfED3fnNJq9ilv-UKgySUcUu0JEscp95ScXLGiPU51LkecoeJztx1qg">
+</div>
+<div class="font-label-md text-[7px] text-center text-primary font-bold bg-primary-fixed rounded py-[2px]">
+                                    MAT: 23-4091
+                                </div>
+</div>
+<!-- Data Section -->
+<div class="flex-1 flex flex-col justify-start z-10">
+<div class="text-[14px] font-bold text-primary leading-tight mb-2 border-b border-outline-variant pb-1">
+                                    CARTE D'ÉLÈVE
+                                </div>
+<div class="grid grid-cols-[35px_1fr] gap-x-1 gap-y-[2px] font-body-md text-[9px] text-on-surface">
+<div class="text-on-surface-variant font-semibold">Nom</div>
+<div class="font-bold text-primary uppercase">KABUYA</div>
+<div class="text-on-surface-variant font-semibold">Postnom</div>
+<div class="font-bold text-primary uppercase">MUKENDI</div>
+<div class="text-on-surface-variant font-semibold">Prénom</div>
+<div class="font-semibold text-on-surface capitalize">Daniel</div>
+<div class="text-on-surface-variant font-semibold">Sexe</div>
+<div class="font-semibold text-on-surface">M</div>
+<div class="text-on-surface-variant font-semibold">Né(e) le</div>
+<div class="font-semibold text-on-surface">12/05/2008 <span class="text-on-surface-variant font-normal">à</span> Kinshasa</div>
+<div class="text-on-surface-variant font-semibold mt-1 text-primary">Classe</div>
+<div class="font-bold text-primary mt-1 bg-primary-fixed-dim/30 px-1 rounded inline-block w-max">3ème H. Littéraires</div>
+</div>
+</div>
+</div>
+<!-- Card Footer -->
+<div class="h-[15%] bg-surface-container border-t border-outline-variant flex items-center justify-between px-3 z-10">
+<div class="font-label-md text-[8px] text-on-surface-variant">
+                                Année Scolaire: <span class="font-bold text-primary">2023 - 2024</span>
+</div>
+<div class="flex flex-col items-center">
+<div class="font-label-md text-[6px] text-on-surface-variant mb-[2px]">Le Directeur</div>
+<!-- Signature Placeholder -->
+<img class="h-4 object-contain opacity-80" data-alt="A graphic element depicting a formal, cursive signature in dark blue ink on a transparent background, simulating an official authorization mark on a document." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyVgSwBuzB29rPlN2UYP18YMzoonfwpov6fOaRr24rOxExt0sCMLcHo8eNDGbMFCSjHSDUFu5whsUs3c_1fhenPiroh11dgkkwRxOUBs3TJnQAoVWIpFadUMRgmnRrpChsiDWK0C9wBDbZzsNEnS9inIodrkYZFQTAfUWWEjrE8GP5CRk8PCmiKEEafnlfo3Wupqkkrp7U99tb-jMHmsUgS2_Y6B4kdjnku1mn2ez_6lnxo7rCmL83zA">
+</div>
+</div>
+</div>
+<!-- Action buttons below preview -->
+<div class="flex gap-sm mt-md w-full relative z-10">
+<button class="flex-1 bg-surface border border-outline-variant text-on-surface hover:bg-surface-container py-2 rounded-lg font-label-md text-label-md flex justify-center items-center gap-xs transition-colors">
+<span class="material-symbols-outlined text-[16px]">edit</span> Modifier
+                        </button>
+<button class="flex-1 bg-primary-container text-on-primary-container hover:opacity-90 py-2 rounded-lg font-label-md text-label-md flex justify-center items-center gap-xs transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[16px]">print</span> Tirer cette carte
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+
+</body></html>

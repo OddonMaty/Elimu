@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Paramètres - EduGestion RDC</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "error": "#ba1a1a",
+                      "on-error-container": "#93000a",
+                      "on-secondary-fixed": "#2d1600",
+                      "on-secondary": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "background": "#f7fafd",
+                      "surface-container-high": "#e5e8eb",
+                      "tertiary-fixed-dim": "#acc9eb",
+                      "on-error": "#ffffff",
+                      "surface-dim": "#d7dadd",
+                      "outline": "#73777f",
+                      "secondary-fixed-dim": "#ffb871",
+                      "on-primary-fixed": "#001c38",
+                      "on-secondary-container": "#6a3c00",
+                      "on-primary-container": "#88a6cf",
+                      "primary-fixed-dim": "#abc8f4",
+                      "on-tertiary": "#ffffff",
+                      "on-surface": "#181c1e",
+                      "on-surface-variant": "#43474e",
+                      "tertiary": "#032641",
+                      "on-tertiary-fixed-variant": "#2c4965",
+                      "on-tertiary-fixed": "#001d34",
+                      "on-primary": "#ffffff",
+                      "primary": "#002547",
+                      "secondary-fixed": "#ffdcbe",
+                      "on-tertiary-container": "#8aa6c7",
+                      "surface-tint": "#426086",
+                      "outline-variant": "#c3c6cf",
+                      "surface-container-highest": "#e0e3e6",
+                      "surface": "#f7fafd",
+                      "inverse-primary": "#abc8f4",
+                      "tertiary-container": "#1e3c58",
+                      "surface-bright": "#f7fafd",
+                      "primary-fixed": "#d3e4ff",
+                      "surface-container-low": "#f1f4f7",
+                      "inverse-surface": "#2d3133",
+                      "secondary-container": "#fda13a",
+                      "on-secondary-fixed-variant": "#693c00",
+                      "tertiary-fixed": "#d0e4ff",
+                      "surface-container": "#ebeef1",
+                      "surface-container-lowest": "#ffffff",
+                      "on-background": "#181c1e",
+                      "surface-variant": "#e0e3e6",
+                      "secondary": "#8b5000",
+                      "primary-container": "#1b3b5f",
+                      "inverse-on-surface": "#eef1f4",
+                      "on-primary-fixed-variant": "#2a486d"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "margin-mobile": "16px",
+                      "unit": "4px",
+                      "lg": "24px",
+                      "xs": "4px",
+                      "margin-desktop": "40px",
+                      "xl": "32px",
+                      "sm": "8px",
+                      "md": "16px",
+                      "gutter": "20px"
+              },
+              "fontFamily": {
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg": [
+                              "28px",
+                              {
+                                      "lineHeight": "36px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "36px",
+                              {
+                                      "lineHeight": "44px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+</head>
+<body class="bg-surface-container text-on-surface font-body-md h-screen flex overflow-hidden">
+<!-- SideNavBar -->
+<nav class="hidden md:flex bg-primary text-secondary font-body-md shadow-sm fixed left-0 top-0 h-full w-[280px] flex-col p-md gap-sm z-20">
+<div class="mb-lg px-md pt-md">
+<h1 class="font-headline-md text-headline-md font-bold text-on-primary">EduGestion RDC</h1>
+<p class="text-on-primary/70 text-sm mt-1">Portail Administratif</p>
+</div>
+<div class="flex-1 overflow-y-auto">
+<a class="flex items-center gap-md px-md py-sm mb-unit text-on-primary/70 hover:text-on-primary hover:bg-primary-container/20 transition-colors active:scale-95 duration-150 rounded-lg" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+<span>Tableau de bord</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm mb-unit text-on-primary/70 hover:text-on-primary hover:bg-primary-container/20 transition-colors active:scale-95 duration-150 rounded-lg" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">group</span>
+<span>Élèves</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm mb-unit text-on-primary/70 hover:text-on-primary hover:bg-primary-container/20 transition-colors active:scale-95 duration-150 rounded-lg" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">school</span>
+<span>Classes</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm mb-unit text-on-primary/70 hover:text-on-primary hover:bg-primary-container/20 transition-colors active:scale-95 duration-150 rounded-lg" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">payments</span>
+<span>Frais Scolaires</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm mb-unit bg-secondary text-on-secondary font-semibold rounded-xl hover:bg-secondary/90 transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span>Paramètres</span>
+</a>
+</div>
+<div class="mt-auto pt-md border-t border-primary-container">
+<button class="w-full bg-secondary-container text-on-secondary-container py-2 rounded-lg font-label-md text-label-md font-semibold hover:bg-secondary-container/90 transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">add</span>
+                Ajouter Élève
+            </button>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col md:ml-[280px] w-full relative">
+<!-- TopNavBar -->
+<header class="bg-surface-container-lowest text-primary font-label-md text-label-md fixed top-0 right-0 w-full md:w-[calc(100%-280px)] h-16 border-b border-outline-variant flex justify-between items-center px-margin-mobile md:px-margin-desktop z-10">
+<div class="flex items-center md:hidden">
+<button class="mr-md text-on-surface-variant">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-primary font-bold">EduGestion</h1>
+</div>
+<!-- Search (Left on Desktop) -->
+<div class="hidden md:flex flex-1 max-w-md mr-lg">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-full text-body-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" placeholder="Rechercher..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="text-on-surface-variant hover:bg-surface-container-low transition-all p-2 rounded-full cursor-pointer">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container-low transition-all p-2 rounded-full cursor-pointer hidden sm:block">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="h-6 w-px bg-outline-variant mx-sm"></div>
+<div class="flex items-center gap-sm cursor-pointer hover:bg-surface-container-low transition-all p-1 pr-3 rounded-full border border-transparent hover:border-outline-variant">
+<img alt="Photo de profil Secrétaire" class="w-8 h-8 rounded-full object-cover border border-outline-variant" data-alt="A professional headshot of an administrative secretary in a brightly lit modern office setting. She is wearing a dark navy blazer over a crisp white shirt, smiling slightly. The background is slightly blurred showing minimal office decor with subtle hints of blue and orange. Corporate modern aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7V4gRJddF6eQ_8niGiUncGB0oqD7vTOSBzwO0GaWOb_ia1LrLXWT6GpN5PWb4Tyu7ivFbgXK8c-ACsR4gwE6OZ-zEunjkNAj5BJamVyEZN_vKNrtq8TRwVFMz03myEcZlavvBPAsYPtRvO5HmHnI5pg2OLLmSkiemanrLyLvES38B2YyBuccIu16E1jbsOAFRqydJCxXG5etiymyuGYbKiN5zd_b3FiSLoVQ4cSqVX0mAVGX7b_oNoA"/>
+<span class="hidden lg:block text-primary font-semibold">Mon Profil</span>
+</div>
+</div>
+</header>
+<!-- Main Scrollable Area -->
+<main class="flex-1 overflow-y-auto pt-24 pb-lg px-margin-mobile md:px-margin-desktop">
+<div class="max-w-7xl mx-auto">
+<div class="mb-lg flex flex-col sm:flex-row sm:items-end justify-between gap-md">
+<div>
+<h2 class="font-display-lg text-display-lg text-on-surface">Paramètres</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Configuration générale de l'établissement scolaire.</p>
+</div>
+<div class="flex gap-sm">
+<button class="px-4 py-2 border border-primary text-primary rounded-lg font-label-md text-label-md hover:bg-primary/5 transition-colors">Annuler</button>
+<button class="px-4 py-2 bg-primary text-on-primary rounded-lg font-label-md text-label-md hover:bg-primary/90 shadow-sm transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">save</span>
+                            Enregistrer
+                        </button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg">
+<!-- Tabs Sidebar (Bento style on desktop) -->
+<div class="lg:col-span-3 flex flex-row lg:flex-col gap-sm overflow-x-auto pb-4 lg:pb-0 hide-scrollbar">
+<button class="flex-shrink-0 text-left px-md py-sm bg-surface-container-lowest border-l-4 border-primary text-primary font-label-md text-label-md shadow-sm rounded-r-lg min-w-[150px]">
+                            Informations
+                        </button>
+<button class="flex-shrink-0 text-left px-md py-sm text-on-surface-variant hover:bg-surface-container-lowest hover:text-on-surface font-label-md text-label-md rounded-lg transition-colors min-w-[150px]">
+                            Utilisateurs
+                        </button>
+<button class="flex-shrink-0 text-left px-md py-sm text-on-surface-variant hover:bg-surface-container-lowest hover:text-on-surface font-label-md text-label-md rounded-lg transition-colors min-w-[150px]">
+                            Année Scolaire
+                        </button>
+</div>
+<!-- Content Area -->
+<div class="lg:col-span-9 flex flex-col gap-lg">
+<!-- Informations de l'établissement -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg shadow-sm">
+<div class="flex items-center gap-sm mb-lg border-b border-outline-variant pb-sm">
+<span class="material-symbols-outlined text-primary">storefront</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Informations de l'établissement</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<div class="col-span-1 md:col-span-2 flex items-start gap-lg">
+<div class="w-24 h-24 bg-surface-container border border-outline-variant rounded-lg flex items-center justify-center relative overflow-hidden group">
+<img alt="Logo de l'école" class="w-full h-full object-cover" data-alt="A modern, abstract crest logo for a school, featuring a stylized open book and a rising sun in navy blue and warm orange vector graphics on a pure white background. Minimalist and corporate design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6rcmV4p3lngIjY8WZ8rlcLyUNf-K5rpvVQuWdVeuzf578RwYsY3Pqe1Ac6M6tachQXlLLjg8kETOwi2ZaUTU_oEahVZF9GhuyeRJMLfb7gYaYL_OIieK3G5WolW2bxYFhezVjh8DsASIFzzq6yklYTJPYQHGMf-Ixv7yDpy_sqIx2YyPoMrAx3YN9O9jid_J_iwlytSuLUABuVcLgY2i8QF71XlJGbNbo_9Y7tP5iOpnTWsY4viCNdw"/>
+<div class="absolute inset-0 bg-primary/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
+<span class="material-symbols-outlined text-on-primary">edit</span>
+</div>
+</div>
+<div class="flex-1 pt-2">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-1">Logo de l'établissement</label>
+<p class="text-sm text-on-surface-variant mb-3">Format PNG ou JPG, max 2MB. Dimensions recommandées : 200x200px.</p>
+<button class="px-3 py-1 border border-outline text-on-surface rounded text-sm hover:bg-surface-container transition-colors">Changer le logo</button>
+</div>
+</div>
+<div class="space-y-1">
+<label class="font-label-md text-label-md text-on-surface-variant">Nom de l'établissement</label>
+<input class="w-full px-3 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg text-body-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" type="text" value="Complexe Scolaire La Sagesse"/>
+</div>
+<div class="space-y-1">
+<label class="font-label-md text-label-md text-on-surface-variant">Code d'agrément (SECOPE)</label>
+<input class="w-full px-3 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg text-body-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" type="text" value="CD-KIN-12345"/>
+</div>
+<div class="col-span-1 md:col-span-2 space-y-1">
+<label class="font-label-md text-label-md text-on-surface-variant">Adresse complète</label>
+<input class="w-full px-3 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg text-body-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" type="text" value="Avenue de la Paix N°45, Commune de Gombe, Kinshasa"/>
+</div>
+<div class="space-y-1">
+<label class="font-label-md text-label-md text-on-surface-variant">Téléphone Principal</label>
+<input class="w-full px-3 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg text-body-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" type="tel" value="+243 81 234 5678"/>
+</div>
+<div class="space-y-1">
+<label class="font-label-md text-label-md text-on-surface-variant">Email Administratif</label>
+<input class="w-full px-3 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg text-body-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" type="email" value="direction@cs-sagesse.cd"/>
+</div>
+</div>
+</section>
+<!-- Gestion des Utilisateurs (Preview snippet) -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg shadow-sm opacity-50 pointer-events-none">
+<div class="flex items-center justify-between mb-lg border-b border-outline-variant pb-sm">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">manage_accounts</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Gestion des utilisateurs</h3>
+</div>
+<span class="text-xs bg-surface-container px-2 py-1 rounded text-on-surface-variant">Section désactivée pour la démo</span>
+</div>
+<div class="h-32 flex items-center justify-center text-on-surface-variant border-2 border-dashed border-outline-variant rounded-lg">
+                                Vue liste des comptes...
+                            </div>
+</section>
+</div>
+</div>
+</div>
+</main>
+</div>
+<style>
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</body></html>

@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tableau de bord - Elimu</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-fixed-dim": "#abc8f4",
+                      "surface-container-high": "#e5e8eb",
+                      "on-primary-container": "#88a6cf",
+                      "on-surface-variant": "#43474e",
+                      "surface-tint": "#426086",
+                      "primary-fixed": "#d3e4ff",
+                      "secondary": "#8b5000",
+                      "on-error": "#ffffff",
+                      "on-tertiary-fixed": "#001d34",
+                      "surface-variant": "#e0e3e6",
+                      "on-secondary-fixed-variant": "#693c00",
+                      "on-tertiary-container": "#8aa6c7",
+                      "surface-bright": "#f7fafd",
+                      "on-tertiary-fixed-variant": "#2c4965",
+                      "on-error-container": "#93000a",
+                      "on-primary-fixed": "#001c38",
+                      "on-surface": "#181c1e",
+                      "surface-dim": "#d7dadd",
+                      "inverse-surface": "#2d3133",
+                      "surface-container-highest": "#e0e3e6",
+                      "tertiary-fixed": "#d0e4ff",
+                      "secondary-container": "#fda13a",
+                      "surface": "#f7fafd",
+                      "on-secondary": "#ffffff",
+                      "tertiary": "#032641",
+                      "surface-container-low": "#f1f4f7",
+                      "on-secondary-container": "#6a3c00",
+                      "error-container": "#ffdad6",
+                      "on-primary-fixed-variant": "#2a486d",
+                      "tertiary-fixed-dim": "#acc9eb",
+                      "tertiary-container": "#1e3c58",
+                      "on-tertiary": "#ffffff",
+                      "surface-container": "#ebeef1",
+                      "on-primary": "#ffffff",
+                      "error": "#ba1a1a",
+                      "primary": "#002547",
+                      "outline-variant": "#c3c6cf",
+                      "secondary-fixed-dim": "#ffb871",
+                      "on-background": "#181c1e",
+                      "on-secondary-fixed": "#2d1600",
+                      "background": "#f7fafd",
+                      "outline": "#73777f",
+                      "inverse-on-surface": "#eef1f4",
+                      "secondary-fixed": "#ffdcbe",
+                      "primary-container": "#1b3b5f",
+                      "inverse-primary": "#abc8f4",
+                      "surface-container-lowest": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "xs": "4px",
+                      "sm": "8px",
+                      "xl": "32px",
+                      "lg": "24px",
+                      "margin-mobile": "16px",
+                      "gutter": "20px",
+                      "unit": "4px",
+                      "margin-desktop": "40px",
+                      "md": "16px"
+              },
+              "fontFamily": {
+                      "display-lg": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "display-lg": [
+                              "36px",
+                              {
+                                      "lineHeight": "44px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "28px",
+                              {
+                                      "lineHeight": "36px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex">
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden md:flex bg-primary dark:bg-primary fixed left-0 top-0 h-full w-[280px] flex-col p-lg gap-sm z-50">
+<div class="flex items-center gap-sm mb-xl">
+<img alt="Logo Elimu" class="w-10 h-10 rounded-DEFAULT" data-alt="A modern, vibrant logo for an educational app named Elimu, featuring a stylized open book or graduation cap in bright colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvEmzI9FeUnQRQp-CppUJNdnIZaCrSMfsj8ok6N2evT1Q6HfdLXus5D3QuAFjXQFL9HXVUjyNZGzpnfQtO7X7pmjmIKMAfiobg27PbjDWeMLFU4--eiFnKsCQ2cwZAECcKRGwLZA3WVLZ75eYir5ysMNwcNMcgEk9eG-0BinI4uLcqliCPGZ6trxX_5fpUIJEBN7_8-39aPYhGiP4gE7-WCEahL3mLUTDyDGm2j642aJ5VeGFfINIf9A"/>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-on-primary">Elimu</h1>
+<p class="font-label-md text-label-md text-on-primary/70">Shule yako kwa urahisi</p>
+</div>
+</div>
+<ul class="flex flex-col gap-xs flex-1">
+<li class="">
+<a class="flex items-center gap-md px-md py-sm bg-primary-container text-on-primary-container rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-body-md text-body-md font-medium">Tableau de bord</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-md px-md py-sm text-on-primary/70 hover:text-on-primary transition-colors hover:bg-primary-fixed-variant/10 rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-body-md text-body-md">Élèves</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-md px-md py-sm text-on-primary/70 hover:text-on-primary transition-colors hover:bg-primary-fixed-variant/10 rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="font-body-md text-body-md">Classes</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-md px-md py-sm text-on-primary/70 hover:text-on-primary transition-colors hover:bg-primary-fixed-variant/10 rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-body-md text-body-md">Frais scolaires</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-md px-md py-sm text-on-primary/70 hover:text-on-primary transition-colors hover:bg-primary-fixed-variant/10 rounded-lg transition-all duration-200 ease-in-out mt-auto" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Paramètres</span>
+</a>
+</li>
+</ul>
+</nav>
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 w-full md:w-[calc(100%-280px)] h-16 bg-surface dark:bg-background border-b border-outline-variant dark:border-outline flex justify-between items-center px-margin-desktop z-40">
+<div class="flex items-center md:hidden gap-sm">
+<span class="material-symbols-outlined text-primary cursor-pointer active:opacity-80">menu</span>
+<span class="font-headline-md text-headline-md text-primary dark:text-primary-fixed font-bold">Elimu</span>
+</div>
+<div class="hidden md:flex flex-1">
+<!-- Search -->
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-DEFAULT pl-10 pr-3 py-1.5 font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="Rechercher..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="text-on-surface-variant hover:bg-surface-container-low transition-colors p-1.5 rounded-full cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container-low transition-colors p-1.5 rounded-full cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary-fixed overflow-hidden ml-sm border border-outline-variant cursor-pointer active:opacity-80 hover:bg-surface-container-low transition-colors">
+<img alt="Photo de profil administrateur" class="w-full h-full object-cover" data-alt="A professional headshot of an African school administrator wearing a formal suit, neutral background, well-lit studio photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRrMz0rKSmgZVQFwPfSRQ1A4MtE2YyYZt9E6d-EUVuWZxEESVZwtY8OHwFfzr1cgVryP0Pcx9QsEW5XSzUkDcqzaNbnlUHgEWOMwHiQpJs3-ItzPgXeua8TFpbUwno4stUASioi0eEUhI_fatuXkPlBCqoNBHPFKEN6PnGq_HrAwOtfJjwAkapf8naQdISEtI_RlASlcKGqMHmzJAbk_pZsV1Bf4FztFbGYC_ddTWovICXWnJXsL6f-A"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="w-full md:ml-[280px] mt-16 p-margin-mobile md:p-margin-desktop">
+<div class="mb-lg flex justify-between items-end">
+<div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background mb-xs">Vue d'ensemble de la Direction</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Suivi en temps réel des performances de l'établissement.</p>
+</div>
+<button class="bg-primary hover:bg-primary/90 text-on-primary px-lg py-sm rounded-DEFAULT font-label-md text-label-md transition-colors flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                Rapport
+            </button>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-lg">
+<!-- KPI Cards Row -->
+<div class="md:col-span-12 grid grid-cols-1 md:grid-cols-3 gap-lg">
+<!-- KPI 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-lg">
+<div class="flex justify-between items-start mb-md">
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-1">Taux global de paiement</p>
+<h3 class="font-display-lg text-display-lg text-on-surface">68%</h3>
+</div>
+<div class="w-10 h-10 rounded-full bg-secondary-container/20 flex items-center justify-center text-secondary-container">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</div>
+</div>
+<div class="w-full bg-surface-variant rounded-full h-2 mb-1 overflow-hidden">
+<div class="bg-secondary-container h-2 rounded-full" style="width: 68%"></div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant text-right text-xs">Objectif: 90%</p>
+</div>
+<!-- KPI 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-lg">
+<div class="flex justify-between items-start mb-md">
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-1">Moyenne générale de l'école</p>
+<h3 class="font-display-lg text-display-lg text-on-surface">14.5<span class="text-lg text-on-surface-variant font-normal">/20</span></h3>
+</div>
+<div class="w-10 h-10 rounded-full bg-primary-fixed-dim/30 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">insights</span>
+</div>
+</div>
+<div class="flex items-center gap-xs mt-auto">
+<span class="material-symbols-outlined text-[16px] text-green-600">trending_up</span>
+<span class="font-body-md text-body-md text-green-600">+0.3 pts</span>
+<span class="font-body-md text-body-md text-on-surface-variant text-xs">vs trimestre préc.</span>
+</div>
+</div>
+<!-- KPI 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-lg">
+<div class="flex justify-between items-start mb-md">
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-1">Taux de présence global</p>
+<h3 class="font-display-lg text-display-lg text-on-surface">92%</h3>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined">how_to_reg</span>
+</div>
+</div>
+<div class="flex items-center gap-xs mt-auto">
+<span class="material-symbols-outlined text-[16px] text-red-600">trending_down</span>
+<span class="font-body-md text-body-md text-red-600">-2%</span>
+<span class="font-body-md text-body-md text-on-surface-variant text-xs">Aujourd'hui</span>
+</div>
+</div>
+</div>
+<!-- Charts & Alerts Row -->
+<div class="md:col-span-8 bg-surface-container-lowest border border-outline-variant rounded-lg p-lg flex flex-col min-h-[300px]">
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-headline-md text-headline-md text-on-surface">Répartition des effectifs</h3>
+<button class="text-primary hover:bg-primary-fixed-variant/10 p-1 rounded-DEFAULT transition-colors">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+<div class="flex-1 flex items-end gap-md pt-lg relative"><!-- Faux Bar Chart Grid Lines -->
+<div class="absolute w-full h-[1px] bg-outline-variant/30 bottom-[40px]"></div>
+<div class="absolute w-full h-[1px] bg-outline-variant/30 bottom-[120px]"></div>
+<div class="absolute w-full h-[1px] bg-outline-variant/30 bottom-[200px]"></div>
+<!-- 1-6 Primaire -->
+<div class="flex flex-col items-center flex-1 z-10 group cursor-pointer">
+<div class="w-full bg-primary/20 hover:bg-primary/40 rounded-t-sm h-[210px] transition-colors relative">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-inverse-surface text-inverse-on-surface text-xs py-0.5 px-2 rounded-DEFAULT font-label-md">450</div>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant mt-sm">1-6 Prim</span>
+</div>
+<!-- 1-2 CO -->
+<div class="flex flex-col items-center flex-1 z-10 group cursor-pointer">
+<div class="w-full bg-primary/30 hover:bg-primary/50 rounded-t-sm h-[160px] transition-colors relative">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-inverse-surface text-inverse-on-surface text-xs py-0.5 px-2 rounded-DEFAULT font-label-md">180</div>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant mt-sm">1-2 CO</span>
+</div>
+<!-- 1ère Hum -->
+<div class="flex flex-col items-center flex-1 z-10 group cursor-pointer">
+<div class="w-full bg-primary/40 hover:bg-primary/60 rounded-t-sm h-[130px] transition-colors relative">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-inverse-surface text-inverse-on-surface text-xs py-0.5 px-2 rounded-DEFAULT font-label-md">95</div>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant mt-sm">1è Hum</span>
+</div>
+<!-- 2ème Hum -->
+<div class="flex flex-col items-center flex-1 z-10 group cursor-pointer">
+<div class="w-full bg-primary/60 hover:bg-primary/80 rounded-t-sm h-[115px] transition-colors relative">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-inverse-surface text-inverse-on-surface text-xs py-0.5 px-2 rounded-DEFAULT font-label-md">88</div>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant mt-sm">2è Hum</span>
+</div>
+<!-- 3ème Hum -->
+<div class="flex flex-col items-center flex-1 z-10 group cursor-pointer">
+<div class="w-full bg-primary/80 hover:bg-primary rounded-t-sm h-[100px] transition-colors relative">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-inverse-surface text-inverse-on-surface text-xs py-0.5 px-2 rounded-DEFAULT font-label-md">75</div>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant mt-sm">3è Hum</span>
+</div>
+<!-- 4ème Hum -->
+<div class="flex flex-col items-center flex-1 z-10 group cursor-pointer">
+<div class="w-full bg-primary hover:bg-primary/90 rounded-t-sm h-[85px] transition-colors relative">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-inverse-surface text-inverse-on-surface text-xs py-0.5 px-2 rounded-DEFAULT font-label-md">62</div>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant mt-sm">4è Hum</span>
+</div></div>
+</div>
+<!-- Alerts List -->
+<div class="md:col-span-4 bg-surface-container-lowest border border-outline-variant rounded-lg p-0 overflow-hidden flex flex-col">
+<div class="p-md border-b border-outline-variant bg-surface-container-low/50 flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md text-on-surface flex items-center gap-xs">
+<span class="material-symbols-outlined text-[20px] text-error">warning</span>
+                        Alertes Récentes
+                    </h3>
+</div>
+<div class="flex-1 overflow-y-auto p-xs">
+<ul class="flex flex-col">
+<li class="p-sm hover:bg-surface-container-low transition-colors border-b border-outline-variant/30 last:border-0 rounded-DEFAULT cursor-pointer flex gap-sm items-start">
+<div class="w-8 h-8 rounded-full bg-error-container text-on-error-container flex items-center justify-center shrink-0 mt-1">
+<span class="material-symbols-outlined text-[16px]">money_off</span>
+</div>
+<div>
+<p class="font-body-md text-body-md text-on-surface font-medium">Élève Jean Bakole</p>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">Retard de paiement (Tranche 2)</p>
+<p class="font-label-md text-label-md text-on-surface-variant/70 mt-1">Il y a 2h</p>
+</div>
+</li>
+<li class="p-sm hover:bg-surface-container-low transition-colors border-b border-outline-variant/30 last:border-0 rounded-DEFAULT cursor-pointer flex gap-sm items-start">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed-dim/30 text-secondary shrink-0 flex items-center justify-center mt-1">
+<span class="material-symbols-outlined text-[16px]">person_off</span>
+</div>
+<div>
+<p class="font-body-md text-body-md text-on-surface font-medium">Marie Kabange</p>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">Absence répétée (3 jours consécutifs)</p>
+<p class="font-label-md text-label-md text-on-surface-variant/70 mt-1">Hier</p>
+</div>
+</li>
+<li class="p-sm hover:bg-surface-container-low transition-colors border-b border-outline-variant/30 last:border-0 rounded-DEFAULT cursor-pointer flex gap-sm items-start">
+<div class="w-8 h-8 rounded-full bg-primary-fixed-dim/30 text-primary shrink-0 flex items-center justify-center mt-1">
+<span class="material-symbols-outlined text-[16px]">info</span>
+</div>
+<div>
+<p class="font-body-md text-body-md text-on-surface font-medium">Réunion Professeurs</p>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">Salle 102 à 15h00</p>
+<p class="font-label-md text-label-md text-on-surface-variant/70 mt-1">Demain</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="p-sm border-t border-outline-variant text-center">
+<a class="font-label-md text-label-md text-primary hover:underline" href="#">Voir toutes les alertes</a>
+</div>
+</div>
+</div>
+</main>
+</body></html>

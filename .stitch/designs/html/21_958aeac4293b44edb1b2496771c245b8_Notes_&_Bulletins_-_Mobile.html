@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Elimu Parent - Notes &amp; Bulletins</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary": "#002547",
+                      "background": "#f7fafd",
+                      "primary-fixed": "#d3e4ff",
+                      "on-secondary-fixed-variant": "#693c00",
+                      "on-error": "#ffffff",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-container-highest": "#e0e3e6",
+                      "error": "#ba1a1a",
+                      "tertiary-fixed": "#d0e4ff",
+                      "tertiary-fixed-dim": "#acc9eb",
+                      "on-secondary-container": "#6a3c00",
+                      "inverse-on-surface": "#eef1f4",
+                      "surface-container-high": "#e5e8eb",
+                      "surface-container": "#ebeef1",
+                      "surface-bright": "#f7fafd",
+                      "on-primary-fixed-variant": "#2a486d",
+                      "surface": "#f7fafd",
+                      "tertiary-container": "#1e3c58",
+                      "on-tertiary": "#ffffff",
+                      "on-secondary": "#ffffff",
+                      "surface-container-low": "#f1f4f7",
+                      "surface-tint": "#426086",
+                      "on-primary-container": "#88a6cf",
+                      "inverse-primary": "#abc8f4",
+                      "on-tertiary-fixed": "#001d34",
+                      "error-container": "#ffdad6",
+                      "on-primary-fixed": "#001c38",
+                      "on-surface": "#181c1e",
+                      "secondary": "#8b5000",
+                      "secondary-fixed-dim": "#ffb871",
+                      "on-error-container": "#93000a",
+                      "tertiary": "#032641",
+                      "on-background": "#181c1e",
+                      "on-surface-variant": "#43474e",
+                      "on-secondary-fixed": "#2d1600",
+                      "surface-variant": "#e0e3e6",
+                      "primary-container": "#1b3b5f",
+                      "surface-dim": "#d7dadd",
+                      "outline": "#73777f",
+                      "inverse-surface": "#2d3133",
+                      "primary-fixed-dim": "#abc8f4",
+                      "outline-variant": "#c3c6cf",
+                      "on-tertiary-container": "#8aa6c7",
+                      "on-primary": "#ffffff",
+                      "secondary-container": "#fda13a",
+                      "on-tertiary-fixed-variant": "#2c4965",
+                      "secondary-fixed": "#ffdcbe"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "sm": "8px",
+                      "md": "16px",
+                      "gutter": "20px",
+                      "margin-mobile": "16px",
+                      "xl": "32px",
+                      "unit": "4px",
+                      "lg": "24px",
+                      "xs": "4px",
+                      "margin-desktop": "40px"
+              },
+              "fontFamily": {
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "36px",
+                              {
+                                      "lineHeight": "44px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "28px",
+                              {
+                                      "lineHeight": "36px",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-24 md:pb-0 font-body-md antialiased">
+<!-- TopNavBar (Web Only, Hidden on Mobile as per constraints) -->
+<nav class="hidden md:flex fixed top-0 left-0 w-full z-50 justify-between items-center px-margin-desktop h-16 bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline">
+<div class="font-display-lg text-display-lg text-primary dark:text-primary-fixed">
+            Elimu Parent
+        </div>
+<div class="flex items-center space-x-lg font-headline-md text-headline-md">
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors scale-95 active:scale-90 transition-transform" href="#">Enfants</a>
+<a class="text-primary dark:text-primary-fixed font-bold border-b-2 border-primary scale-95 active:scale-90 transition-transform" href="#">Bulletins</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors scale-95 active:scale-90 transition-transform" href="#">Finances</a>
+</div>
+<div class="flex items-center space-x-md text-primary dark:text-primary-fixed">
+<span class="material-symbols-outlined cursor-pointer hover:opacity-80">notifications</span>
+<span class="material-symbols-outlined cursor-pointer hover:opacity-80">account_circle</span>
+</div>
+</nav>
+<!-- SideNavBar (Web Only, Hidden on Mobile) -->
+<aside class="hidden md:flex flex-col h-full py-md docked fixed left-0 w-[280px] bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container shadow-sm z-40 pt-20">
+<div class="px-lg mb-xl">
+<div class="font-headline-md text-headline-md text-on-primary mb-sm">Elimu Parent</div>
+<div class="font-body-md text-on-primary/70">Shule yako kwa urahisi</div>
+</div>
+<nav class="flex-1 space-y-sm font-label-md text-label-md">
+<a class="flex items-center space-x-md px-lg py-md text-on-primary/70 hover:text-on-primary mx-2 hover:bg-primary-fixed-variant/20 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Tableau de bord</span>
+</a>
+<a class="flex items-center space-x-md px-lg py-md text-on-primary/70 hover:text-on-primary mx-2 hover:bg-primary-fixed-variant/20 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">family_restroom</span>
+<span>Profil Enfants</span>
+</a>
+<a class="flex items-center space-x-md px-lg py-md bg-secondary-container text-on-secondary-container rounded-lg mx-2 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">description</span>
+<span>Notes &amp; Bulletins</span>
+</a>
+<a class="flex items-center space-x-md px-lg py-md text-on-primary/70 hover:text-on-primary mx-2 hover:bg-primary-fixed-variant/20 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">event_busy</span>
+<span>Absences &amp; Retards</span>
+</a>
+<a class="flex items-center space-x-md px-lg py-md text-on-primary/70 hover:text-on-primary mx-2 hover:bg-primary-fixed-variant/20 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span>Suivi Financier</span>
+</a>
+</nav>
+<div class="mt-auto space-y-sm font-label-md text-label-md">
+<a class="flex items-center space-x-md px-lg py-md text-on-primary/70 hover:text-on-primary mx-2 hover:bg-primary-fixed-variant/20 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Paramètres</span>
+</a>
+<a class="flex items-center space-x-md px-lg py-md text-on-primary/70 hover:text-on-primary mx-2 hover:bg-primary-fixed-variant/20 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span>Déconnexion</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="md:ml-[280px] md:pt-24 p-margin-mobile md:p-margin-desktop w-full max-w-4xl mx-auto">
+<!-- Mobile Header (Visible only on mobile) -->
+<header class="md:hidden flex justify-between items-center mb-xl">
+<div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Notes &amp; Bulletins</h1>
+<p class="font-body-md text-on-surface-variant">Période 1 - 2023/2024</p>
+</div>
+<div class="w-12 h-12 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="Portrait of a smiling young student in a neat school uniform, set against a soft, bright, professional light-mode background. The lighting is flattering and optimistic, evoking a sense of academic achievement and reliable administration." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9MTrSiUqIcfqobooUmV2zjcnxvmKRPAW-9I9WT8vBVIoEG_MMUNGCIwF-W-C6Ez6LfDl2C2ArMVl2t6sFdnKP_SHBw9FLiQaaOmxKdIqeXbpubR-DCr9DWhJNP72t759K8vRc8j2Y1nhPtz3couLHpjJJ5iHRU7QvIWZ_9_cjAGtktOg4vxtbdjdW5d-vAhlp-KvhqtKzDzx4yruTTA77BZR9xpaxb69buGJxjBbTVpH8VorBVFdMIw"/>
+</div>
+</header>
+<!-- Desktop Header -->
+<header class="hidden md:flex justify-between items-end mb-xl border-b border-outline-variant pb-md">
+<div>
+<h1 class="font-display-lg text-display-lg text-primary">Notes &amp; Bulletins</h1>
+<p class="font-body-lg text-on-surface-variant mt-xs">Consultez les résultats scolaires de vos enfants.</p>
+</div>
+<div class="flex items-center space-x-md">
+<div class="flex flex-col text-right">
+<span class="font-headline-md text-headline-md text-on-surface">Marie-Louise M.</span>
+<span class="font-label-md text-label-md text-on-surface-variant">3ème Maternelle</span>
+</div>
+<div class="w-12 h-12 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="Portrait of a smiling young student in a neat school uniform, set against a soft, bright, professional light-mode background. The lighting is flattering and optimistic, evoking a sense of academic achievement and reliable administration." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFQW_8hrxvUKEJT0jslKKarYwI2oWC28dmBm___0ZGXgLyVGbyNikURQK_oYcH7jEU-AG8fVKNnjqEfVChwTYeMDfnqCOmdzDARF978UHR5zbLyKXJppQQDysue6vW5qfha4SmSoQcQb5ULI2CfcGaOMLjI8fKChLXB0DyYYcjwDQzRFSe-RTOe8B4DLjjCkIRnFuaaY1OIVcpHo0z3LmYoObab6sHQSeZxB5dsX-Kq8efpllfb03Hcw"/>
+</div>
+</div>
+</header>
+<!-- Summary Card -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant p-md mb-xl">
+<div class="flex justify-between items-center mb-md pb-sm border-b border-outline-variant">
+<span class="font-headline-md text-headline-md text-on-surface">Moyenne Générale</span>
+<span class="font-display-lg text-display-lg text-primary">16.5<span class="font-body-md text-on-surface-variant">/20</span></span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center space-x-sm">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+<span class="font-body-md text-on-surface-variant">En progression par rapport au mois dernier</span>
+</div>
+<button class="flex items-center space-x-sm bg-primary-container text-on-primary-container px-md py-sm rounded-lg font-label-md text-label-md hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined">download</span>
+<span class="hidden md:inline">Télécharger PDF</span>
+<span class="md:hidden">PDF</span>
+</button>
+</div>
+</section>
+<!-- Subjects List -->
+<section class="space-y-sm">
+<h2 class="font-headline-md text-headline-md text-primary mb-md">Détail des matières</h2>
+<!-- Subject Item -->
+<div class="bg-surface-container-lowest rounded-lg border border-outline-variant p-md flex items-center justify-between">
+<div class="flex items-center space-x-md">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">calculate</span>
+</div>
+<div>
+<div class="font-headline-md text-headline-md text-on-surface text-base">Mathématiques</div>
+<div class="font-label-md text-label-md text-on-surface-variant">M. Dupont</div>
+</div>
+</div>
+<div class="flex items-center space-x-md">
+<div class="px-sm py-xs bg-[#e6f4ea] text-[#137333] rounded-DEFAULT font-label-md text-label-md">Excellent</div>
+<div class="font-headline-md text-headline-md text-primary">18<span class="text-on-surface-variant font-body-md">/20</span></div>
+</div>
+</div>
+<!-- Subject Item -->
+<div class="bg-surface-container-lowest rounded-lg border border-outline-variant p-md flex items-center justify-between">
+<div class="flex items-center space-x-md">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">menu_book</span>
+</div>
+<div>
+<div class="font-headline-md text-headline-md text-on-surface text-base">Français</div>
+<div class="font-label-md text-label-md text-on-surface-variant">Mme. Leroy</div>
+</div>
+</div>
+<div class="flex items-center space-x-md">
+<div class="px-sm py-xs bg-surface-container text-on-surface rounded-DEFAULT font-label-md text-label-md">Bien</div>
+<div class="font-headline-md text-headline-md text-primary">15<span class="text-on-surface-variant font-body-md">/20</span></div>
+</div>
+</div>
+<!-- Subject Item -->
+<div class="bg-surface-container-lowest rounded-lg border border-outline-variant p-md flex items-center justify-between">
+<div class="flex items-center space-x-md">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">science</span>
+</div>
+<div>
+<div class="font-headline-md text-headline-md text-on-surface text-base">Sciences</div>
+<div class="font-label-md text-label-md text-on-surface-variant">M. Martin</div>
+</div>
+</div>
+<div class="flex items-center space-x-md">
+<div class="px-sm py-xs bg-[#fce8e6] text-[#c5221f] rounded-DEFAULT font-label-md text-label-md">À améliorer</div>
+<div class="font-headline-md text-headline-md text-primary">11<span class="text-on-surface-variant font-body-md">/20</span></div>
+</div>
+</div>
+<!-- Subject Item -->
+<div class="bg-surface-container-lowest rounded-lg border border-outline-variant p-md flex items-center justify-between">
+<div class="flex items-center space-x-md">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">history_edu</span>
+</div>
+<div>
+<div class="font-headline-md text-headline-md text-on-surface text-base">Histoire-Géo</div>
+<div class="font-label-md text-label-md text-on-surface-variant">Mme. Simon</div>
+</div>
+</div>
+<div class="flex items-center space-x-md">
+<div class="px-sm py-xs bg-surface-container text-on-surface rounded-DEFAULT font-label-md text-label-md">Très Bien</div>
+<div class="font-headline-md text-headline-md text-primary">16<span class="text-on-surface-variant font-body-md">/20</span></div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-margin-mobile py-sm md:hidden bg-surface dark:bg-inverse-surface border-t border-outline-variant dark:border-outline shadow-lg rounded-t-xl tap-highlight-transparent">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant active:bg-surface-container-high w-16 py-xs rounded-lg" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md-mobile mt-1">Accueil</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim font-bold active:bg-surface-container-high w-16 py-xs rounded-lg" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">grade</span>
+<span class="font-label-md text-label-md-mobile mt-1">Bulletins</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant active:bg-surface-container-high w-16 py-xs rounded-lg" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-label-md text-label-md-mobile mt-1">Absences</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant active:bg-surface-container-high w-16 py-xs rounded-lg" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-label-md text-label-md-mobile mt-1">Paiements</span>
+</a>
+</nav>
+</body></html>

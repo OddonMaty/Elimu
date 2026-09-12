@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Appel de Présence - SAO School Manager</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#e5e8eb",
+                        "secondary-fixed-dim": "#ffb871",
+                        "secondary-container": "#fda13a",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed": "#001d34",
+                        "on-background": "#181c1e",
+                        "secondary": "#8b5000",
+                        "on-secondary-fixed": "#2d1600",
+                        "surface-variant": "#e0e3e6",
+                        "tertiary-fixed": "#d0e4ff",
+                        "outline-variant": "#c3c6cf",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "surface": "#f7fafd",
+                        "on-tertiary-fixed-variant": "#2c4965",
+                        "surface-container-low": "#f1f4f7",
+                        "inverse-surface": "#2d3133",
+                        "background": "#f7fafd",
+                        "on-tertiary": "#ffffff",
+                        "tertiary": "#032641",
+                        "error-container": "#ffdad6",
+                        "surface-tint": "#426086",
+                        "tertiary-container": "#1e3c58",
+                        "tertiary-fixed-dim": "#acc9eb",
+                        "inverse-primary": "#abc8f4",
+                        "on-primary": "#ffffff",
+                        "on-primary-container": "#88a6cf",
+                        "outline": "#73777f",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#2a486d",
+                        "on-surface-variant": "#43474e",
+                        "inverse-on-surface": "#eef1f4",
+                        "primary-fixed-dim": "#abc8f4",
+                        "primary-fixed": "#d3e4ff",
+                        "on-secondary-fixed-variant": "#693c00",
+                        "surface-bright": "#f7fafd",
+                        "on-tertiary-container": "#8aa6c7",
+                        "surface-container-highest": "#e0e3e6",
+                        "on-surface": "#181c1e",
+                        "on-secondary-container": "#6a3c00",
+                        "surface-dim": "#d7dadd",
+                        "surface-container": "#ebeef1",
+                        "on-error-container": "#93000a",
+                        "primary-container": "#1b3b5f",
+                        "secondary-fixed": "#ffdcbe",
+                        "primary": "#002547",
+                        "on-primary-fixed": "#001c38",
+                        "present": "#2e7d32",
+                        "absent": "#ba1a1a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-desktop": "40px",
+                        "xl": "32px",
+                        "lg": "24px",
+                        "md": "16px",
+                        "gutter": "20px",
+                        "margin-mobile": "16px",
+                        "unit": "4px",
+                        "sm": "8px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "display-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg": ["28px", { "lineHeight": "36px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .switch-checkbox:checked {
+            right: 0;
+            border-color: #2e7d32;
+        }
+        .switch-checkbox:checked + .switch-label {
+            background-color: #2e7d32;
+        }
+        .switch-checkbox:not(:checked) {
+            left: 0;
+            border-color: #ba1a1a;
+        }
+        .switch-checkbox:not(:checked) + .switch-label {
+            background-color: #ba1a1a;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f4f7;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c3c6cf;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #73777f;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full w-[280px] bg-primary shadow-sm flex flex-col h-full p-lg gap-sm z-50 md:flex hidden">
+<div class="flex items-center gap-md mb-xl">
+<div class="w-10 h-10 rounded-full bg-surface flex items-center justify-center overflow-hidden">
+<img alt="Logo de l'école SAO" class="object-cover w-full h-full" data-alt="A clean, minimalist abstract logo design representing a modern educational institution. The logo features geometric shapes in deep navy blue and crisp white, set against a pristine white background. The lighting is even and flat, typical of professional corporate branding guidelines. The mood is authoritative and structured." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxqkIBHIucGfY39CDcnvzIEkHX4fiyzRXuM07d2ZAxkviRAxGUnJCVBWPlQPoXPSInV83B_fI6CfP8BoCzEqbcXfcmrl5mjSiR0b7zxoY6hC1W23ejzGdU_Wp9ZR0jc-rY-mQclSQp5ExteAYVfg9JJ9bqP7jw0ceKP1tcoIAhsfjkDh3tAhm7v7v8xUYH7_cCTYSH3kWWp1S3BYhd1DjwDMp6bCf_7oLVb7jtRzASZ6hoWwGu3OM4bA"/>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-on-primary">SAO School Manager</h1>
+<p class="font-label-md text-label-md text-on-primary/70">Administration Scolaire</p>
+</div>
+</div>
+<div class="flex flex-col gap-unit flex-1">
+<a class="flex items-center gap-md px-md py-sm text-on-primary/70 hover:text-on-primary hover:bg-primary-fixed-variant/10 transition-all duration-200 ease-in-out rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-md text-body-md">Tableau de bord</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-primary/70 hover:text-on-primary hover:bg-primary-fixed-variant/10 transition-all duration-200 ease-in-out rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="font-body-md text-body-md">Élèves</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm bg-primary-container text-on-primary-container rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="school" style="font-variation-settings: 'FILL' 1;">school</span>
+<span class="font-body-md text-body-md">Classes</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-primary/70 hover:text-on-primary hover:bg-primary-fixed-variant/10 transition-all duration-200 ease-in-out rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-body-md text-body-md">Frais scolaires</span>
+</a>
+</div>
+<div class="mt-auto">
+<a class="flex items-center gap-md px-md py-sm text-on-primary/70 hover:text-on-primary hover:bg-primary-fixed-variant/10 transition-all duration-200 ease-in-out rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-md text-body-md">Paramètres</span>
+</a>
+</div>
+</nav>
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 w-[calc(100%-280px)] h-16 bg-surface border-b border-outline-variant flex justify-between items-center px-margin-desktop z-40 md:flex hidden">
+<div class="flex-1 flex items-center">
+<!-- Search placeholder -->
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-full py-1.5 pl-10 pr-4 text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="Rechercher..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-container-low transition-colors cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-container-low transition-colors cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant ml-sm cursor-pointer">
+<img alt="Photo de profil administrateur" class="w-full h-full object-cover" data-alt="A professional headshot of a school administrator in their 40s. The individual is wearing a crisp navy blue suit and a light blue dress shirt, conveying authority and approachability. The background is a slightly blurred, bright, modern office space with soft daylight coming from a window. High-key lighting, corporate SaaS aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgOAQd5vkqAFmbI0AeTJPJ4BJEi6C2YbZhGoTgZMRejQ2HdpSaWq_qpM8vtdWGclaPSWsuRZEULp5-b9zRFEml6L2eTGByCgHcwC7VXA0zkGJ0dKo_lS8UwuksRT-EatpgCGlZle2-7Ct9tKQWkSa3NLpNvafFilxpuzeiTzs24aPy5x3TALeqL9gEeeGNjBFVErGsmXr6q7EHa9HVjTF50S4iPVi4u6Shlk5Yz3QjYTpItFFojqoGHg"/>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 ml-0 md:ml-[280px] mt-0 md:mt-16 p-margin-mobile md:p-margin-desktop flex gap-xl h-[calc(100vh-64px)] overflow-hidden">
+<!-- Left Column: Attendance List -->
+<section class="flex-1 flex flex-col h-full">
+<!-- Header: Date Navigation -->
+<div class="flex items-center justify-between mb-xl bg-surface p-lg rounded-xl border border-outline-variant">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-xs">Appel : 4ème A</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Prof. Kadiata | Mathématiques</p>
+</div>
+<div class="flex items-center gap-md">
+<button class="w-10 h-10 flex items-center justify-center rounded-full border border-outline-variant hover:bg-surface-container-low transition-colors text-on-surface">
+<span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+</button>
+<div class="font-headline-lg text-headline-lg text-primary text-center min-w-[200px]">
+                        12 Octobre 2023
+                    </div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full border border-outline-variant hover:bg-surface-container-low transition-colors text-on-surface">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Student List -->
+<div class="flex-1 bg-surface border border-outline-variant rounded-xl overflow-hidden flex flex-col">
+<div class="flex items-center justify-between p-md border-b border-outline-variant bg-surface-container-low">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">Élève</span>
+<span class="font-label-md text-label-md text-on-surface-variant uppercase w-32 text-center">Statut</span>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar p-sm">
+<!-- Student Row 1 -->
+<div class="flex items-center justify-between p-sm rounded-lg hover:bg-surface-container-low transition-colors border-b border-outline-variant border-opacity-50">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant font-bold text-sm">
+                                AK
+                            </div>
+<div>
+<h3 class="font-body-md text-body-md text-on-surface font-semibold">Amisi Kadiata</h3>
+<p class="text-xs text-on-surface-variant">Matricule: 2023-001</p>
+</div>
+</div>
+<div class="w-32 flex justify-center">
+<!-- Toggle -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-14 h-7 bg-error rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-present"></div>
+</label>
+</div>
+</div>
+<!-- Student Row 2 (Selected) -->
+<div class="flex items-center justify-between p-sm rounded-lg bg-tertiary-fixed border border-primary/20 transition-colors">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary font-bold text-sm">
+                                BL
+                            </div>
+<div>
+<h3 class="font-body-md text-body-md text-on-surface font-semibold">Bahati Lumumba</h3>
+<p class="text-xs text-on-surface-variant">Matricule: 2023-002</p>
+</div>
+</div>
+<div class="w-32 flex justify-center">
+<!-- Toggle -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-14 h-7 bg-error rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-present"></div>
+</label>
+</div>
+</div>
+<!-- Student Row 3 -->
+<div class="flex items-center justify-between p-sm rounded-lg hover:bg-surface-container-low transition-colors border-b border-outline-variant border-opacity-50">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant font-bold text-sm">
+                                CM
+                            </div>
+<div>
+<h3 class="font-body-md text-body-md text-on-surface font-semibold">Chantal Mutombo</h3>
+<p class="text-xs text-on-surface-variant">Matricule: 2023-003</p>
+</div>
+</div>
+<div class="w-32 flex justify-center">
+<!-- Toggle -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-14 h-7 bg-error rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-present"></div>
+</label>
+</div>
+</div>
+</div>
+<div class="p-md border-t border-outline-variant bg-surface flex justify-end gap-md">
+<div class="flex items-center gap-sm mr-auto text-on-surface-variant">
+<span class="w-3 h-3 rounded-full bg-present"></span> Présents: 32
+                        <span class="w-3 h-3 rounded-full bg-error ml-sm"></span> Absents: 3
+                    </div>
+<button class="px-lg py-sm rounded border border-outline text-on-surface font-label-md hover:bg-surface-container-low transition-colors">
+                        Annuler
+                    </button>
+<button class="px-lg py-sm rounded bg-secondary-container text-on-secondary-container font-label-md hover:bg-secondary-fixed-dim transition-colors flex items-center gap-xs shadow-sm">
+<span class="material-symbols-outlined text-sm" data-icon="check_circle">check_circle</span>
+                        Valider l'appel
+                    </button>
+</div>
+</div>
+</section>
+<!-- Right Column: Student Details Side Panel -->
+<aside class="w-[320px] bg-surface border border-outline-variant rounded-xl flex flex-col hidden lg:flex overflow-hidden">
+<div class="p-lg bg-surface-container-low border-b border-outline-variant text-center">
+<div class="w-20 h-20 mx-auto rounded-full bg-primary text-on-primary flex items-center justify-center text-2xl font-bold mb-md shadow-sm border-2 border-white">
+                    BL
+                </div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Bahati Lumumba</h3>
+<span class="inline-block px-3 py-1 bg-error/10 text-error rounded-full text-xs font-bold mt-sm">Absent Aujourd'hui</span>
+</div>
+<div class="p-lg flex-1 overflow-y-auto">
+<h4 class="font-label-md text-label-md text-on-surface-variant mb-md uppercase">Historique d'Absences</h4>
+<!-- Mini Calendar -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-md mb-lg shadow-sm">
+<div class="flex justify-between items-center mb-md">
+<button class="text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-sm" data-icon="chevron_left">chevron_left</span></button>
+<span class="font-label-md text-on-surface">Octobre 2023</span>
+<button class="text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span></button>
+</div>
+<div class="grid grid-cols-7 gap-1 text-center mb-xs">
+<div class="text-[10px] font-bold text-on-surface-variant">L</div>
+<div class="text-[10px] font-bold text-on-surface-variant">M</div>
+<div class="text-[10px] font-bold text-on-surface-variant">M</div>
+<div class="text-[10px] font-bold text-on-surface-variant">J</div>
+<div class="text-[10px] font-bold text-on-surface-variant">V</div>
+<div class="text-[10px] font-bold text-on-surface-variant">S</div>
+<div class="text-[10px] font-bold text-on-surface-variant">D</div>
+</div>
+<div class="grid grid-cols-7 gap-1 text-center text-sm">
+<!-- Empty slots -->
+<div class="p-1 text-on-surface-variant/30"></div>
+<div class="p-1 text-on-surface-variant/30"></div>
+<div class="p-1 text-on-surface-variant/30"></div>
+<div class="p-1 text-on-surface-variant/30"></div>
+<div class="p-1 text-on-surface-variant/30"></div>
+<!-- Days -->
+<div class="p-1 text-on-surface">1</div>
+<div class="p-1 text-on-surface">2</div>
+<div class="p-1 text-on-surface">3</div>
+<div class="p-1 text-on-surface relative">4<span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 bg-error rounded-full"></span></div>
+<div class="p-1 text-on-surface">5</div>
+<div class="p-1 text-on-surface">6</div>
+<div class="p-1 text-on-surface">7</div>
+<div class="p-1 text-on-surface">8</div>
+<div class="p-1 text-on-surface">9</div>
+<div class="p-1 text-on-surface">10</div>
+<div class="p-1 text-on-surface">11</div>
+<div class="p-1 text-on-surface bg-error/20 text-error font-bold rounded relative border border-error/50">12</div>
+<div class="p-1 text-on-surface">13</div>
+<div class="p-1 text-on-surface">14</div>
+<div class="p-1 text-on-surface">15</div>
+<!-- ... rest of calendar truncated for brevity -->
+</div>
+</div>
+<div class="space-y-sm">
+<div class="flex justify-between items-center p-sm bg-surface-container-low rounded border border-outline-variant/50">
+<span class="text-sm text-on-surface">Taux de présence</span>
+<span class="font-bold text-primary">92%</span>
+</div>
+<div class="flex justify-between items-center p-sm bg-surface-container-low rounded border border-outline-variant/50">
+<span class="text-sm text-on-surface">Total Absences (Mois)</span>
+<span class="font-bold text-error">2 Jours</span>
+</div>
+</div>
+</div>
+<div class="p-md border-t border-outline-variant bg-surface-container-low">
+<button class="w-full py-sm rounded border border-primary text-primary font-label-md hover:bg-primary/5 transition-colors text-center">
+                    Voir profil complet
+                </button>
+</div>
+</aside>
+</main>
+</body></html>

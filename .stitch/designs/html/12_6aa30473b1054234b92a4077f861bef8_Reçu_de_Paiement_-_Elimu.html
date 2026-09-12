@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Reçu de Paiement - Elimu</title>
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-secondary": "#ffffff",
+                        "surface-variant": "#e0e3e6",
+                        "on-surface-variant": "#43474e",
+                        "surface-container": "#ebeef1",
+                        "primary-container": "#1b3b5f",
+                        "on-tertiary-fixed-variant": "#2c4965",
+                        "inverse-surface": "#2d3133",
+                        "surface-dim": "#d7dadd",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#c3c6cf",
+                        "secondary": "#8b5000",
+                        "on-primary-container": "#88a6cf",
+                        "secondary-fixed-dim": "#ffb871",
+                        "on-background": "#181c1e",
+                        "on-tertiary-fixed": "#001d34",
+                        "on-secondary-fixed": "#2d1600",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#abc8f4",
+                        "on-tertiary": "#ffffff",
+                        "outline": "#73777f",
+                        "on-secondary-container": "#6a3c00",
+                        "surface-container-high": "#e5e8eb",
+                        "tertiary-fixed-dim": "#acc9eb",
+                        "primary-fixed": "#d3e4ff",
+                        "secondary-fixed": "#ffdcbe",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed": "#d0e4ff",
+                        "secondary-container": "#fda13a",
+                        "on-primary-fixed": "#001c38",
+                        "surface-tint": "#426086",
+                        "primary-fixed-dim": "#abc8f4",
+                        "on-secondary-fixed-variant": "#693c00",
+                        "background": "#f7fafd",
+                        "surface-bright": "#f7fafd",
+                        "inverse-on-surface": "#eef1f4",
+                        "surface-container-low": "#f1f4f7",
+                        "on-surface": "#181c1e",
+                        "primary": "#002547",
+                        "tertiary": "#032641",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#1e3c58",
+                        "on-tertiary-container": "#8aa6c7",
+                        "surface-container-highest": "#e0e3e6",
+                        "on-primary-fixed-variant": "#2a486d",
+                        "surface": "#f7fafd",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    spacing: {
+                        "gutter": "20px",
+                        "unit": "4px",
+                        "sm": "8px",
+                        "xl": "32px",
+                        "md": "16px",
+                        "margin-mobile": "16px",
+                        "xs": "4px",
+                        "margin-desktop": "40px",
+                        "lg": "24px"
+                    },
+                    fontFamily: {
+                        "headline-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    fontSize: {
+                        "headline-lg": ["28px", { lineHeight: "36px", fontWeight: "600" }],
+                        "display-lg": ["36px", { lineHeight: "44px", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+                        "headline-lg-mobile": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+                        "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "600" }],
+                        "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "headline-md": ["20px", { lineHeight: "28px", fontWeight: "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        @media print {
+            body * { visibility: hidden; }
+            #printable-receipt, #printable-receipt * { visibility: visible; }
+            #printable-receipt { position: absolute; left: 0; top: 0; width: 100%; border: none; box-shadow: none; padding: 0; margin: 0; }
+            @page { size: A5 landscape; margin: 10mm; }
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface h-screen flex overflow-hidden">
+<!-- SideNavBar (Shared Component) -->
+<nav class="hidden md:flex flex-col fixed left-0 top-0 h-full w-[280px] bg-primary text-on-primary py-lg shadow-sm z-40 border-r border-outline-variant/20">
+<!-- Header -->
+<div class="px-lg mb-xl flex items-center gap-sm">
+<div aria-label="Logo de l'école" class="w-10 h-10 rounded bg-surface-container-lowest flex items-center justify-center overflow-hidden">
+<span class="material-symbols-outlined text-primary" style="font-size: 24px;">account_balance</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md text-on-primary leading-tight">Portail Admin</h1>
+<p class="font-label-md text-label-md text-on-primary/70">Gestion Elimu</p>
+</div>
+</div>
+<!-- CTA -->
+<div class="px-lg mb-xl">
+<button class="w-full bg-secondary text-on-secondary font-label-md text-label-md py-sm px-md rounded-lg flex items-center justify-center gap-xs hover:opacity-90 transition-opacity shadow-sm">
+<span class="material-symbols-outlined" style="font-size: 18px;">add</span>
+                Nouveau Reçu
+            </button>
+</div>
+<!-- Navigation Links -->
+<div class="flex-1 overflow-y-auto px-sm">
+<ul class="space-y-xs">
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-fixed-dim/10 transition-all font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                        Tableau de bord
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-fixed-dim/10 transition-all font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">payments</span>
+                        Frais Scolaires
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-fixed-dim/10 transition-all font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">group</span>
+                        Registre Matricule
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-fixed-dim/10 transition-all font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">description</span>
+                        Bulletins
+                    </a>
+</li>
+<!-- Active Tab -->
+<li>
+<a class="flex items-center gap-md px-md py-sm bg-primary-container text-on-primary-container rounded-lg mx-2 scale-95 transition-transform font-body-md text-body-md font-bold" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+                        Facturation
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-fixed-dim/10 transition-all font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">settings</span>
+                        Paramètres
+                    </a>
+</li>
+</ul>
+</div>
+<!-- Footer Links -->
+<div class="px-sm mt-auto pt-lg border-t border-on-primary/10">
+<ul class="space-y-xs">
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-fixed-dim/10 transition-all font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">help</span>
+                        Aide
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-fixed-dim/10 transition-all font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">logout</span>
+                        Déconnexion
+                    </a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-[280px] h-full overflow-y-auto bg-surface p-margin-mobile md:p-margin-desktop flex flex-col items-center">
+<!-- Contextual Header (Not part of print) -->
+<div class="w-full max-w-[800px] flex justify-between items-center mb-lg print:hidden">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Détails de la transaction</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Généré le 24 Oct 2024</p>
+</div>
+<button class="flex items-center gap-xs px-md py-sm border border-outline bg-surface-container-lowest text-on-surface rounded hover:bg-surface-container-low transition-colors font-label-md text-label-md" onclick="window.print()">
+<span class="material-symbols-outlined" style="font-size: 18px;">print</span>
+                Imprimer le reçu (A5)
+            </button>
+</div>
+<!-- The Receipt Document (Optimized for A5 Landscape approx) -->
+<div class="bg-surface-container-lowest w-full max-w-[800px] border border-outline-variant shadow-sm rounded-sm p-xl flex flex-col font-body-md text-body-md text-on-surface relative" id="printable-receipt">
+<!-- Watermark/Background Logo subtle -->
+<div class="absolute inset-0 flex items-center justify-center opacity-[0.03] pointer-events-none">
+<span class="material-symbols-outlined" style="font-size: 300px;">school</span>
+</div>
+<!-- Receipt Header -->
+<header class="flex justify-between items-start border-b-2 border-primary pb-md mb-lg relative z-10">
+<!-- Institution Details -->
+<div class="flex gap-md items-start">
+<div class="w-16 h-16 rounded-full bg-cover bg-center border border-outline-variant bg-surface-container" data-alt="A modern, minimalist circular logo for an educational institution in black and white, featuring a stylized book and rising sun, clean corporate aesthetic, high contrast." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD2Hx0skJxcUyPL6uixMw538NdOq3wVxHd7LGL1KpNc42B7N7RJ-hEZ9zkNDQJYYC2HF1DIo6WG9HFxieXUKmt6bPB3U6ObOWgvfe1kvxmbcBWCkwx5thAGdOUQ4Qe7rqWwizpb2uEtFPyUjuqc6e8H0GA524_8NdUbmkrC7vhp_uFqq66yLJET1wqEFVHfAUnPfyzkxunYec5dccN97d2SENthWYv2OTMyK9Tli8CknlK8OPn3TbzHQQ')"></div>
+<div>
+<h1 class="font-headline-md text-headline-md text-primary font-bold uppercase tracking-tight">Complexe Scolaire Excellence</h1>
+<p class="font-label-md text-label-md text-on-surface-variant mt-1">N° d'Agrément: MIN-EPST/1234/2020</p>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">123 Avenue de l'Enseignement, Commune de la Gombe<br/>Kinshasa, RDC | contact@csexcellence.cd</p>
+</div>
+</div>
+<!-- Receipt Meta -->
+<div class="text-right">
+<h2 class="font-headline-lg text-headline-lg text-on-surface uppercase font-bold">Reçu de Caisse</h2>
+<div class="mt-sm font-label-md text-label-md bg-surface-container-high px-sm py-xs rounded inline-block border border-outline-variant">
+                        N° : <span class="font-bold text-primary">REC-2024-001</span>
+</div>
+</div>
+</header>
+<!-- Transaction Info Grid -->
+<div class="grid grid-cols-2 gap-xl mb-lg relative z-10">
+<!-- Payer Info -->
+<div class="border border-outline-variant rounded p-md bg-surface-bright">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase mb-sm border-b border-outline-variant/50 pb-xs">Informations de l'Élève</h3>
+<div class="grid grid-cols-[100px_1fr] gap-y-xs">
+<span class="text-on-surface-variant font-label-md text-label-md">Nom Complet:</span>
+<span class="font-bold">MUKENDI TSHIBANGU Kevin</span>
+<span class="text-on-surface-variant font-label-md text-label-md">Classe:</span>
+<span>3ème Scientifique A</span>
+<span class="text-on-surface-variant font-label-md text-label-md">Matricule:</span>
+<span class="font-mono text-sm text-on-surface-variant">MAT-2023-458</span>
+</div>
+</div>
+<!-- Payment Details -->
+<div class="border border-outline-variant rounded p-md bg-surface-bright">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase mb-sm border-b border-outline-variant/50 pb-xs">Détails du Paiement</h3>
+<div class="grid grid-cols-[100px_1fr] gap-y-xs">
+<span class="text-on-surface-variant font-label-md text-label-md">Date:</span>
+<span>24 Octobre 2024</span>
+<span class="text-on-surface-variant font-label-md text-label-md">Méthode:</span>
+<span class="flex items-center gap-xs font-bold">
+<span class="material-symbols-outlined text-on-surface-variant" style="font-size: 16px;">phone_iphone</span>
+                            M-Pesa
+                        </span>
+<span class="text-on-surface-variant font-label-md text-label-md">Référence:</span>
+<span class="font-mono text-sm text-on-surface-variant">MP-9A8B7C6D5E</span>
+</div>
+</div>
+</div>
+<!-- Ledger Table -->
+<div class="mb-xl relative z-10">
+<table class="w-full border-collapse">
+<thead>
+<tr class="bg-surface-container-high border-y border-outline-variant font-label-md text-label-md text-on-surface-variant">
+<th class="py-sm px-md text-left w-12 text-center border-r border-outline-variant/30">#</th>
+<th class="py-sm px-md text-left">Motif du Paiement</th>
+<th class="py-sm px-md text-left">Période concernée</th>
+<th class="py-sm px-md text-right w-32 border-l border-outline-variant/30">Montant (USD)</th>
+</tr>
+</thead>
+<tbody class="border-b border-outline-variant">
+<tr class="border-b border-outline-variant/30 hover:bg-surface-container-low transition-colors">
+<td class="py-md px-md text-center text-on-surface-variant font-label-md text-label-md border-r border-outline-variant/30">1</td>
+<td class="py-md px-md font-bold">Frais de Scolarité - 2ème Tranche</td>
+<td class="py-md px-md text-on-surface-variant">Trimestre 2 (2024-2025)</td>
+<td class="py-md px-md text-right font-mono font-bold border-l border-outline-variant/30">150.00</td>
+</tr>
+<tr class="border-b border-outline-variant/30 hover:bg-surface-container-low transition-colors">
+<td class="py-md px-md text-center text-on-surface-variant font-label-md text-label-md border-r border-outline-variant/30">2</td>
+<td class="py-md px-md font-bold">Frais de Laboratoire Informatique</td>
+<td class="py-md px-md text-on-surface-variant">Annuel (2024-2025)</td>
+<td class="py-md px-md text-right font-mono font-bold border-l border-outline-variant/30">25.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Totals Area -->
+<div class="flex justify-between items-start mb-xl relative z-10">
+<!-- Amount in words -->
+<div class="w-1/2 pt-xs">
+<p class="font-label-md text-label-md text-on-surface-variant mb-xs uppercase">La somme de :</p>
+<p class="font-body-md text-body-md italic border-b border-outline-variant border-dashed pb-xs leading-relaxed">
+                        Cent soixante-quinze Dollars Américains.
+                    </p>
+</div>
+<!-- Numeric Totals -->
+<div class="w-1/3 border border-outline-variant rounded bg-surface-container-lowest">
+<div class="flex justify-between py-xs px-md border-b border-outline-variant/50">
+<span class="font-label-md text-label-md text-on-surface-variant">Sous-total</span>
+<span class="font-mono text-sm">175.00</span>
+</div>
+<div class="flex justify-between py-xs px-md border-b border-outline-variant/50">
+<span class="font-label-md text-label-md text-on-surface-variant">Taxes / Frais</span>
+<span class="font-mono text-sm">0.00</span>
+</div>
+<div class="flex justify-between py-sm px-md bg-surface-container-high rounded-b font-headline-md text-headline-md font-bold">
+<span>TOTAL</span>
+<span class="font-mono">$ 175.00</span>
+</div>
+</div>
+</div>
+<!-- Footer / Signatures -->
+<div class="mt-auto grid grid-cols-2 gap-xl relative z-10">
+<div class="border border-outline-variant rounded p-sm h-32 flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant text-center border-b border-outline-variant pb-xs mb-xs uppercase">Cachet de l'établissement</span>
+<div class="flex-1 flex items-center justify-center text-on-surface-variant/30 font-label-md text-label-md">
+                        [ Espace réservé au cachet sec ]
+                    </div>
+</div>
+<div class="border border-outline-variant rounded p-sm h-32 flex flex-col relative">
+<span class="font-label-md text-label-md text-on-surface-variant text-center border-b border-outline-variant pb-xs mb-xs uppercase">Signature Électronique (Caisse)</span>
+<div class="flex-1 flex items-center justify-center">
+<!-- Simulated Digital Signature -->
+<div class="text-center">
+<span class="font-[Inter] italic text-2xl text-primary/80 opacity-70" style="font-family: 'Brush Script MT', cursive;">J. Mutombo</span>
+<p class="font-label-md text-label-md text-on-surface-variant text-[10px] mt-1">Authentifié le 24/10/2024 10:45</p>
+</div>
+</div>
+<!-- Small validation badge -->
+<div class="absolute bottom-2 right-2 flex items-center gap-xs bg-surface-container-low px-2 py-1 rounded text-[10px] text-on-surface-variant border border-outline-variant/50">
+<span class="material-symbols-outlined text-primary" style="font-size: 14px; font-variation-settings: 'FILL' 1;">verified</span>
+                        Validé M-Pesa
+                    </div>
+</div>
+</div>
+<!-- System Footer -->
+<div class="mt-xl text-center border-t border-outline-variant pt-sm flex justify-between items-center text-on-surface-variant">
+<p class="font-label-md text-label-md text-[10px]">Document généré automatiquement par le système de gestion scolaire.</p>
+<div class="flex items-center gap-xs opacity-70">
+<span class="font-label-md text-label-md font-bold tracking-widest uppercase">Elimu</span>
+<span class="material-symbols-outlined" style="font-size: 14px;">auto_awesome</span>
+</div>
+</div>
+</div>
+</main>
+</body></html>

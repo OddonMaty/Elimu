@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bulletin Scolaire</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Arial:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f3f4f6;
+            margin: 0;
+            padding: 20px;
+            color: #000;
+        }
+        .a4-container {
+            width: 210mm;
+            min-height: 297mm;
+            background: white;
+            margin: 0 auto;
+            padding: 10mm;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+        }
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .a4-container {
+                box-shadow: none;
+                margin: 0;
+                padding: 5mm;
+                width: 100%;
+                min-height: auto;
+            }
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 10px;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 2px 4px;
+            text-align: center;
+        }
+        th {
+            font-weight: bold;
+        }
+        .text-left-cell {
+            text-align: left;
+        }
+        .bg-gray-cell {
+            background-color: #d1d5db;
+        }
+        .dotted-line {
+            border-bottom: 1px dotted #000;
+            display: inline-block;
+            min-width: 150px;
+        }
+        .id-grid {
+            display: flex;
+            gap: 2px;
+        }
+        .id-box {
+            width: 15px;
+            height: 20px;
+            border: 1px solid #000;
+        }
+        .thick-border {
+            border: 2px solid #000;
+        }
+    </style>
+</head>
+<body>
+<div class="a4-container thick-border flex flex-col">
+<!-- Header -->
+<div class="flex justify-between items-center border-b-2 border-black pb-2 mb-2">
+<div class="w-24 h-16 border border-black flex items-center justify-center bg-blue-500 relative">
+<!-- Flag Placeholder -->
+<div class="absolute top-0 left-0 w-8 h-8 flex items-center justify-center">
+<span class="text-yellow-400 text-2xl">★</span>
+</div>
+<div class="w-full h-full flex flex-col">
+<div class="h-1/2 bg-blue-500"></div>
+<div class="h-1/2 flex">
+<div class="w-full bg-red-500 transform -skew-y-12 translate-y-1 scale-110"></div>
+</div>
+</div>
+<div class="absolute inset-0 border border-black"></div>
+</div>
+<div class="text-center flex-1 px-4">
+<h1 class="font-bold text-sm uppercase">REPUBLIQUE DEMOCRATIQUE DU CONGO</h1>
+<h2 class="font-bold text-sm uppercase">MINISTERE DE L'ENSEIGNEMENT PRIMAIRE, SECONDAIRE<br/>ET TECHNIQUE</h2>
+</div>
+<div class="w-16 h-16 border border-black flex items-center justify-center rounded-full overflow-hidden relative">
+<!-- Logo Placeholder -->
+<div class="w-full h-full bg-blue-100 flex flex-col items-center justify-center">
+<div class="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center relative">
+<div class="w-8 h-8 bg-yellow-400 rounded-full"></div>
+</div>
+</div>
+<div class="absolute inset-0 border border-black rounded-full"></div>
+</div>
+</div>
+<!-- ID Section -->
+<div class="border-b-2 border-black pb-2 mb-2">
+<div class="flex items-center gap-2 mb-2">
+<span class="font-bold text-sm">N° ID.</span>
+<div class="id-grid">
+<div class="id-box"></div><div class="id-box"></div><div class="id-box"></div><div class="id-box"></div><div class="id-box"></div>
+<div class="id-box ml-2"></div><div class="id-box"></div><div class="id-box"></div><div class="id-box"></div><div class="id-box"></div><div class="id-box"></div><div class="id-box"></div><div class="id-box"></div><div class="id-box"></div><div class="id-box"></div><div class="id-box"></div><div class="id-box"></div><div class="id-box"></div>
+<div class="id-box ml-2"></div><div class="id-box"></div><div class="id-box"></div><div class="id-box"></div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 text-[11px]">
+<div>
+<div class="flex mb-1"><span class="w-24">PROVINCE:</span> <span class="dotted-line flex-1"></span></div>
+<div class="flex mb-1"><span class="w-24">Ville:</span> <span class="dotted-line flex-1"></span></div>
+<div class="flex mb-1"><span class="w-24">COMMUNE/Ter (1):</span> <span class="dotted-line flex-1"></span></div>
+<div class="flex mb-1"><span class="w-24">ECOLE:</span> <span class="dotted-line flex-1"></span></div>
+<div class="flex"><span class="w-24">CODE:</span> <span class="dotted-line flex-1"></span></div>
+</div>
+<div>
+<div class="flex mb-1"><span class="w-16">ELEVE:</span> <span class="dotted-line flex-1"></span> <span class="ml-2 w-10">Sexe:</span> <span class="dotted-line w-10"></span></div>
+<div class="flex mb-1"><span class="w-16">NE(E):</span> <span class="dotted-line flex-1"></span> <span class="ml-2">Le ....../....../........</span></div>
+<div class="flex mb-1"><span class="w-16">CLASSE:</span> <span class="dotted-line flex-1"></span></div>
+<div class="flex items-center"><span class="w-16">N° PERM</span>
+<div class="id-grid ml-2">
+<div class="id-box"></div><div class="id-box"></div><div class="id-box"></div><div class="id-box"></div>
+<div class="id-box ml-2"></div><div class="id-box"></div><div class="id-box"></div><div class="id-box"></div><div class="id-box"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Title -->
+<div class="flex justify-between font-bold text-[12px] border-b-2 border-black pb-1 mb-1">
+<span>BULLETIN DE LA 3ème ANNEE HUMANITE COMMERCIALE &amp; GESTION</span>
+<span>ANNEE SCOLAIRE 20....-20....</span>
+</div>
+<!-- Main Table -->
+<div class="flex-1">
+<table class="border-2 border-black">
+<thead>
+<tr>
+<th class="w-[25%]" rowspan="3">BRANCHES</th>
+<th colspan="4">PREMIER SEMESTRE</th>
+<th colspan="4">SECOND SEMESTRE</th>
+<th class="w-[5%]" rowspan="3">T.G.</th>
+<th class="w-1 bg-gray-cell p-0 border-none" rowspan="3"></th>
+<th class="w-[15%]" colspan="2">EXAMEN DE<br/>REPECHAGE</th>
+</tr>
+<tr>
+<th colspan="2">TRAV. JOURN</th>
+<th class="w-[5%]" rowspan="2">EXAM.</th>
+<th class="w-[5%]" rowspan="2">TOT.</th>
+<th colspan="2">TRAV. JOURN</th>
+<th class="w-[5%]" rowspan="2">EXAM.</th>
+<th class="w-[5%]" rowspan="2">TOT.</th>
+<th class="w-[5%]" rowspan="2">%</th>
+<th class="w-[10%]" rowspan="2">SIGN. PROF.</th>
+</tr>
+<tr>
+<th class="w-[5%]">1ère P</th>
+<th class="w-[5%]">2ème P</th>
+<th class="w-[5%]">3ème P</th>
+<th class="w-[5%]">4ème P</th>
+</tr>
+</thead>
+<tbody>
+<tr class="font-bold">
+<td class="text-left-cell">MAXIMA</td>
+<td>10</td><td>10</td><td>20</td><td>40</td>
+<td>10</td><td>10</td><td>20</td><td>40</td>
+<td>80</td>
+<td class="bg-gray-cell border-none p-0"></td>
+<td class="bg-gray-cell"></td><td class="bg-gray-cell"></td>
+</tr>
+<tr>
+<td class="text-left-cell">Religion(1)</td>
+<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="bg-gray-cell border-none p-0"></td><td></td><td></td>
+</tr>
+<tr>
+<td class="text-left-cell">Education à la vie</td>
+<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="bg-gray-cell border-none p-0"></td><td></td><td></td>
+</tr>
+<tr>
+<td class="text-left-cell">Ed.civ. &amp; morale</td>
+<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="bg-gray-cell border-none p-0"></td><td></td><td></td>
+</tr>
+<tr>
+<td class="text-left-cell">Education physique</td>
+<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="bg-gray-cell border-none p-0"></td><td></td><td></td>
+</tr>
+<tr>
+<td class="text-left-cell">Géographie économique</td>
+<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="bg-gray-cell border-none p-0"></td><td></td><td></td>
+</tr>
+<tr>
+<td class="text-left-cell">Fiscalité</td>
+<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="bg-gray-cell border-none p-0"></td><td></td><td></td>
+</tr>
+<tr>
+<td class="text-left-cell">Mathématiques financières</td>
+<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="bg-gray-cell border-none p-0"></td><td></td><td></td>
+</tr>
+<tr>
+<td class="text-left-cell text-[8px]">Opérations des banques et des crédits</td>
+<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="bg-gray-cell border-none p-0"></td><td></td><td></td>
+</tr>
+<tr class="font-bold">
+<td class="text-left-cell">MAXIMA</td>
+<td>10</td><td>10</td><td class="bg-gray-cell"></td><td>20</td>
+<td>10</td><td>10</td><td class="bg-gray-cell"></td><td>20</td>
+<td>40</td>
+<td class="bg-gray-cell border-none p-0"></td>
+<td class="bg-gray-cell"></td><td class="bg-gray-cell"></td>
+</tr>
+<tr>
+<td class="text-left-cell text-[9px]">Activités compl.(visites guidées)</td>
+<td></td><td></td><td class="bg-gray-cell"></td><td></td>
+<td></td><td></td><td class="bg-gray-cell"></td><td></td>
+<td></td>
+<td class="bg-gray-cell border-none p-0"></td>
+<td></td><td></td>
+</tr>
+<tr class="font-bold">
+<td class="text-left-cell">MAXIMA</td>
+<td>20</td><td>20</td><td>40</td><td>80</td>
+<td>20</td><td>20</td><td>40</td><td>80</td>
+<td>160</td>
+<td class="bg-gray-cell border-none p-0"></td>
+<td class="bg-gray-cell"></td><td class="bg-gray-cell"></td>
+</tr>
+<tr>
+<td class="text-left-cell">Mathématiques générales</td>
+<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="bg-gray-cell border-none p-0"></td><td></td><td></td>
+</tr>
+<tr>
+<td class="text-left-cell">Droit</td>
+<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="bg-gray-cell border-none p-0"></td><td></td><td></td>
+</tr>
+<tr>
+<td class="text-left-cell">Correspondance com.Francaise</td>
+<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="bg-gray-cell border-none p-0"></td><td></td><td></td>
+</tr>
+<tr>
+<td class="text-left-cell">Correspondance com.Anglaise</td>
+<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="bg-gray-cell border-none p-0"></td><td></td><td></td>
+</tr>
+<tr>
+<td class="text-left-cell">Entreprenariat</td>
+<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="bg-gray-cell border-none p-0"></td><td></td><td></td>
+</tr>
+<tr>
+<td class="text-left-cell">Economie politique</td>
+<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="bg-gray-cell border-none p-0"></td><td></td><td></td>
+</tr>
+<tr class="font-bold">
+<td class="text-left-cell">MAXIMA</td>
+<td>30</td><td>30</td><td>60</td><td>120</td>
+<td>30</td><td>30</td><td>60</td><td>120</td>
+<td>240</td>
+<td class="bg-gray-cell border-none p-0"></td>
+<td class="bg-gray-cell"></td><td class="bg-gray-cell"></td>
+</tr>
+<tr>
+<td class="text-left-cell">Anglais</td>
+<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="bg-gray-cell border-none p-0"></td><td></td><td></td>
+</tr>
+<tr class="font-bold">
+<td class="text-left-cell">MAXIMA</td>
+<td>40</td><td>40</td><td>80</td><td>160</td>
+<td>40</td><td>40</td><td>80</td><td>160</td>
+<td>320</td>
+<td class="bg-gray-cell border-none p-0"></td>
+<td class="bg-gray-cell"></td><td class="bg-gray-cell"></td>
+</tr>
+<tr>
+<td class="text-left-cell">Français</td>
+<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="bg-gray-cell border-none p-0"></td><td></td><td></td>
+</tr>
+<tr>
+<td class="text-left-cell">Informatique</td>
+<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="bg-gray-cell border-none p-0"></td><td></td><td></td>
+</tr>
+<tr class="font-bold">
+<td class="text-left-cell">MAXIMA</td>
+<td>60</td><td>60</td><td>120</td><td>240</td>
+<td>60</td><td>60</td><td>120</td><td>240</td>
+<td>480</td>
+<td class="bg-gray-cell border-none p-0"></td>
+<td class="bg-gray-cell"></td><td class="bg-gray-cell"></td>
+</tr>
+<tr>
+<td class="text-left-cell">Comptabilité Générale</td>
+<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="bg-gray-cell border-none p-0"></td><td></td><td></td>
+</tr>
+<tr class="font-bold">
+<td class="text-left-cell">MAXIMA</td>
+<td>100</td><td>100</td><td class="bg-gray-cell"></td><td>200</td>
+<td>100</td><td>100</td><td class="bg-gray-cell"></td><td>200</td>
+<td>400</td>
+<td class="bg-gray-cell border-none p-0"></td>
+<td class="bg-gray-cell"></td><td class="bg-gray-cell"></td>
+</tr>
+<tr>
+<td class="text-left-cell">Pratique professionnelle</td>
+<td></td><td></td><td class="bg-gray-cell"></td><td></td>
+<td></td><td></td><td class="bg-gray-cell"></td><td></td>
+<td></td>
+<td class="bg-gray-cell border-none p-0"></td>
+<td></td><td></td>
+</tr>
+<tr class="font-bold h-6">
+<td class="text-left-cell">MAXIMA GENERAUX</td>
+<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="bg-gray-cell border-none p-0"></td><td></td><td></td>
+</tr>
+<tr class="font-bold h-6">
+<td class="text-left-cell">TOTAUX</td>
+<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="bg-gray-cell border-none p-0"></td><td></td><td></td>
+</tr>
+<tr class="font-bold h-6">
+<td class="text-left-cell">POURCENTAGE</td>
+<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="bg-gray-cell border-none p-0"></td><td></td><td></td>
+</tr>
+<tr class="font-bold h-6">
+<td class="text-left-cell">PLACE/NBRE ELEVES</td>
+<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="bg-gray-cell border-none p-0"></td><td class="text-left align-top p-2 text-[10px]" colspan="2" rowspan="4">
+                            PASSE (1)<br/><br/>
+                            DOUBLE (1)<br/><br/>
+                            A ECHOUE (1)<br/><br/>
+                            Le Chef d'Etablissement<br/>
+                            Sceau de l'école
+                        </td>
+</tr>
+<tr class="font-bold h-6">
+<td class="text-left-cell">APPLICATION</td>
+<td></td><td></td><td class="bg-gray-cell" colspan="2"></td><td></td><td></td><td class="bg-gray-cell" colspan="2"></td><td></td><td class="bg-gray-cell border-none p-0"></td>
+</tr>
+<tr class="font-bold h-6">
+<td class="text-left-cell">CONDUITE</td>
+<td></td><td></td><td class="bg-gray-cell" colspan="2"></td><td></td><td></td><td class="bg-gray-cell" colspan="2"></td><td></td><td class="bg-gray-cell border-none p-0"></td>
+</tr>
+<tr class="h-10">
+<td class="text-left-cell align-top text-xs italic">Signature du responsable</td>
+<td colspan="9"></td><td class="bg-gray-cell border-none p-0"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Footer -->
+<div class="mt-2 text-[10px]">
+<p>L'élève ne pourra passer dans la classe superieure s'il n'a subi avec succès un examen de repechage en ..........................................................................................</p>
+<p>......................................................................................................................................................................................................................................................................</p>
+<div class="flex justify-between mt-4">
+<div class="w-1/3">
+<p>L'élève passe dans la classe superieure (1)</p>
+<p>L'élève double la classe (1)</p>
+<p class="text-center mt-4">Signature de l'élève</p>
+</div>
+<div class="w-1/3 text-center pt-8">
+<p>Sceau de l'école</p>
+</div>
+<div class="w-1/3 text-right">
+<p>Fait à ......................................., le ......./......./20....</p>
+<p class="text-center mt-2">Le Chef d'Etablissement</p>
+<p class="text-center mt-8">Nom et signature</p>
+</div>
+</div>
+<div class="mt-4 text-[9px]">
+<p>(2) Biffer la mention inutile</p>
+<p>Note importante: Le bulletin est sans valeur s'il est raturé ou surchargé</p>
+<p class="text-center italic font-bold">Interdiction formelle de reproduire ce bulletin sous peine des sanctions prévues par la loi</p>
+</div>
+</div>
+</div>
+</body></html>

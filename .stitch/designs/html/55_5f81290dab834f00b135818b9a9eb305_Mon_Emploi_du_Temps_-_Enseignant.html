@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EduGestion RDC - Horaires</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-primary": "#abc8f4",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#8aa6c7",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#032641",
+                        "on-secondary-container": "#6a3c00",
+                        "on-primary-container": "#88a6cf",
+                        "on-secondary-fixed": "#2d1600",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed": "#001c38",
+                        "surface": "#f7fafd",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#426086",
+                        "error-container": "#ffdad6",
+                        "surface-container-highest": "#e0e3e6",
+                        "tertiary-container": "#1e3c58",
+                        "on-primary-fixed-variant": "#2a486d",
+                        "primary-container": "#1b3b5f",
+                        "outline": "#73777f",
+                        "surface-variant": "#e0e3e6",
+                        "inverse-on-surface": "#eef1f4",
+                        "on-tertiary-fixed": "#001d34",
+                        "tertiary-fixed-dim": "#acc9eb",
+                        "on-tertiary-fixed-variant": "#2c4965",
+                        "secondary": "#8b5000",
+                        "on-surface-variant": "#43474e",
+                        "primary-fixed": "#d3e4ff",
+                        "background": "#f7fafd",
+                        "surface-container-low": "#f1f4f7",
+                        "on-surface": "#181c1e",
+                        "tertiary-fixed": "#d0e4ff",
+                        "on-secondary-fixed-variant": "#693c00",
+                        "secondary-fixed-dim": "#ffb871",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#e5e8eb",
+                        "surface-bright": "#f7fafd",
+                        "secondary-fixed": "#ffdcbe",
+                        "on-background": "#181c1e",
+                        "primary": "#002547",
+                        "primary-fixed-dim": "#abc8f4",
+                        "on-tertiary": "#ffffff",
+                        "outline-variant": "#c3c6cf",
+                        "inverse-surface": "#2d3133",
+                        "secondary-container": "#fda13a",
+                        "surface-dim": "#d7dadd",
+                        "surface-container": "#ebeef1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "lg": "24px",
+                        "md": "16px",
+                        "gutter": "20px",
+                        "xs": "4px",
+                        "margin-desktop": "40px",
+                        "margin-mobile": "16px",
+                        "sm": "8px",
+                        "xl": "32px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["28px", { "lineHeight": "36px", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "display-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined[data-weight="fill"] {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Subtle scrollbar for timeline */
+        .timeline-scroll::-webkit-scrollbar {
+            height: 6px;
+            width: 6px;
+        }
+        .timeline-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .timeline-scroll::-webkit-scrollbar-thumb {
+            background-color: #c3c6cf;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen font-body-md">
+<!-- SideNavBar (Hidden on Mobile) -->
+<nav class="hidden md:flex fixed left-0 top-0 h-screen w-[280px] flex-col py-lg px-md bg-primary dark:bg-primary border-r border-outline-variant z-20 transition-all duration-200 ease-in-out">
+<!-- Header / Logo -->
+<div class="flex items-center gap-sm mb-xl pl-xs">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A clean, professional minimalist logo mark for a school management software, featuring a stylized book or abstract geometric structure in dark navy blue and warm orange. The design is modern, crisp, set against a solid white background, embodying corporate efficiency and educational structure." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYHow1XhDIF97i0FwohRrwkLWtjnOfN9h9SPJ4Y4GI_hPh7YOHNHcS2a3gHJubhSMKTlTasXLqlKpSFDlDZ2VqkhXKE20IYXuoqs1cp7OHcfM7kSWSSHwkDPTZDHXh63DqxlocgaBw19pzQdhMKYuOzv0LF7SW2GDGgMF3Lw44uixFZK40AWCrdHGF-Gei-WS7NR1gMryGCNOOkFxe19N53lZ51ulYeXL9_duZZLAEqX13jGap2jHJ5Q"/>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-on-primary font-bold">EduGestion RDC</span>
+<span class="font-label-md text-label-md text-on-primary opacity-70">Administration Centrale</span>
+</div>
+</div>
+<!-- Main Navigation -->
+<ul class="flex flex-col gap-xs flex-grow">
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary opacity-80 hover:bg-primary-container hover:text-on-primary-container transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Tableau de bord</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary opacity-80 hover:bg-primary-container hover:text-on-primary-container transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-label-md text-label-md">Élèves</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary opacity-80 hover:bg-primary-container hover:text-on-primary-container transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md text-label-md">Frais scolaires</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-secondary-container font-bold border-l-4 border-secondary-container bg-primary-container bg-opacity-20 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-weight="fill">calendar_month</span>
+<span class="font-label-md text-label-md">Horaires</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary opacity-80 hover:bg-primary-container hover:text-on-primary-container transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Paramètres</span>
+</a>
+</li>
+</ul>
+<!-- Footer Actions -->
+<div class="mt-auto flex flex-col gap-md pt-md border-t border-primary-container">
+<button class="w-full flex items-center justify-center gap-sm bg-secondary-container text-on-secondary-container font-label-md text-label-md py-sm px-md rounded-lg hover:bg-opacity-90 transition-all">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                Ajouter un élève
+            </button>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary opacity-80 hover:bg-primary-container hover:text-on-primary-container transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Déconnexion</span>
+</a>
+</div>
+</nav>
+<!-- TopAppBar -->
+<header class="hidden md:flex justify-between items-center h-16 ml-[280px] px-margin-desktop w-[calc(100%-280px)] border-b border-outline-variant bg-surface docked full-width top-0 fixed z-10 transition-opacity duration-150">
+<div class="flex items-center gap-lg">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="pl-10 pr-4 py-1.5 bg-surface-container-low border border-outline-variant rounded-lg font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary w-64 transition-all" placeholder="Rechercher..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md text-on-surface-variant">
+<button class="hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-container">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-container">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant ml-2">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a school administrator in a modern office setting. The lighting is soft and natural, suggesting a corporate or high-end educational environment. The subject is smiling warmly, wearing a smart-casual navy blazer. The background is slightly blurred with subtle hints of white and grey tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMSwYfcdRY3WPL_azdsODc0ZuIh8srBA7y5QtGL68F-l7YQE-J4NQNdI71tDB__4Vnh4Xk-XTGAxAsMgCnIZoJ4sw4icUW7Iw63a2r-fPxVKZNCGOwMqPkOIcurF5_WxaHBnAjn5Ln1iFk1jvfQxcM5dbhOxy6RpH_oH5HpOkKZcccrmPSJ326qo9NEJ6RjqrPlDg2cSQKxs72ClYlktbEB7a5-XLajwUh2PKkkGQLJEpabpjZliV3oA"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="md:ml-[280px] md:pt-16 min-h-screen pb-24 md:pb-8 flex flex-col">
+<div class="px-margin-mobile md:px-margin-desktop py-lg flex-grow flex flex-col max-w-[1400px] w-full mx-auto">
+<!-- Page Header -->
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-md mb-lg">
+<div>
+<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary font-bold mb-xs">Horaire de la semaine</h1>
+<p class="font-body-md text-on-surface-variant">Semaine du 12 au 16 Novembre 2023 • Pr. Mukendi (Mathématiques)</p>
+</div>
+<div class="flex gap-sm">
+<button class="flex items-center gap-xs px-md py-sm border border-outline-variant rounded-lg font-label-md text-label-md text-on-surface hover:bg-surface-container-low transition-colors bg-surface">
+<span class="material-symbols-outlined text-[18px]">print</span>
+                        Imprimer
+                    </button>
+<button class="flex items-center gap-xs px-md py-sm bg-primary text-on-primary rounded-lg font-label-md text-label-md hover:bg-opacity-90 transition-colors">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                        Exporter PDF
+                    </button>
+</div>
+</div>
+<!-- Calendar Container (Bento/Card) -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl flex-grow flex flex-col overflow-hidden">
+<!-- Calendar Toolbar -->
+<div class="flex items-center justify-between px-md py-sm border-b border-outline-variant bg-surface-container-low">
+<div class="flex items-center gap-sm">
+<button class="p-1 hover:bg-surface-container rounded-md text-on-surface-variant"><span class="material-symbols-outlined">chevron_left</span></button>
+<span class="font-headline-md text-body-lg font-semibold text-on-surface">Novembre 2023</span>
+<button class="p-1 hover:bg-surface-container rounded-md text-on-surface-variant"><span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+<div class="flex bg-surface-container-highest rounded-lg p-0.5">
+<button class="px-3 py-1 bg-surface-container-lowest shadow-sm rounded-md font-label-md text-on-surface text-xs">Semaine</button>
+<button class="px-3 py-1 rounded-md font-label-md text-on-surface-variant hover:text-on-surface text-xs">Jour</button>
+</div>
+</div>
+<!-- Timetable Grid -->
+<div class="flex-grow overflow-auto timeline-scroll relative bg-surface-container-lowest">
+<div class="min-w-[800px]">
+<!-- Header Row (Days) -->
+<div class="grid grid-cols-[80px_1fr_1fr_1fr_1fr_1fr] border-b border-outline-variant sticky top-0 bg-surface-container-lowest z-10">
+<div class="p-2 border-r border-outline-variant"></div>
+<div class="p-3 text-center border-r border-outline-variant">
+<span class="font-label-md text-label-md text-on-surface-variant block uppercase">Lun</span>
+<span class="font-headline-md text-on-surface block mt-1">12</span>
+</div>
+<div class="p-3 text-center border-r border-outline-variant">
+<span class="font-label-md text-label-md text-on-surface-variant block uppercase">Mar</span>
+<span class="font-headline-md text-on-surface block mt-1">13</span>
+</div>
+<div class="p-3 text-center border-r border-outline-variant bg-primary-fixed bg-opacity-20">
+<span class="font-label-md text-label-md text-primary block uppercase font-bold">Mer</span>
+<span class="font-headline-md text-primary block mt-1 font-bold">14</span>
+</div>
+<div class="p-3 text-center border-r border-outline-variant">
+<span class="font-label-md text-label-md text-on-surface-variant block uppercase">Jeu</span>
+<span class="font-headline-md text-on-surface block mt-1">15</span>
+</div>
+<div class="p-3 text-center">
+<span class="font-label-md text-label-md text-on-surface-variant block uppercase">Ven</span>
+<span class="font-headline-md text-on-surface block mt-1">16</span>
+</div>
+</div>
+<!-- Grid Body -->
+<div class="relative bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSI2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48bGluZSB4MT0iMCIgeTE9IjYwIiB4Mj0iMTAwJSIgeTI9IjYwIiBzdHJva2U9IiNlMGUzZTYiIHN0cm9rZS13aWR0aD0iMSIvPjwvc3ZnPg==')]">
+<!-- Time Column -->
+<div class="absolute left-0 top-0 bottom-0 w-[80px] border-r border-outline-variant bg-surface-container-lowest flex flex-col z-10">
+<div class="h-[60px] flex items-center justify-center font-label-md text-on-surface-variant border-b border-outline-variant/30">08:00</div>
+<div class="h-[60px] flex items-center justify-center font-label-md text-on-surface-variant border-b border-outline-variant/30">09:00</div>
+<div class="h-[60px] flex items-center justify-center font-label-md text-on-surface-variant border-b border-outline-variant/30">10:00</div>
+<div class="h-[60px] flex items-center justify-center font-label-md text-on-surface-variant border-b border-outline-variant/30">11:00</div>
+<div class="h-[60px] flex items-center justify-center font-label-md text-on-surface-variant border-b border-outline-variant/30">12:00</div>
+<div class="h-[60px] flex items-center justify-center font-label-md text-on-surface-variant border-b border-outline-variant/30">13:00</div>
+<div class="h-[60px] flex items-center justify-center font-label-md text-on-surface-variant border-b border-outline-variant/30">14:00</div>
+<div class="h-[60px] flex items-center justify-center font-label-md text-on-surface-variant border-b border-outline-variant/30">15:00</div>
+</div>
+<!-- Content Grid Container -->
+<div class="ml-[80px] grid grid-cols-5 min-h-[480px] relative">
+<!-- Day Columns Lines -->
+<div class="border-r border-outline-variant h-full"></div>
+<div class="border-r border-outline-variant h-full"></div>
+<div class="border-r border-outline-variant h-full bg-primary-fixed bg-opacity-5"></div>
+<div class="border-r border-outline-variant h-full"></div>
+<div class="h-full"></div>
+<!-- Current Time Indicator -->
+<div class="absolute left-0 right-0 top-[210px] h-[2px] bg-secondary-container z-20 pointer-events-none">
+<div class="absolute -left-1.5 -top-1.5 w-3 h-3 rounded-full bg-secondary-container"></div>
+</div>
+<!-- Class Blocks -->
+<!-- Block Lundi 08-10 -->
+<div class="absolute top-0 left-0 w-1/5 p-1 h-[120px]">
+<div class="bg-[#e3f2fd] border border-[#90caf9] h-full rounded-lg p-2 flex flex-col cursor-pointer hover:shadow-md transition-shadow">
+<span class="font-label-md font-bold text-[#1565c0]">Mathématiques 4ème A</span>
+<span class="font-label-md text-[#1976d2] flex items-center gap-1 mt-1"><span class="material-symbols-outlined text-[14px]">location_on</span> Local 102</span>
+<span class="font-label-md text-[#1976d2] mt-auto">08:00 - 10:00</span>
+</div>
+</div>
+<!-- Block Lundi 10-12 -->
+<div class="absolute top-[120px] left-0 w-1/5 p-1 h-[120px]">
+<div class="bg-[#e8f5e9] border border-[#a5d6a7] h-full rounded-lg p-2 flex flex-col cursor-pointer hover:shadow-md transition-shadow">
+<span class="font-label-md font-bold text-[#2e7d32]">Physique 4ème B</span>
+<span class="font-label-md text-[#388e3c] flex items-center gap-1 mt-1"><span class="material-symbols-outlined text-[14px]">location_on</span> Labo 1</span>
+<span class="font-label-md text-[#388e3c] mt-auto">10:00 - 12:00</span>
+</div>
+</div>
+<!-- Block Mardi 09-11 -->
+<div class="absolute top-[60px] left-[20%] w-1/5 p-1 h-[120px]">
+<div class="bg-[#e3f2fd] border border-[#90caf9] h-full rounded-lg p-2 flex flex-col cursor-pointer hover:shadow-md transition-shadow">
+<span class="font-label-md font-bold text-[#1565c0]">Mathématiques 5ème C</span>
+<span class="font-label-md text-[#1976d2] flex items-center gap-1 mt-1"><span class="material-symbols-outlined text-[14px]">location_on</span> Local 205</span>
+<span class="font-label-md text-[#1976d2] mt-auto">09:00 - 11:00</span>
+</div>
+</div>
+<!-- Block Mercredi 08-10 (Current Day) -->
+<div class="absolute top-0 left-[40%] w-1/5 p-1 h-[120px]">
+<div class="bg-[#fff3e0] border border-[#ffcc80] h-full rounded-lg p-2 flex flex-col cursor-pointer hover:shadow-md transition-shadow">
+<span class="font-label-md font-bold text-[#ef6c00]">Réunion Dept.</span>
+<span class="font-label-md text-[#f57c00] flex items-center gap-1 mt-1"><span class="material-symbols-outlined text-[14px]">location_on</span> Salle des Profs</span>
+<span class="font-label-md text-[#f57c00] mt-auto">08:00 - 10:00</span>
+</div>
+</div>
+<!-- Block Mercredi 11-13 (Active/Ongoing) -->
+<div class="absolute top-[180px] left-[40%] w-1/5 p-1 h-[120px] z-20">
+<div class="bg-[#e3f2fd] border-2 border-secondary-container h-full rounded-lg p-2 flex flex-col cursor-pointer shadow-md">
+<span class="font-label-md font-bold text-[#1565c0]">Mathématiques 6ème A</span>
+<span class="font-label-md text-[#1976d2] flex items-center gap-1 mt-1"><span class="material-symbols-outlined text-[14px]">location_on</span> Local 301</span>
+<span class="font-label-md text-[#1976d2] mt-auto">11:00 - 13:00</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Legend -->
+<div class="mt-sm flex gap-md items-center flex-wrap">
+<span class="font-label-md text-on-surface-variant flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-[#e3f2fd] border border-[#90caf9]"></span> Mathématiques
+                </span>
+<span class="font-label-md text-on-surface-variant flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-[#e8f5e9] border border-[#a5d6a7]"></span> Physique
+                </span>
+<span class="font-label-md text-on-surface-variant flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-[#fff3e0] border border-[#ffcc80]"></span> Réunions / Admin
+                </span>
+</div>
+</div>
+</main>
+<!-- Mobile Bottom Navigation (Hidden on md and up) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-surface border-t border-outline-variant z-30 pb-safe">
+<div class="flex justify-around items-center h-16">
+<a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant hover:text-primary" href="#">
+<span class="material-symbols-outlined text-[24px]">dashboard</span>
+<span class="text-[10px] mt-1 font-semibold">Tableau</span>
+</a>
+<a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant hover:text-primary" href="#">
+<span class="material-symbols-outlined text-[24px]">groups</span>
+<span class="text-[10px] mt-1 font-semibold">Élèves</span>
+</a>
+<a class="flex flex-col items-center justify-center w-full h-full text-primary" href="#">
+<div class="px-4 py-1 bg-primary-container bg-opacity-20 rounded-full mb-1">
+<span class="material-symbols-outlined text-[24px] text-primary" data-weight="fill">calendar_month</span>
+</div>
+<span class="text-[10px] font-bold">Horaires</span>
+</a>
+<a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant hover:text-primary" href="#">
+<span class="material-symbols-outlined text-[24px]">settings</span>
+<span class="text-[10px] mt-1 font-semibold">Paramètres</span>
+</a>
+</div>
+</nav>
+</body></html>

@@ -1,0 +1,422 @@
+<!DOCTYPE html><html class="light" lang="fr"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Paramètres de l'établissement - SAO School Manager</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-highest": "#e0e3e6",
+                      "tertiary-container": "#1e3c58",
+                      "primary": "#002547",
+                      "on-error": "#ffffff",
+                      "secondary-fixed": "#ffdcbe",
+                      "on-secondary-fixed-variant": "#693c00",
+                      "tertiary-fixed": "#d0e4ff",
+                      "surface-bright": "#f7fafd",
+                      "on-surface": "#181c1e",
+                      "surface": "#f7fafd",
+                      "inverse-primary": "#abc8f4",
+                      "on-primary-fixed": "#001c38",
+                      "outline-variant": "#c3c6cf",
+                      "on-tertiary-fixed": "#001d34",
+                      "surface-container": "#ebeef1",
+                      "inverse-on-surface": "#eef1f4",
+                      "primary-container": "#1b3b5f",
+                      "inverse-surface": "#2d3133",
+                      "background": "#f7fafd",
+                      "tertiary": "#032641",
+                      "surface-tint": "#426086",
+                      "secondary-container": "#fda13a",
+                      "surface-variant": "#e0e3e6",
+                      "secondary": "#8b5000",
+                      "secondary-fixed-dim": "#ffb871",
+                      "error-container": "#ffdad6",
+                      "on-primary-container": "#88a6cf",
+                      "on-tertiary": "#ffffff",
+                      "tertiary-fixed-dim": "#acc9eb",
+                      "on-tertiary-container": "#8aa6c7",
+                      "error": "#ba1a1a",
+                      "on-secondary-fixed": "#2d1600",
+                      "on-error-container": "#93000a",
+                      "outline": "#73777f",
+                      "surface-dim": "#d7dadd",
+                      "primary-fixed": "#d3e4ff",
+                      "on-surface-variant": "#43474e",
+                      "on-secondary": "#ffffff",
+                      "on-primary-fixed-variant": "#2a486d",
+                      "on-primary": "#ffffff",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary-fixed-variant": "#2c4965",
+                      "surface-container-high": "#e5e8eb",
+                      "surface-container-low": "#f1f4f7",
+                      "on-secondary-container": "#6a3c00",
+                      "on-background": "#181c1e",
+                      "primary-fixed-dim": "#abc8f4"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "md": "16px",
+                      "xl": "32px",
+                      "sm": "8px",
+                      "margin-desktop": "40px",
+                      "unit": "4px",
+                      "gutter": "20px",
+                      "margin-mobile": "16px",
+                      "lg": "24px",
+                      "xs": "4px"
+              },
+              "fontFamily": {
+                      "headline-lg": ["Inter"],
+                      "label-md": ["Inter"],
+                      "body-md": ["Inter"],
+                      "display-lg": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-lg-mobile": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                      "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "display-lg": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen">
+<!-- SideNavBar (from JSON) -->
+<nav class="hidden md:flex fixed left-0 top-0 h-full w-[280px] bg-primary dark:bg-primary shadow-sm z-20 flex-col p-lg gap-sm transition-all duration-200 ease-in-out">
+<div class="flex items-center gap-md mb-xl">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A highly detailed corporate logo for an educational institution in DR Congo. The logo features a modern abstract interpretation of an open book and a rising sun. The colors are deep navy blue and warm golden orange on a clean white background. The style is flat, professional, and scalable, suitable for a sophisticated SaaS dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBTz8lFuAJnPYlsdPKPebYdJ6dKHaffCZZvpdoAl7IhjcL7T-HJZyr_RbhLvNtFVKZmo8iZx5SU79tSFXN2H17Vu4AEvYvNYxw2jREscnQw-62yAvXgP4Mx4HinOSOXm2q4Bo4vsXtxhBozWDzVTlXqMkHQ_rhxE1T-2ebt4OBlwsCAaReVQI5AeUQ7_jF2mt1ro66AIZJMFT4UMhn8wgqHqGl9VHRU4z7wrPrdw8wIpT1lzmLHCNBBw">
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-on-primary">SAO School Manager</h1>
+<p class="font-label-md text-label-md text-on-primary/70">Administration Scolaire</p>
+</div>
+</div>
+<ul class="flex flex-col gap-sm flex-grow">
+<!-- Inactive -->
+<li class="">
+<a class="flex items-center gap-md px-md py-sm text-on-primary/70 hover:text-on-primary hover:bg-primary-fixed-variant/10 transition-colors font-body-md text-body-md rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                    Tableau de bord
+                </a>
+</li>
+<!-- Inactive -->
+<li class="">
+<a class="flex items-center gap-md px-md py-sm text-on-primary/70 hover:text-on-primary hover:bg-primary-fixed-variant/10 transition-colors font-body-md text-body-md rounded-lg" href="#">
+<span class="material-symbols-outlined">groups</span>
+                    Élèves
+                </a>
+</li>
+<!-- Inactive -->
+<li class="">
+<a class="flex items-center gap-md px-md py-sm text-on-primary/70 hover:text-on-primary hover:bg-primary-fixed-variant/10 transition-colors font-body-md text-body-md rounded-lg" href="#">
+<span class="material-symbols-outlined">school</span>
+                    Classes
+                </a>
+</li>
+<!-- Inactive -->
+<li class="">
+<a class="flex items-center gap-md px-md py-sm text-on-primary/70 hover:text-on-primary hover:bg-primary-fixed-variant/10 transition-colors font-body-md text-body-md rounded-lg" href="#">
+<span class="material-symbols-outlined">payments</span>
+                    Frais scolaires
+                </a>
+</li>
+<!-- Active: Settings -->
+<li class="">
+<a class="flex items-center gap-md px-md py-sm bg-primary-container text-on-primary-container rounded-lg font-body-md text-body-md transition-all duration-200 ease-in-out shadow-sm hover:bg-primary-fixed-variant/10" href="#">
+<span class="material-symbols-outlined filled">settings</span>
+                    Paramètres
+                </a>
+</li>
+</ul>
+</nav>
+<!-- TopNavBar (from JSON) -->
+<header class="fixed top-0 right-0 w-[calc(100%-280px)] h-16 bg-surface dark:bg-background border-b border-outline-variant dark:border-outline z-10 flex justify-between items-center px-margin-desktop">
+<!-- Search Area placeholder to align items properly if search was present -->
+<div class="flex-1"></div>
+<div class="flex items-center gap-md">
+<button class="text-on-surface-variant hover:bg-surface-container-low transition-colors p-sm rounded-full cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container-low transition-colors p-sm rounded-full cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant ml-sm cursor-pointer hover:opacity-90">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a mature African male school administrator. He is wearing a dark navy suit with a light blue shirt. The background is a slightly blurred, bright, modern office space with white walls. The lighting is soft and even, typical of a high-quality corporate portrait." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDb1dLd8cAsJ6tbUtDbgcaWKLTjToEiMKZbCEvv5lI7wpZgUvkVENnxUnGqriDYbH65ODdCJZ7Wub0WkrVIu704MNc8Rc-JrkZGgVtjvqJJ_kTM-6cOZOyuJ-_GETSefwekQyfwE_30V3RQ4N0aXIMuKN-KgosGiv2-YKqdeu5GbkfBrbf38wt2cjjKx5SawvGB4mELVL_0w30vP8Sshr3SRNfc0_n6F2eCcNDPf487HQHQJ_Co5Z_rjQ">
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="ml-[280px] pt-16 min-h-screen bg-background">
+<!-- Header Section -->
+<div class="px-margin-desktop py-xl border-b border-outline-variant bg-surface">
+<div class="flex justify-between items-end">
+<div>
+<h2 class="font-display-lg text-display-lg text-on-surface mb-sm">Paramètres de l'établissement</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Gérez les configurations globales de votre institution.</p>
+</div>
+<div class="flex gap-md">
+<button class="px-lg py-sm font-label-md text-label-md border border-primary text-primary rounded-lg hover:bg-surface-container-low transition-colors cursor-pointer">
+                        Annuler
+                    </button>
+<button class="px-lg py-sm font-label-md text-label-md bg-secondary-container text-on-secondary-container rounded-lg hover:brightness-95 transition-all shadow-sm cursor-pointer">
+                        Enregistrer les modifications
+                    </button>
+</div>
+</div>
+</div>
+<!-- Content Area: Bento-style Grid -->
+<div class="p-margin-desktop max-w-7xl mx-auto grid grid-cols-12 gap-gutter">
+<!-- 1. Identité de l'établissement -->
+<section class="col-span-12 lg:col-span-8 bg-surface-container-lowest border border-outline-variant rounded-xl p-lg flex flex-col gap-lg">
+<div class="border-b border-outline-variant pb-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">apartment</span>
+                        Identité de l'établissement
+                    </h3>
+</div>
+<div class="flex flex-col md:flex-row gap-xl items-start">
+<!-- Upload Box -->
+<div class="flex-shrink-0 flex flex-col items-center gap-sm w-full md:w-auto">
+<div class="w-32 h-32 border-2 border-dashed border-outline-variant rounded-lg flex flex-col items-center justify-center bg-surface-container-low hover:border-primary hover:bg-surface transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-outline group-hover:text-primary text-4xl mb-xs">upload_file</span>
+<span class="font-label-md text-label-md text-on-surface-variant group-hover:text-primary">Logo Officiel</span>
+</div>
+<p class="font-label-md text-label-md text-outline">JPG, PNG (Max. 2MB)</p>
+</div>
+<!-- Basic Info Form -->
+<div class="flex-grow grid grid-cols-1 md:grid-cols-2 gap-md w-full">
+<div class="flex flex-col gap-xs col-span-2 md:col-span-1">
+<label class="font-label-md text-label-md text-on-surface-variant">Nom de l'établissement</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-md py-sm font-body-md text-body-md focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all" type="text" value="Complexe Scolaire L'Excellence">
+</div>
+<div class="flex flex-col gap-xs col-span-2 md:col-span-1">
+<label class="font-label-md text-label-md text-on-surface-variant">Code SECOPE</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-md py-sm font-body-md text-body-md focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all" type="text" value="7023485-A">
+</div>
+<div class="flex flex-col gap-xs col-span-2">
+<label class="font-label-md text-label-md text-on-surface-variant">Adresse de direction</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-md py-sm font-body-md text-body-md focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all" type="text" value="12 Avenue de la Justice, Commune de la Gombe, Kinshasa">
+</div>
+</div>
+</div>
+</section>
+<!-- 2. Paramètres Financiers -->
+<section class="col-span-12 lg:col-span-4 bg-surface-container-lowest border border-outline-variant rounded-xl p-lg flex flex-col gap-md">
+<div class="border-b border-outline-variant pb-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">account_balance</span>
+                        Finances
+                    </h3>
+</div>
+<div class="flex flex-col gap-md">
+<p class="font-body-md text-body-md text-on-surface-variant mb-xs">Définissez la devise par défaut pour les reçus et les frais scolaires.</p>
+<label class="flex items-center justify-between p-sm border border-outline-variant rounded-lg hover:border-primary hover:bg-surface transition-all cursor-pointer">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Dollar Américain (USD)</span>
+<span class="font-body-md text-body-md text-outline text-xs">Recommandé pour stabilité</span>
+</div>
+<input checked="" class="w-4 h-4 text-primary bg-surface-container-lowest border-outline-variant focus:ring-primary" name="currency" type="radio">
+</label>
+<label class="flex items-center justify-between p-sm border border-outline-variant rounded-lg hover:border-primary hover:bg-surface transition-all cursor-pointer">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Franc Congolais (CDF)</span>
+<span class="font-body-md text-body-md text-outline text-xs">Monnaie locale</span>
+</div>
+<input class="w-4 h-4 text-primary bg-surface-container-lowest border-outline-variant focus:ring-primary" name="currency" type="radio">
+</label>
+</div>
+</section>
+<!-- 3. Système de Notation & 6. Seuils d'Alerte -->
+<section class="col-span-12 lg:col-span-5 flex flex-col gap-gutter">
+<!-- Système de Notation -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg flex flex-col gap-md h-full">
+<div class="border-b border-outline-variant pb-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">bar_chart</span>
+                            Système de Notation
+                        </h3>
+</div>
+<div class="grid grid-cols-1 gap-sm">
+<label class="flex items-center gap-md p-md border border-primary bg-surface rounded-lg cursor-pointer transition-all">
+<input checked="" class="w-4 h-4 text-primary bg-surface-container-lowest border-outline-variant focus:ring-primary" name="grading" type="radio">
+<div>
+<span class="font-label-md text-label-md text-primary block">Pourcentage (Sur 100%)</span>
+<span class="font-body-md text-body-md text-on-surface-variant text-sm block">Standard national RDC</span>
+</div>
+</label>
+<label class="flex items-center gap-md p-md border border-outline-variant hover:border-outline rounded-lg cursor-pointer transition-all">
+<input class="w-4 h-4 text-primary bg-surface-container-lowest border-outline-variant focus:ring-primary" name="grading" type="radio">
+<div>
+<span class="font-label-md text-label-md text-on-surface block">Base 20 (Sur 20)</span>
+</div>
+</label>
+<label class="flex items-center gap-md p-md border border-outline-variant hover:border-outline rounded-lg cursor-pointer transition-all">
+<input class="w-4 h-4 text-primary bg-surface-container-lowest border-outline-variant focus:ring-primary" name="grading" type="radio">
+<div>
+<span class="font-label-md text-label-md text-on-surface block">Lettres (A-F)</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Seuils d'Alerte -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg flex flex-col gap-md">
+<div class="border-b border-outline-variant pb-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">warning</span>
+                            Seuils d'Alerte (Absences)
+                        </h3>
+</div>
+<div class="flex flex-col gap-sm">
+<label class="font-label-md text-label-md text-on-surface-variant">Alerter les parents/direction après :</label>
+<select class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-md py-sm font-body-md text-body-md focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all">
+<option value="3">3 absences consécutives (Stricte)</option>
+<option selected="" value="5">5 absences consécutives (Standard)</option>
+<option value="10">10 absences consécutives (Tolérant)</option>
+</select>
+</div>
+</div>
+</section>
+<!-- 4. Structure Académique & 5. Modules Officiels -->
+<section class="col-span-12 lg:col-span-7 flex flex-col gap-gutter">
+<!-- Structure Académique -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg flex flex-col gap-md">
+<div class="border-b border-outline-variant pb-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">account_tree</span>
+                            Sections Organisées (Humanités)
+                        </h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-xs">Activez les sections disponibles dans votre établissement pour le cycle long.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-sm">
+<!-- Switch toggle styling inline -->
+<label class="flex items-center justify-between p-sm bg-surface rounded-lg border border-outline-variant cursor-pointer hover:bg-surface-container-low">
+<span class="font-label-md text-label-md text-on-surface">Scientifique</span>
+<div class="relative">
+<input checked="" class="sr-only peer" type="checkbox">
+<div class="w-9 h-5 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</div>
+</label>
+<label class="flex items-center justify-between p-sm bg-surface rounded-lg border border-outline-variant cursor-pointer hover:bg-surface-container-low">
+<span class="font-label-md text-label-md text-on-surface">Littéraire</span>
+<div class="relative">
+<input checked="" class="sr-only peer" type="checkbox">
+<div class="w-9 h-5 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</div>
+</label>
+<label class="flex items-center justify-between p-sm bg-surface rounded-lg border border-outline-variant cursor-pointer hover:bg-surface-container-low">
+<span class="font-label-md text-label-md text-on-surface">Commerciale et de Gestion</span>
+<div class="relative">
+<input checked="" class="sr-only peer" type="checkbox">
+<div class="w-9 h-5 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</div>
+</label>
+<label class="flex items-center justify-between p-sm bg-surface rounded-lg border border-outline-variant cursor-pointer hover:bg-surface-container-low">
+<span class="font-label-md text-label-md text-on-surface">Technique (Électricité, etc.)</span>
+<div class="relative">
+<input class="sr-only peer" type="checkbox">
+<div class="w-9 h-5 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</div>
+</label>
+<label class="flex items-center justify-between p-sm bg-surface rounded-lg border border-outline-variant cursor-pointer hover:bg-surface-container-low">
+<span class="font-label-md text-label-md text-on-surface">Pédagogie Générale</span>
+<div class="relative">
+<input class="sr-only peer" type="checkbox">
+<div class="w-9 h-5 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</div>
+</label>
+<label class="flex items-center justify-between p-sm bg-surface rounded-lg border border-outline-variant cursor-pointer hover:bg-surface-container-low">
+<span class="font-label-md text-label-md text-on-surface">Nutrition</span>
+<div class="relative">
+<input class="sr-only peer" type="checkbox">
+<div class="w-9 h-5 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</div>
+</label>
+<label class="flex items-center justify-between p-sm bg-surface rounded-lg border border-outline-variant cursor-pointer hover:bg-surface-container-low">
+<span class="font-label-md text-label-md text-on-surface">Coupe et Couture</span>
+<div class="relative">
+<input class="sr-only peer" type="checkbox">
+<div class="w-9 h-5 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</div>
+</label>
+<label class="flex items-center justify-between p-sm bg-surface rounded-lg border border-outline-variant cursor-pointer hover:bg-surface-container-low">
+<span class="font-label-md text-label-md text-on-surface">Agriculture</span>
+<div class="relative">
+<input class="sr-only peer" type="checkbox">
+<div class="w-9 h-5 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</div>
+</label>
+<label class="flex items-center justify-between p-sm bg-surface rounded-lg border border-outline-variant cursor-pointer hover:bg-surface-container-low">
+<span class="font-label-md text-label-md text-on-surface">Électronique</span>
+<div class="relative">
+<input class="sr-only peer" type="checkbox">
+<div class="w-9 h-5 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</div>
+</label></div>
+</div>
+<!-- Modules Officiels -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg flex flex-col gap-md">
+<div class="border-b border-outline-variant pb-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">workspace_premium</span>
+                            Modules d'Évaluation Officiels
+                        </h3>
+</div>
+<div class="flex flex-col gap-md mt-sm">
+<div class="flex items-center justify-between p-md border border-outline-variant rounded-lg bg-surface">
+<div>
+<h4 class="font-label-md text-label-md text-on-surface mb-xs">Module TENAFEP</h4>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">Gestion des inscriptions et palmarès pour la 6ème Primaire.</p>
+</div>
+<div class="relative cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox">
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary-container"></div>
+</div>
+</div>
+<div class="flex items-center justify-between p-md border border-outline-variant rounded-lg bg-surface">
+<div>
+<h4 class="font-label-md text-label-md text-on-surface mb-xs">Examen d'État (EXETAT)</h4>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">Suivi des finalistes, formulaires E01 et publication des résultats.</p>
+</div>
+<div class="relative cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox">
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary-container"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+
+
+</body></html>

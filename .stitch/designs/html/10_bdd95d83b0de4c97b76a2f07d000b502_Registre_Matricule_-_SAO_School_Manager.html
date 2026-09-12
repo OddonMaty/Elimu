@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SAO School Manager - Registre Matricule</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "outline": "#73777f",
+                      "secondary-fixed-dim": "#ffb871",
+                      "on-secondary-fixed": "#2d1600",
+                      "inverse-surface": "#2d3133",
+                      "primary-fixed-dim": "#abc8f4",
+                      "on-tertiary-container": "#8aa6c7",
+                      "tertiary-fixed-dim": "#acc9eb",
+                      "secondary-container": "#fda13a",
+                      "inverse-on-surface": "#eef1f4",
+                      "surface-container": "#ebeef1",
+                      "background": "#f7fafd",
+                      "on-primary-fixed": "#001c38",
+                      "surface": "#f7fafd",
+                      "on-secondary-container": "#6a3c00",
+                      "on-background": "#181c1e",
+                      "tertiary-fixed": "#d0e4ff",
+                      "primary-container": "#1b3b5f",
+                      "surface-tint": "#426086",
+                      "primary-fixed": "#d3e4ff",
+                      "surface-container-high": "#e5e8eb",
+                      "on-tertiary-fixed": "#001d34",
+                      "on-error-container": "#93000a",
+                      "on-secondary": "#ffffff",
+                      "inverse-primary": "#abc8f4",
+                      "primary": "#002547",
+                      "on-surface-variant": "#43474e",
+                      "tertiary": "#032641",
+                      "on-tertiary-fixed-variant": "#2c4965",
+                      "on-primary-container": "#88a6cf",
+                      "on-primary-fixed-variant": "#2a486d",
+                      "on-error": "#ffffff",
+                      "surface-container-low": "#f1f4f7",
+                      "on-surface": "#181c1e",
+                      "outline-variant": "#c3c6cf",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-variant": "#e0e3e6",
+                      "tertiary-container": "#1e3c58",
+                      "error": "#ba1a1a",
+                      "on-tertiary": "#ffffff",
+                      "surface-bright": "#f7fafd",
+                      "on-primary": "#ffffff",
+                      "secondary": "#8b5000",
+                      "on-secondary-fixed-variant": "#693c00",
+                      "secondary-fixed": "#ffdcbe",
+                      "surface-container-highest": "#e0e3e6",
+                      "error-container": "#ffdad6",
+                      "surface-dim": "#d7dadd"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "sm": "8px",
+                      "gutter": "20px",
+                      "margin-desktop": "40px",
+                      "xl": "32px",
+                      "xs": "4px",
+                      "unit": "4px",
+                      "lg": "24px",
+                      "margin-mobile": "16px",
+                      "md": "16px"
+              },
+              "fontFamily": {
+                      "display-lg": ["Inter"],
+                      "label-md": ["Inter"],
+                      "body-md": ["Inter"],
+                      "headline-lg-mobile": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "headline-lg": ["Inter"]
+              },
+              "fontSize": {
+                      "display-lg": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased overflow-x-hidden">
+<!-- SideNavBar (Shared Component) -->
+<nav class="fixed left-0 top-0 h-full w-[280px] bg-primary flex flex-col py-gutter px-md shadow-sm z-40">
+<!-- Header / Logo -->
+<div class="flex items-center gap-sm mb-xl px-sm">
+<div class="w-10 h-10 rounded bg-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-white" data-weight="fill" style="font-variation-settings: 'FILL' 1;">school</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md font-bold text-white tracking-tight">SAO School Manager</span>
+<span class="font-label-md text-label-md text-primary-fixed-dim">Portail Administratif</span>
+</div>
+</div>
+<!-- Main Navigation -->
+<div class="flex flex-col gap-unit flex-1">
+<a class="flex items-center gap-sm px-md py-sm text-on-primary-container/70 hover:text-white hover:bg-primary-container/20 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Tableau de Bord</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm bg-primary-container text-on-primary-container rounded-lg transition-transform duration-150 scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">inventory</span>
+<span class="font-label-md text-label-md">Registre Matricule</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm text-on-primary-container/70 hover:text-white hover:bg-primary-container/20 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md">Gestion des Éleves</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm text-on-primary-container/70 hover:text-white hover:bg-primary-container/20 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">military_tech</span>
+<span class="font-label-md text-label-md">Palmarès</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm text-on-primary-container/70 hover:text-white hover:bg-primary-container/20 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md text-label-md">Finances</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm text-on-primary-container/70 hover:text-white hover:bg-primary-container/20 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Paramètres</span>
+</a>
+</div>
+<!-- Footer Actions -->
+<div class="mt-auto border-t border-primary-container/50 pt-md flex flex-col gap-unit">
+<a class="flex items-center gap-sm px-md py-sm text-on-primary-container/70 hover:text-white hover:bg-primary-container/20 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="font-label-md text-label-md">Mon Profil</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm text-on-primary-container/70 hover:text-white hover:bg-primary-container/20 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Déconnexion</span>
+</a>
+</div>
+</nav>
+<!-- TopNavBar (Shared Component) -->
+<header class="fixed left-[280px] right-0 top-0 h-16 bg-surface-container-lowest border-b border-outline-variant flex justify-between items-center px-margin-desktop z-30">
+<!-- Title & Search Context -->
+<div class="flex items-center gap-xl">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Registre Matricule</h1>
+<!-- Global Search -->
+<div class="relative hidden lg:block w-[320px]">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="w-full h-10 pl-10 pr-4 rounded-lg border border-outline-variant bg-surface focus:ring-2 focus:ring-primary focus:border-primary transition-all font-body-md text-body-md text-on-surface outline-none" placeholder="Rechercher par nom, matricule..." type="text"/>
+</div>
+</div>
+<!-- Trailing Actions & Profile -->
+<div class="flex items-center gap-md">
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="w-px h-8 bg-outline-variant mx-sm"></div>
+<button class="flex items-center gap-sm hover:opacity-80 transition-opacity">
+<img alt="Avatar de l'administrateur" class="w-9 h-9 rounded-full object-cover border border-outline-variant" data-alt="A professional headshot of an African school administrator wearing a formal suit, softly lit in an office environment, conveying authority and approachability in a modern SaaS context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAk32u3mi5lnOvwWcy2fHtnzSCzysz76uvoArxnHYNQy7XnaLdWyPcxnPzrd56mPAnHZ55FZMJVheLxYnvRXNtbrWOjisWhSKjiccEeZmL_IrKn5KnDr-c64vlbHfnmwRL5zNHJIBzBxTkuJWqMO67pO9eN4_U_p0Bj-TMfybaQC3n0NDGzOVNlDGE1Zw5HkCgX5ddgi8WG7z1kUBuTdTwUMW2NG55s6Ov0qS3k47rGu4YNFvlvnhQBbQ"/>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-[280px] pt-16 min-h-screen pb-margin-desktop">
+<div class="px-margin-desktop py-lg max-w-[1600px] mx-auto flex flex-col gap-lg">
+<!-- Action Bar -->
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-md">
+<p class="font-body-md text-body-md text-on-surface-variant">Gérez le registre principal des élèves, suivez les admissions et l'historique de l'institution.</p>
+<div class="flex items-center gap-sm">
+<button class="flex items-center gap-sm px-4 py-2 border border-primary text-primary font-label-md text-label-md rounded-lg hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+                        Exporter en PDF
+                    </button>
+<button class="flex items-center gap-sm px-4 py-2 bg-secondary-container text-on-secondary-container font-label-md text-label-md rounded-lg hover:brightness-95 transition-all shadow-sm">
+<span class="material-symbols-outlined text-[18px]">person_add</span>
+                        Nouvelle Inscription
+                    </button>
+</div>
+</div>
+<!-- Filters Section (Bento/Card Style) -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-wrap gap-md items-end">
+<div class="flex flex-col gap-xs flex-1 min-w-[200px]">
+<label class="font-label-md text-label-md text-on-surface-variant">Année Scolaire</label>
+<select class="h-10 px-sm rounded-lg border border-outline-variant bg-surface font-body-md text-body-md text-on-surface focus:ring-2 focus:ring-primary outline-none">
+<option>2023 - 2024</option>
+<option>2022 - 2023</option>
+<option>2021 - 2022</option>
+</select>
+</div>
+<div class="flex flex-col gap-xs flex-1 min-w-[200px]">
+<label class="font-label-md text-label-md text-on-surface-variant">Cycle d'enseignement</label>
+<select class="h-10 px-sm rounded-lg border border-outline-variant bg-surface font-body-md text-body-md text-on-surface focus:ring-2 focus:ring-primary outline-none">
+<option>Tous les cycles</option>
+<option>École Primaire</option>
+<option>Éducation de Base (CO)</option>
+<option>Humanités</option>
+</select>
+</div>
+<div class="flex flex-col gap-xs flex-1 min-w-[200px]">
+<label class="font-label-md text-label-md text-on-surface-variant">Classe</label>
+<select class="h-10 px-sm rounded-lg border border-outline-variant bg-surface font-body-md text-body-md text-on-surface focus:ring-2 focus:ring-primary outline-none">
+<option>Toutes les classes</option>
+<option>1ère Primaire A</option>
+<option>2ème CO</option>
+<option>4ème Bio-Chimie</option>
+</select>
+</div>
+<button class="h-10 px-lg bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md rounded-lg transition-colors border border-outline-variant">
+                    Réinitialiser
+                </button>
+</div>
+<!-- Dense Administrative Data Table -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-[0_4px_12px_rgba(27,59,95,0.03)] flex flex-col">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse whitespace-nowrap">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="px-md py-sm font-label-md text-label-md text-on-surface-variant font-semibold">N° Matricule</th>
+<th class="px-md py-sm font-label-md text-label-md text-on-surface-variant font-semibold">Nom complet de l'élève</th>
+<th class="px-md py-sm font-label-md text-label-md text-on-surface-variant font-semibold">Sexe</th>
+<th class="px-md py-sm font-label-md text-label-md text-on-surface-variant font-semibold">Date et Lieu de naissance</th>
+<th class="px-md py-sm font-label-md text-label-md text-on-surface-variant font-semibold">Noms des Parents</th>
+<th class="px-md py-sm font-label-md text-label-md text-on-surface-variant font-semibold">Admission</th>
+<th class="px-md py-sm font-label-md text-label-md text-on-surface-variant font-semibold">Classe actuelle</th>
+<th class="px-md py-sm font-label-md text-label-md text-on-surface-variant font-semibold">État</th>
+<th class="px-md py-sm font-label-md text-label-md text-on-surface-variant font-semibold text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-on-surface divide-y divide-surface-variant">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-bright transition-colors group cursor-default">
+<td class="px-md py-sm font-mono text-on-surface-variant">MAT-2023-001</td>
+<td class="px-md py-sm font-semibold text-primary">KABUYA MUKENDI Jean</td>
+<td class="px-md py-sm">M</td>
+<td class="px-md py-sm">12/04/2010 à Kinshasa</td>
+<td class="px-md py-sm text-on-surface-variant text-[13px]">Kabuya Pierre &amp; Ngalula Marie</td>
+<td class="px-md py-sm">05/09/2023</td>
+<td class="px-md py-sm">1ère CO A</td>
+<td class="px-md py-sm">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold tracking-wide bg-primary-fixed text-on-primary-fixed-variant">
+                                        Actif
+                                    </span>
+</td>
+<td class="px-md py-sm text-right">
+<button class="text-on-surface-variant hover:text-primary transition-colors p-1 rounded hover:bg-surface-variant"><span class="material-symbols-outlined text-[18px]">more_vert</span></button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-bright transition-colors group cursor-default bg-surface/30">
+<td class="px-md py-sm font-mono text-on-surface-variant">MAT-2021-145</td>
+<td class="px-md py-sm font-semibold text-primary">ILUNGA NSENGA Sarah</td>
+<td class="px-md py-sm">F</td>
+<td class="px-md py-sm">03/11/2008 à Lubumbashi</td>
+<td class="px-md py-sm text-on-surface-variant text-[13px]">Ilunga Paul &amp; Kapinga Rose</td>
+<td class="px-md py-sm">02/09/2021</td>
+<td class="px-md py-sm">3ème Humanités Lit.</td>
+<td class="px-md py-sm">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold tracking-wide bg-primary-fixed text-on-primary-fixed-variant">
+                                        Actif
+                                    </span>
+</td>
+<td class="px-md py-sm text-right">
+<button class="text-on-surface-variant hover:text-primary transition-colors p-1 rounded hover:bg-surface-variant"><span class="material-symbols-outlined text-[18px]">more_vert</span></button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-bright transition-colors group cursor-default">
+<td class="px-md py-sm font-mono text-on-surface-variant">MAT-2020-088</td>
+<td class="px-md py-sm font-semibold text-primary opacity-60">MUTOMBO TSHIAMALA David</td>
+<td class="px-md py-sm opacity-60">M</td>
+<td class="px-md py-sm opacity-60">25/06/2009 à Mbuji-Mayi</td>
+<td class="px-md py-sm text-on-surface-variant text-[13px] opacity-60">Mutombo Simon &amp; ...</td>
+<td class="px-md py-sm opacity-60">06/09/2020</td>
+<td class="px-md py-sm text-on-surface-variant italic">Non inscrit</td>
+<td class="px-md py-sm">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold tracking-wide bg-error-container/50 text-error">
+                                        Sorti
+                                    </span>
+</td>
+<td class="px-md py-sm text-right">
+<button class="text-on-surface-variant hover:text-primary transition-colors p-1 rounded hover:bg-surface-variant"><span class="material-symbols-outlined text-[18px]">more_vert</span></button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-bright transition-colors group cursor-default bg-surface/30">
+<td class="px-md py-sm font-mono text-on-surface-variant">MAT-2022-302</td>
+<td class="px-md py-sm font-semibold text-primary">KAZADI LOMAMI Grâce</td>
+<td class="px-md py-sm">F</td>
+<td class="px-md py-sm">18/01/2012 à Goma</td>
+<td class="px-md py-sm text-on-surface-variant text-[13px]">Kazadi F. &amp; Mulamba A.</td>
+<td class="px-md py-sm">05/09/2022</td>
+<td class="px-md py-sm">6ème Primaire</td>
+<td class="px-md py-sm">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold tracking-wide bg-tertiary-fixed text-on-tertiary-fixed">
+                                        Transféré
+                                    </span>
+</td>
+<td class="px-md py-sm text-right">
+<button class="text-on-surface-variant hover:text-primary transition-colors p-1 rounded hover:bg-surface-variant"><span class="material-symbols-outlined text-[18px]">more_vert</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="border-t border-outline-variant bg-surface-container-lowest px-md py-sm flex justify-between items-center">
+<span class="font-body-md text-[13px] text-on-surface-variant">Affichage de 1 à 4 sur 1,245 élèves</span>
+<div class="flex items-center gap-xs">
+<button class="w-8 h-8 rounded flex items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-colors disabled:opacity-50"><span class="material-symbols-outlined text-[18px]">chevron_left</span></button>
+<button class="w-8 h-8 rounded bg-primary-container text-on-primary-container font-label-md text-[13px] flex items-center justify-center">1</button>
+<button class="w-8 h-8 rounded hover:bg-surface-variant text-on-surface font-body-md text-[13px] flex items-center justify-center transition-colors">2</button>
+<button class="w-8 h-8 rounded hover:bg-surface-variant text-on-surface font-body-md text-[13px] flex items-center justify-center transition-colors">3</button>
+<span class="text-on-surface-variant px-1">...</span>
+<button class="w-8 h-8 rounded flex items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-colors"><span class="material-symbols-outlined text-[18px]">chevron_right</span></button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

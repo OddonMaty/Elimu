@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Devoirs de la semaine - SAO School Manager</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface": "#f7fafd",
+                        "on-secondary-container": "#6a3c00",
+                        "tertiary-fixed-dim": "#acc9eb",
+                        "primary-fixed-dim": "#abc8f4",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#ffdcbe",
+                        "surface-container-high": "#e5e8eb",
+                        "on-secondary-fixed": "#2d1600",
+                        "on-error-container": "#93000a",
+                        "primary": "#002547",
+                        "outline-variant": "#c3c6cf",
+                        "error": "#ba1a1a",
+                        "on-tertiary-container": "#8aa6c7",
+                        "inverse-primary": "#abc8f4",
+                        "surface-container-highest": "#e0e3e6",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed-variant": "#693c00",
+                        "on-surface-variant": "#43474e",
+                        "inverse-surface": "#2d3133",
+                        "on-primary-container": "#88a6cf",
+                        "surface-container-low": "#f1f4f7",
+                        "on-primary-fixed": "#001c38",
+                        "secondary-container": "#fda13a",
+                        "surface-variant": "#e0e3e6",
+                        "secondary": "#8b5000",
+                        "background": "#f7fafd",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#1e3c58",
+                        "outline": "#73777f",
+                        "tertiary": "#032641",
+                        "secondary-fixed-dim": "#ffb871",
+                        "surface-dim": "#d7dadd",
+                        "surface-container": "#ebeef1",
+                        "surface-tint": "#426086",
+                        "primary-container": "#1b3b5f",
+                        "on-tertiary-fixed": "#001d34",
+                        "surface-bright": "#f7fafd",
+                        "on-background": "#181c1e",
+                        "on-primary-fixed-variant": "#2a486d",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#eef1f4",
+                        "primary-fixed": "#d3e4ff",
+                        "on-surface": "#181c1e",
+                        "on-tertiary-fixed-variant": "#2c4965",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed": "#d0e4ff"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    spacing: {
+                        "xl": "32px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "unit": "4px",
+                        "margin-desktop": "40px",
+                        "lg": "24px",
+                        "gutter": "20px",
+                        "xs": "4px",
+                        "margin-mobile": "16px"
+                    },
+                    fontFamily: {
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    fontSize: {
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "display-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg": ["28px", { "lineHeight": "36px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f7fafd; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .material-symbols-outlined.fill { font-variation-settings: 'FILL' 1; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface flex h-screen overflow-hidden">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col h-full p-lg gap-sm fixed left-0 top-0 w-[280px] bg-primary dark:bg-primary shadow-sm z-20">
+<div class="flex items-center gap-md mb-xl">
+<img alt="Logo de l'école SAO" class="w-10 h-10 rounded-full bg-white/10" data-alt="A sophisticated, minimalist logo for an educational institution named 'SAO School Manager'. The design features a modern crest or abstract geometric representation of a book and shield, rendered in crisp white against a deep navy blue background. The lighting is studio-quality, emphasizing the clean lines and corporate aesthetic of the SaaS product." src="https://lh3.googleusercontent.com/aida-public/AB6AXuArU4m_p3bheUAIxQYmqMtPcgPD7k98ue0BOVYUB1juhNpgvit6FdVy7nTYhOJTzuUrot8CW4oS9HgJ-aI3aLANtFF1RPZWZxsVq7lSR75ygs5rnD6jEhr9dl5Wh5uleaJYXqQfrxK9aamvITsx-BOl6nnzMe-E9Vlbx1pHi_CbRcsUNU-i2Omk7npVLKOrUDOlkFOmp-dJlQ4-vmVVWn5Srd2EMVTB4KPIaMPCnFujFthJYzrA52cd9w"/>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md font-bold text-on-primary">SAO School Manager</span>
+<span class="font-label-md text-label-md text-on-primary/70">Administration Scolaire</span>
+</div>
+</div>
+<div class="flex flex-col gap-sm flex-1">
+<a class="flex items-center gap-md px-md py-sm text-on-primary/70 hover:text-on-primary hover:bg-primary-fixed-variant/10 transition-all duration-200 ease-in-out rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-md text-body-md">Tableau de bord</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-primary/70 hover:text-on-primary hover:bg-primary-fixed-variant/10 transition-all duration-200 ease-in-out rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="font-body-md text-body-md">Élèves</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm bg-primary-container text-on-primary-container rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined fill" data-icon="school">school</span>
+<span class="font-body-md text-body-md font-semibold">Classes</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-primary/70 hover:text-on-primary hover:bg-primary-fixed-variant/10 transition-all duration-200 ease-in-out rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-body-md text-body-md">Frais scolaires</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-primary/70 hover:text-on-primary hover:bg-primary-fixed-variant/10 transition-all duration-200 ease-in-out rounded-lg mt-auto" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-md text-body-md">Paramètres</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col md:ml-[280px] h-full overflow-hidden bg-background">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center px-margin-desktop w-full fixed top-0 right-0 w-[calc(100%-280px)] h-16 bg-surface dark:bg-background border-b border-outline-variant dark:border-outline z-10">
+<div class="flex items-center">
+<h1 class="font-headline-md text-headline-md text-primary dark:text-primary-fixed">SAO School Manager</h1>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-full cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-full cursor-pointer active:opacity-80 relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-full cursor-pointer active:opacity-80 mr-sm">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<img alt="Photo de profil administrateur" class="w-8 h-8 rounded-full border border-outline-variant" data-alt="A professional headshot of a school administrator or director, wearing a sharp navy blue blazer over a crisp white shirt. The background is a soft, blurred modern office environment with subtle cool lighting. The portrait is corporate, reassuring, and conveys authority and competence suitable for a high-end SaaS dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuASA0yHNrvAuh9ChkXnsN3YHaUVuLkdfGD-kMoI7fiODbx4NH2r6khiRSPyfhqyfVWybEFvrm__nRvjJ5bxMbkToQSusB6Z7wkVm9cbqxX_WjDVRlAjSePX2Pv_JWsgRxWYTTg6wU6WnYpy9cz9QGdJNfIEN7zlPRDeoCapwEuIUMLVkBhinBPq9OvkodiUJkpZgjfsRJL69Bak8PvYfgWFRP1lXSDc2hCxhElK4CkVoTpB4usk2CNxGw"/>
+</div>
+</header>
+<!-- Page Content -->
+<main class="flex-1 overflow-y-auto mt-16 p-margin-desktop pb-xl">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-xl gap-md">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Devoirs de la semaine</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-sm">Aperçu de la charge de travail et régulation pédagogique</p>
+</div>
+<div class="flex gap-md">
+<select class="bg-surface-container-lowest border border-outline-variant rounded-lg px-md py-sm font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary">
+<option>Semaine du 14 Octobre 2024</option>
+<option>Semaine du 21 Octobre 2024</option>
+<option>Semaine du 28 Octobre 2024</option>
+</select>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-md py-sm rounded-lg hover:bg-primary/90 transition-colors flex items-center gap-sm">
+<span class="material-symbols-outlined text-[18px]" data-icon="print">print</span>
+                        Rapport
+                    </button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
+<!-- Charge Globale (Left Col) -->
+<div class="lg:col-span-1 flex flex-col gap-lg">
+<!-- Indicateur Primaire -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-lg flex flex-col">
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-headline-md text-headline-md text-on-surface">Primaire</h3>
+<span class="bg-secondary-container text-on-secondary-container font-label-md text-label-md px-sm py-xs rounded-full">Élevée</span>
+</div>
+<div class="w-full bg-surface-container-high rounded-full h-2 mb-sm">
+<div class="bg-secondary h-2 rounded-full" style="width: 85%"></div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant text-right">4.5h moy/semaine</p>
+</div>
+<!-- Indicateur CO -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-lg flex flex-col">
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-headline-md text-headline-md text-on-surface">Cycle d'Orientation</h3>
+<span class="bg-primary-fixed text-on-primary-fixed font-label-md text-label-md px-sm py-xs rounded-full">Raisonnable</span>
+</div>
+<div class="w-full bg-surface-container-high rounded-full h-2 mb-sm">
+<div class="bg-primary h-2 rounded-full" style="width: 45%"></div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant text-right">6h moy/semaine</p>
+</div>
+<!-- Indicateur Humanités -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-lg flex flex-col">
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-headline-md text-headline-md text-on-surface">Humanités</h3>
+<span class="bg-error-container text-on-error-container font-label-md text-label-md px-sm py-xs rounded-full">Surcharge</span>
+</div>
+<div class="w-full bg-surface-container-high rounded-full h-2 mb-sm">
+<div class="bg-error h-2 rounded-full" style="width: 95%"></div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant text-right">12h moy/semaine</p>
+<div class="mt-md p-sm bg-error-container/50 rounded-lg flex items-start gap-sm">
+<span class="material-symbols-outlined text-error text-[18px] mt-xs" data-icon="warning">warning</span>
+<span class="font-body-md text-body-md text-on-error-container text-sm">Alerte : Dépassement du quota recommandé en 3ème Scientifique.</span>
+</div>
+</div>
+</div>
+<!-- Liste Chronologique (Right Col) -->
+<div class="lg:col-span-2 bg-surface-container-lowest rounded-xl border border-outline-variant flex flex-col">
+<div class="p-lg border-b border-outline-variant flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md text-on-surface">Calendrier des devoirs prévus</h3>
+<div class="flex gap-sm">
+<button class="p-sm rounded-md bg-surface-container hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[20px]" data-icon="filter_list">filter_list</span></button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface border-b border-outline-variant">
+<th class="p-md font-label-md text-label-md text-on-surface-variant">Date d'échéance</th>
+<th class="p-md font-label-md text-label-md text-on-surface-variant">Classe</th>
+<th class="p-md font-label-md text-label-md text-on-surface-variant">Matière</th>
+<th class="p-md font-label-md text-label-md text-on-surface-variant">Titre du devoir</th>
+<th class="p-md font-label-md text-label-md text-on-surface-variant">Durée est.</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-on-surface">
+<tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors">
+<td class="p-md font-medium text-primary">Lun 14 Oct</td>
+<td class="p-md">6ème Primaire A</td>
+<td class="p-md">Mathématiques</td>
+<td class="p-md text-on-surface-variant">Exercices fractions (p. 42)</td>
+<td class="p-md"><span class="px-2 py-1 bg-surface-container rounded-md text-xs">45 min</span></td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors">
+<td class="p-md font-medium text-primary">Mar 15 Oct</td>
+<td class="p-md">3ème Sci B</td>
+<td class="p-md">Physique</td>
+<td class="p-md text-on-surface-variant">Rapport de laboratoire : Cinématique</td>
+<td class="p-md"><span class="px-2 py-1 bg-error-container text-on-error-container rounded-md text-xs">2h 30</span></td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors">
+<td class="p-md font-medium text-primary">Mar 15 Oct</td>
+<td class="p-md">1ère CO A</td>
+<td class="p-md">Français</td>
+<td class="p-md text-on-surface-variant">Lecture chapitres 1-3 : Le Cid</td>
+<td class="p-md"><span class="px-2 py-1 bg-surface-container rounded-md text-xs">1h 00</span></td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors bg-surface-container-low/50">
+<td class="p-md font-medium text-primary">Jeu 17 Oct</td>
+<td class="p-md">3ème Sci A</td>
+<td class="p-md">Biologie</td>
+<td class="p-md text-on-surface-variant">Préparation interrogation génétique</td>
+<td class="p-md"><span class="px-2 py-1 bg-secondary-container text-on-secondary-container rounded-md text-xs">2h 00</span></td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-md font-medium text-primary">Ven 18 Oct</td>
+<td class="p-md">4ème Primaire C</td>
+<td class="p-md">Histoire</td>
+<td class="p-md text-on-surface-variant">Frise chronologique à compléter</td>
+<td class="p-md"><span class="px-2 py-1 bg-surface-container rounded-md text-xs">30 min</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-md border-t border-outline-variant flex justify-center">
+<button class="font-label-md text-label-md text-primary hover:text-primary-fixed-variant transition-colors flex items-center gap-xs">
+                            Voir tout le calendrier
+                            <span class="material-symbols-outlined text-[16px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

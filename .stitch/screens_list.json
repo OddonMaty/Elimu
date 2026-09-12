@@ -1,0 +1,554 @@
+[
+  {
+    "id": "050f85680d5d47fda9d6a21b0f495b58",
+    "name": "projects/18382339084164586766/screens/050f85680d5d47fda9d6a21b0f495b58",
+    "title": "D\u00e9tails de l'\u00c9tablissement - SAO School Manager",
+    "width": "2560",
+    "height": "3478",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "a824085f33d74352bd24405f9fee441a",
+    "name": "projects/18382339084164586766/screens/a824085f33d74352bd24405f9fee441a",
+    "title": "Configuration des Classes - SAO School Manager",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "9c74321f31ec43b48d15376f28a84ee9",
+    "name": "projects/18382339084164586766/screens/9c74321f31ec43b48d15376f28a84ee9",
+    "title": "Suivi des Absences - Elimu Parent Mobile",
+    "width": "780",
+    "height": "2264",
+    "deviceType": "MOBILE"
+  },
+  {
+    "id": "33f98721ef834ecb8deac74eee0fd9cf",
+    "name": "projects/18382339084164586766/screens/33f98721ef834ecb8deac74eee0fd9cf",
+    "title": "Gestion des Horaires - Vue Direction",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "d745919293b04e5fa4a13f1e1ad2a5a7",
+    "name": "projects/18382339084164586766/screens/d745919293b04e5fa4a13f1e1ad2a5a7",
+    "title": "Suivi des Absences - Direction",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "7f30147051584777ae86c3f71100aec7",
+    "name": "projects/18382339084164586766/screens/7f30147051584777ae86c3f71100aec7",
+    "title": "Inscription en Ligne - SAO School Manager",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "da4444a14f624c03a3a4fb5d23e8b88e",
+    "name": "projects/18382339084164586766/screens/da4444a14f624c03a3a4fb5d23e8b88e",
+    "title": "Suivi des Devoirs - Administration",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "143463383c5549b3b67cabb41a1b7a6e",
+    "name": "projects/18382339084164586766/screens/143463383c5549b3b67cabb41a1b7a6e",
+    "title": "Messagerie - Elimu Parent Mobile",
+    "width": "780",
+    "height": "1768",
+    "deviceType": "MOBILE"
+  },
+  {
+    "id": "38797b8659524c15baf1eb6a04d5a6f7",
+    "name": "projects/18382339084164586766/screens/38797b8659524c15baf1eb6a04d5a6f7",
+    "title": "Appel de Pr\u00e9sence - Enseignant",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "bdd95d83b0de4c97b76a2f07d000b502",
+    "name": "projects/18382339084164586766/screens/bdd95d83b0de4c97b76a2f07d000b502",
+    "title": "Registre Matricule - SAO School Manager",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "5f919d499dd944df89f7c006010f7cb2",
+    "name": "projects/18382339084164586766/screens/5f919d499dd944df89f7c006010f7cb2",
+    "title": "Suivi Financier - Mobile",
+    "width": "780",
+    "height": "1978",
+    "deviceType": "MOBILE"
+  },
+  {
+    "id": "6aa30473b1054234b92a4077f861bef8",
+    "name": "projects/18382339084164586766/screens/6aa30473b1054234b92a4077f861bef8",
+    "title": "Re\u00e7u de Paiement - Elimu",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "c6f22cddb93044d9bf00285b225963c5",
+    "name": "projects/18382339084164586766/screens/c6f22cddb93044d9bf00285b225963c5",
+    "title": "Tableau de Bord Parent - Mobile",
+    "width": "780",
+    "height": "1768",
+    "deviceType": "MOBILE"
+  },
+  {
+    "id": "37ddf2f13cbc45b4aa258104579d2666",
+    "name": "projects/18382339084164586766/screens/37ddf2f13cbc45b4aa258104579d2666",
+    "title": "Configuration des Frais - SAO School Manager",
+    "width": "2560",
+    "height": "2050",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "4289a095b4504748bc310a6dfbcdba1e",
+    "name": "projects/18382339084164586766/screens/4289a095b4504748bc310a6dfbcdba1e",
+    "title": "Justification des Absences",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "1bd9450f5d9040c19883fb6a3ac94714",
+    "name": "projects/18382339084164586766/screens/1bd9450f5d9040c19883fb6a3ac94714",
+    "title": "Suivi des Devoirs - Elimu Parent",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "d14553afa62d49f9a85829d352e886fc",
+    "name": "projects/18382339084164586766/screens/d14553afa62d49f9a85829d352e886fc",
+    "title": "EduGestion RDC - School Management & Parent Portal",
+    "width": "1280",
+    "height": "1024",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "00228d354ded43a3a4c02918ed2668b8",
+    "name": "projects/18382339084164586766/screens/00228d354ded43a3a4c02918ed2668b8",
+    "title": "Logo Elimu",
+    "width": "1024",
+    "height": "1024",
+    "deviceType": ""
+  },
+  {
+    "id": "61f199819a3c48908f52f045c0190cf6",
+    "name": "projects/18382339084164586766/screens/61f199819a3c48908f52f045c0190cf6",
+    "title": "Param\u00e8tres de l'\u00e9cole - SAO School Manager",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "01e50b9175864019bd09a8d03027c323",
+    "name": "projects/18382339084164586766/screens/01e50b9175864019bd09a8d03027c323",
+    "title": "Suivi des Devoirs - Elimu Parent Mobile",
+    "width": "930",
+    "height": "1768",
+    "deviceType": "MOBILE"
+  },
+  {
+    "id": "958aeac4293b44edb1b2496771c245b8",
+    "name": "projects/18382339084164586766/screens/958aeac4293b44edb1b2496771c245b8",
+    "title": "Notes & Bulletins - Mobile",
+    "width": "780",
+    "height": "1768",
+    "deviceType": "MOBILE"
+  },
+  {
+    "id": "d8d7ca1ae0a6419b956e7abe29a4443c",
+    "name": "projects/18382339084164586766/screens/d8d7ca1ae0a6419b956e7abe29a4443c",
+    "title": "Tableau de Bord Parent - Elimu",
+    "width": "2560",
+    "height": "2052",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "19719cf5254447cda378611b6f32ab1a",
+    "name": "projects/18382339084164586766/screens/19719cf5254447cda378611b6f32ab1a",
+    "title": "Onboarding Nouvelle \u00c9cole - SAO School Manager",
+    "width": "2560",
+    "height": "2496",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "90b0e0347747445c8a5193127abfc1bc",
+    "name": "projects/18382339084164586766/screens/90b0e0347747445c8a5193127abfc1bc",
+    "title": "Saisie des Absences - Registre Journalier",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "2f26a79f88f14317af0eccca865dc774",
+    "name": "projects/18382339084164586766/screens/2f26a79f88f14317af0eccca865dc774",
+    "title": "Configuration des Notifications Parents",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "c415faedcef54b7fa6d8c4359ca15add",
+    "name": "projects/18382339084164586766/screens/c415faedcef54b7fa6d8c4359ca15add",
+    "title": "Mon Abonnement - SAO School Manager",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "135ff03b91cb489d96c9b1532dedd721",
+    "name": "projects/18382339084164586766/screens/135ff03b91cb489d96c9b1532dedd721",
+    "title": "Configuration des Options Scolaires - SAO School Manager",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "f7e3866d4fa042bca25ec48eede5de6e",
+    "name": "projects/18382339084164586766/screens/f7e3866d4fa042bca25ec48eede5de6e",
+    "title": "Suivi des Absences - Elimu",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "d73d14ff254347f9b815487bcc3b7465",
+    "name": "projects/18382339084164586766/screens/d73d14ff254347f9b815487bcc3b7465",
+    "title": "Paiement des Frais d'Inscription - SAO School Manager",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "353a0b6e61374141b9b143ccfe3cc5ce",
+    "name": "projects/18382339084164586766/screens/353a0b6e61374141b9b143ccfe3cc5ce",
+    "title": "Liste des \u00e9l\u00e8ves - Secr\u00e9tariat",
+    "width": "3120",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "bc7cd6640b0d45068bc78d2e102b613a",
+    "name": "projects/18382339084164586766/screens/bc7cd6640b0d45068bc78d2e102b613a",
+    "title": "Connexion - SAO School Manager",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "5e5183279404480e92299e657ee1ffff",
+    "name": "projects/18382339084164586766/screens/5e5183279404480e92299e657ee1ffff",
+    "title": "Saisie des Notes - Enseignant",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "bee094975233464e9e3767ac7de41c13",
+    "name": "projects/18382339084164586766/screens/bee094975233464e9e3767ac7de41c13",
+    "title": "Tableau de Bord Facturation - Elimu",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "8ab236abfd8c41fbaf90bf8e1a67e6da",
+    "name": "projects/18382339084164586766/screens/8ab236abfd8c41fbaf90bf8e1a67e6da",
+    "title": "Bulletin Scolaire - Aper\u00e7u Elimu",
+    "width": "2560",
+    "height": "2508",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "93332c53f9ac448396c1f8bed327b666",
+    "name": "projects/18382339084164586766/screens/93332c53f9ac448396c1f8bed327b666",
+    "title": "Tableau de Bord Super-Admin - SAO Tech Agency",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "0b9ef8005da149f7a6db338db21618f0",
+    "name": "projects/18382339084164586766/screens/0b9ef8005da149f7a6db338db21618f0",
+    "title": "Configuration des Notifications Parents - Elimu",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "306d1fb06e8f4fb88e506a1a37ef2619",
+    "name": "projects/18382339084164586766/screens/306d1fb06e8f4fb88e506a1a37ef2619",
+    "title": "Examen D\u00e9taill\u00e9 du Dossier - Direction",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "3df443055f434a289fd1fc474dd878bb",
+    "name": "projects/18382339084164586766/screens/3df443055f434a289fd1fc474dd878bb",
+    "title": "Tableau de Bord Facturation - Direction",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "513dca5426c04be39a13f6f656508ab3",
+    "name": "projects/18382339084164586766/screens/513dca5426c04be39a13f6f656508ab3",
+    "title": "Suivi des Candidatures - Elimu",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "c942a8db4b074f7a8c01ff493cf40d80",
+    "name": "projects/18382339084164586766/screens/c942a8db4b074f7a8c01ff493cf40d80",
+    "title": "Paiement des Frais - Elimu",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "2d72b49c888e492a9ac11c06659d0e0f",
+    "name": "projects/18382339084164586766/screens/2d72b49c888e492a9ac11c06659d0e0f",
+    "title": "Annuaire des \u00c9coles avec Tarification - Elimu",
+    "width": "2560",
+    "height": "2418",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "6787447361922207859",
+    "name": "projects/18382339084164586766/screens/6787447361922207859",
+    "title": "1724502067.webp",
+    "width": "768",
+    "height": "1024",
+    "deviceType": ""
+  },
+  {
+    "id": "8fadc2fb8ced4528b3ef073b6203a0a0",
+    "name": "projects/18382339084164586766/screens/8fadc2fb8ced4528b3ef073b6203a0a0",
+    "title": "Facture Officielle - SAO School Manager",
+    "width": "2560",
+    "height": "2588",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "f6aea5692d814ac6b0a49617f31bfad4",
+    "name": "projects/18382339084164586766/screens/f6aea5692d814ac6b0a49617f31bfad4",
+    "title": "Cr\u00e9ation de Devoir - Enseignant",
+    "width": "2560",
+    "height": "2318",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "d2cdfae0d52e479b9f7c1180f013ed61",
+    "name": "projects/18382339084164586766/screens/d2cdfae0d52e479b9f7c1180f013ed61",
+    "title": "Bulletin Scolaire Officiel RDC - R\u00e9plique Fid\u00e8le",
+    "width": "2560",
+    "height": "2904",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "fad1948ccfa94053a44b49f458aaac3a",
+    "name": "projects/18382339084164586766/screens/fad1948ccfa94053a44b49f458aaac3a",
+    "title": "Suivi des Candidatures - Direction",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "bbf5c2a10c0d4759b9236609024169a2",
+    "name": "projects/18382339084164586766/screens/bbf5c2a10c0d4759b9236609024169a2",
+    "title": "Tableau de Bord Direction - SAO School Manager",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "f0448af5f4194c73b24861c10074845e",
+    "name": "projects/18382339084164586766/screens/f0448af5f4194c73b24861c10074845e",
+    "title": "D\u00e9tails de l'\u00c9tablissement et Tarification - Elimu",
+    "width": "2560",
+    "height": "3800",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "819f15db10204978b28b4a631ded5b0d",
+    "name": "projects/18382339084164586766/screens/819f15db10204978b28b4a631ded5b0d",
+    "title": "Bulletin Scolaire Officiel RDC - Format Minist\u00e9riel",
+    "width": "2560",
+    "height": "2406",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "62f1dd97ec22410d8f393e46aae28397",
+    "name": "projects/18382339084164586766/screens/62f1dd97ec22410d8f393e46aae28397",
+    "title": "Devoirs de la Semaine - Direction",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "12be758b373c4d239bf501bb4bb5fd37",
+    "name": "projects/18382339084164586766/screens/12be758b373c4d239bf501bb4bb5fd37",
+    "title": "Frais Scolaires - SAO School Manager",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "f934208edb8d41fdb7107d6fbf8cf061",
+    "name": "projects/18382339084164586766/screens/f934208edb8d41fdb7107d6fbf8cf061",
+    "title": "Gestion des Classes - Secr\u00e9tariat",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "0d8badc9e45444da92d34ca680e243b4",
+    "name": "projects/18382339084164586766/screens/0d8badc9e45444da92d34ca680e243b4",
+    "title": "Connexion - SAO School Manager",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "7ab19bc0f8fd4fe28bc3aeaf979ffb0e",
+    "name": "projects/18382339084164586766/screens/7ab19bc0f8fd4fe28bc3aeaf979ffb0e",
+    "title": "Messagerie Directe - Elimu Parent",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "5f81290dab834f00b135818b9a9eb305",
+    "name": "projects/18382339084164586766/screens/5f81290dab834f00b135818b9a9eb305",
+    "title": "Mon Emploi du Temps - Enseignant",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "9f2b3fcd355b4707b90cf48b12a23e0d",
+    "name": "projects/18382339084164586766/screens/9f2b3fcd355b4707b90cf48b12a23e0d",
+    "title": "G\u00e9n\u00e9ration des Cartes d'Identit\u00e9 - Administration",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "4a8483c9ff244686a9d695f46c39e498",
+    "name": "projects/18382339084164586766/screens/4a8483c9ff244686a9d695f46c39e498",
+    "title": "Suivi Financier & Paiements - Elimu",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "0dc9db7f94634410b232114bdf6c1220",
+    "name": "projects/18382339084164586766/screens/0dc9db7f94634410b232114bdf6c1220",
+    "title": "Comparateur d'\u00c9coles - Elimu",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "4ff8f5fb3c29427a8aa7457ec4fd2a06",
+    "name": "projects/18382339084164586766/screens/4ff8f5fb3c29427a8aa7457ec4fd2a06",
+    "title": "Annuaire Public des \u00c9coles - SAO School Manager",
+    "width": "2560",
+    "height": "2170",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "9ffdd0cdf36640a49c50f44a1c34cf6c",
+    "name": "projects/18382339084164586766/screens/9ffdd0cdf36640a49c50f44a1c34cf6c",
+    "title": "Mes Enfants : Notes et Bulletins - Elimu",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "ac53ab86288246479429c75f89af7d69",
+    "name": "projects/18382339084164586766/screens/ac53ab86288246479429c75f89af7d69",
+    "title": "Bulletin Scolaire - Aper\u00e7u Officiel",
+    "width": "2560",
+    "height": "2508",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "565718cd938f420bae8e4407a914ceb0",
+    "name": "projects/18382339084164586766/screens/565718cd938f420bae8e4407a914ceb0",
+    "title": "Gestion des \u00c9l\u00e8ves - SAO School Manager",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "0232a4ee4ba04a0cb5d0cf58de786477",
+    "name": "projects/18382339084164586766/screens/0232a4ee4ba04a0cb5d0cf58de786477",
+    "title": "Tableau de Bord Direction - SAO School Manager",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "a52fe921525946b6be483b2c5581ca05",
+    "name": "projects/18382339084164586766/screens/a52fe921525946b6be483b2c5581ca05",
+    "title": "Annuaire des \u00c9coles - Elimu",
+    "width": "2560",
+    "height": "2170",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "2d927fe98eeb472190d192ca2abe3535",
+    "name": "projects/18382339084164586766/screens/2d927fe98eeb472190d192ca2abe3535",
+    "title": "Suivi des Frais Scolaires - Secr\u00e9tariat",
+    "width": "3120",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "d2d8bd2515eb49f8b609ff8a63cdfccb",
+    "name": "projects/18382339084164586766/screens/d2d8bd2515eb49f8b609ff8a63cdfccb",
+    "title": "Inscription en Ligne - Elimu",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "76eca650f85a4893a03376261f7ef81a",
+    "name": "projects/18382339084164586766/screens/76eca650f85a4893a03376261f7ef81a",
+    "title": "Param\u00e8tres G\u00e9n\u00e9raux - Direction",
+    "width": "2560",
+    "height": "2292",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "7bde14172dda448da1f47c25b56e69d1",
+    "name": "projects/18382339084164586766/screens/7bde14172dda448da1f47c25b56e69d1",
+    "title": "Nouvelle Inscription - Secr\u00e9tariat",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  },
+  {
+    "id": "e2461e0cdbdb4d688acfb31e04074551",
+    "name": "projects/18382339084164586766/screens/e2461e0cdbdb4d688acfb31e04074551",
+    "title": "Examen du Dossier - Elimu",
+    "width": "2560",
+    "height": "2048",
+    "deviceType": "DESKTOP"
+  }
+]

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html class="bg-surface" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SAO School Manager - Facture</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-variant": "#e0e3e6",
+                      "tertiary": "#032641",
+                      "on-primary-container": "#88a6cf",
+                      "on-surface-variant": "#43474e",
+                      "on-secondary-container": "#6a3c00",
+                      "surface-container-low": "#f1f4f7",
+                      "outline": "#73777f",
+                      "on-error-container": "#93000a",
+                      "on-secondary-fixed-variant": "#693c00",
+                      "primary-fixed": "#d3e4ff",
+                      "secondary-fixed-dim": "#ffb871",
+                      "surface-container-highest": "#e0e3e6",
+                      "primary-container": "#1b3b5f",
+                      "surface-tint": "#426086",
+                      "secondary-fixed": "#ffdcbe",
+                      "tertiary-container": "#1e3c58",
+                      "on-error": "#ffffff",
+                      "on-surface": "#181c1e",
+                      "surface-bright": "#f7fafd",
+                      "background": "#f7fafd",
+                      "primary": "#002547",
+                      "on-primary-fixed": "#001c38",
+                      "primary-fixed-dim": "#abc8f4",
+                      "on-tertiary-fixed": "#001d34",
+                      "error": "#ba1a1a",
+                      "surface-dim": "#d7dadd",
+                      "surface-container": "#ebeef1",
+                      "inverse-primary": "#abc8f4",
+                      "on-tertiary-container": "#8aa6c7",
+                      "on-primary": "#ffffff",
+                      "surface-container-lowest": "#ffffff",
+                      "tertiary-fixed": "#d0e4ff",
+                      "outline-variant": "#c3c6cf",
+                      "on-tertiary-fixed-variant": "#2c4965",
+                      "surface-container-high": "#e5e8eb",
+                      "on-primary-fixed-variant": "#2a486d",
+                      "inverse-surface": "#2d3133",
+                      "secondary": "#8b5000",
+                      "on-secondary-fixed": "#2d1600",
+                      "on-tertiary": "#ffffff",
+                      "inverse-on-surface": "#eef1f4",
+                      "on-background": "#181c1e",
+                      "secondary-container": "#fda13a",
+                      "surface": "#f7fafd",
+                      "error-container": "#ffdad6",
+                      "on-secondary": "#ffffff",
+                      "tertiary-fixed-dim": "#acc9eb"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "lg": "24px",
+                      "xl": "32px",
+                      "sm": "8px",
+                      "md": "16px",
+                      "xs": "4px",
+                      "margin-desktop": "40px",
+                      "gutter": "20px",
+                      "unit": "4px",
+                      "margin-mobile": "16px"
+              },
+              "fontFamily": {
+                      "body-md": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "display-lg": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-lg-mobile": ["Inter"],
+                      "label-md": ["Inter"],
+                      "headline-md": ["Inter"]
+              },
+              "fontSize": {
+                      "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                      "display-lg": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        @media print {
+            body { background: white !important; }
+            #sidebar, #topbar, .print-hide { display: none !important; }
+            #main-content { margin-left: 0 !important; padding: 0 !important; }
+            .invoice-container { box-shadow: none !important; border: none !important; max-width: 100% !important; margin: 0 !important; }
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased flex">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col h-full py-md fixed left-0 top-0 h-full w-[280px] bg-tertiary dark:bg-surface-container-lowest shadow-sm z-40" id="sidebar">
+<div class="px-margin-desktop mb-xl">
+<h1 class="font-headline-md text-headline-md font-extrabold text-on-tertiary">SAO Manager</h1>
+<p class="font-label-md text-label-md text-on-tertiary/70 mt-xs">Admin Scolaire</p>
+</div>
+<div class="px-4 mb-lg">
+<button class="w-full bg-secondary-container text-on-secondary-container font-label-md text-label-md py-3 rounded flex items-center justify-center gap-2 hover:bg-secondary-fixed transition-colors">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                Nouvelle Facture
+            </button>
+</div>
+<div class="flex-1 overflow-y-auto px-2 space-y-1">
+<a class="flex items-center gap-3 text-on-tertiary/70 hover:text-on-tertiary px-4 py-3 hover:bg-tertiary-container transition-all active:scale-95 duration-150 rounded" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Tableau de bord</span>
+</a>
+<a class="flex items-center gap-3 text-on-tertiary/70 hover:text-on-tertiary px-4 py-3 hover:bg-tertiary-container transition-all active:scale-95 duration-150 rounded" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md">Élèves</span>
+</a>
+<a class="flex items-center gap-3 text-on-tertiary/70 hover:text-on-tertiary px-4 py-3 hover:bg-tertiary-container transition-all active:scale-95 duration-150 rounded" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md text-label-md">Frais Scolaires</span>
+</a>
+<a class="flex items-center gap-3 bg-primary-container text-on-primary-container rounded-lg mx-2 px-4 py-3 hover:bg-tertiary-container transition-all active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-label-md text-label-md">Facturation</span>
+</a>
+<a class="flex items-center gap-3 text-on-tertiary/70 hover:text-on-tertiary px-4 py-3 hover:bg-tertiary-container transition-all active:scale-95 duration-150 rounded" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-label-md text-label-md">Comptabilité</span>
+</a>
+<a class="flex items-center gap-3 text-on-tertiary/70 hover:text-on-tertiary px-4 py-3 hover:bg-tertiary-container transition-all active:scale-95 duration-150 rounded" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Paramètres</span>
+</a>
+</div>
+<div class="mt-auto px-2 space-y-1">
+<a class="flex items-center gap-3 text-on-tertiary/70 hover:text-on-tertiary px-4 py-3 hover:bg-tertiary-container transition-all active:scale-95 duration-150 rounded" href="#">
+<span class="material-symbols-outlined">support_agent</span>
+<span class="font-label-md text-label-md">Support</span>
+</a>
+<a class="flex items-center gap-3 text-on-tertiary/70 hover:text-on-tertiary px-4 py-3 hover:bg-tertiary-container transition-all active:scale-95 duration-150 rounded" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Déconnexion</span>
+</a>
+</div>
+</nav>
+<!-- TopNavBar -->
+<header class="flex justify-between items-center w-full px-margin-desktop h-16 fixed top-0 z-30 bg-surface-container-lowest dark:bg-surface-dim border-b border-outline-variant dark:border-on-surface-variant md:ml-[280px] md:w-[calc(100%-280px)]" id="topbar">
+<div class="flex items-center gap-4">
+<!-- Hamburger for mobile -->
+<button class="md:hidden text-primary hover:bg-surface-container-low p-2 rounded transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface border border-outline-variant rounded focus:border-primary focus:ring-1 focus:ring-primary outline-none font-body-md text-body-md w-64 transition-all" placeholder="Rechercher..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:bg-surface-container-low p-2 rounded transition-colors cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container-low p-2 rounded transition-colors cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-variant border border-outline-variant overflow-hidden cursor-pointer active:opacity-80">
+<img alt="Administrator Avatar" class="w-full h-full object-cover" data-alt="A professional headshot of an administrative staff member, neutral background, sharp focus, corporate lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9SOwnlaX_YbXNY_g04A5psJyuXHMPmZE-A-dNjvdiwOjeRwN0XBNdIyWJAKHpnFveVw3uS1nBCF8Bk5BTFhZTeQ6v8xcfr7xPwLfCTsYWJc63AXiX1FzkWF6d9jXdKRhwVO8kocu92nNmSolhZ9OawAR1vaGBBPPT9P3S2_ntw8K7BU0KNYvVcBJ3-_UXq7yzsJEPEYolzuMzVaePsS5wMCs88WAEnvvtO7pg10HFl9Zg9yR333SDNA"/>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 md:ml-[280px] mt-16 p-margin-mobile md:p-margin-desktop min-h-screen" id="main-content">
+<!-- Action Bar -->
+<div class="print-hide flex flex-col sm:flex-row justify-between items-start sm:items-center mb-xl gap-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Facture #INV-2023-084</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">Générée le 15 Octobre 2023</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 border border-primary text-primary rounded font-label-md text-label-md hover:bg-surface-container-low transition-colors" onclick="window.print()">
+<span class="material-symbols-outlined text-[18px]">print</span>
+                    Imprimer
+                </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded font-label-md text-label-md hover:bg-primary-fixed hover:text-on-primary-fixed transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">send</span>
+                    Envoyer par Email
+                </button>
+</div>
+</div>
+<!-- Invoice Paper -->
+<div class="invoice-container bg-surface-container-lowest mx-auto w-full max-w-[800px] shadow-[0_4px_12px_rgba(27,59,95,0.08)] border border-outline-variant p-8 md:p-12 relative">
+<!-- Header -->
+<div class="flex justify-between items-start border-b border-outline-variant pb-8 mb-8">
+<div class="flex items-start gap-4">
+<div class="w-16 h-16 bg-surface-container flex items-center justify-center rounded">
+<span class="material-symbols-outlined text-[32px] text-primary">school</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-primary tracking-tight">Institut Boboto</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">123 Avenue de la Justice, Gombe</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Kinshasa, RDC</p>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Tél: +243 81 234 5678</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Email: contact@boboto.cd</p>
+</div>
+</div>
+<div class="text-right">
+<h2 class="font-display-lg text-display-lg text-outline uppercase tracking-wider">Facture</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2 font-bold">N° INV-2023-084</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Date : 15/10/2023</p>
+</div>
+</div>
+<!-- Student Info -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-xl">
+<div>
+<h4 class="font-label-md text-label-md text-outline uppercase mb-2">Facturé à</h4>
+<p class="font-headline-md text-headline-md text-on-surface">KABUYA MUKENDI Jean</p>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Parent / Tuteur</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Q. Ma Campagne, Ngaliema, Kinshasa</p>
+</div>
+<div class="bg-surface p-4 border border-outline-variant rounded">
+<h4 class="font-label-md text-label-md text-outline uppercase mb-2">Détails de l'élève</h4>
+<div class="grid grid-cols-2 gap-2 font-body-md text-body-md">
+<div class="text-on-surface-variant">Nom :</div>
+<div class="text-on-surface font-semibold">KABUYA Marie</div>
+<div class="text-on-surface-variant">Matricule :</div>
+<div class="text-on-surface font-semibold">2023-4589</div>
+<div class="text-on-surface-variant">Classe :</div>
+<div class="text-on-surface font-semibold">3ème Humanités Scientifiques</div>
+<div class="text-on-surface-variant">Section :</div>
+<div class="text-on-surface font-semibold">Math-Physique</div>
+</div>
+</div>
+</div>
+<!-- Table -->
+<div class="mb-xl overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b-2 border-primary">
+<th class="py-sm px-md font-label-md text-label-md text-primary uppercase w-[50%]">Description du frais</th>
+<th class="py-sm px-md font-label-md text-label-md text-primary uppercase">Période</th>
+<th class="py-sm px-md font-label-md text-label-md text-primary uppercase text-right">Montant (USD)</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md">
+<tr class="border-b border-outline-variant/50 bg-surface/30">
+<td class="py-md px-md text-on-surface font-semibold">Frais Scolaires (Minerval)</td>
+<td class="py-md px-md text-on-surface-variant">1er Trimestre</td>
+<td class="py-md px-md text-on-surface text-right">150.00</td>
+</tr>
+<tr class="border-b border-outline-variant/50">
+<td class="py-md px-md text-on-surface font-semibold">Frais de Construction</td>
+<td class="py-md px-md text-on-surface-variant">Annuel</td>
+<td class="py-md px-md text-on-surface text-right">50.00</td>
+</tr>
+<tr class="border-b border-outline-variant/50 bg-surface/30">
+<td class="py-md px-md text-on-surface font-semibold">Frais Informatiques</td>
+<td class="py-md px-md text-on-surface-variant">1er Trimestre</td>
+<td class="py-md px-md text-on-surface text-right">25.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Summary -->
+<div class="flex flex-col md:flex-row justify-between items-end mb-xl gap-8">
+<div class="w-full md:w-1/2">
+<h4 class="font-label-md text-label-md text-outline uppercase mb-2">Informations de Paiement</h4>
+<div class="bg-surface-container-low p-4 rounded border border-outline-variant">
+<p class="font-body-md text-body-md text-on-surface-variant mb-1">Mode : <span class="text-on-surface font-semibold">Mobile Money (M-Pesa)</span></p>
+<p class="font-body-md text-body-md text-on-surface-variant mb-1">Réf. Transaction : <span class="font-mono text-xs">MP-98427593X</span></p>
+<p class="font-body-md text-body-md text-on-surface-variant">Date : 14/10/2023</p>
+</div>
+</div>
+<div class="w-full md:w-[300px]">
+<div class="flex justify-between py-2 border-b border-outline-variant/50">
+<span class="font-body-md text-body-md text-on-surface-variant">Sous-total</span>
+<span class="font-body-md text-body-md text-on-surface">225.00 USD</span>
+</div>
+<div class="flex justify-between py-2 border-b-2 border-primary">
+<span class="font-body-lg text-body-lg text-on-surface font-semibold">Total à payer</span>
+<span class="font-body-lg text-body-lg text-on-surface font-semibold">225.00 USD</span>
+</div>
+<div class="flex justify-between py-2 text-[#006a2c]">
+<span class="font-body-md text-body-md font-semibold">Montant réglé</span>
+<span class="font-body-md text-body-md font-semibold">- 150.00 USD</span>
+</div>
+<div class="flex justify-between py-3 bg-surface-variant px-4 rounded mt-2">
+<span class="font-headline-md text-headline-md text-on-surface">Solde restant</span>
+<span class="font-headline-md text-headline-md text-error">75.00 USD</span>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<div class="mt-xl pt-8 border-t border-outline-variant flex justify-between items-end">
+<div class="w-2/3">
+<p class="font-label-md text-label-md text-outline uppercase mb-2">Mentions Légales</p>
+<p class="font-body-md text-body-md text-on-surface-variant text-xs">
+                        Ce document tient lieu de reçu pour les montants acquittés. Le solde restant doit être réglé avant le 30 Novembre 2023. Tout retard de paiement peut entraîner des pénalités conformément au règlement d'ordre intérieur de l'établissement.
+                    </p>
+</div>
+<div class="w-[200px] h-[100px] border border-dashed border-outline flex items-center justify-center relative">
+<span class="font-label-md text-label-md text-outline/50 absolute top-2">Cachet &amp; Signature</span>
+</div>
+</div>
+<!-- Watermark -->
+<div class="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden opacity-[0.03]">
+<span class="material-symbols-outlined text-[400px]">school</span>
+</div>
+</div>
+</main>
+</body></html>

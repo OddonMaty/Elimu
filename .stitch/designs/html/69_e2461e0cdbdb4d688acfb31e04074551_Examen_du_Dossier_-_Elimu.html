@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Examen de Dossier - Elimu</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration (Design System) -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-container": "#fda13a",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary": "#032641",
+                    "error": "#ba1a1a",
+                    "background": "#f7fafd",
+                    "on-surface-variant": "#43474e",
+                    "surface-container-low": "#f1f4f7",
+                    "primary-container": "#1b3b5f",
+                    "surface-container-high": "#e5e8eb",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed": "#001c38",
+                    "outline-variant": "#c3c6cf",
+                    "tertiary-container": "#1e3c58",
+                    "on-secondary": "#ffffff",
+                    "surface-container-highest": "#e0e3e6",
+                    "inverse-primary": "#abc8f4",
+                    "primary-fixed": "#d3e4ff",
+                    "secondary-fixed": "#ffdcbe",
+                    "surface-dim": "#d7dadd",
+                    "surface-tint": "#426086",
+                    "inverse-on-surface": "#eef1f4",
+                    "tertiary-fixed-dim": "#acc9eb",
+                    "surface-container": "#ebeef1",
+                    "on-secondary-fixed-variant": "#693c00",
+                    "secondary": "#8b5000",
+                    "on-tertiary-fixed-variant": "#2c4965",
+                    "primary-fixed-dim": "#abc8f4",
+                    "on-tertiary-fixed": "#001d34",
+                    "on-primary-container": "#88a6cf",
+                    "secondary-fixed-dim": "#ffb871",
+                    "error-container": "#ffdad6",
+                    "on-secondary-container": "#6a3c00",
+                    "on-background": "#181c1e",
+                    "on-secondary-fixed": "#2d1600",
+                    "on-error": "#ffffff",
+                    "inverse-surface": "#2d3133",
+                    "surface": "#f7fafd",
+                    "surface-bright": "#f7fafd",
+                    "primary": "#002547",
+                    "on-primary-fixed-variant": "#2a486d",
+                    "on-error-container": "#93000a",
+                    "on-surface": "#181c1e",
+                    "outline": "#73777f",
+                    "surface-variant": "#e0e3e6",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-container": "#8aa6c7",
+                    "tertiary-fixed": "#d0e4ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "gutter": "20px",
+                    "unit": "4px",
+                    "md": "16px",
+                    "xl": "32px",
+                    "sm": "8px",
+                    "xs": "4px",
+                    "lg": "24px",
+                    "margin-desktop": "40px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"]
+            },
+            "fontSize": {
+                    "display-lg": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md flex h-screen overflow-hidden">
+<!-- SideNavBar (from JSON) -->
+<nav class="hidden md:flex flex-col fixed left-0 top-0 h-screen w-[280px] bg-primary dark:bg-tertiary p-md z-20">
+<div class="flex items-center gap-3 mb-xl px-4 py-2">
+<div class="w-10 h-10 rounded-sm bg-surface-container-lowest flex items-center justify-center text-primary font-bold overflow-hidden">
+<img alt="Elimu Logo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1X5KuuKD5QrJLG8Cb9nKHFp3coPISp0etjlv921wZ4qJ2wDLAhcyJFnmaeLkHo9Fs3QIoJpqK1mg-yXVI2tLTdgHRCK99-ztErSgi9cSVF1j4RPucb_cx4i-ZaCN0ZznXcMI8ySJ1w91sXg7nYtgEKrAMTiYL5TB1RJRI7JdCTymfazAl6kIVDJ7yXNbsrrBzTvXT8kNvu9VKkdgrA6Gie26DtP64-IQT3RqEFPc8rz8WJG6jQw2ZrqfBzX"/>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-white">Elimu</h1>
+<p class="font-label-md text-label-md text-on-primary/70">Shule yako kwa urahisi</p>
+</div>
+</div>
+<div class="flex flex-col gap-sm flex-1">
+<!-- Tableau de bord -->
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary/70 hover:text-on-primary hover:bg-white/5 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Tableau de bord</span>
+</a>
+<!-- Enseignants -->
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary/70 hover:text-on-primary hover:bg-white/5 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md">Enseignants</span>
+</a>
+<!-- Horaires -->
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary/70 hover:text-on-primary hover:bg-white/5 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">schedule</span>
+<span class="font-label-md text-label-md">Horaires</span>
+</a>
+<!-- Absences -->
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary/70 hover:text-on-primary hover:bg-white/5 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">event_busy</span>
+<span class="font-label-md text-label-md">Absences</span>
+</a>
+<!-- Administration (Active) -->
+<a class="flex items-center gap-3 px-4 py-3 text-secondary-fixed bg-white/10 rounded-lg scale-[0.98] transition-transform" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Administration</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col md:ml-[280px] w-full min-w-0">
+<!-- TopNavBar (from JSON) -->
+<header class="flex justify-between items-center h-16 px-margin-desktop bg-surface-container-lowest dark:bg-surface-dim border-b border-outline-variant dark:border-outline sticky top-0 z-10">
+<div class="flex items-center gap-4">
+<!-- Mobile menu toggle would go here -->
+<span class="hidden font-headline-md text-headline-md text-primary dark:text-on-surface">Elimu</span>
+</div>
+<div class="flex items-center gap-4">
+<!-- Search could go here based on JSON "search_bar": "on_left" (moved right for layout logic if left empty) -->
+<div class="hidden md:flex items-center bg-surface-container-low rounded-full px-4 py-2 border border-outline-variant focus-within:ring-2 focus-within:ring-primary/20">
+<span class="material-symbols-outlined text-outline mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md text-on-surface w-64 p-0" placeholder="Rechercher..." type="text"/>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-full text-on-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 rounded-full text-on-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center ml-4 border border-outline-variant overflow-hidden">
+<img alt="Photo de profil directeur" class="w-full h-full object-cover" data-alt="Portrait professionnel d'un directeur d'école africain, éclairage studio lumineux, style corporate moderne, fond clair." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgfzbxAXbIWooKWhw_x0PpCUjcZsgGB1smbtoWj4ApRsPviN7kmsZppOv6hRb6UwK3GxhfWHJzQjTfRCRANqBlcYoOTGqCLcR6x0E7iixyFeBU1k7Zbe4g1156ii4W8HKppSMhkAKqUpVlgjv9KmF1iGbhh1dFrtUisvW74pdlaSVr_W9OSHE6uTPoqE3y9znP1UK052pts994bIUVKU8FF_p-3ATZeVDZKqpwuS3yib7uC39crokLlw"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Canvas -->
+<main class="flex-1 overflow-y-auto p-margin-mobile md:p-margin-desktop bg-background">
+<!-- Breadcrumb & Title -->
+<div class="mb-lg">
+<div class="flex items-center gap-2 text-on-surface-variant font-label-md text-label-md mb-2">
+<a class="hover:text-primary transition-colors" href="#">Administration</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Inscriptions 2024</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-on-background">Dossier #4092</span>
+</div>
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary font-bold">Examen du dossier d'inscription</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Candidat : KABAMBA MUKENDI David</p>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-lowest border border-outline-variant px-3 py-1.5 rounded-full">
+<span class="w-2 h-2 rounded-full bg-[#10b981]"></span> <!-- Using a standard green for success indicator here as it's a specific semantic state not perfectly covered by brand tokens, though primary-fixed could work -->
+<span class="font-label-md text-label-md text-on-surface">Frais d'inscription : Payé</span>
+</div>
+</div>
+</div>
+<!-- Two Column Layout -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-lg h-[calc(100vh-220px)] min-h-[600px]">
+<!-- Left Column: Student Info (4 cols) -->
+<div class="xl:col-span-4 flex flex-col gap-md h-full">
+<!-- Info Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex-1 overflow-y-auto shadow-sm">
+<div class="flex items-center gap-4 mb-lg pb-4 border-b border-outline-variant">
+<div class="w-16 h-16 rounded-xl bg-surface-container-high flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-4xl">person</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-background">KABAMBA MUKENDI</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">David</p>
+</div>
+</div>
+<div class="space-y-4">
+<div class="grid grid-cols-2 gap-4">
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant mb-1">Date de naissance</p>
+<p class="font-body-md text-body-md text-on-background font-medium">12 Mai 2010 (13 ans)</p>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant mb-1">Sexe</p>
+<p class="font-body-md text-body-md text-on-background font-medium">Masculin</p>
+</div>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant mb-1">Lieu de naissance</p>
+<p class="font-body-md text-body-md text-on-background font-medium">Kinshasa, Gombe</p>
+</div>
+<hr class="border-outline-variant"/>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant mb-1">École de provenance</p>
+<p class="font-body-md text-body-md text-on-background font-medium">Complexe Scolaire La Sagesse</p>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant mb-1">Classe demandée</p>
+<div class="inline-flex items-center px-2 py-1 bg-primary-fixed text-on-primary-fixed rounded font-label-md text-label-md mt-1">
+                                    7ème Éducation de Base
+                                </div>
+</div>
+<hr class="border-outline-variant"/>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant mb-1">Contact Tuteur</p>
+<p class="font-body-md text-body-md text-on-background font-medium">MUKENDI Jean (Père)</p>
+<p class="font-body-md text-body-md text-on-surface-variant">+243 81 234 5678</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Document Preview & Actions (8 cols) -->
+<div class="xl:col-span-8 flex flex-col h-full bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm overflow-hidden">
+<!-- Document Tabs -->
+<div class="flex border-b border-outline-variant bg-surface-container-low overflow-x-auto">
+<button class="flex items-center gap-2 px-4 py-3 bg-surface-container-lowest border-t-2 border-primary text-primary font-label-md text-label-md min-w-max">
+<span class="material-symbols-outlined text-[18px]">description</span>
+                            Bulletin de 6ème
+                        </button>
+<button class="flex items-center gap-2 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors font-label-md text-label-md min-w-max">
+<span class="material-symbols-outlined text-[18px]">badge</span>
+                            Extrait de naissance
+                        </button>
+<button class="flex items-center gap-2 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors font-label-md text-label-md min-w-max">
+<span class="material-symbols-outlined text-[18px]">health_and_safety</span>
+                            Certificat médical
+                        </button>
+</div>
+<!-- Preview Area -->
+<div class="flex-1 bg-surface-variant p-md flex items-center justify-center overflow-auto relative">
+<!-- Toolbar for preview -->
+<div class="absolute top-4 right-4 flex gap-2 bg-surface-container-lowest border border-outline-variant rounded-lg shadow-sm p-1">
+<button class="p-1.5 rounded hover:bg-surface-container-low text-on-surface-variant transition-colors"><span class="material-symbols-outlined text-[20px]">zoom_in</span></button>
+<button class="p-1.5 rounded hover:bg-surface-container-low text-on-surface-variant transition-colors"><span class="material-symbols-outlined text-[20px]">zoom_out</span></button>
+<button class="p-1.5 rounded hover:bg-surface-container-low text-on-surface-variant transition-colors"><span class="material-symbols-outlined text-[20px]">download</span></button>
+</div>
+<!-- Simulated Document -->
+<div class="bg-surface-container-lowest w-full max-w-2xl aspect-[1/1.4] shadow-md border border-outline-variant relative">
+<div class="w-full h-full bg-cover bg-center opacity-90" data-alt="Une numérisation claire et professionnelle d'un bulletin scolaire congolais, avec des tableaux de notes remplis, des cachets officiels bleus et des signatures, sur un papier blanc standard, éclairage plat de scanner." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAGDtWrr_hDrCcFIe4qgSjZLaBU6WtNU2OpeR7dSwu5molMNvNXyS_ahtgacoAvCcan_KA31tDpX9nAEF-AGV5ARV0I636CZ3RVeXWRcsnme2MixXdROOa543gwHTj8FI1TAk5LwLN6h8kWfrhUSA-K8R-RWaoImtFruCFcLAQ51kkfo1KDAzlvk9jkcvvzkAXtqa1TDfUkuzLkppzBa-Vd0TDBnz2vi66NR3sjG5wCSLpn728JK7kBUA')"></div>
+</div>
+</div>
+<!-- Action Bar -->
+<div class="border-t border-outline-variant p-md bg-surface-container-lowest flex flex-col gap-4">
+<!-- Optional Request Info Field (hidden by default in standard UI, shown here to fulfill prompt requirements directly) -->
+<div class="bg-surface-container-low border border-outline-variant rounded-lg p-3">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2" for="motif">Motif de demande de complément (optionnel)</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-md px-3 py-2 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" id="motif" placeholder="Ex: Le bulletin manque la page de garde..." type="text"/>
+</div>
+<div class="flex flex-wrap items-center justify-between gap-4">
+<button class="flex items-center gap-2 px-6 py-2.5 rounded-lg border border-error text-error hover:bg-error-container/20 transition-colors font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]">cancel</span>
+                                Refuser
+                            </button>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-6 py-2.5 rounded-lg bg-surface-container-highest text-on-surface hover:bg-outline-variant transition-colors font-label-md text-label-md border border-outline-variant">
+<span class="material-symbols-outlined text-[18px]">edit_note</span>
+                                    Demander un complément
+                                </button>
+<button class="flex items-center gap-2 px-8 py-2.5 rounded-lg bg-primary text-on-primary hover:bg-tertiary shadow-sm transition-colors font-label-md text-label-md font-bold">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+                                    Accepter le dossier
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>
