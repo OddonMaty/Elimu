@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { MOCK_SCHOOLS } from '../../data/mockData';
+import { School } from '../../types';
+import { schoolService } from '../../services/api';
 import { applicationService } from '../../services/api';
 import { Card } from '../../components/common/Card';
 import { Button } from '../../components/common/Button';
 import { Input } from '../../components/common/Input';
 import { Select } from '../../components/common/Select';
 import { Alert } from '../../components/common/Alert';
+import { LoadingSpinner } from '../../components/common/LoadingSpinner';
 import { useNotification } from '../../context/NotificationContext';
 
 export interface OnlineRegistrationPageProps {}
@@ -16,7 +18,10 @@ export const OnlineRegistrationPage: React.FC<OnlineRegistrationPageProps> = () 
   const navigate = useNavigate();
   const { notify } = useNotification();
 
-  const preselectedSchoolId = searchParams.get('schoolId') || 'sch-1';
+  const preselectedSchoolId = searchParams.get('schoolId') || '';
+
+  const [schools, setSchools] = useState<School[]>([]);
+  const [loadingSchools, setLoadingSchools] = useState(true);
 
   const [step, setStep] = useState(1);
   const [targetSchoolId, setTargetSchoolId] = useState(preselectedSchoolId);
@@ -32,7 +37,24 @@ export const OnlineRegistrationPage: React.FC<OnlineRegistrationPageProps> = () 
   const [parentEmail, setParentEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const selectedSchool = MOCK_SCHOOLS.find(s => s.id === targetSchoolId) || MOCK_SCHOOLS[0];
+  useEffect(() => {
+    const fetchSchools = async () => {
+      setLoadingSchools(true);
+      const data = await schoolService.getSchools();
+      setSchools(data);
+      // If there's a preselected schoolId from URL and it exists in the data, keep it;
+      // otherwise default to the first school.
+      if (preselectedSchoolId && data.some(s => s.id === preselectedSchoolId)) {
+        setTargetSchoolId(preselectedSchoolId);
+      } else if (data.length > 0) {
+        setTargetSchoolId(data[0].id);
+      }
+      setLoadingSchools(false);
+    };
+    fetchSchools();
+  }, [preselectedSchoolId]);
+
+  const selectedSchool = schools.find(s => s.id === targetSchoolId) || schools[0];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -71,6 +93,10 @@ export const OnlineRegistrationPage: React.FC<OnlineRegistrationPageProps> = () 
       setIsSubmitting(false);
     }
   };
+
+  if (loadingSchools) {
+    return <LoadingSpinner message="Chargement des établissements disponibles..." />;
+  }
 
   return (
     <div className="max-w-3xl mx-auto py-8 px-4 sm:px-6 pb-20 space-y-6">
@@ -116,7 +142,7 @@ export const OnlineRegistrationPage: React.FC<OnlineRegistrationPageProps> = () 
               
               <Select
                 label="Établissement Souhaité *"
-                options={MOCK_SCHOOLS.map(s => ({ value: s.id, label: `${s.name} (${s.city} - ${s.province})` }))}
+                options={schools.map(s => ({ value: s.id, label: `${s.name} (${s.city} - ${s.province})` }))}
                 value={targetSchoolId}
                 onChange={e => setTargetSchoolId(e.target.value)}
               />

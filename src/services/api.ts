@@ -523,6 +523,23 @@ export const applicationService = {
     const updated = list.map(a => a.id === id ? { ...a, status, reviewNotes: reviewNotes ?? a.reviewNotes } : a);
     setStored('applications', updated);
     return updated.find(a => a.id === id)!;
+  },
+  markRegistrationFeePaid: async (id: string): Promise<ApplicationDossier> => {
+    if (supabase) {
+      const { data, error } = await supabase
+        .from('application_dossiers')
+        .update({ registration_fee_paid: true })
+        .eq('id', id)
+        .select()
+        .single();
+      if (!error && data) return toCamelCase(data) as ApplicationDossier;
+      if (error) console.error('Supabase error marking fee paid:', error);
+      throw error;
+    }
+    const list = getStored<ApplicationDossier[]>('applications', MOCK_APPLICATIONS);
+    const updated = list.map(a => a.id === id ? { ...a, registrationFeePaid: true } : a);
+    setStored('applications', updated);
+    return updated.find(a => a.id === id)!;
   }
 };
 

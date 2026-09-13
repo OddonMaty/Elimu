@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
+import { applicationService } from '../../services/api';
 import { Card } from '../../components/common/Card';
 import { Button } from '../../components/common/Button';
 import { Input } from '../../components/common/Input';
@@ -21,10 +22,15 @@ export const RegistrationPaymentPage: React.FC<RegistrationPaymentPageProps> = (
   const handlePay = (e: React.FormEvent) => {
     e.preventDefault();
     setIsProcessing(true);
-    setTimeout(() => {
+    setTimeout(async () => {
+      try {
+        await applicationService.markRegistrationFeePaid(appId);
+      } catch (err) {
+        console.error('Erreur lors de la mise à jour du paiement :', err);
+      }
       setIsProcessing(false);
       setIsPaid(true);
-      notify('success', 'Paiement Validé avec Succès !', 'Le reçu officiel a été généré et votre dossier est en cours d’examen.');
+      notify('success', 'Paiement Validé avec Succès !', 'Le reçu officiel a été généré et votre dossier est en cours d\u2019examen.');
     }, 1500);
   };
 
@@ -58,7 +64,7 @@ export const RegistrationPaymentPage: React.FC<RegistrationPaymentPageProps> = (
           <div className="p-4 bg-surface-container-low rounded-lg text-left text-xs space-y-1 font-mono">
             <p><strong>Référence :</strong> MP-{Date.now().toString().slice(-8)}</p>
             <p><strong>Dossier :</strong> #{appId}</p>
-            <p><strong>Statut :</strong> EN COURS D’EXAMEN PAR LA DIRECTION</p>
+            <p><strong>Statut :</strong> EN COURS D'EXAMEN PAR LA DIRECTION</p>
             <p><strong>Notification :</strong> SMS de confirmation envoyé</p>
           </div>
 

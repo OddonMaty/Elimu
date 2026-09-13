@@ -136,6 +136,8 @@ export const SchoolOnboardingPage: React.FC<SchoolOnboardingPageProps> = () => {
       if (authError) throw authError;
 
       // 2. Create School Tenant and link User (via RPC to bypass RLS bootstrap issues)
+      // Only send payment_phone for mobile money providers
+      const mobileProviders = ['mpesa', 'orange', 'airtel'];
       const { data: schoolId, error: rpcError } = await supabase.rpc('create_school_with_admin', {
         p_school_name: schoolName,
         p_city: selectedCityOrTown === 'OTHER' ? customCity : selectedCityOrTown,
@@ -147,7 +149,8 @@ export const SchoolOnboardingPage: React.FC<SchoolOnboardingPageProps> = () => {
         p_subscription_plan_id: selectedPlanId,
         p_admin_name: adminFullName,
         p_admin_phone: adminPhone,
-        p_admin_title: adminTitle
+        p_admin_title: adminTitle,
+        p_payment_phone: mobileProviders.includes(paymentProvider) ? paymentPhone : null
       });
       if (rpcError) throw rpcError;
 
@@ -674,6 +677,10 @@ export const SchoolOnboardingPage: React.FC<SchoolOnboardingPageProps> = () => {
                     required
                   />
                 </div>
+                <p className="text-[11px] text-on-surface-variant flex items-start gap-1.5 mt-3 p-3 bg-warning-container/30 border border-warning/20 rounded">
+                  <span className="material-symbols-outlined text-warning text-sm mt-0.5 shrink-0">info</span>
+                  <span>Le paiement par carte bancaire sera activé prochainement lors de l'intégration d'un prestataire certifié. Pour l'instant, veuillez privilégier le <strong>Mobile Money</strong> (M-Pesa, Orange Money ou Airtel Money).</span>
+                </p>
               </div>
             )}
 

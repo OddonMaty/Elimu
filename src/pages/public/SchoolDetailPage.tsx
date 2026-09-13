@@ -63,7 +63,7 @@ export const SchoolDetailPage: React.FC<SchoolDetailPageProps> = () => {
           </div>
 
           <div className="flex items-center gap-3">
-            <Link to={`/register-online?schoolId=${school.id}`}>
+            <Link to={`/register?schoolId=${school.id}`}>
               <Button variant="accent" size="lg" icon="how_to_reg" className="font-extrabold shadow-lg">
                 Inscrire un Élève en Ligne
               </Button>
