@@ -80,7 +80,7 @@ export const SchoolComparatorPage: React.FC<SchoolComparatorPageProps> = () => {
                   <th key={s.id} className="p-4 w-1/4 min-w-[240px] border-l border-outline-variant">
                     <div className="space-y-2">
                       <img
-                        src={s.coverImage}
+                        src={s.coverImage || 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=800&q=80'}
                         alt={s.name}
                         className="h-28 w-full object-cover rounded-md"
                       />
@@ -108,10 +108,16 @@ export const SchoolComparatorPage: React.FC<SchoolComparatorPageProps> = () => {
                 <td className="p-4 font-bold text-on-surface bg-surface-container-low/40">Frais de Scolarité Annuels</td>
                 {comparedSchools.map(s => (
                   <td key={s.id} className="p-4 border-l border-outline-variant">
-                    <span className="text-base font-black text-primary">
-                      ${s.annualTuitionMinUSD} - ${s.annualTuitionMaxUSD}
-                    </span>
-                    <span className="block text-[10px] text-on-surface-variant">Payable en 3 tranches</span>
+                    {s.annualTuitionMinUSD != null && s.annualTuitionMaxUSD != null && (s.annualTuitionMinUSD > 0 || s.annualTuitionMaxUSD > 0) ? (
+                      <>
+                        <span className="text-base font-black text-primary">
+                          ${s.annualTuitionMinUSD} - ${s.annualTuitionMaxUSD}
+                        </span>
+                        <span className="block text-[10px] text-on-surface-variant">Payable en 3 tranches</span>
+                      </>
+                    ) : (
+                      <span className="text-xs font-semibold text-on-surface-variant italic">Tarifs non communiqués</span>
+                    )}
                   </td>
                 ))}
               </tr>
@@ -121,9 +127,13 @@ export const SchoolComparatorPage: React.FC<SchoolComparatorPageProps> = () => {
                 <td className="p-4 font-bold text-on-surface bg-surface-container-low/40">Réussite Examen d'État</td>
                 {comparedSchools.map(s => (
                   <td key={s.id} className="p-4 border-l border-outline-variant">
-                    <Badge variant="warning" size="md" icon="workspace_premium">
-                      {s.passRateStateExam}% de réussite
-                    </Badge>
+                    {s.passRateStateExam && s.passRateStateExam > 0 ? (
+                      <Badge variant="warning" size="md" icon="workspace_premium">
+                        {s.passRateStateExam}% de réussite
+                      </Badge>
+                    ) : (
+                      <span className="text-xs text-on-surface-variant italic">Non renseigné</span>
+                    )}
                   </td>
                 ))}
               </tr>
@@ -133,12 +143,16 @@ export const SchoolComparatorPage: React.FC<SchoolComparatorPageProps> = () => {
                 <td className="p-4 font-bold text-on-surface bg-surface-container-low/40">Options & Humanités</td>
                 {comparedSchools.map(s => (
                   <td key={s.id} className="p-4 border-l border-outline-variant space-y-1">
-                    {s.sections.map((sec, idx) => (
-                      <div key={idx} className="flex items-center gap-1.5 text-[11px] text-on-surface">
-                        <span className="w-1 h-1 rounded-full bg-primary" />
-                        <span>{sec}</span>
-                      </div>
-                    ))}
+                    {s.sections && s.sections.length > 0 ? (
+                      s.sections.map((sec, idx) => (
+                        <div key={idx} className="flex items-center gap-1.5 text-[11px] text-on-surface">
+                          <span className="w-1 h-1 rounded-full bg-primary" />
+                          <span>{sec}</span>
+                        </div>
+                      ))
+                    ) : (
+                      <span className="text-[11px] text-on-surface-variant italic">Non renseigné</span>
+                    )}
                   </td>
                 ))}
               </tr>
@@ -148,12 +162,16 @@ export const SchoolComparatorPage: React.FC<SchoolComparatorPageProps> = () => {
                 <td className="p-4 font-bold text-on-surface bg-surface-container-low/40">Infrastructures Clés</td>
                 {comparedSchools.map(s => (
                   <td key={s.id} className="p-4 border-l border-outline-variant space-y-1">
-                    {s.infrastructure.slice(0, 4).map((inf, idx) => (
-                      <div key={idx} className="flex items-center gap-1 text-[11px] text-on-surface-variant">
-                        <span className="material-symbols-outlined text-success text-sm">check</span>
-                        <span>{inf}</span>
-                      </div>
-                    ))}
+                    {s.infrastructure && s.infrastructure.length > 0 ? (
+                      s.infrastructure.slice(0, 4).map((inf, idx) => (
+                        <div key={idx} className="flex items-center gap-1 text-[11px] text-on-surface-variant">
+                          <span className="material-symbols-outlined text-success text-sm">check</span>
+                          <span>{inf}</span>
+                        </div>
+                      ))
+                    ) : (
+                      <span className="text-[11px] text-on-surface-variant italic">Non renseigné</span>
+                    )}
                   </td>
                 ))}
               </tr>

@@ -30,32 +30,32 @@ export interface AccountInvitation {
 export interface School {
   id: string;
   name: string;
-  tagline: string;
+  tagline?: string;
   city: string;
   province: string;
   address: string;
   phone: string;
   email: string;
   website?: string;
-  foundedYear: number;
+  foundedYear?: number;
   type: 'Privé' | 'Public Conventionné' | 'International';
-  educationLevels: ('Maternelle' | 'Primaire' | 'Secondaire & Humanités')[];
-  sections: string[];
-  annualTuitionMinUSD: number;
-  annualTuitionMaxUSD: number;
-  currency: 'USD' | 'CDF';
-  rating: number;
-  reviewCount: number;
-  studentCount: number;
-  teacherCount: number;
-  passRateStateExam: number; // Examen d'État %
-  featured: boolean;
-  coverImage: string;
-  logoImage: string;
-  description: string;
-  infrastructure: string[];
-  documentsRequired: string[];
-  paymentMethods: ('M-Pesa' | 'Orange Money' | 'Airtel Money' | 'Visa/Mastercard' | 'Virement Bancaire')[];
+  educationLevels?: ('Maternelle' | 'Primaire' | 'Secondaire & Humanités')[];
+  sections?: string[];
+  annualTuitionMinUSD?: number;
+  annualTuitionMaxUSD?: number;
+  currency?: 'USD' | 'CDF';
+  rating?: number;
+  reviewCount?: number;
+  studentCount?: number;
+  teacherCount?: number;
+  passRateStateExam?: number; // Examen d'État %
+  featured?: boolean;
+  coverImage?: string;
+  logoImage?: string;
+  description?: string;
+  infrastructure?: string[];
+  documentsRequired?: string[];
+  paymentMethods?: ('M-Pesa' | 'Orange Money' | 'Airtel Money' | 'Visa/Mastercard' | 'Virement Bancaire')[];
   currentAcademicYear?: string;
   currentTerm?: string;
 }
@@ -193,7 +193,7 @@ export interface ApplicationDossier {
   parentEmail: string;
   submissionDate: string;
   status: 'SOUMIS' | 'EN_EXAMEN' | 'APPROUVE' | 'REJETE';
-  documents: { name: string; status: 'VALIDE' | 'EN_ATTENTE'; url?: string }[];
+  documents: { name: string; status?: 'VALIDE' | 'EN_ATTENTE'; url?: string }[];
   reviewNotes?: string;
   registrationFeePaid: boolean;
 }

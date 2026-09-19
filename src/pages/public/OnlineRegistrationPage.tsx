@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { School } from '../../types';
 import { schoolService } from '../../services/api';
@@ -10,6 +10,118 @@ import { Select } from '../../components/common/Select';
 import { Alert } from '../../components/common/Alert';
 import { LoadingSpinner } from '../../components/common/LoadingSpinner';
 import { useNotification } from '../../context/NotificationContext';
+import { supabase } from '../../lib/supabaseClient';
+
+interface FileUploadZoneProps {
+  label: string;
+  file: File | null;
+  onFileSelect: (file: File | null) => void;
+  accept?: string;
+  description?: string;
+}
+
+const FileUploadZone: React.FC<FileUploadZoneProps> = ({
+  label,
+  file,
+  onFileSelect,
+  accept = 'application/pdf,image/*',
+  description = 'Format PDF ou Image (max 10 Mo)'
+}) => {
+  const [isDragging, setIsDragging] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleClick = () => {
+    inputRef.current?.click();
+  };
+
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+  };
+
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+      onFileSelect(e.dataTransfer.files[0]);
+    }
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      onFileSelect(e.target.files[0]);
+    }
+  };
+
+  const formatSize = (bytes: number) => {
+    if (bytes < 1024 * 1024) {
+      return `${(bytes / 1024).toFixed(1)} Ko`;
+    }
+    return `${(bytes / (1024 * 1024)).toFixed(2)} Mo`;
+  };
+
+  return (
+    <div
+      onClick={handleClick}
+      onDragOver={handleDragOver}
+      onDragEnter={handleDragOver}
+      onDragLeave={handleDragLeave}
+      onDrop={handleDrop}
+      className={`relative p-5 border-2 border-dashed rounded-xl text-center cursor-pointer transition-all duration-200 select-none ${
+        isDragging
+          ? 'border-primary bg-primary/10 ring-2 ring-primary/20 scale-[1.01]'
+          : file
+          ? 'border-success/60 bg-success/5 hover:bg-success/10'
+          : 'border-outline-variant bg-surface-container-low/40 hover:border-primary/50 hover:bg-surface-container-low'
+      }`}
+    >
+      <input
+        ref={inputRef}
+        type="file"
+        accept={accept}
+        className="hidden"
+        onChange={handleFileChange}
+      />
+      {file ? (
+        <div className="space-y-1.5 flex flex-col items-center">
+          <div className="w-10 h-10 rounded-full bg-success/10 text-success flex items-center justify-center">
+            <span className="material-symbols-outlined text-2xl">check_circle</span>
+          </div>
+          <p className="font-bold text-xs text-on-surface">{label}</p>
+          <div className="flex items-center justify-center gap-1.5 text-xs text-success font-semibold max-w-full px-2">
+            <span className="text-success font-bold text-sm">✓</span>
+            <span className="truncate max-w-[180px] sm:max-w-[220px]" title={file.name}>
+              {file.name}
+            </span>
+            <span className="text-[10px] text-on-surface-variant font-normal">
+              ({formatSize(file.size)})
+            </span>
+          </div>
+          <span className="text-[11px] text-primary hover:underline block pt-0.5">
+            Cliquer pour remplacer
+          </span>
+        </div>
+      ) : (
+        <div className="space-y-1.5 flex flex-col items-center">
+          <div className="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+            <span className="material-symbols-outlined text-2xl">upload_file</span>
+          </div>
+          <p className="font-bold text-xs text-on-surface">{label}</p>
+          <p className="text-xs text-on-surface-variant font-medium">Cliquez ou glissez un fichier ici</p>
+          <span className="text-[10px] text-outline block">{description}</span>
+        </div>
+      )}
+    </div>
+  );
+};
 
 export interface OnlineRegistrationPageProps {}
 
@@ -35,6 +147,8 @@ export const OnlineRegistrationPage: React.FC<OnlineRegistrationPageProps> = () 
   const [parentName, setParentName] = useState('');
   const [parentPhone, setParentPhone] = useState('+243 ');
   const [parentEmail, setParentEmail] = useState('');
+  const [birthCertFile, setBirthCertFile] = useState<File | null>(null);
+  const [reportCardFile, setReportCardFile] = useState<File | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
@@ -63,8 +177,61 @@ export const OnlineRegistrationPage: React.FC<OnlineRegistrationPageProps> = () 
       return;
     }
 
+    if (!birthCertFile || !reportCardFile) {
+      notify('error', 'Documents requis', 'Veuillez sélectionner l\'acte de naissance et les bulletins scolaires récents.');
+      return;
+    }
+
     setIsSubmitting(true);
     try {
+      let birthCertUrl = '';
+      let reportCardUrl = '';
+
+      if (supabase) {
+        const timestamp = Date.now();
+        const sanitize = (name: string) => name.replace(/[^a-zA-Z0-9._-]/g, '_');
+
+        // 1. Téléversement Acte de Naissance
+        const birthCertFileName = `${timestamp}_${sanitize(birthCertFile.name)}`;
+        const { data: birthData, error: birthError } = await supabase.storage
+          .from('application-documents')
+          .upload(birthCertFileName, birthCertFile, {
+            cacheControl: '3600',
+            upsert: false
+          });
+
+        if (birthError) {
+          throw new Error(`Erreur lors du téléversement de l'acte de naissance: ${birthError.message}`);
+        }
+
+        const { data: birthUrlData } = supabase.storage
+          .from('application-documents')
+          .getPublicUrl(birthData.path);
+        birthCertUrl = birthUrlData.publicUrl;
+
+        // 2. Téléversement Bulletin Scolaire
+        const reportCardFileName = `${timestamp}_${sanitize(reportCardFile.name)}`;
+        const { data: reportData, error: reportError } = await supabase.storage
+          .from('application-documents')
+          .upload(reportCardFileName, reportCardFile, {
+            cacheControl: '3600',
+            upsert: false
+          });
+
+        if (reportError) {
+          throw new Error(`Erreur lors du téléversement du bulletin scolaire: ${reportError.message}`);
+        }
+
+        const { data: reportUrlData } = supabase.storage
+          .from('application-documents')
+          .getPublicUrl(reportData.path);
+        reportCardUrl = reportUrlData.publicUrl;
+      } else {
+        // Fallback pour le mode démo hors-ligne
+        birthCertUrl = `mock://storage/application-documents/${Date.now()}_${birthCertFile.name}`;
+        reportCardUrl = `mock://storage/application-documents/${Date.now()}_${reportCardFile.name}`;
+      }
+
       const app = await applicationService.submitApplication({
         applicantFirstName: firstName,
         applicantLastName: lastName,
@@ -80,15 +247,15 @@ export const OnlineRegistrationPage: React.FC<OnlineRegistrationPageProps> = () 
         parentEmail: parentEmail || 'non_renseigne@elimu.cd',
         registrationFeePaid: false,
         documents: [
-          { name: 'Acte de Naissance', status: 'VALIDE' },
-          { name: 'Bulletins Scolaires Antérieurs', status: 'VALIDE' }
+          { name: 'Acte de Naissance', url: birthCertUrl, status: 'EN_ATTENTE' },
+          { name: 'Bulletin Scolaire', url: reportCardUrl, status: 'EN_ATTENTE' }
         ]
       });
 
       notify('success', 'Dossier Enregistré !', `Votre candidature #${app.id} a été transmise à la direction.`);
       navigate(`/register/payment?appId=${app.id}`);
-    } catch {
-      notify('error', 'Erreur', 'Impossible de soumettre la candidature.');
+    } catch (err: any) {
+      notify('error', 'Erreur', err?.message || 'Impossible de soumettre la candidature.');
     } finally {
       setIsSubmitting(false);
     }
@@ -259,16 +426,18 @@ export const OnlineRegistrationPage: React.FC<OnlineRegistrationPageProps> = () 
               </Alert>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div className="p-4 border-2 border-dashed border-outline-variant rounded-lg text-center bg-surface-container-low/40">
-                  <span className="material-symbols-outlined text-3xl text-primary mb-1">upload_file</span>
-                  <p className="font-bold text-xs">Acte de Naissance (PDF / Photo)</p>
-                  <span className="text-[10px] text-success font-bold block mt-1">✓ Fichier prêt à être téléversé</span>
-                </div>
-                <div className="p-4 border-2 border-dashed border-outline-variant rounded-lg text-center bg-surface-container-low/40">
-                  <span className="material-symbols-outlined text-3xl text-primary mb-1">upload_file</span>
-                  <p className="font-bold text-xs">Bulletins Scolaires Récents</p>
-                  <span className="text-[10px] text-success font-bold block mt-1">✓ Fichier prêt à être téléversé</span>
-                </div>
+                <FileUploadZone
+                  label="Acte de Naissance (PDF / Photo)"
+                  file={birthCertFile}
+                  onFileSelect={setBirthCertFile}
+                  accept="application/pdf,image/*"
+                />
+                <FileUploadZone
+                  label="Bulletins Scolaires Récents"
+                  file={reportCardFile}
+                  onFileSelect={setReportCardFile}
+                  accept="application/pdf,image/*"
+                />
               </div>
 
               {/* Summary box */}
@@ -280,11 +449,25 @@ export const OnlineRegistrationPage: React.FC<OnlineRegistrationPageProps> = () 
                 <p><strong>Frais d'Étude de Dossier :</strong> <span className="font-bold text-primary">$25.00 USD</span> (payable à l'étape suivante)</p>
               </div>
 
+              {(!birthCertFile || !reportCardFile) && (
+                <div className="flex items-center gap-1.5 text-xs text-amber-600 dark:text-amber-400 font-medium justify-end">
+                  <span className="material-symbols-outlined text-sm">info</span>
+                  <span>Veuillez téléverser les 2 documents obligatoires pour valider votre dossier.</span>
+                </div>
+              )}
+
               <div className="flex justify-between pt-4">
                 <Button variant="outline" type="button" onClick={() => setStep(2)} icon="arrow_back">
                   Précédent
                 </Button>
-                <Button variant="accent" size="lg" type="submit" isLoading={isSubmitting} icon="check_circle">
+                <Button
+                  variant="accent"
+                  size="lg"
+                  type="submit"
+                  isLoading={isSubmitting}
+                  disabled={!birthCertFile || !reportCardFile || isSubmitting}
+                  icon="check_circle"
+                >
                   Soumettre la Candidature & Procéder au Paiement
                 </Button>
               </div>

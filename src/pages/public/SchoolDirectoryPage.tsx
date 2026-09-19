@@ -10,6 +10,8 @@ import { Input } from '../../components/common/Input';
 import { Select } from '../../components/common/Select';
 import { LoadingSpinner } from '../../components/common/LoadingSpinner';
 
+const DEFAULT_SCHOOL_COVER = 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=800&q=80';
+
 export interface SchoolDirectoryPageProps {}
 
 export const SchoolDirectoryPage: React.FC<SchoolDirectoryPageProps> = () => {
@@ -31,18 +33,24 @@ export const SchoolDirectoryPage: React.FC<SchoolDirectoryPageProps> = () => {
   }, []);
 
   const filteredSchools = schools.filter(s => {
-    const matchesSearch = s.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      s.province.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      s.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      s.sections.some(sec => sec.toLowerCase().includes(searchTerm.toLowerCase()));
+    const term = searchTerm.toLowerCase();
+    const matchesSearch = s.name.toLowerCase().includes(term) ||
+      s.province.toLowerCase().includes(term) ||
+      s.city.toLowerCase().includes(term) ||
+      (s.sections && s.sections.some(sec => sec.toLowerCase().includes(term))) ||
+      (s.educationLevels && s.educationLevels.some(lvl => lvl.toLowerCase().includes(term)));
     
-    const matchesProvince = selectedProvince === 'ALL' || s.province.toLowerCase().includes(selectedProvince.toLowerCase()) || s.city.toLowerCase().includes(selectedProvince.toLowerCase());
+    const matchesProvince = selectedProvince === 'ALL' ||
+      s.province.toLowerCase().includes(selectedProvince.toLowerCase()) ||
+      s.city.toLowerCase().includes(selectedProvince.toLowerCase());
     const matchesType = selectedType === 'ALL' || s.type === selectedType;
     
     let matchesTuition = true;
-    if (maxTuition === 'UNDER_400') matchesTuition = s.annualTuitionMinUSD <= 400;
-    if (maxTuition === '400_700') matchesTuition = s.annualTuitionMinUSD >= 400 && s.annualTuitionMaxUSD <= 700;
-    if (maxTuition === 'OVER_700') matchesTuition = s.annualTuitionMaxUSD > 700;
+    const minTuition = s.annualTuitionMinUSD ?? 0;
+    const maxTuitionVal = s.annualTuitionMaxUSD ?? 0;
+    if (maxTuition === 'UNDER_400') matchesTuition = minTuition > 0 && minTuition <= 400;
+    if (maxTuition === '400_700') matchesTuition = minTuition >= 400 && maxTuitionVal <= 700;
+    if (maxTuition === 'OVER_700') matchesTuition = maxTuitionVal > 700;
 
     return matchesSearch && matchesProvince && matchesType && matchesTuition;
   });
@@ -138,110 +146,153 @@ export const SchoolDirectoryPage: React.FC<SchoolDirectoryPageProps> = () => {
         <LoadingSpinner message="Chargement des établissements scolaires de la RDC..." />
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredSchools.map(school => (
-            <Card
-              key={school.id}
-              noPadding
-              className="group hover:shadow-lg transition-all duration-200 overflow-hidden flex flex-col justify-between"
-            >
-              <div>
-                {/* School Cover Image */}
-                <div className="relative h-48 w-full overflow-hidden bg-surface-container">
-                  <img
-                    src={school.coverImage}
-                    alt={school.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                  
-                  {/* Top badges */}
-                  <div className="absolute top-3 left-3 right-3 flex items-center justify-between">
-                    <span className="text-[11px] font-bold px-2 py-0.5 rounded bg-black/60 text-white backdrop-blur-xs">
-                      {school.province} • {school.city}
-                    </span>
-                    {school.featured && (
-                      <span className="text-[10px] font-extrabold px-2 py-0.5 rounded bg-secondary-container text-primary uppercase tracking-wider shadow-xs">
-                        ★ Référence
-                      </span>
-                    )}
-                  </div>
+          {filteredSchools.map(school => {
+            const hasTuition = school.annualTuitionMinUSD != null &&
+              school.annualTuitionMaxUSD != null &&
+              (school.annualTuitionMinUSD > 0 || school.annualTuitionMaxUSD > 0);
 
-                  {/* Exetat pass rate */}
-                  <div className="absolute bottom-3 left-3 flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center p-1 shadow">
-                      <img src={school.logoImage} alt="Logo" className="w-full h-full object-contain" />
+            const displayTags = (school.sections && school.sections.length > 0)
+              ? school.sections
+              : (school.educationLevels && school.educationLevels.length > 0)
+              ? school.educationLevels
+              : [];
+
+            return (
+              <Card
+                key={school.id}
+                noPadding
+                className="group hover:shadow-lg transition-all duration-200 overflow-hidden flex flex-col justify-between"
+              >
+                <div>
+                  {/* School Cover Image */}
+                  <div className="relative h-48 w-full overflow-hidden bg-surface-container">
+                    <img
+                      src={school.coverImage || DEFAULT_SCHOOL_COVER}
+                      alt={school.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      onError={(e) => {
+                        (e.currentTarget as HTMLImageElement).src = DEFAULT_SCHOOL_COVER;
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                    
+                    {/* Top badges */}
+                    <div className="absolute top-3 left-3 right-3 flex items-center justify-between">
+                      <span className="text-[11px] font-bold px-2 py-0.5 rounded bg-black/60 text-white backdrop-blur-xs">
+                        {school.province} • {school.city}
+                      </span>
+                      {school.featured && (
+                        <span className="text-[10px] font-extrabold px-2 py-0.5 rounded bg-secondary-container text-primary uppercase tracking-wider shadow-xs">
+                          ★ Référence
+                        </span>
+                      )}
                     </div>
-                    <span className="text-xs font-bold text-white drop-shadow">
-                      Exetat : <span className="text-secondary-container font-black">{school.passRateStateExam}%</span>
-                    </span>
-                  </div>
-                </div>
 
-                {/* Details Body */}
-                <div className="p-4 space-y-3">
-                  <div>
-                    <h3 className="font-extrabold text-base text-primary group-hover:text-tertiary transition-colors">
-                      {school.name}
-                    </h3>
-                    <p className="text-xs text-on-surface-variant line-clamp-1 mt-0.5">
-                      {school.tagline}
-                    </p>
-                  </div>
-
-                  {/* Sections pill tags */}
-                  <div className="flex flex-wrap gap-1">
-                    {school.sections.slice(0, 3).map((sec, idx) => (
-                      <span
-                        key={idx}
-                        className="text-[10px] px-2 py-0.5 rounded bg-surface-container font-medium text-on-surface-variant"
-                      >
-                        {sec}
-                      </span>
-                    ))}
-                    {school.sections.length > 3 && (
-                      <span className="text-[10px] px-1.5 py-0.5 rounded bg-surface-container-high font-bold text-on-surface-variant">
-                        +{school.sections.length - 3}
-                      </span>
-                    )}
+                    {/* Exetat pass rate & Logo */}
+                    <div className="absolute bottom-3 left-3 flex items-center gap-2">
+                      <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center p-1 shadow overflow-hidden flex-shrink-0">
+                        {school.logoImage ? (
+                          <img
+                            src={school.logoImage}
+                            alt="Logo"
+                            className="w-full h-full object-contain"
+                            onError={(e) => {
+                              (e.currentTarget as HTMLElement).style.display = 'none';
+                              if (e.currentTarget.parentElement) {
+                                e.currentTarget.parentElement.innerHTML = '<span class="material-symbols-outlined text-primary text-base">school</span>';
+                              }
+                            }}
+                          />
+                        ) : (
+                          <span className="material-symbols-outlined text-primary text-base">school</span>
+                        )}
+                      </div>
+                      {school.passRateStateExam && school.passRateStateExam > 0 ? (
+                        <span className="text-xs font-bold text-white drop-shadow">
+                          Exetat : <span className="text-secondary-container font-black">{school.passRateStateExam}%</span>
+                        </span>
+                      ) : (
+                        <span className="text-xs font-bold text-white/90 drop-shadow">
+                          {school.type || 'Établissement'}
+                        </span>
+                      )}
+                    </div>
                   </div>
 
-                  {/* Tuition info */}
-                  <div className="pt-2 border-t border-outline-variant/60 flex items-center justify-between">
+                  {/* Details Body */}
+                  <div className="p-4 space-y-3">
                     <div>
-                      <span className="text-[10px] text-on-surface-variant uppercase font-bold block">
-                        Frais Scolaires Annuels :
-                      </span>
-                      <span className="text-sm font-black text-primary">
-                        ${school.annualTuitionMinUSD} - ${school.annualTuitionMaxUSD} USD
-                      </span>
+                      <h3 className="font-extrabold text-base text-primary group-hover:text-tertiary transition-colors">
+                        {school.name}
+                      </h3>
+                      <p className={`text-xs line-clamp-1 mt-0.5 ${school.tagline?.trim() || school.description?.trim() ? 'text-on-surface-variant' : 'text-on-surface-variant/80 italic'}`}>
+                        {school.tagline?.trim() || school.description?.trim() || "Cette école n'a pas encore ajouté de description."}
+                      </p>
                     </div>
-                    <div className="text-right">
-                      <span className="text-[10px] text-on-surface-variant uppercase font-bold block">
-                        Effectif :
-                      </span>
-                      <span className="text-xs font-bold text-on-surface">
-                        {school.studentCount} élèves
-                      </span>
+
+                    {/* Sections / Education levels pill tags - hide if empty */}
+                    {displayTags.length > 0 && (
+                      <div className="flex flex-wrap gap-1">
+                        {displayTags.slice(0, 3).map((item, idx) => (
+                          <span
+                            key={idx}
+                            className="text-[10px] px-2 py-0.5 rounded bg-surface-container font-medium text-on-surface-variant"
+                          >
+                            {item}
+                          </span>
+                        ))}
+                        {displayTags.length > 3 && (
+                          <span className="text-[10px] px-1.5 py-0.5 rounded bg-surface-container-high font-bold text-on-surface-variant">
+                            +{displayTags.length - 3}
+                          </span>
+                        )}
+                      </div>
+                    )}
+
+                    {/* Tuition info */}
+                    <div className="pt-2 border-t border-outline-variant/60 flex items-center justify-between">
+                      <div>
+                        <span className="text-[10px] text-on-surface-variant uppercase font-bold block">
+                          Frais Scolaires Annuels :
+                        </span>
+                        {hasTuition ? (
+                          <span className="text-sm font-black text-primary">
+                            ${school.annualTuitionMinUSD} - ${school.annualTuitionMaxUSD} USD
+                          </span>
+                        ) : (
+                          <span className="text-xs font-semibold text-on-surface-variant italic">
+                            Tarifs non communiqués
+                          </span>
+                        )}
+                      </div>
+                      <div className="text-right">
+                        <span className="text-[10px] text-on-surface-variant uppercase font-bold block">
+                          Effectif :
+                        </span>
+                        <span className="text-xs font-bold text-on-surface">
+                          {school.studentCount ? `${school.studentCount} élèves` : 'Non renseigné'}
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Actions Footer */}
-              <div className="p-4 pt-0 flex gap-2">
-                <Link to={`/schools/${school.id}`} className="flex-1">
-                  <Button variant="outline" size="sm" fullWidth icon="visibility">
-                    Détails
-                  </Button>
-                </Link>
-                <Link to={`/register?schoolId=${school.id}`} className="flex-1">
-                  <Button variant="accent" size="sm" fullWidth icon="send">
-                    Postuler
-                  </Button>
-                </Link>
-              </div>
-            </Card>
-          ))}
+                {/* Actions Footer */}
+                <div className="p-4 pt-0 flex gap-2">
+                  <Link to={`/schools/${school.id}`} className="flex-1">
+                    <Button variant="outline" size="sm" fullWidth icon="visibility">
+                      Détails
+                    </Button>
+                  </Link>
+                  <Link to={`/register?schoolId=${school.id}`} className="flex-1">
+                    <Button variant="accent" size="sm" fullWidth icon="send">
+                      Postuler
+                    </Button>
+                  </Link>
+                </div>
+              </Card>
+            );
+          })}
         </div>
       )}
     </div>

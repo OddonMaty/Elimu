@@ -52,7 +52,10 @@ const toCamelCase = (obj: any): any => {
   if (obj !== null && typeof obj === 'object') {
     return Object.keys(obj).reduce((acc, key) => {
       const camelKey = key.replace(/_([a-z])/g, (g) => g[1].toUpperCase());
-      acc[camelKey] = toCamelCase(obj[key]);
+      const val = toCamelCase(obj[key]);
+      acc[camelKey] = val;
+      if (key === 'annual_tuition_min_usd') acc['annualTuitionMinUSD'] = val;
+      if (key === 'annual_tuition_max_usd') acc['annualTuitionMaxUSD'] = val;
       return acc;
     }, {} as any);
   }
@@ -63,7 +66,9 @@ const toSnakeCase = (obj: any): any => {
   if (Array.isArray(obj)) return obj.map(toSnakeCase);
   if (obj !== null && typeof obj === 'object') {
     return Object.keys(obj).reduce((acc, key) => {
-      const snakeKey = key.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`);
+      let snakeKey = key.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`);
+      if (key === 'annualTuitionMinUSD' || key === 'annualTuitionMinUsd') snakeKey = 'annual_tuition_min_usd';
+      if (key === 'annualTuitionMaxUSD' || key === 'annualTuitionMaxUsd') snakeKey = 'annual_tuition_max_usd';
       acc[snakeKey] = toSnakeCase(obj[key]);
       return acc;
     }, {} as any);
@@ -108,7 +113,8 @@ export const schoolService = {
         if (!error && data) return toCamelCase(data) as School;
       }
     }
-    return undefined;
+    const list = getStored<School[]>('schools', MOCK_SCHOOLS);
+    return list[0];
   },
   updateMySchool: async (updates: Partial<School>): Promise<School> => {
     if (supabase) {
@@ -121,7 +127,11 @@ export const schoolService = {
         if (error) throw error;
       }
     }
-    throw new Error('Not implemented locally');
+    const list = getStored<School[]>('schools', MOCK_SCHOOLS);
+    const mySchool = list[0] || ({ id: 'sch-1' } as School);
+    const updated = { ...mySchool, ...updates };
+    setStored('schools', list.map(s => s.id === mySchool.id ? updated : s));
+    return updated;
   }
 };
 
