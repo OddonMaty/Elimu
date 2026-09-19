@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { School } from '../../types';
-import { schoolService } from '../../services/api';
-import { applicationService } from '../../services/api';
+import { School, ClassSection } from '../../types';
+import { schoolService, applicationService, classService } from '../../services/api';
 import { Card } from '../../components/common/Card';
 import { Button } from '../../components/common/Button';
 import { Input } from '../../components/common/Input';
@@ -141,7 +140,9 @@ export const OnlineRegistrationPage: React.FC<OnlineRegistrationPageProps> = () 
   const [lastName, setLastName] = useState('');
   const [gender, setGender] = useState<'M' | 'F'>('M');
   const [birthDate, setBirthDate] = useState('2010-05-15');
-  const [targetClass, setTargetClass] = useState('4ème Scientifique');
+  const [classes, setClasses] = useState<ClassSection[]>([]);
+  const [loadingClasses, setLoadingClasses] = useState(false);
+  const [targetClass, setTargetClass] = useState('');
   const [targetSection, setTargetSection] = useState('Scientifique (Bio-Chimie)');
   const [previousSchool, setPreviousSchool] = useState('');
   const [parentName, setParentName] = useState('');
@@ -169,6 +170,31 @@ export const OnlineRegistrationPage: React.FC<OnlineRegistrationPageProps> = () 
   }, [preselectedSchoolId]);
 
   const selectedSchool = schools.find(s => s.id === targetSchoolId) || schools[0];
+
+  useEffect(() => {
+    if (!selectedSchool?.id) return;
+    const fetchClasses = async () => {
+      setLoadingClasses(true);
+      try {
+        const clsList = await classService.getClasses(selectedSchool.id);
+        setClasses(clsList);
+        if (clsList.length > 0) {
+          if (!clsList.some(c => c.name === targetClass)) {
+            setTargetClass(clsList[0].name);
+          }
+        } else {
+          setTargetClass('');
+        }
+      } catch (err) {
+        console.error('Erreur chargement des classes de l\'école:', err);
+        setClasses([]);
+        setTargetClass('');
+      } finally {
+        setLoadingClasses(false);
+      }
+    };
+    fetchClasses();
+  }, [selectedSchool?.id]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -353,21 +379,31 @@ export const OnlineRegistrationPage: React.FC<OnlineRegistrationPageProps> = () 
                   onChange={e => setBirthDate(e.target.value)}
                   required
                 />
-                <Select
-                  label="Classe Demandée *"
-                  options={[
-                    '1ère Humanités (7ème EB)',
-                    '2ème Humanités (8ème EB)',
-                    '3ème Scientifique',
-                    '4ème Scientifique',
-                    '3ème Littéraire',
-                    '4ème Littéraire',
-                    '3ème Commerciale',
-                    '4ème Commerciale'
-                  ]}
-                  value={targetClass}
-                  onChange={e => setTargetClass(e.target.value)}
-                />
+                {loadingClasses ? (
+                  <div className="space-y-1">
+                    <label className="text-xs font-bold text-on-surface">Classe Demandée *</label>
+                    <div className="p-2.5 bg-surface-container-low border border-outline-variant rounded-lg text-xs text-on-surface-variant flex items-center gap-2">
+                      <span className="material-symbols-outlined animate-spin text-sm">progress_activity</span>
+                      <span>Chargement des classes...</span>
+                    </div>
+                  </div>
+                ) : classes.length > 0 ? (
+                  <Select
+                    label="Classe Demandée *"
+                    options={classes.map(c => c.name)}
+                    value={targetClass}
+                    onChange={e => setTargetClass(e.target.value)}
+                    required
+                  />
+                ) : (
+                  <div className="space-y-1">
+                    <label className="text-xs font-bold text-on-surface">Classe Demandée *</label>
+                    <div className="p-2.5 bg-error/10 border border-error/30 rounded-lg flex items-center gap-1.5 text-error text-xs font-medium">
+                      <span className="material-symbols-outlined text-sm flex-shrink-0">warning</span>
+                      <span>Cette école n'a pas encore configuré ses classes</span>
+                    </div>
+                  </div>
+                )}
               </div>
 
               <Input
@@ -377,10 +413,22 @@ export const OnlineRegistrationPage: React.FC<OnlineRegistrationPageProps> = () 
                 onChange={e => setPreviousSchool(e.target.value)}
               />
 
-              <div className="flex justify-end pt-4">
-                <Button variant="primary" type="button" onClick={() => setStep(2)} icon="arrow_forward" iconPosition="right">
+              <div className="flex flex-col items-end pt-4 gap-2">
+                <Button
+                  variant="primary"
+                  type="button"
+                  onClick={() => setStep(2)}
+                  disabled={classes.length === 0 || loadingClasses || !targetClass}
+                  icon="arrow_forward"
+                  iconPosition="right"
+                >
                   Étape Suivante
                 </Button>
+                {classes.length === 0 && !loadingClasses && (
+                  <p className="text-[11px] text-error font-medium">
+                    Impossible de poursuivre : aucune classe disponible pour cet établissement.
+                  </p>
+                )}
               </div>
             </div>
           )}

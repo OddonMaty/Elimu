@@ -215,12 +215,13 @@ export interface Message {
 export interface ClassSection {
   id: string;
   name: string;
-  level: 'Maternelle' | 'Primaire' | 'Secondaire' | 'Humanités';
-  stream?: 'Scientifique' | 'Littéraire' | 'Commerciale & Gestion' | 'Pédagogie Générale' | 'Technique';
-  capacity: number;
-  enrolled: number;
-  room: string;
-  mainTeacher: string;
+  level: 'Maternelle' | 'Primaire' | 'Secondaire' | 'Humanités' | string;
+  stream?: 'Scientifique' | 'Littéraire' | 'Commerciale & Gestion' | 'Pédagogie Générale' | 'Technique' | string;
+  capacity?: number;
+  enrolled?: number;
+  room?: string;
+  mainTeacher?: string;
+  schoolId?: string;
 }
 
 export interface ScheduleItem {

@@ -69,7 +69,9 @@ export const ClassesConfigPage: React.FC<ClassesConfigPageProps> = () => {
       {/* Grid of Classes */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {classes.map(cls => {
-          const occupancyRate = Math.round((cls.enrolled / cls.capacity) * 100);
+          const capacity = cls.capacity || 40;
+          const enrolled = cls.enrolled || 0;
+          const occupancyRate = Math.round((enrolled / capacity) * 100);
           return (
             <Card key={cls.id} noPadding className="p-5 flex flex-col justify-between hover:shadow-md transition-shadow">
               <div className="space-y-3">
@@ -80,23 +82,25 @@ export const ClassesConfigPage: React.FC<ClassesConfigPageProps> = () => {
                       {cls.level} {cls.stream ? `• ${cls.stream}` : ''}
                     </span>
                   </div>
-                  <span className="text-[11px] font-bold px-2 py-0.5 rounded bg-primary-fixed text-primary">
-                    {cls.room}
-                  </span>
+                  {cls.room && (
+                    <span className="text-[11px] font-bold px-2 py-0.5 rounded bg-primary-fixed text-primary">
+                      {cls.room}
+                    </span>
+                  )}
                 </div>
 
                 {/* Capacity progress */}
                 <div className="space-y-1">
                   <div className="flex justify-between text-xs font-semibold">
                     <span className="text-on-surface-variant">Effectif :</span>
-                    <span className="text-primary font-bold">{cls.enrolled} / {cls.capacity} élèves</span>
+                    <span className="text-primary font-bold">{enrolled} / {capacity} élèves</span>
                   </div>
                   <div className="w-full bg-surface-container h-2 rounded-full overflow-hidden">
                     <div
                       className={`h-full rounded-full transition-all ${
                         occupancyRate >= 95 ? 'bg-error' : occupancyRate >= 80 ? 'bg-secondary-container' : 'bg-primary'
                       }`}
-                      style={{ width: `${occupancyRate}%` }}
+                      style={{ width: `${Math.min(occupancyRate, 100)}%` }}
                     />
                   </div>
                 </div>
@@ -106,7 +110,7 @@ export const ClassesConfigPage: React.FC<ClassesConfigPageProps> = () => {
                   <span className="material-symbols-outlined text-primary text-base">person</span>
                   <div>
                     <span className="text-[10px] text-on-surface-variant block uppercase font-semibold">Professeur Titulaire</span>
-                    <span className="font-bold text-on-surface">{cls.mainTeacher}</span>
+                    <span className="font-bold text-on-surface">{cls.mainTeacher || 'Non assigné'}</span>
                   </div>
                 </div>
               </div>

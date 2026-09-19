@@ -46,6 +46,12 @@ export const SchoolSettingsPage: React.FC<SchoolSettingsPageProps> = () => {
   const [sections, setSections] = useState<string[]>([]);
   const [newSectionInput, setNewSectionInput] = useState('');
 
+  const [teacherCount, setTeacherCount] = useState<string>('');
+  const [studentCount, setStudentCount] = useState<string>('');
+  const [passRateStateExam, setPassRateStateExam] = useState<string>('');
+  const [foundedYear, setFoundedYear] = useState<string>('');
+  const [website, setWebsite] = useState<string>('');
+
   const [coverImage, setCoverImage] = useState<string>('');
   const [logoImage, setLogoImage] = useState<string>('');
   const [isUploadingCover, setIsUploadingCover] = useState(false);
@@ -77,6 +83,12 @@ export const SchoolSettingsPage: React.FC<SchoolSettingsPageProps> = () => {
           if (school.sections) setSections(school.sections);
           if (school.coverImage) setCoverImage(school.coverImage);
           if (school.logoImage) setLogoImage(school.logoImage);
+
+          if (school.teacherCount != null) setTeacherCount(String(school.teacherCount));
+          if (school.studentCount != null) setStudentCount(String(school.studentCount));
+          if (school.passRateStateExam != null) setPassRateStateExam(String(school.passRateStateExam));
+          if (school.foundedYear != null) setFoundedYear(String(school.foundedYear));
+          if (school.website) setWebsite(school.website);
         }
       } catch (err: any) {
         notify('error', 'Erreur', err.message || 'Impossible de charger les paramètres.');
@@ -199,7 +211,12 @@ export const SchoolSettingsPage: React.FC<SchoolSettingsPageProps> = () => {
         educationLevels,
         sections,
         coverImage,
-        logoImage
+        logoImage,
+        teacherCount: teacherCount !== '' ? Number(teacherCount) : undefined,
+        studentCount: studentCount !== '' ? Number(studentCount) : undefined,
+        passRateStateExam: passRateStateExam !== '' ? Number(passRateStateExam) : undefined,
+        foundedYear: foundedYear !== '' ? Number(foundedYear) : undefined,
+        website: website.trim() ? website.trim() : undefined
       });
       notify('success', 'Paramètres Sauvegardés', 'Les modifications de l’établissement ont été enregistrées avec succès.');
     } catch (err: any) {
@@ -429,6 +446,76 @@ export const SchoolSettingsPage: React.FC<SchoolSettingsPageProps> = () => {
             <p className="text-[11px] text-on-surface-variant">
               Laissez vide si vous préférez afficher <em>« Tarifs non communiqués »</em> sur la vitrine publique.
             </p>
+          </div>
+        </Card>
+
+        {/* Statistics & Academic Success */}
+        <Card
+          title="Statistiques & Réussite Académique"
+          subtitle="Indicateurs de performance, effectifs et présence en ligne affichés publiquement"
+        >
+          <div className="space-y-4">
+            <div className="p-3 bg-primary/5 border border-primary/20 rounded-lg flex items-start gap-2.5 text-xs text-on-surface">
+              <span className="material-symbols-outlined text-primary text-base mt-0.5">info</span>
+              <div>
+                <strong>Information publique :</strong> Ces chiffres sont affichés publiquement sur la fiche de l'école et doivent donc être exacts.
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <Input
+                label="Effectif du Corps Enseignant"
+                type="number"
+                min="0"
+                placeholder="ex: 45"
+                icon="badge"
+                value={teacherCount}
+                onChange={e => setTeacherCount(e.target.value)}
+              />
+              <Input
+                label="Nombre d'Élèves Inscrits"
+                type="number"
+                min="0"
+                placeholder="ex: 850"
+                icon="groups"
+                value={studentCount}
+                onChange={e => setStudentCount(e.target.value)}
+              />
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <Input
+                label="Taux de Réussite à l'EXETAT (%)"
+                type="number"
+                min="0"
+                max="100"
+                step="0.1"
+                placeholder="ex: 98.5"
+                icon="military_tech"
+                value={passRateStateExam}
+                onChange={e => setPassRateStateExam(e.target.value)}
+              />
+              <Input
+                label="Année de Fondation"
+                type="number"
+                min="1800"
+                max={new Date().getFullYear() + 1}
+                placeholder="ex: 1985"
+                icon="event"
+                value={foundedYear}
+                onChange={e => setFoundedYear(e.target.value)}
+              />
+            </div>
+
+            <Input
+              label="Site Web de l'Établissement"
+              type="text"
+              placeholder="https://www.mon-etablissement.cd"
+              icon="language"
+              value={website}
+              onChange={e => setWebsite(e.target.value)}
+              helperText="Optionnel — Laissez vide si votre école ne dispose pas d'un site web."
+            />
           </div>
         </Card>
 

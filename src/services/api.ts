@@ -502,14 +502,22 @@ export const applicationService = {
   },
   submitApplication: async (app: Omit<ApplicationDossier, 'id' | 'submissionDate' | 'status'>): Promise<ApplicationDossier> => {
     if (supabase) {
+      const { targetSchoolId, targetSchoolName, ...rest } = app;
       const toInsert = toSnakeCase({
-        ...app,
-        schoolId: app.targetSchoolId,
+        ...rest,
+        schoolId: targetSchoolId,
         submissionDate: new Date().toISOString().split('T')[0],
         status: 'SOUMIS'
       });
       const { data, error } = await supabase.from('application_dossiers').insert(toInsert).select().single();
-      if (!error && data) return toCamelCase(data) as ApplicationDossier;
+      if (!error && data) {
+        const result = toCamelCase(data) as ApplicationDossier;
+        return {
+          ...result,
+          targetSchoolId: targetSchoolId,
+          targetSchoolName: targetSchoolName || ''
+        };
+      }
       if (error) console.error('Supabase error, falling back to mock data:', error);
       throw error;
     }
@@ -601,13 +609,28 @@ export const messageService = {
 };
 
 export const classService = {
-  getClasses: async (): Promise<ClassSection[]> => {
+  getClasses: async (schoolId?: string): Promise<ClassSection[]> => {
     if (supabase) {
-      const { data, error } = await supabase.from('class_sections').select('*');
-      if (!error && data) return toCamelCase(data) as ClassSection[];
-      if (error) console.error('Supabase error, falling back to mock data:', error);
+      if (schoolId) {
+        const { data, error } = await supabase
+          .from('class_sections')
+          .select('id, name, level, stream')
+          .eq('school_id', schoolId);
+        if (!error && data) return toCamelCase(data) as ClassSection[];
+        if (error) console.error('Supabase error, falling back to mock data:', error);
+      } else {
+        const { data, error } = await supabase.from('class_sections').select('*');
+        if (!error && data) return toCamelCase(data) as ClassSection[];
+        if (error) console.error('Supabase error, falling back to mock data:', error);
+      }
     }
-    return getStored<ClassSection[]>('classes', MOCK_CLASSES);
+    const list = getStored<ClassSection[]>('classes', MOCK_CLASSES);
+    if (schoolId) {
+      const filtered = list.filter(c => (c as any).schoolId === schoolId);
+      if (filtered.length > 0) return filtered;
+      return schoolId === 'sch-1' ? list : [];
+    }
+    return list;
   },
   getSchedule: async (className?: string, teacherId?: string): Promise<ScheduleItem[]> => {
     if (supabase) {
