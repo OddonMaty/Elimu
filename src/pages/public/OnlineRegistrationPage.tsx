@@ -204,10 +204,14 @@ export const OnlineRegistrationPage: React.FC<OnlineRegistrationPageProps> = () 
           throw new Error(`Erreur lors du téléversement de l'acte de naissance: ${birthError.message}`);
         }
 
-        const { data: birthUrlData } = supabase.storage
+        const { data: birthSignedData, error: birthSignError } = await supabase.storage
           .from('application-documents')
-          .getPublicUrl(birthData.path);
-        birthCertUrl = birthUrlData.publicUrl;
+          .createSignedUrl(birthData.path, 31536000);
+
+        if (birthSignError) {
+          throw new Error(`Erreur lors de la génération de l'URL signée pour l'acte de naissance: ${birthSignError.message}`);
+        }
+        birthCertUrl = birthSignedData.signedUrl;
 
         // 2. Téléversement Bulletin Scolaire
         const reportCardFileName = `${timestamp}_${sanitize(reportCardFile.name)}`;
@@ -222,10 +226,14 @@ export const OnlineRegistrationPage: React.FC<OnlineRegistrationPageProps> = () 
           throw new Error(`Erreur lors du téléversement du bulletin scolaire: ${reportError.message}`);
         }
 
-        const { data: reportUrlData } = supabase.storage
+        const { data: reportSignedData, error: reportSignError } = await supabase.storage
           .from('application-documents')
-          .getPublicUrl(reportData.path);
-        reportCardUrl = reportUrlData.publicUrl;
+          .createSignedUrl(reportData.path, 31536000);
+
+        if (reportSignError) {
+          throw new Error(`Erreur lors de la génération de l'URL signée pour le bulletin scolaire: ${reportSignError.message}`);
+        }
+        reportCardUrl = reportSignedData.signedUrl;
       } else {
         // Fallback pour le mode démo hors-ligne
         birthCertUrl = `mock://storage/application-documents/${Date.now()}_${birthCertFile.name}`;

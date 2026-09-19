@@ -19,12 +19,13 @@ WITH CHECK (
   bucket_id = 'application-documents'
 );
 
--- 3. Allow SELECT only to authenticated users (for school direction/staff to review documents)
+-- 3. Allow anon and authenticated to read/create signed URLs for application-documents
 DROP POLICY IF EXISTS "Allow authenticated read on application-documents" ON storage.objects;
-CREATE POLICY "Allow authenticated read on application-documents"
+DROP POLICY IF EXISTS "Allow read on application-documents" ON storage.objects;
+CREATE POLICY "Allow read on application-documents"
 ON storage.objects
 FOR SELECT
-TO authenticated
+TO anon, authenticated
 USING (
   bucket_id = 'application-documents'
 );

@@ -540,7 +540,7 @@ export const applicationService = {
         .from('application_dossiers')
         .update({ registration_fee_paid: true })
         .eq('id', id)
-        .select()
+        .select('id, registration_fee_paid, status')
         .single();
       if (!error && data) return toCamelCase(data) as ApplicationDossier;
       if (error) console.error('Supabase error marking fee paid:', error);
