@@ -682,6 +682,40 @@ export const classService = {
     }
     const list = getStored<ScheduleItem[]>('schedule', MOCK_SCHEDULE_ITEMS);
     setStored('schedule', list.filter(s => s.id !== id));
+  },
+  createClass: async (data: Omit<ClassSection, 'id' | 'enrolled'>): Promise<ClassSection> => {
+    if (supabase) {
+      const { data: userData } = await supabase.auth.getUser();
+      const schoolId = (await supabase.from('users').select('school_id').eq('id', userData.user?.id).single()).data?.school_id;
+      const toInsert = toSnakeCase({ ...data, schoolId, enrolled: 0 });
+      const { data: created, error } = await supabase.from('class_sections').insert(toInsert).select().single();
+      if (!error && created) return toCamelCase(created) as ClassSection;
+      if (error) throw error;
+    }
+    const list = getStored<ClassSection[]>('classes', MOCK_CLASSES);
+    const newClass: ClassSection = { ...data, id: `cls-${Date.now()}`, enrolled: 0 };
+    setStored('classes', [...list, newClass]);
+    return newClass;
+  },
+  updateClass: async (id: string, data: Partial<ClassSection>): Promise<ClassSection> => {
+    if (supabase) {
+      const toUpdate = toSnakeCase(data);
+      const { data: updated, error } = await supabase.from('class_sections').update(toUpdate).eq('id', id).select().single();
+      if (!error && updated) return toCamelCase(updated) as ClassSection;
+      if (error) throw error;
+    }
+    const list = getStored<ClassSection[]>('classes', MOCK_CLASSES);
+    const updatedList = list.map(c => c.id === id ? { ...c, ...data } : c);
+    setStored('classes', updatedList);
+    return updatedList.find(c => c.id === id)!;
+  },
+  deleteClass: async (id: string): Promise<void> => {
+    if (supabase) {
+      await supabase.from('class_sections').delete().eq('id', id);
+      return;
+    }
+    const list = getStored<ClassSection[]>('classes', MOCK_CLASSES);
+    setStored('classes', list.filter(c => c.id !== id));
   }
 };
 
