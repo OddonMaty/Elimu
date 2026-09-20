@@ -630,8 +630,8 @@ export const MOCK_APPLICATIONS: ApplicationDossier[] = [
 ];
 
 export const MOCK_CLASSES: ClassSection[] = [
-  { id: 'cls-1', name: '4ème Scientifique A', level: 'Humanités', stream: 'Scientifique A (Biochimie)', capacity: 40, enrolled: 38, room: 'Bâtiment B - Salle 12', mainTeacher: 'M. Jean-Paul Kasongo' },
-  { id: 'cls-2', name: '4ème Scientifique B', level: 'Humanités', stream: 'Scientifique A (Biochimie)', capacity: 40, enrolled: 39, room: 'Bâtiment B - Salle 14', mainTeacher: 'M. Pierre Tshilombo' },
+  { id: 'cls-1', name: '4ème Biochimie A', level: 'Humanités', stream: 'Biochimie', capacity: 40, enrolled: 38, room: 'Bâtiment B - Salle 12', mainTeacher: 'M. Jean-Paul Kasongo' },
+  { id: 'cls-2', name: '4ème Biochimie B', level: 'Humanités', stream: 'Biochimie', capacity: 40, enrolled: 39, room: 'Bâtiment B - Salle 14', mainTeacher: 'M. Pierre Tshilombo' },
   { id: 'cls-3', name: '4ème Littéraire A', level: 'Humanités', stream: 'Littéraire', capacity: 35, enrolled: 34, room: 'Bâtiment C - Salle 03', mainTeacher: 'Mme Thérèse Ngalula' },
   { id: 'cls-4', name: '4ème Commerciale & Gestion', level: 'Humanités', stream: 'Commerciale & Gestion', capacity: 40, enrolled: 37, room: 'Bâtiment D - Salle 08', mainTeacher: 'M. Augustin Kalala' },
   { id: 'cls-5', name: '1ère CO A', level: 'Secondaire', stream: undefined, capacity: 45, enrolled: 44, room: 'Bâtiment A - Salle 01', mainTeacher: 'M. Eric Lukusa' },
@@ -639,16 +639,16 @@ export const MOCK_CLASSES: ClassSection[] = [
 ];
 
 export const MOCK_SCHEDULE_ITEMS: ScheduleItem[] = [
-  { id: 'sch-it-1', day: 'Lundi', timeSlot: '07:30 - 08:25', subject: 'Mathématiques', className: '4ème Scientifique A', teacherName: 'M. Pierre Tshilombo', room: 'B-12' },
-  { id: 'sch-it-2', day: 'Lundi', timeSlot: '08:25 - 09:20', subject: 'Mathématiques', className: '4ème Scientifique A', teacherName: 'M. Pierre Tshilombo', room: 'B-12' },
-  { id: 'sch-it-3', day: 'Lundi', timeSlot: '09:35 - 10:30', subject: 'Physique', className: '4ème Scientifique A', teacherName: 'M. Jean-Paul Kasongo', room: 'Labo Physique' },
-  { id: 'sch-it-4', day: 'Lundi', timeSlot: '10:30 - 11:25', subject: 'Chimie', className: '4ème Scientifique A', teacherName: 'M. Jean-Paul Kasongo', room: 'Labo Chimie' },
-  { id: 'sch-it-5', day: 'Lundi', timeSlot: '11:40 - 12:35', subject: 'Français', className: '4ème Scientifique A', teacherName: 'Mme Thérèse Ngalula', room: 'B-12' },
-  { id: 'sch-it-6', day: 'Mardi', timeSlot: '07:30 - 08:25', subject: 'Biologie', className: '4ème Scientifique A', teacherName: 'Dr. Mukendi', room: 'Labo Bio' },
-  { id: 'sch-it-7', day: 'Mardi', timeSlot: '08:25 - 09:20', subject: 'Biologie', className: '4ème Scientifique A', teacherName: 'Dr. Mukendi', room: 'Labo Bio' },
-  { id: 'sch-it-8', day: 'Mardi', timeSlot: '09:35 - 10:30', subject: 'Anglais', className: '4ème Scientifique A', teacherName: 'Mr. John Smith', room: 'B-12' },
-  { id: 'sch-it-9', day: 'Mercredi', timeSlot: '07:30 - 08:25', subject: 'Informatique', className: '4ème Scientifique A', teacherName: 'Ing. Kabeya', room: 'Salle Info 1' },
-  { id: 'sch-it-10', day: 'Jeudi', timeSlot: '07:30 - 09:20', subject: 'Éducation Physique', className: '4ème Scientifique A', teacherName: 'Coach Samba', room: 'Complexe Sportif' }
+  { id: 'sch-it-1', day: 'Lundi', timeSlot: '07:30 - 08:25', subject: 'Mathématiques', className: '4ème Biochimie A', teacherName: 'M. Pierre Tshilombo', room: 'B-12' },
+  { id: 'sch-it-2', day: 'Lundi', timeSlot: '08:25 - 09:20', subject: 'Mathématiques', className: '4ème Biochimie A', teacherName: 'M. Pierre Tshilombo', room: 'B-12' },
+  { id: 'sch-it-3', day: 'Lundi', timeSlot: '09:35 - 10:30', subject: 'Physique', className: '4ème Biochimie A', teacherName: 'M. Jean-Paul Kasongo', room: 'Labo Physique' },
+  { id: 'sch-it-4', day: 'Lundi', timeSlot: '10:30 - 11:25', subject: 'Chimie', className: '4ème Biochimie A', teacherName: 'M. Jean-Paul Kasongo', room: 'Labo Chimie' },
+  { id: 'sch-it-5', day: 'Lundi', timeSlot: '11:40 - 12:35', subject: 'Français', className: '4ème Biochimie A', teacherName: 'Mme Thérèse Ngalula', room: 'B-12' },
+  { id: 'sch-it-6', day: 'Mardi', timeSlot: '07:30 - 08:25', subject: 'Biologie', className: '4ème Biochimie A', teacherName: 'Dr. Mukendi', room: 'Labo Bio' },
+  { id: 'sch-it-7', day: 'Mardi', timeSlot: '08:25 - 09:20', subject: 'Biologie', className: '4ème Biochimie A', teacherName: 'Dr. Mukendi', room: 'Labo Bio' },
+  { id: 'sch-it-8', day: 'Mardi', timeSlot: '09:35 - 10:30', subject: 'Anglais', className: '4ème Biochimie A', teacherName: 'Mr. John Smith', room: 'B-12' },
+  { id: 'sch-it-9', day: 'Mercredi', timeSlot: '07:30 - 08:25', subject: 'Informatique', className: '4ème Biochimie A', teacherName: 'Ing. Kabeya', room: 'Salle Info 1' },
+  { id: 'sch-it-10', day: 'Jeudi', timeSlot: '07:30 - 09:20', subject: 'Éducation Physique', className: '4ème Biochimie A', teacherName: 'Coach Samba', room: 'Complexe Sportif' }
 ];
 
 export const MOCK_MESSAGES: Message[] = [
