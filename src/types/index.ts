@@ -216,7 +216,7 @@ export interface ClassSection {
   id: string;
   name: string;
   level: 'Maternelle' | 'Primaire' | 'Secondaire' | 'Humanités' | string;
-  stream?: 'Scientifique' | 'Littéraire' | 'Commerciale & Gestion' | 'Pédagogie Générale' | 'Technique' | string;
+  stream?: 'Scientifique A (Biochimie)' | 'Scientifique B (Math-Physique)' | 'Littéraire' | 'Commerciale & Gestion' | 'Pédagogie Générale' | 'Technique' | string;
   capacity?: number;
   enrolled?: number;
   room?: string;

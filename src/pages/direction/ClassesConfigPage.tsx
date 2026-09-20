@@ -20,6 +20,16 @@ const PREFIX_BY_LEVEL: Record<string, string[]> = {
 };
 const SECTION_LETTERS = ['A', 'B', 'C', 'D', 'E', 'F'];
 
+// Filières disponibles pour les Humanités
+const STREAMS_HUMANITES = [
+  'Scientifique A (Biochimie)',
+  'Scientifique B (Math-Physique)',
+  'Littéraire',
+  'Commerciale & Gestion',
+  'Pédagogie Générale',
+  'Technique',
+];
+
 export const ClassesConfigPage: React.FC<ClassesConfigPageProps> = () => {
   const [classes, setClasses] = useState<ClassSection[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -30,7 +40,7 @@ export const ClassesConfigPage: React.FC<ClassesConfigPageProps> = () => {
   // État du modal "Générer Plusieurs Classes"
   const [isBulkModalOpen, setIsBulkModalOpen] = useState(false);
   const [bulkLevel, setBulkLevel] = useState('Humanités');
-  const [bulkStream, setBulkStream] = useState('Scientifique');
+  const [bulkStream, setBulkStream] = useState('Scientifique A (Biochimie)');
   const [bulkPrefixes, setBulkPrefixes] = useState<string[]>([]);
   const [bulkUpTo, setBulkUpTo] = useState('B');
   const [bulkCapacity, setBulkCapacity] = useState('40');
@@ -41,7 +51,7 @@ export const ClassesConfigPage: React.FC<ClassesConfigPageProps> = () => {
   // Form fields
   const [newClassName, setNewClassName] = useState('');
   const [newLevel, setNewLevel] = useState<string>('Humanités');
-  const [newStream, setNewStream] = useState('Scientifique');
+  const [newStream, setNewStream] = useState('Scientifique A (Biochimie)');
   const [newCapacity, setNewCapacity] = useState('40');
   const [newRoom, setNewRoom] = useState('Bâtiment B - Salle 16');
   const [newTeacher, setNewTeacher] = useState('M. Jean-Paul Kasongo');
@@ -59,7 +69,7 @@ export const ClassesConfigPage: React.FC<ClassesConfigPageProps> = () => {
   const resetForm = () => {
     setNewClassName('');
     setNewLevel('Humanités');
-    setNewStream('Scientifique');
+    setNewStream('Scientifique A (Biochimie)');
     setNewCapacity('40');
     setNewRoom('Bâtiment B - Salle 16');
     setNewTeacher('M. Jean-Paul Kasongo');
@@ -77,7 +87,7 @@ export const ClassesConfigPage: React.FC<ClassesConfigPageProps> = () => {
     setEditingId(cls.id);
     setNewClassName(cls.name);
     setNewLevel(cls.level || 'Humanités');
-    setNewStream(cls.stream || 'Scientifique');
+    setNewStream(cls.stream || 'Scientifique A (Biochimie)');
     setNewCapacity(String(cls.capacity || 40));
     setNewRoom(cls.room || '');
     setNewTeacher(cls.mainTeacher || '');
@@ -91,7 +101,8 @@ export const ClassesConfigPage: React.FC<ClassesConfigPageProps> = () => {
     const formData = {
       name: newClassName,
       level: newLevel as any,
-      stream: newStream as any,
+      // Pour Secondaire, pas de filière
+      stream: newLevel === 'Secondaire' ? undefined : newStream as any,
       capacity: parseInt(newCapacity) || 40,
       room: newRoom,
       mainTeacher: newTeacher,
@@ -137,7 +148,7 @@ export const ClassesConfigPage: React.FC<ClassesConfigPageProps> = () => {
   // ── Génération en batch ───────────────────────────────────────────────────
   const openBulkModal = () => {
     setBulkLevel('Humanités');
-    setBulkStream('Scientifique');
+    setBulkStream('Scientifique A (Biochimie)');
     setBulkPrefixes([]);
     setBulkUpTo('B');
     setBulkCapacity('40');
@@ -176,7 +187,10 @@ export const ClassesConfigPage: React.FC<ClassesConfigPageProps> = () => {
     const newClasses: ClassSection[] = [];
 
     for (const { prefix, letter } of combinations) {
-      const name = `${prefix} ${bulkStream} ${letter}`;
+      // Secondaire : "1ère CO A" — pas de filière ; Humanités : "4ème Scientifique A (Biochimie) A"
+      const name = bulkLevel === 'Secondaire'
+        ? `${prefix} CO ${letter}`
+        : `${prefix} ${bulkStream} ${letter}`;
       try {
         const cls = await classService.createClass({
           name,
@@ -303,26 +317,33 @@ export const ClassesConfigPage: React.FC<ClassesConfigPageProps> = () => {
         <form onSubmit={handleSubmit} className="space-y-4">
           <Input
             label="Intitulé de la classe *"
-            placeholder="ex: 4ème Scientifique C"
+            placeholder={newLevel === 'Secondaire' ? 'ex: 1ère CO A' : 'ex: 4ème Scientifique A (Biochimie)'}
             value={newClassName}
             onChange={e => setNewClassName(e.target.value)}
             required
           />
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className={`grid gap-3 ${newLevel === 'Humanités' ? 'grid-cols-2' : 'grid-cols-1'}`}>
             <Select
               label="Niveau *"
               options={['Primaire', 'Secondaire', 'Humanités']}
               value={newLevel}
               onChange={e => setNewLevel(e.target.value)}
             />
-            <Select
-              label="Section / Filière *"
-              options={['Scientifique', 'Littéraire', 'Commerciale & Gestion', 'Pédagogie Générale', 'Technique']}
-              value={newStream}
-              onChange={e => setNewStream(e.target.value)}
-            />
+            {newLevel === 'Humanités' && (
+              <Select
+                label="Section / Filière *"
+                options={STREAMS_HUMANITES}
+                value={newStream}
+                onChange={e => setNewStream(e.target.value)}
+              />
+            )}
           </div>
+          {newLevel === 'Secondaire' && (
+            <p className="text-[11px] text-on-surface-variant -mt-2">
+              Le Secondaire (1ère &amp; 2ème CO) n'a pas encore de filière orientée — le nom sera du type « 1ère CO A ».
+            </p>
+          )}
 
           <div className="grid grid-cols-2 gap-3">
             <Input
@@ -373,7 +394,7 @@ export const ClassesConfigPage: React.FC<ClassesConfigPageProps> = () => {
         <form onSubmit={handleBulkGenerate} className="space-y-5">
 
           {/* Niveau + Filière */}
-          <div className="grid grid-cols-2 gap-3">
+          <div className={`grid gap-3 ${bulkLevel === 'Humanités' ? 'grid-cols-2' : 'grid-cols-1'}`}>
             <Select
               label="Niveau *"
               options={['Primaire', 'Secondaire', 'Humanités']}
@@ -383,13 +404,20 @@ export const ClassesConfigPage: React.FC<ClassesConfigPageProps> = () => {
                 setBulkPrefixes([]);
               }}
             />
-            <Select
-              label="Section / Filière *"
-              options={['Scientifique', 'Littéraire', 'Commerciale & Gestion', 'Pédagogie Générale', 'Technique']}
-              value={bulkStream}
-              onChange={e => setBulkStream(e.target.value)}
-            />
+            {bulkLevel === 'Humanités' && (
+              <Select
+                label="Section / Filière *"
+                options={STREAMS_HUMANITES}
+                value={bulkStream}
+                onChange={e => setBulkStream(e.target.value)}
+              />
+            )}
           </div>
+          {bulkLevel === 'Secondaire' && (
+            <p className="text-[11px] text-on-surface-variant -mt-2">
+              Les classes seront nommées « 1ère CO A », « 2ème CO B », etc. — sans filière.
+            </p>
+          )}
 
           {/* Préfixes à cocher */}
           <div>
