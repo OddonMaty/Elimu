@@ -8,22 +8,22 @@ import { Input } from '../../components/common/Input';
 import { Select } from '../../components/common/Select';
 import { useNotification } from '../../context/NotificationContext';
 
-export interface ClassesConfigPageProps {}
+export interface ClassesConfigPageProps { }
 
 type FormMode = 'create' | 'edit';
 
 // Préfixes disponibles selon le niveau
 const PREFIX_BY_LEVEL: Record<string, string[]> = {
-  'Primaire':   ['1ère', '2ème', '3ème', '4ème', '5ème', '6ème'],
+  'Primaire': ['1ère', '2ème', '3ème', '4ème', '5ème', '6ème'],
   'Secondaire': ['1ère', '2ème'],
-  'Humanités':  ['3ème', '4ème', '5ème', '6ème'],
+  'Humanités': ['3ème', '4ème', '5ème', '6ème'],
 };
 const SECTION_LETTERS = ['A', 'B', 'C', 'D', 'E', 'F'];
 
 // Filières disponibles pour les Humanités
 const STREAMS_HUMANITES = [
-  'Scientifique A (Biochimie)',
-  'Scientifique B (Math-Physique)',
+  'Scientifique A (Math-Physique)',
+  'Scientifique B (Biochimie)',
   'Littéraire',
   'Commerciale & Gestion',
   'Pédagogie Générale',
@@ -271,9 +271,8 @@ export const ClassesConfigPage: React.FC<ClassesConfigPageProps> = () => {
                   </div>
                   <div className="w-full bg-surface-container h-2 rounded-full overflow-hidden">
                     <div
-                      className={`h-full rounded-full transition-all ${
-                        occupancyRate >= 95 ? 'bg-error' : occupancyRate >= 80 ? 'bg-secondary-container' : 'bg-primary'
-                      }`}
+                      className={`h-full rounded-full transition-all ${occupancyRate >= 95 ? 'bg-error' : occupancyRate >= 80 ? 'bg-secondary-container' : 'bg-primary'
+                        }`}
                       style={{ width: `${Math.min(occupancyRate, 100)}%` }}
                     />
                   </div>
@@ -442,11 +441,10 @@ export const ClassesConfigPage: React.FC<ClassesConfigPageProps> = () => {
                 return (
                   <label
                     key={prefix}
-                    className={`flex items-center gap-1.5 cursor-pointer px-3 py-1.5 rounded-lg border text-xs font-semibold transition-all select-none ${
-                      checked
-                        ? 'bg-primary text-on-primary border-primary'
-                        : 'bg-surface border-outline-variant text-on-surface-variant hover:border-primary hover:text-primary'
-                    }`}
+                    className={`flex items-center gap-1.5 cursor-pointer px-3 py-1.5 rounded-lg border text-xs font-semibold transition-all select-none ${checked
+                      ? 'bg-primary text-on-primary border-primary'
+                      : 'bg-surface border-outline-variant text-on-surface-variant hover:border-primary hover:text-primary'
+                      }`}
                   >
                     <input
                       type="checkbox"
