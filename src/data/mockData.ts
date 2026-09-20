@@ -630,12 +630,12 @@ export const MOCK_APPLICATIONS: ApplicationDossier[] = [
 ];
 
 export const MOCK_CLASSES: ClassSection[] = [
-  { id: 'cls-1', name: '4ème Scientifique A', level: 'Humanités', stream: 'Scientifique', capacity: 40, enrolled: 38, room: 'Bâtiment B - Salle 12', mainTeacher: 'M. Jean-Paul Kasongo' },
-  { id: 'cls-2', name: '4ème Scientifique B', level: 'Humanités', stream: 'Scientifique', capacity: 40, enrolled: 39, room: 'Bâtiment B - Salle 14', mainTeacher: 'M. Pierre Tshilombo' },
+  { id: 'cls-1', name: '4ème Scientifique A', level: 'Humanités', stream: 'Scientifique A (Biochimie)', capacity: 40, enrolled: 38, room: 'Bâtiment B - Salle 12', mainTeacher: 'M. Jean-Paul Kasongo' },
+  { id: 'cls-2', name: '4ème Scientifique B', level: 'Humanités', stream: 'Scientifique A (Biochimie)', capacity: 40, enrolled: 39, room: 'Bâtiment B - Salle 14', mainTeacher: 'M. Pierre Tshilombo' },
   { id: 'cls-3', name: '4ème Littéraire A', level: 'Humanités', stream: 'Littéraire', capacity: 35, enrolled: 34, room: 'Bâtiment C - Salle 03', mainTeacher: 'Mme Thérèse Ngalula' },
   { id: 'cls-4', name: '4ème Commerciale & Gestion', level: 'Humanités', stream: 'Commerciale & Gestion', capacity: 40, enrolled: 37, room: 'Bâtiment D - Salle 08', mainTeacher: 'M. Augustin Kalala' },
-  { id: 'cls-5', name: '1ère Humanités A', level: 'Secondaire', stream: undefined, capacity: 45, enrolled: 44, room: 'Bâtiment A - Salle 01', mainTeacher: 'M. Eric Lukusa' },
-  { id: 'cls-6', name: '1ère Humanités B', level: 'Secondaire', stream: undefined, capacity: 45, enrolled: 42, room: 'Bâtiment A - Salle 02', mainTeacher: 'Mme Georgette Mbala' }
+  { id: 'cls-5', name: '1ère CO A', level: 'Secondaire', stream: undefined, capacity: 45, enrolled: 44, room: 'Bâtiment A - Salle 01', mainTeacher: 'M. Eric Lukusa' },
+  { id: 'cls-6', name: '1ère CO B', level: 'Secondaire', stream: undefined, capacity: 45, enrolled: 42, room: 'Bâtiment A - Salle 02', mainTeacher: 'Mme Georgette Mbala' }
 ];
 
 export const MOCK_SCHEDULE_ITEMS: ScheduleItem[] = [

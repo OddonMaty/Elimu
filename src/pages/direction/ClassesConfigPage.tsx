@@ -101,8 +101,8 @@ export const ClassesConfigPage: React.FC<ClassesConfigPageProps> = () => {
     const formData = {
       name: newClassName,
       level: newLevel as any,
-      // Pour Secondaire, pas de filière
-      stream: newLevel === 'Secondaire' ? undefined : newStream as any,
+      // La filière n'existe que pour les Humanités
+      stream: newLevel === 'Humanités' ? (newStream as any) : undefined,
       capacity: parseInt(newCapacity) || 40,
       room: newRoom,
       mainTeacher: newTeacher,
@@ -187,15 +187,17 @@ export const ClassesConfigPage: React.FC<ClassesConfigPageProps> = () => {
     const newClasses: ClassSection[] = [];
 
     for (const { prefix, letter } of combinations) {
-      // Secondaire : "1ère CO A" — pas de filière ; Humanités : "4ème Scientifique A (Biochimie) A"
+      // Secondaire : "1ère CO A" — pas de filière ; Primaire : "1ère Primaire A" ; Humanités : "4ème Scientifique A (Biochimie) A"
       const name = bulkLevel === 'Secondaire'
         ? `${prefix} CO ${letter}`
-        : `${prefix} ${bulkStream} ${letter}`;
+        : bulkLevel === 'Primaire'
+          ? `${prefix} Primaire ${letter}`
+          : `${prefix} ${bulkStream} ${letter}`;
       try {
         const cls = await classService.createClass({
           name,
           level: bulkLevel as any,
-          stream: bulkStream as any,
+          stream: bulkLevel === 'Humanités' ? (bulkStream as any) : undefined,
           capacity: parseInt(bulkCapacity) || 40,
           room: bulkRoom || undefined as any,
           mainTeacher: '' as any,
@@ -323,14 +325,20 @@ export const ClassesConfigPage: React.FC<ClassesConfigPageProps> = () => {
             required
           />
 
-          <div className={`grid gap-3 ${newLevel === 'Humanités' ? 'grid-cols-2' : 'grid-cols-1'}`}>
+          <div className={`grid gap-3 ${(newLevel === 'Humanités' || newLevel === 'Humanites') ? 'grid-cols-2' : 'grid-cols-1'}`}>
             <Select
               label="Niveau *"
               options={['Primaire', 'Secondaire', 'Humanités']}
               value={newLevel}
-              onChange={e => setNewLevel(e.target.value)}
+              onChange={e => {
+                const val = e.target.value;
+                setNewLevel(val);
+                if ((val === 'Humanités' || val === 'Humanites') && !newStream) {
+                  setNewStream(STREAMS_HUMANITES[0]);
+                }
+              }}
             />
-            {newLevel === 'Humanités' && (
+            {(newLevel === 'Humanités' || newLevel === 'Humanites') && (
               <Select
                 label="Section / Filière *"
                 options={STREAMS_HUMANITES}
@@ -394,17 +402,21 @@ export const ClassesConfigPage: React.FC<ClassesConfigPageProps> = () => {
         <form onSubmit={handleBulkGenerate} className="space-y-5">
 
           {/* Niveau + Filière */}
-          <div className={`grid gap-3 ${bulkLevel === 'Humanités' ? 'grid-cols-2' : 'grid-cols-1'}`}>
+          <div className={`grid gap-3 ${(bulkLevel === 'Humanités' || bulkLevel === 'Humanites') ? 'grid-cols-2' : 'grid-cols-1'}`}>
             <Select
               label="Niveau *"
               options={['Primaire', 'Secondaire', 'Humanités']}
               value={bulkLevel}
               onChange={e => {
-                setBulkLevel(e.target.value);
+                const val = e.target.value;
+                setBulkLevel(val);
                 setBulkPrefixes([]);
+                if ((val === 'Humanités' || val === 'Humanites') && !bulkStream) {
+                  setBulkStream(STREAMS_HUMANITES[0]);
+                }
               }}
             />
-            {bulkLevel === 'Humanités' && (
+            {(bulkLevel === 'Humanités' || bulkLevel === 'Humanites') && (
               <Select
                 label="Section / Filière *"
                 options={STREAMS_HUMANITES}
