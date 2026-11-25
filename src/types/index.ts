@@ -35,6 +35,7 @@ export interface School {
   province: string;
   address: string;
   phone: string;
+  paymentPhone?: string;
   email: string;
   website?: string;
   foundedYear?: number;

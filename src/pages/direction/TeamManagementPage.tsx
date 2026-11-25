@@ -53,17 +53,20 @@ export const TeamManagementPage: React.FC = () => {
     }
 
     setIsGenerating(true);
-    const code = generateRandomCode();
+    // Le serveur génère le code définitif : celui-ci n'est qu'une valeur d'attente
+    const placeholderCode = generateRandomCode();
 
     try {
       const newInv = await invitationService.generateInvitation({
-        code,
+        code: placeholderCode,
         role: formData.role,
         intendedName: formData.name,
         intendedEmail: formData.email,
         intendedPhone: formData.phone
       });
       
+      const code = newInv.code; // code généré par le serveur
+
       // Attempt to send email
       if (formData.email && supabase) {
         try {

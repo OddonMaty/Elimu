@@ -164,11 +164,13 @@ export const studentService = {
   },
   addStudent: async (student: Omit<Student, 'id' | 'matricule'>): Promise<Student> => {
     if (supabase) {
-      const matricule = `ELM-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
       const { data: userData } = await supabase.auth.getUser();
       const schoolId = (await supabase.from('users').select('school_id').eq('id', userData.user?.id).single()).data?.school_id;
-      
-      const toInsert = toSnakeCase({ ...student, matricule, schoolId });
+
+      // Le matricule est généré par la base (trigger). parent_id est un uuid : on ignore toute valeur factice.
+      const { parentId, ...studentRest } = student as any;
+      const isUuid = typeof parentId === 'string' && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(parentId);
+      const toInsert = toSnakeCase({ ...studentRest, ...(isUuid ? { parentId } : {}), schoolId });
       const { data, error } = await supabase.from('students').insert(toInsert).select().single();
       if (!error && data) return toCamelCase(data) as Student;
       if (error) console.error('Supabase error, falling back to mock data:', error);
@@ -253,16 +255,30 @@ export const gradeService = {
         academicYear: student.academic_year
       });
 
-      const { data: newCard, error } = await supabase.from('report_cards').insert(cardToInsert).select().single();
-      if (error) throw error;
+      // Un seul bulletin par élève, année et période : on met à jour s'il existe déjà
+      delete (cardToInsert as any).id;
+      const { data: existingCard } = await supabase.from('report_cards').select('id')
+        .eq('student_id', studentId).eq('academic_year', student.academic_year).eq('term', (cardToInsert as any).term)
+        .maybeSingle();
+      let cardId: string;
+      if (existingCard) {
+        const { error: updateError } = await supabase.from('report_cards').update(cardToInsert).eq('id', existingCard.id);
+        if (updateError) throw updateError;
+        cardId = existingCard.id;
+      } else {
+        const { data: newCard, error } = await supabase.from('report_cards').insert(cardToInsert).select().single();
+        if (error) throw error;
+        cardId = newCard.id;
+      }
 
       if (grades && grades.length > 0) {
-        const gradesToInsert = grades.map(g => toSnakeCase({
-          ...g,
-          reportCardId: newCard.id,
-          schoolId: student.school_id
-        }));
-        await supabase.from('course_grades').insert(gradesToInsert);
+        const gradesToInsert = grades.map(g => {
+          const { id: _ignoredId, ...gradeRest } = g as any;
+          return toSnakeCase({ ...gradeRest, reportCardId: cardId, schoolId: student.school_id });
+        });
+        const { error: gradesError } = await supabase.from('course_grades')
+          .upsert(gradesToInsert, { onConflict: 'report_card_id,course_id' });
+        if (gradesError) throw gradesError;
       }
       return;
     }
@@ -304,12 +320,13 @@ export const attendanceService = {
       const schoolId = student?.school_id;
 
       if (schoolId) {
-        // Delete existing for this date/class (simplified logic)
-        const className = records[0].className;
-        await supabase.from('attendance_records').delete().eq('date', date).eq('class_name', className).eq('school_id', schoolId);
-        
-        const toInsert = records.map(r => toSnakeCase({ ...r, schoolId }));
-        await supabase.from('attendance_records').insert(toInsert);
+        // Un enregistrement par élève et par jour : on met à jour plutôt que supprimer/réinsérer
+        const toUpsert = records.map(r => {
+          const { id: _ignoredId, ...recordRest } = r as any;
+          return toSnakeCase({ ...recordRest, schoolId });
+        });
+        const { error } = await supabase.from('attendance_records').upsert(toUpsert, { onConflict: 'student_id,date' });
+        if (error) throw error;
         return;
       }
     }
@@ -500,26 +517,33 @@ export const applicationService = {
     const list = getStored<ApplicationDossier[]>('applications', MOCK_APPLICATIONS);
     return list.find(a => a.id === id);
   },
-  submitApplication: async (app: Omit<ApplicationDossier, 'id' | 'submissionDate' | 'status'>): Promise<ApplicationDossier> => {
+  submitApplication: async (app: Omit<ApplicationDossier, 'id' | 'submissionDate' | 'status'> & { id?: string }): Promise<ApplicationDossier> => {
     if (supabase) {
-      const { targetSchoolId, targetSchoolName, ...rest } = app;
+      // Le candidat est anonyme : il ne peut pas relire son dossier. L'identifiant (uuid) est donc
+      // généré ici et sert ensuite de jeton de suivi (voir getPublicStatus).
+      const { targetSchoolId, targetSchoolName, id: providedId, ...rest } = app;
+      const id = providedId || crypto.randomUUID();
+      const submissionDate = new Date().toISOString().split('T')[0];
       const toInsert = toSnakeCase({
         ...rest,
+        id,
         schoolId: targetSchoolId,
-        submissionDate: new Date().toISOString().split('T')[0],
+        submissionDate,
         status: 'SOUMIS'
       });
-      const { data, error } = await supabase.from('application_dossiers').insert(toInsert).select().single();
-      if (!error && data) {
-        const result = toCamelCase(data) as ApplicationDossier;
-        return {
-          ...result,
-          targetSchoolId: targetSchoolId,
-          targetSchoolName: targetSchoolName || ''
-        };
+      const { error } = await supabase.from('application_dossiers').insert(toInsert);
+      if (error) {
+        console.error('Erreur Supabase lors du dépôt du dossier:', error);
+        throw error;
       }
-      if (error) console.error('Supabase error, falling back to mock data:', error);
-      throw error;
+      return {
+        ...(rest as any),
+        id,
+        submissionDate,
+        status: 'SOUMIS',
+        targetSchoolId,
+        targetSchoolName: targetSchoolName || ''
+      } as ApplicationDossier;
     }
     const list = getStored<ApplicationDossier[]>('applications', MOCK_APPLICATIONS);
     const newApp: ApplicationDossier = {
@@ -542,6 +566,31 @@ export const applicationService = {
     setStored('applications', updated);
     return updated.find(a => a.id === id)!;
   },
+  // Suivi public d'un dossier par son identifiant (fonction serveur, sans accès à la table)
+  getPublicStatus: async (id: string): Promise<(Partial<ApplicationDossier> & {
+    schoolId: string; schoolName: string; registrationFeePaid: boolean;
+    paymentReference?: string | null; paymentDeclaredAt?: string | null;
+  }) | null> => {
+    if (supabase) {
+      const { data, error } = await supabase.rpc('get_application_status', { p_id: id });
+      if (error) throw error;
+      return data ? (toCamelCase(data) as any) : null;
+    }
+    const list = getStored<ApplicationDossier[]>('applications', MOCK_APPLICATIONS);
+    const found: any = list.find(a => a.id === id);
+    return found ? { ...found, schoolId: found.targetSchoolId, schoolName: found.targetSchoolName } : null;
+  },
+  // Le candidat déclare avoir payé (référence de transaction) ; l'école confirme ensuite l'encaissement
+  declarePayment: async (id: string, reference: string): Promise<void> => {
+    if (supabase) {
+      const { error } = await supabase.rpc('declare_application_payment', { p_id: id, p_reference: reference });
+      if (error) throw error;
+      return;
+    }
+    const list = getStored<ApplicationDossier[]>('applications', MOCK_APPLICATIONS);
+    setStored('applications', list.map(a => a.id === id ? ({ ...a, paymentReference: reference } as any) : a));
+  },
+  // Réservé au personnel de l'école (secrétariat, direction) : confirme l'encaissement des frais
   markRegistrationFeePaid: async (id: string): Promise<ApplicationDossier> => {
     if (supabase) {
       const { data, error } = await supabase

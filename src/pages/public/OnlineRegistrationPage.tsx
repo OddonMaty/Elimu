@@ -24,7 +24,7 @@ const FileUploadZone: React.FC<FileUploadZoneProps> = ({
   file,
   onFileSelect,
   accept = 'application/pdf,image/*',
-  description = 'Format PDF ou Image (max 10 Mo)'
+  description = 'Format PDF, JPG, PNG ou WebP (max 8 Mo)'
 }) => {
   const [isDragging, setIsDragging] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -124,6 +124,8 @@ const FileUploadZone: React.FC<FileUploadZoneProps> = ({
 
 export interface OnlineRegistrationPageProps {}
 
+const MAX_FILE_BYTES = 8 * 1024 * 1024;
+
 export const OnlineRegistrationPage: React.FC<OnlineRegistrationPageProps> = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -212,54 +214,36 @@ export const OnlineRegistrationPage: React.FC<OnlineRegistrationPageProps> = () 
     try {
       let birthCertUrl = '';
       let reportCardUrl = '';
+      // Identifiant du dossier : sert de dossier de stockage et de jeton de suivi pour le candidat
+      const applicationId = crypto.randomUUID();
+
+      // Contrôles côté navigateur (les mêmes limites sont imposées par le stockage)
+      const allowedTypes = ['application/pdf', 'image/jpeg', 'image/png', 'image/webp'];
+      for (const f of [birthCertFile, reportCardFile]) {
+        if (!allowedTypes.includes(f.type)) {
+          throw new Error(`Format non accepté pour « ${f.name} ». Utilisez un PDF ou une image JPG, PNG ou WebP.`);
+        }
+        if (f.size > MAX_FILE_BYTES) {
+          throw new Error(`« ${f.name} » dépasse 8 Mo. Réduisez la taille du fichier.`);
+        }
+      }
 
       if (supabase) {
-        const timestamp = Date.now();
+        const client = supabase;
         const sanitize = (name: string) => name.replace(/[^a-zA-Z0-9._-]/g, '_');
-
-        // 1. Téléversement Acte de Naissance
-        const birthCertFileName = `${timestamp}_${sanitize(birthCertFile.name)}`;
-        const { data: birthData, error: birthError } = await supabase.storage
-          .from('application-documents')
-          .upload(birthCertFileName, birthCertFile, {
-            cacheControl: '3600',
-            upsert: false
-          });
-
-        if (birthError) {
-          throw new Error(`Erreur lors du téléversement de l'acte de naissance: ${birthError.message}`);
-        }
-
-        const { data: birthSignedData, error: birthSignError } = await supabase.storage
-          .from('application-documents')
-          .createSignedUrl(birthData.path, 31536000);
-
-        if (birthSignError) {
-          throw new Error(`Erreur lors de la génération de l'URL signée pour l'acte de naissance: ${birthSignError.message}`);
-        }
-        birthCertUrl = birthSignedData.signedUrl;
-
-        // 2. Téléversement Bulletin Scolaire
-        const reportCardFileName = `${timestamp}_${sanitize(reportCardFile.name)}`;
-        const { data: reportData, error: reportError } = await supabase.storage
-          .from('application-documents')
-          .upload(reportCardFileName, reportCardFile, {
-            cacheControl: '3600',
-            upsert: false
-          });
-
-        if (reportError) {
-          throw new Error(`Erreur lors du téléversement du bulletin scolaire: ${reportError.message}`);
-        }
-
-        const { data: reportSignedData, error: reportSignError } = await supabase.storage
-          .from('application-documents')
-          .createSignedUrl(reportData.path, 31536000);
-
-        if (reportSignError) {
-          throw new Error(`Erreur lors de la génération de l'URL signée pour le bulletin scolaire: ${reportSignError.message}`);
-        }
-        reportCardUrl = reportSignedData.signedUrl;
+        const upload = async (label: string, file: File, prefix: string) => {
+          const path = `${applicationId}/${prefix}_${sanitize(file.name)}`;
+          const { error } = await client.storage
+            .from('application-documents')
+            .upload(path, file, { cacheControl: '3600', upsert: false });
+          if (error) {
+            throw new Error(`Erreur lors du téléversement (${label}) : ${error.message}`);
+          }
+          // On enregistre le chemin, pas un lien public : le personnel de l'école génère un lien temporaire à la consultation
+          return `storage://application-documents/${path}`;
+        };
+        birthCertUrl = await upload('acte de naissance', birthCertFile, 'acte_naissance');
+        reportCardUrl = await upload('bulletin scolaire', reportCardFile, 'bulletin');
       } else {
         // Fallback pour le mode démo hors-ligne
         birthCertUrl = `mock://storage/application-documents/${Date.now()}_${birthCertFile.name}`;
@@ -267,6 +251,7 @@ export const OnlineRegistrationPage: React.FC<OnlineRegistrationPageProps> = () 
       }
 
       const app = await applicationService.submitApplication({
+        id: applicationId,
         applicantFirstName: firstName,
         applicantLastName: lastName,
         gender,
@@ -486,13 +471,13 @@ export const OnlineRegistrationPage: React.FC<OnlineRegistrationPageProps> = () 
                   label="Acte de Naissance (PDF / Photo)"
                   file={birthCertFile}
                   onFileSelect={setBirthCertFile}
-                  accept="application/pdf,image/*"
+                  accept="application/pdf,image/jpeg,image/png,image/webp"
                 />
                 <FileUploadZone
                   label="Bulletins Scolaires Récents"
                   file={reportCardFile}
                   onFileSelect={setReportCardFile}
-                  accept="application/pdf,image/*"
+                  accept="application/pdf,image/jpeg,image/png,image/webp"
                 />
               </div>
 
