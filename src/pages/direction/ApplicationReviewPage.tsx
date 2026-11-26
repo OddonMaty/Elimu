@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { applicationService, studentService, invitationService } from '../../services/api';
+import { applicationService, studentService, invitationService, schoolService } from '../../services/api';
 import { ApplicationDossier, Student } from '../../types';
 import { Card } from '../../components/common/Card';
 import { Button } from '../../components/common/Button';
@@ -40,11 +40,59 @@ export const ApplicationReviewPage: React.FC<ApplicationReviewPageProps> = () =>
     fetch();
   }, [id]);
 
+  // Année scolaire en cours : celle de l'école, sinon déduite de la date (rentrée en septembre)
+  const resolveAcademicYear = async (): Promise<string> => {
+    try {
+      const school = await schoolService.getMySchool();
+      if (school?.currentAcademicYear) return school.currentAcademicYear;
+    } catch (err) {
+      console.error('Année scolaire de l\u2019école indisponible :', err);
+    }
+    const now = new Date();
+    const start = now.getMonth() >= 8 ? now.getFullYear() : now.getFullYear() - 1;
+    return `${start}-${start + 1}`;
+  };
+
+  // Le secrétariat confirme que le versement des frais de dossier a bien été reçu
+  const handleConfirmFee = async () => {
+    if (!application) return;
+    setIsProcessing(true);
+    try {
+      await applicationService.markRegistrationFeePaid(application.id);
+      setApplication({ ...application, registrationFeePaid: true });
+      notify('success', 'Encaissement confirmé', 'Les frais de dossier sont marqués comme payés.');
+    } catch (err) {
+      console.error(err);
+      notify('error', 'Erreur', 'Impossible de confirmer l\u2019encaissement.');
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+
+  // Les pièces sont stockées par chemin : on génère un lien temporaire (5 minutes) à la consultation
+  const openDocument = async (url?: string) => {
+    if (!url) return;
+    const prefix = 'storage://application-documents/';
+    if (url.startsWith(prefix) && supabase) {
+      const { data, error } = await supabase.storage
+        .from('application-documents')
+        .createSignedUrl(url.slice(prefix.length), 300);
+      if (error || !data) {
+        notify('error', 'Document indisponible', 'Impossible de générer le lien de consultation.');
+        return;
+      }
+      window.open(data.signedUrl, '_blank', 'noopener');
+    } else if (url.startsWith('http')) {
+      window.open(url, '_blank', 'noopener');
+    }
+  };
+
   const handleApprove = async () => {
     if (!application) return;
     setIsProcessing(true);
     try {
       await applicationService.updateApplicationStatus(application.id, 'APPROUVE', notes);
+      const academicYear = await resolveAcademicYear();
       
       // Also automatically enroll student in the school registry!
       const newStudent = await studentService.addStudent({
@@ -56,11 +104,11 @@ export const ApplicationReviewPage: React.FC<ApplicationReviewPageProps> = () =>
         nationality: 'Congolaise',
         className: application.targetClass,
         section: application.targetSection,
-        academicYear: '2025 - 2026',
+        academicYear,
         enrollmentDate: new Date().toISOString().split('T')[0],
         photoUrl: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=200&auto=format&fit=crop&q=80',
         status: 'Inscrit',
-        parentId: `parent-${Date.now()}`,
+        parentId: '', // le lien parent-élève est créé par l'invitation ci-dessous
         parentName: application.parentName,
         parentPhone: application.parentPhone,
         parentEmail: application.parentEmail,
@@ -165,6 +213,16 @@ export const ApplicationReviewPage: React.FC<ApplicationReviewPageProps> = () =>
             <Badge variant={application.registrationFeePaid ? 'success' : 'warning'} size="sm">
               {application.registrationFeePaid ? 'Encaissé ($25.00)' : 'Non Encaissé'}
             </Badge>
+            {!application.registrationFeePaid && (application as any).paymentReference && (
+              <span className="text-[11px] text-on-surface-variant">
+                Paiement déclaré · réf. <strong className="font-mono">{(application as any).paymentReference}</strong>
+              </span>
+            )}
+            {!application.registrationFeePaid && (
+              <Button variant="outline" size="sm" icon="payments" onClick={handleConfirmFee} disabled={isProcessing}>
+                Confirmer l'encaissement
+              </Button>
+            )}
           </div>
         </div>
 
@@ -204,9 +262,16 @@ export const ApplicationReviewPage: React.FC<ApplicationReviewPageProps> = () =>
                   <span className="text-[10px] text-on-surface-variant">Document officiel scanné</span>
                 </div>
               </div>
-              <Badge variant={doc.status === 'VALIDE' ? 'success' : 'warning'} size="sm">
-                {doc.status}
-              </Badge>
+              <div className="flex items-center gap-2">
+                {doc.url && (
+                  <Button variant="outline" size="sm" icon="visibility" onClick={() => openDocument(doc.url)}>
+                    Consulter
+                  </Button>
+                )}
+                <Badge variant={doc.status === 'VALIDE' ? 'success' : 'warning'} size="sm">
+                  {doc.status}
+                </Badge>
+              </div>
             </div>
           ))}
         </div>
