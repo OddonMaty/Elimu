@@ -9,6 +9,19 @@ import { getDefaultRouteForRole } from '../../lib/roleRoutes';
 
 export interface LoginPageProps {}
 
+// Environnement de test : projet Supabase « elimu-dev ». Le bandeau ci-dessous n'apparaît que là.
+const DEV_PROJECT_REF = 'ouzwzsklgnqhyjcwaskn';
+const IS_TEST_ENV = String(import.meta.env.VITE_SUPABASE_URL || '').includes(DEV_PROJECT_REF);
+const DEMO_PASSWORD = 'ElimuDev#2026';
+const DEMO_ACCOUNTS = [
+  { label: 'Direction', email: 'direction@elimu.test' },
+  { label: 'Secrétariat', email: 'secretariat@elimu.test' },
+  { label: 'Enseignant', email: 'enseignant@elimu.test' },
+  { label: 'Parent 1', email: 'parent1@elimu.test' },
+  { label: 'Parent 2', email: 'parent2@elimu.test' },
+  { label: 'Autre école', email: 'autre.ecole@elimu.test' }
+];
+
 export const LoginPage: React.FC<LoginPageProps> = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -45,6 +58,28 @@ export const LoginPage: React.FC<LoginPageProps> = () => {
           Portail Unifié de Gestion Scolaire & Espace Parent RDC
         </p>
       </div>
+
+      {IS_TEST_ENV && (
+        <div className="p-4 rounded-xl border border-secondary-container/50 bg-secondary-container/20 space-y-3 text-xs">
+          <p className="font-extrabold text-primary text-sm">Environnement de test (elimu-dev)</p>
+          <p className="text-on-surface-variant">
+            Données de démonstration uniquement. Cliquez sur un profil pour remplir la connexion (mot de passe commun :{' '}
+            <span className="font-mono font-bold">{DEMO_PASSWORD}</span>).
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {DEMO_ACCOUNTS.map(acc => (
+              <button
+                key={acc.email}
+                type="button"
+                onClick={() => { setEmail(acc.email); setPassword(DEMO_PASSWORD); }}
+                className="px-3 py-1.5 rounded-full border border-outline-variant bg-surface text-on-surface font-semibold hover:bg-surface-container-low"
+              >
+                {acc.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
 
       <Card noPadding className="p-6">
         <form onSubmit={handleLogin} className="space-y-4">
